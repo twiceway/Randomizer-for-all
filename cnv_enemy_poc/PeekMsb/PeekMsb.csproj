@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="_bak\**" />
+    <Compile Remove="_probe_caravan.cs" />
+    <Compile Remove="_probe_gatefront.cs" />
+    <Compile Remove="_probe_m10.cs" />
+    <Compile Remove="_probe_tmp.cs" />
+    <Compile Remove="_tmp.csx" />
+    <Reference Include="SoulsFormats">
+      <HintPath>V:\games\Elden Ring\Game\tools\DSMSPortable\app\SoulsFormats.dll</HintPath>
+    </Reference>
+    <None Include="V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_6_win64.dll"
+          Link="oo2core_6_win64.dll"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

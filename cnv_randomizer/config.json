@@ -1,0 +1,237 @@
+{
+  "seed": 277650521,
+  "csv_dir": "csv",
+  "output_dir": "output\\runtime",
+  "target_param": "ItemLotParam_map",
+  "randomize_categories": {
+    "weapon": true,
+    "armor": true,
+    "talisman": false,
+    "ash": true,
+    "magic": true
+  },
+  "randomize_goods_groups": {
+    "quest": true,
+    "important": true,
+    "upgrade": true,
+    "craft": true
+  },
+  "randomize_goods_subcats": {
+    "quest_key": true,
+    "quest_note": true,
+    "quest_unique": true,
+    "golden_seed": true,
+    "sacred_tear": true,
+    "larval_tear": true,
+    "memory_stone": true,
+    "wondrous_physick": true,
+    "mat_animal": false,
+    "mat_plant": false,
+    "mat_other": false,
+    "stone_smithing": true,
+    "stone_somber": true,
+    "stone_special": true,
+    "spirit_upgrade": true,
+    "rune": true,
+    "spell_rune": false,
+    "bolus": true,
+    "grease": true,
+    "pot_throw": true,
+    "knife_throw": true,
+    "food": true,
+    "consumable_other": true,
+    "spirit_lesser": false,
+    "spirit_greater": false,
+    "crystal_tear": true,
+    "remembrance": true,
+    "great_rune": true,
+    "sorcery_book": true,
+    "incantation_book": true,
+    "misc": true
+  },
+  "skip_lot_ids": [
+    0,
+    1,
+    2
+  ],
+  "skip_lot_ranges": [],
+  "shop_lot_ranges": [
+    [
+      100525,
+      100999
+    ],
+    [
+      101775,
+      101999
+    ],
+    [
+      102250,
+      102289
+    ],
+    [
+      102350,
+      102351
+    ],
+    [
+      102700,
+      102830
+    ],
+    [
+      122050,
+      122099
+    ],
+    [
+      123000,
+      123099
+    ],
+    [
+      129050,
+      129099
+    ],
+    [
+      600401,
+      600550
+    ]
+  ],
+  "exclude_item_ids": [
+    12,
+    100,
+    101,
+    102,
+    130,
+    150,
+    240,
+    250,
+    251,
+    292,
+    310,
+    330,
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1050,
+    1051,
+    1052,
+    1053,
+    1054,
+    1055,
+    1056,
+    1057,
+    1058,
+    1059,
+    1060,
+    1061,
+    1062,
+    1063,
+    1064,
+    1065,
+    1066,
+    1067,
+    1068,
+    1069,
+    1070,
+    1071,
+    1072,
+    1073,
+    1074,
+    1075,
+    6001,
+    11500,
+    20900,
+    20901,
+    20902,
+    20903,
+    20950,
+    20951,
+    20952,
+    20953,
+    20954,
+    20955,
+    20956,
+    20957,
+    60000,
+    710000,
+    50000000,
+    50010000,
+    52000000,
+    52020000
+  ],
+  "include_dlc": true,
+  "region_strictness": 1.0,
+  "shuffle_mode": "slot_shuffle",
+  "notes": "slot_shuffle = lot multiset shuffle + region_strictness + GUI filters.",
+  "enemy_gui": {
+    "page_items_enabled": true,
+    "page_enemies_enabled": true,
+    "category_weights": {
+      "trash": {
+        "trash": 52.0,
+        "elite": 30.0,
+        "minor_boss": 5.0,
+        "evergaol": 3.0,
+        "night": 8.0,
+        "major_boss": 2.0
+      },
+      "elite": {
+        "elite": 35.0,
+        "minor_boss": 30.0,
+        "evergaol": 20.0,
+        "night": 10.0,
+        "major_boss": 5.0
+      },
+      "minor_boss": {
+        "minor_boss": 35.0,
+        "evergaol": 30.0,
+        "night": 20.0,
+        "major_boss": 15.0
+      },
+      "evergaol": {
+        "evergaol": 40.0,
+        "night": 40.0,
+        "major_boss": 20.0
+      },
+      "night": {
+        "evergaol": 40.0,
+        "night": 35.0,
+        "major_boss": 25.0
+      },
+      "major_boss": {
+        "major_boss": 100.0
+      }
+    },
+    "mob_drop_mode": "donor_default",
+    "drop_mode": "donor_default",
+    "keep_original_drops": false,
+    "dlc_pool_mode": "mixed",
+    "map_filter": null,
+    "auto_randomize_seed": true,
+    "difficulty": {
+      "enabled": true,
+      "user_mult": 0.5
+    }
+  },
+  "maintainer_gui": true
+}

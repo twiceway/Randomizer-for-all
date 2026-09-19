@@ -1,0 +1,10 @@
+﻿=== enemy_poc_detail apply-map_ok 2026-09-19 16:05:37Z ===
+mode=apply-map
+game_dir=V:\games\Elden Ring\Game
+tool_root=V:\1_mel\Ringrandom\cnv_enemy_poc
+ringrandom_root=V:\1_mel\Ringrandom
+--msb override=V:\1_mel\Ringrandom\cnv_enemy_poc\cache\map\mapstudio\m60_42_37_00.msb.dcx
+spawn_map=V:\1_mel\Ringrandom\cnv_randomizer\output\runtime\.apply_staging\cnv_enemy_spawn_map_277650521.txt slots=18481
+radahn_landing_slots=8
+apply_summary maps=482 slots=18481 missing_slots=0 missing_maps=0 write_failed=0 model_stubs=10951 model_upgrades=0
+me3_snippet=V:\1_mel\Ringrandom\cnv_enemy_poc\cnv_enemy_me3_snippet.toml

@@ -1,0 +1,12 @@
+﻿# boss_batch2 — Gatefront test placements
+seed=42002
+map=m60_42_37_00
+# slot	donor_key	donor_map	donor_entity	model
+c4311_9006	real_dragon	m60_52_41_00.msb.dcx:c4500_9000	c4500
+c4311_9022	elden_beast	csv_fallback c2200	c2200
+c4311_9004	rune_trash	csv_fallback c4311	c4311
+c4311_9008	rune_medium	m60_42_36_00.msb.dcx:c4200_9002	c4200
+c4311_9012	rune_heavy	m60_42_36_00.msb.dcx:c3251_9000	c3251
+
+In-game: quit fully -> Start_Convergence -> new char or NG -> Gatefront
+Check: dragon visible at wagon field, Elden Beast model, rune amounts on 9004/9008/9012 kills

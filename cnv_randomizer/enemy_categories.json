@@ -1,0 +1,4024 @@
+{
+  "categories": [
+    "trash",
+    "elite",
+    "minor_boss",
+    "evergaol",
+    "night",
+    "major_boss"
+  ],
+  "evergaol_boss_definition": "封印监牢 + 野外场地 Boss（原 3/4 池合并）；非红灵、非主线雾门",
+  "evergaol_boss_model_prefixes": [
+    "c3010",
+    "c4201",
+    "c3400",
+    "c4650",
+    "c3600",
+    "c3704"
+  ],
+  "evergaol_direct_prisoner_model_prefixes": [
+    "c7100"
+  ],
+  "evergaol_direct_prisoner_definition": "实体名前缀=model 的监牢真皮囚犯（啜泣半岛萨米尔 c7100）；须无 walk_route + isSoulGetByBoss；不得泛化到野外 _9000 Boss",
+  "force_trash_model_prefixes": [
+    "c4460",
+    "c4480",
+    "c4481",
+    "c4482",
+    "c4483",
+    "c4550",
+    "c4560",
+    "c4561",
+    "c4630",
+    "c2270",
+    "c2271",
+    "c2272",
+    "c2273",
+    "c2274",
+    "c2275",
+    "c2276",
+    "c2277",
+    "c2278",
+    "c4490",
+    "c4491",
+    "c3910",
+    "c7100",
+    "c4810",
+    "c4811"
+  ],
+  "force_trash_model_definition": "小黄金树弱Boss（黄金树哨兵/萨摩尔古英雄/黄金树化身）血量远低于真Boss，仅作1池路边小怪捐皮",
+  "src_cat_rules": [
+    {
+      "match_model_prefix": "c5920",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c5820",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c3570",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c2501",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3150",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c3160",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c3171",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c5860",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c5840",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c5800",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c5810",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5320",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5311",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c5230",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5210",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5070",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c5050",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5030",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5020",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5000",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4980",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4910",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4680",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4640",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4470",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c3666",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3252",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3050",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c5120",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5220",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5130",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4750",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4760",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4730",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4710",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4670",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5270",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5700",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5110",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5770",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c2200",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4800",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c3251",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c3250",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c4500",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c4502",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c4880",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c2110",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3181",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3350",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c3400",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4260",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4290",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4340",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4620",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4650",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4690",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c4820",
+      "category": "minor_boss"
+    },
+    {
+      "match_model_prefix": "c5300",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4600",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4241",
+      "category": "evergaol"
+    },
+    {
+      "match_model_prefix": "c4720",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c8100",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c8101",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c8110",
+      "category": "cnv_special"
+    },
+    {
+      "match_model_prefix": "c4311",
+      "category": "trash"
+    },
+    {
+      "match_model_prefix": "c4310",
+      "category": "trash"
+    },
+    {
+      "match_model_prefix": "c4200",
+      "category": "trash"
+    },
+    {
+      "match_model_prefix": "c4100",
+      "category": "trash"
+    },
+    {
+      "match_model_prefix": "c2030",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c2100",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c2130",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c2500",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c3560",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4370",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4510",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c4520",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5200",
+      "category": "major_boss"
+    },
+    {
+      "match_model_prefix": "c5380",
+      "category": "major_boss"
+    }
+  ],
+  "template_default_category": "trash",
+  "red_spirit_definition": "入侵红灵 / 人形PVP幽灵（布莱泽、黑刀、铃珠猎人等）",
+  "red_spirit_model_prefixes": [
+    "c0000",
+    "c1000",
+    "c2010",
+    "c2031",
+    "c3100",
+    "c3664"
+  ],
+  "field_cavalry_rider_model_prefixes": [
+    "c3150",
+    "c3171"
+  ],
+  "field_cavalry_mount_model_prefixes": [
+    "c3160"
+  ],
+  "mount_pair_kinds": [
+    {
+      "id": "field_night_cavalry",
+      "category": "evergaol",
+      "label_zh": "黑夜骑兵（成套）",
+      "rider_prefixes": [
+        "c3150",
+        "c3171"
+      ],
+      "mount_prefixes": [
+        "c3160",
+        "c3170"
+      ]
+    },
+    {
+      "id": "kaiden_sellsword",
+      "label_zh": "凯丹佣兵（成套）",
+      "rider_prefixes": [
+        "c4050"
+      ],
+      "mount_prefixes": [
+        "c4060"
+      ]
+    },
+    {
+      "id": "tree_sentinel",
+      "label_zh": "树守卫（成套）",
+      "rider_prefixes": [
+        "c3251"
+      ],
+      "mount_prefixes": [
+        "c3250"
+      ]
+    },
+    {
+      "id": "knight_horse",
+      "label_zh": "骑乘骑士（成套）",
+      "rider_prefixes": [
+        "c4351",
+        "c4352",
+        "c4353",
+        "c4354",
+        "c4355",
+        "c4356"
+      ],
+      "mount_prefixes": [
+        "c4361",
+        "c4362",
+        "c4363",
+        "c4364",
+        "c4365",
+        "c4368"
+      ]
+    }
+  ],
+  "mount_pair_randomize_enabled": false,
+  "mount_pair_randomize_hold_definition": "临时：黑夜骑兵/大树守卫等 mount_pair_kinds 槽保持原版不换皮；待 T-056 修 rider+mount 同步捐皮",
+  "mount_pair_definition": "步兵槽禁止骑马捐皮；有配对马槽的骑手只从全局成套骑马池互随机（一次抽一对 rider+mount、同 mount_pair_id）；无配对骑手模型槽（如法魂 m60 单放 c435x/c4050）按步兵槽随机；马槽不单独随机",
+  "size_tier_by_model_prefix": {
+    "c0": "small",
+    "c0000": "humanoid",
+    "c1": "small",
+    "c100": "small",
+    "c1000": "small",
+    "c1002": "small",
+    "c1010": "small",
+    "c1100": "humanoid",
+    "c1200": "small",
+    "c1210": "small",
+    "c1300": "tall",
+    "c1301": "small",
+    "c1308": "small",
+    "c1317": "small",
+    "c1320": "small",
+    "c1330": "small",
+    "c1332": "small",
+    "c1335": "small",
+    "c1336": "humanoid",
+    "c1345": "humanoid",
+    "c1347": "small",
+    "c1350": "tiny",
+    "c1361": "small",
+    "c1366": "tiny",
+    "c1370": "humanoid",
+    "c1375": "small",
+    "c1380": "small",
+    "c1381": "humanoid",
+    "c1385": "tiny",
+    "c1386": "tiny",
+    "c1390": "small",
+    "c1395": "humanoid",
+    "c1397": "humanoid",
+    "c1405": "small",
+    "c1407": "humanoid",
+    "c1408": "small",
+    "c1410": "small",
+    "c1411": "small",
+    "c1416": "small",
+    "c1418": "humanoid",
+    "c1421": "small",
+    "c1429": "humanoid",
+    "c1430": "small",
+    "c1431": "small",
+    "c1432": "tiny",
+    "c1434": "medium",
+    "c1435": "small",
+    "c1437": "small",
+    "c1444": "humanoid",
+    "c1448": "humanoid",
+    "c1449": "small",
+    "c1482": "humanoid",
+    "c1500": "small",
+    "c1504": "small",
+    "c1508": "medium",
+    "c1509": "humanoid",
+    "c1516": "small",
+    "c1519": "medium",
+    "c1525": "small",
+    "c1526": "humanoid",
+    "c1531": "small",
+    "c1556": "humanoid",
+    "c1581": "small",
+    "c1583": "small",
+    "c1584": "small",
+    "c1587": "small",
+    "c1590": "small",
+    "c1700": "small",
+    "c1999": "small",
+    "c2010": "medium",
+    "c2030": "boss",
+    "c2031": "humanoid",
+    "c2040": "small",
+    "c2041": "small",
+    "c2050": "small",
+    "c2051": "small",
+    "c2060": "small",
+    "c2100": "small",
+    "c2110": "boss",
+    "c2120": "small",
+    "c2130": "medium",
+    "c2131": "medium",
+    "c2140": "medium",
+    "c2150": "small",
+    "c2160": "humanoid",
+    "c2170": "humanoid",
+    "c2180": "small",
+    "c2190": "small",
+    "c2191": "small",
+    "c2200": "colossal",
+    "c2270": "small",
+    "c2271": "tiny",
+    "c2272": "small",
+    "c2273": "tiny",
+    "c2274": "small",
+    "c2275": "tiny",
+    "c2276": "small",
+    "c2277": "tiny",
+    "c2500": "small",
+    "c3000": "small",
+    "c3010": "small",
+    "c3020": "small",
+    "c3050": "humanoid",
+    "c3060": "small",
+    "c3061": "humanoid",
+    "c3070": "small",
+    "c3080": "small",
+    "c3100": "humanoid",
+    "c3150": "mounted",
+    "c3160": "humanoid",
+    "c3170": "small",
+    "c3171": "mounted",
+    "c3180": "humanoid",
+    "c3181": "medium",
+    "c3200": "small",
+    "c3201": "small",
+    "c3202": "small",
+    "c3210": "humanoid",
+    "c3250": "mounted",
+    "c3251": "mounted",
+    "c3252": "medium",
+    "c3300": "small",
+    "c3320": "humanoid",
+    "c3330": "medium",
+    "c3350": "small",
+    "c3360": "humanoid",
+    "c3361": "humanoid",
+    "c3370": "medium",
+    "c3371": "medium",
+    "c3400": "small",
+    "c3450": "humanoid",
+    "c3451": "humanoid",
+    "c3460": "medium",
+    "c3470": "small",
+    "c3471": "humanoid",
+    "c3500": "tiny",
+    "c3510": "tiny",
+    "c3550": "humanoid",
+    "c3560": "humanoid",
+    "c3570": "medium",
+    "c3600": "humanoid",
+    "c3610": "small",
+    "c3620": "humanoid",
+    "c3630": "medium",
+    "c3640": "small",
+    "c3650": "small",
+    "c3660": "small",
+    "c3661": "tiny",
+    "c3662": "tiny",
+    "c3664": "tiny",
+    "c3665": "small",
+    "c3666": "small",
+    "c3670": "humanoid",
+    "c3700": "small",
+    "c3701": "small",
+    "c3702": "small",
+    "c3703": "small",
+    "c3704": "humanoid",
+    "c3710": "small",
+    "c3720": "medium",
+    "c3730": "medium",
+    "c3750": "small",
+    "c3800": "small",
+    "c3810": "humanoid",
+    "c3850": "tiny",
+    "c3860": "tiny",
+    "c3900": "small",
+    "c3901": "small",
+    "c3910": "medium",
+    "c3950": "humanoid",
+    "c3970": "humanoid",
+    "c4000": "humanoid",
+    "c4020": "medium",
+    "c4040": "small",
+    "c4050": "mounted",
+    "c4060": "humanoid",
+    "c4070": "humanoid",
+    "c4071": "humanoid",
+    "c4080": "small",
+    "c4090": "medium",
+    "c4100": "small",
+    "c4101": "small",
+    "c4110": "small",
+    "c4120": "humanoid",
+    "c4130": "medium",
+    "c4140": "humanoid",
+    "c4150": "small",
+    "c4160": "small",
+    "c4161": "small",
+    "c4162": "small",
+    "c4163": "small",
+    "c4164": "small",
+    "c4165": "small",
+    "c4166": "small",
+    "c4167": "small",
+    "c4170": "small",
+    "c4171": "medium",
+    "c4180": "humanoid",
+    "c4190": "humanoid",
+    "c4191": "humanoid",
+    "c4192": "medium",
+    "c4200": "humanoid",
+    "c4201": "humanoid",
+    "c4210": "small",
+    "c4220": "medium",
+    "c4230": "medium",
+    "c4240": "medium",
+    "c4241": "medium",
+    "c4242": "large",
+    "c4250": "humanoid",
+    "c4260": "medium",
+    "c4270": "medium",
+    "c4280": "medium",
+    "c4281": "medium",
+    "c4290": "humanoid",
+    "c4300": "small",
+    "c4311": "small",
+    "c4312": "small",
+    "c4313": "small",
+    "c4314": "small",
+    "c4315": "small",
+    "c4316": "small",
+    "c4321": "tiny",
+    "c4340": "medium",
+    "c4341": "medium",
+    "c4351": "small",
+    "c4352": "mounted",
+    "c4353": "mounted",
+    "c4354": "mounted",
+    "c4355": "mounted",
+    "c4356": "mounted",
+    "c4358": "small",
+    "c4361": "humanoid",
+    "c4362": "humanoid",
+    "c4363": "humanoid",
+    "c4364": "humanoid",
+    "c4365": "humanoid",
+    "c4368": "humanoid",
+    "c4371": "small",
+    "c4372": "small",
+    "c4373": "small",
+    "c4374": "small",
+    "c4375": "small",
+    "c4376": "small",
+    "c4377": "small",
+    "c4380": "small",
+    "c4381": "small",
+    "c4382": "small",
+    "c4383": "small",
+    "c4384": "small",
+    "c4385": "small",
+    "c4420": "medium",
+    "c4430": "small",
+    "c4440": "humanoid",
+    "c4441": "tall",
+    "c4442": "tall",
+    "c4450": "colossal",
+    "c4460": "small",
+    "c4470": "medium",
+    "c4480": "small",
+    "c4481": "small",
+    "c4482": "small",
+    "c4483": "small",
+    "c4490": "medium",
+    "c4491": "small",
+    "c4492": "medium",
+    "c4500": "colossal",
+    "c4501": "colossal",
+    "c4502": "colossal",
+    "c4503": "colossal",
+    "c4504": "colossal",
+    "c4505": "colossal",
+    "c4510": "colossal",
+    "c4511": "colossal",
+    "c4520": "colossal",
+    "c4550": "small",
+    "c4560": "small",
+    "c4561": "small",
+    "c4570": "medium",
+    "c4580": "tall",
+    "c4600": "tall",
+    "c4601": "tall",
+    "c4602": "medium",
+    "c4603": "tall",
+    "c4604": "tall",
+    "c4610": "medium",
+    "c4620": "colossal",
+    "c4630": "small",
+    "c4640": "medium",
+    "c4650": "medium",
+    "c4660": "tall",
+    "c4670": "boss",
+    "c4680": "medium",
+    "c4690": "medium",
+    "c4710": "colossal",
+    "c4711": "medium",
+    "c4720": "medium",
+    "c4721": "medium",
+    "c4730": "tall",
+    "c4750": "boss",
+    "c4751": "medium",
+    "c4760": "boss",
+    "c4770": "tall",
+    "c4800": "medium",
+    "c4810": "medium",
+    "c4811": "medium",
+    "c4820": "humanoid",
+    "c4880": "medium",
+    "c4900": "medium",
+    "c4910": "medium",
+    "c4911": "medium",
+    "c4920": "medium",
+    "c4930": "medium",
+    "c4940": "medium",
+    "c4950": "medium",
+    "c4960": "small",
+    "c4980": "medium",
+    "c5000": "medium",
+    "c5010": "medium",
+    "c5011": "medium",
+    "c5020": "medium",
+    "c5021": "tiny",
+    "c5022": "tiny",
+    "c5030": "boss",
+    "c5031": "tiny",
+    "c5032": "tiny",
+    "c5033": "tiny",
+    "c5034": "tiny",
+    "c5040": "small",
+    "c5041": "tiny",
+    "c5050": "boss",
+    "c5051": "small",
+    "c5060": "medium",
+    "c5061": "medium",
+    "c5062": "tiny",
+    "c5063": "tiny",
+    "c5070": "small",
+    "c5080": "medium",
+    "c5081": "medium",
+    "c5090": "medium",
+    "c5110": "medium",
+    "c5120": "large",
+    "c5130": "boss",
+    "c5131": "small",
+    "c5132": "small",
+    "c5140": "small",
+    "c5141": "small",
+    "c5160": "small",
+    "c5170": "colossal",
+    "c5180": "small",
+    "c5181": "small",
+    "c5190": "medium",
+    "c5192": "medium",
+    "c5193": "medium",
+    "c5200": "medium",
+    "c5210": "medium",
+    "c5220": "boss",
+    "c5221": "medium",
+    "c5230": "medium",
+    "c5231": "small",
+    "c5232": "small",
+    "c5233": "small",
+    "c5234": "small",
+    "c5235": "small",
+    "c5236": "small",
+    "c5237": "small",
+    "c5238": "small",
+    "c5239": "small",
+    "c5240": "small",
+    "c5241": "small",
+    "c5242": "small",
+    "c5243": "small",
+    "c5250": "small",
+    "c5251": "small",
+    "c5260": "humanoid",
+    "c5261": "small",
+    "c5270": "large",
+    "c5271": "humanoid",
+    "c5279": "small",
+    "c5280": "small",
+    "c5285": "small",
+    "c5290": "small",
+    "c5300": "boss",
+    "c5310": "small",
+    "c5311": "small",
+    "c5312": "small",
+    "c5320": "medium",
+    "c5330": "small",
+    "c5331": "small",
+    "c5332": "small",
+    "c5333": "small",
+    "c5334": "small",
+    "c5335": "small",
+    "c5336": "small",
+    "c5338": "small",
+    "c5339": "small",
+    "c5340": "small",
+    "c5341": "small",
+    "c5342": "small",
+    "c5343": "small",
+    "c5344": "small",
+    "c5345": "small",
+    "c5346": "small",
+    "c5347": "small",
+    "c5348": "small",
+    "c5349": "small",
+    "c5350": "small",
+    "c5360": "tiny",
+    "c5370": "colossal",
+    "c5380": "medium",
+    "c5381": "humanoid",
+    "c5390": "tall",
+    "c5391": "tall",
+    "c5392": "tall",
+    "c540": "small",
+    "c5401": "tiny",
+    "c541": "small",
+    "c5410": "small",
+    "c542": "small",
+    "c5421": "humanoid",
+    "c5430": "small",
+    "c5431": "small",
+    "c5432": "small",
+    "c5433": "small",
+    "c5434": "small",
+    "c5436": "small",
+    "c5438": "small",
+    "c5440": "small",
+    "c5441": "small",
+    "c5442": "small",
+    "c5443": "small",
+    "c5444": "small",
+    "c5445": "small",
+    "c5446": "small",
+    "c5447": "small",
+    "c5448": "small",
+    "c5449": "small",
+    "c5450": "small",
+    "c5460": "tiny",
+    "c5470": "tiny",
+    "c5471": "humanoid",
+    "c5472": "medium",
+    "c5480": "small",
+    "c5490": "small",
+    "c5500": "humanoid",
+    "c5501": "humanoid",
+    "c5511": "tiny",
+    "c5512": "tiny",
+    "c5513": "tiny",
+    "c5520": "small",
+    "c5521": "small",
+    "c5522": "small",
+    "c5523": "small",
+    "c5524": "small",
+    "c5525": "small",
+    "c5526": "small",
+    "c5527": "small",
+    "c5530": "humanoid",
+    "c5540": "humanoid",
+    "c5541": "humanoid",
+    "c5550": "medium",
+    "c5551": "medium",
+    "c5560": "humanoid",
+    "c5570": "tiny",
+    "c5580": "colossal",
+    "c5581": "colossal",
+    "c5590": "small",
+    "c5591": "medium",
+    "c5600": "tiny",
+    "c5620": "medium",
+    "c5630": "medium",
+    "c5640": "medium",
+    "c5641": "tiny",
+    "c5651": "small",
+    "c5661": "colossal",
+    "c5670": "humanoid",
+    "c5680": "medium",
+    "c5690": "humanoid",
+    "c5700": "small",
+    "c5701": "small",
+    "c5710": "small",
+    "c5720": "humanoid",
+    "c5730": "medium",
+    "c5740": "humanoid",
+    "c5750": "medium",
+    "c5751": "small",
+    "c5760": "small",
+    "c5761": "medium",
+    "c5770": "small",
+    "c5780": "medium",
+    "c5790": "tall",
+    "c5800": "small",
+    "c5810": "small",
+    "c5820": "medium",
+    "c5830": "small",
+    "c5840": "small",
+    "c5850": "humanoid",
+    "c5860": "colossal",
+    "c5870": "small",
+    "c5871": "medium",
+    "c5872": "tall",
+    "c5880": "small",
+    "c5890": "humanoid",
+    "c5900": "small",
+    "c5910": "humanoid",
+    "c5920": "medium",
+    "c5930": "small",
+    "c5931": "humanoid",
+    "c5940": "small",
+    "c5950": "humanoid",
+    "c5960": "medium",
+    "c5970": "medium",
+    "c5980": "humanoid",
+    "c5990": "small",
+    "c5999": "tiny",
+    "c6001": "tiny",
+    "c6010": "small",
+    "c6020": "humanoid",
+    "c6031": "humanoid",
+    "c6040": "tiny",
+    "c6050": "small",
+    "c6060": "small",
+    "c6070": "tiny",
+    "c6072": "tiny",
+    "c6080": "tiny",
+    "c6081": "humanoid",
+    "c6082": "medium",
+    "c6090": "small",
+    "c6091": "small",
+    "c6100": "small",
+    "c6200": "humanoid",
+    "c6201": "humanoid",
+    "c6202": "medium",
+    "c6210": "small",
+    "c6220": "humanoid",
+    "c6221": "medium",
+    "c6231": "small",
+    "c6232": "small",
+    "c6233": "small",
+    "c6240": "small",
+    "c6251": "medium",
+    "c6260": "medium",
+    "c6270": "medium",
+    "c6290": "humanoid",
+    "c6291": "humanoid",
+    "c6300": "humanoid",
+    "c6310": "medium",
+    "c6320": "small",
+    "c7000": "small",
+    "c7100": "small",
+    "c8000": "humanoid",
+    "c8100": "boss",
+    "c8101": "boss",
+    "c8110": "boss",
+    "c8120": "medium",
+    "c8901": "medium",
+    "c8999": "small",
+    "c9000": "tiny",
+    "c9001": "small",
+    "c9002": "medium",
+    "c9008": "small",
+    "c9009": "humanoid",
+    "c9051": "medium",
+    "c9220": "small",
+    "c9500": "small",
+    "c9501": "small",
+    "c9502": "small",
+    "c9503": "small",
+    "c9509": "small",
+    "c9999": "small"
+  },
+  "size_tier_definitions": "真源 enemy_size_tiers.json；辅助七类池放置，不改池归属 | narrow_block=骑乘/中型/高型(tall)/大型/超巨/主线Boss 禁贴狭窄或小型槽 | pool_exclude=仅飞龙/古龙 | T-097 大型/超巨/主线Boss 野外可捐；高型(tall)不在豁免范围（可捐，narrow_block 限贴大空间）| T-097b 体型豁免（large/colossal/boss）已随 T-098 废止自动尾皮而中止",
+  "exclude_slot_size_tiers": [
+    "large",
+    "colossal",
+    "flying",
+    "boss"
+  ],
+  "exclude_donor_size_tiers": [
+    "flying"
+  ],
+  "exclude_slot_model_prefixes": [
+    "c0000",
+    "c1000",
+    "c0100",
+    "c0110",
+    "c0120",
+    "c0130",
+    "c4060",
+    "c4361",
+    "c4362",
+    "c4363",
+    "c4364",
+    "c4365",
+    "c4368",
+    "c4492",
+    "c4601",
+    "c4602",
+    "c4604",
+    "c8100",
+    "c8101",
+    "c8110",
+    "c2050",
+    "c3710",
+    "c2040",
+    "c5230",
+    "c5390",
+    "c5391",
+    "c5392",
+    "c2274",
+    "c2275",
+    "c2278",
+    "c2030",
+    "c2031",
+    "c5170",
+    "c4460",
+    "c5330"
+  ],
+  "exclude_slot_mount_definition": "…柳条人影树化身(c5230)/熔炉魔像(c5170)/DLC山妖拉车(c5390~2)/火焰战车(c4460)等槽位保持原位，不参与随机；满月女王 c2030/c2031（2026-09-01 不随机不捐）；**圣特里娜 c5330**（睡着不动·睡莲圣女，2026-09-11 不随机不捐）",
+  "exclude_slot_npc_ids": [
+    20300024,
+    20310024,
+    20400024,
+    20401024,
+    20402024,
+    20402124,
+    20402224,
+    20403024,
+    20404024,
+    21202056,
+    36613050,
+    36626040,
+    37022022,
+    37100000,
+    37100024,
+    37100032,
+    41109010,
+    41109030,
+    41109170,
+    44500012,
+    44500020,
+    44500050,
+    44500052,
+    44501020,
+    44810064,
+    44810120,
+    44810220,
+    44810370,
+    44810912,
+    44811330,
+    44830031,
+    44831050,
+    45000010,
+    45000042,
+    45010040,
+    45020022,
+    45020920,
+    45021922,
+    45030050,
+    45050042,
+    45102030,
+    45200010,
+    45200072,
+    46001010,
+    46001020,
+    46001030,
+    46606010,
+    46606020,
+    47110038,
+    49500010,
+    49500020,
+    49500032,
+    50600083,
+    50900080,
+    51200085,
+    51701084,
+    52300096,
+    53700085,
+    53810094,
+    55800085,
+    56200084,
+    58600001,
+    58600090,
+    58800091,
+    523240070
+  ],
+  "exclude_slot_npc_ids_definition": "亚兹勒(37100032/37100000/37100024)；灵庙顶石像鬼(46606010/46606020)；法魂移动灵庙 c4450 全区域 npc(44500012/20/50/52/44501020，事件层 MSB 槽) — 换皮会导致灵庙不刷；百智爵士玩家壳(523240070，法魂剧情 NPC，1血) — 不随机，捐皮只用合成 gideon_c5380；**拉车山妖** npc 46001010/46001020/46001030（成对 c4600 槽，2026-08-04 用户）；**池1白名单序号 1·60·116-123**（柏克/幼隶学者/米兰达芽全系+DLC c5381 同名，2026-08-05 用户）；**池2序号 4·19·21**（七鳃鳗/墓穴术士/墓鸟 DLC 合成，2026-08-05）；柏克 41109010/41109170、辉石法师尸体 37022022 2026-08-06（用户）；**玛莲妮亚飞鸟分身（水鸟刀法）** npc 21202056 · 模板 m15:c2120_9001 — 不捐不随机（T-068，2026-08-10）；柏克 41109010/41109170、辉石法师尸体 37022022 2026-08-13（用户）；**提比亚唤魂 Tibia Mariner** npc 49500010/49500020/49500032 + DLC 56200084 — 原位不随机不捐（T-083 真机 2026-08-18）",
+  "cnv_original_boss_slot_npc_ids": [
+    25000014,
+    30008040,
+    30500051,
+    31500010,
+    33102020,
+    33102550,
+    34600913,
+    34800000,
+    35700028,
+    43800130,
+    45020022,
+    46300032,
+    58100084,
+    58400000
+  ],
+  "cnv_original_boss_slot_npc_ids_definition": "法魂原创 Boss 原位槽：不参与随机、不作 never_donor；可作 7 池捐皮。T-057 主表 11 名 + 黑骑士 m11_10 + 唤雷者/唤风者 c3310（33102020/33102550，T-069 崖底终点，2026-08-10）",
+  "never_donor_npc_ids": [
+    20300024,
+    20310024,
+    20400024,
+    20401024,
+    20402024,
+    20402124,
+    20402224,
+    20403024,
+    20404024,
+    21202056,
+    36613050,
+    36626040,
+    37022022,
+    37100000,
+    37100024,
+    37100032,
+    41109010,
+    41109030,
+    41109170,
+    41610252,
+    44500012,
+    44500020,
+    44500050,
+    44500052,
+    44501020,
+    44810064,
+    44810120,
+    44810220,
+    44810370,
+    44810912,
+    44811330,
+    44830031,
+    44831050,
+    45000010,
+    45000042,
+    45010040,
+    45020022,
+    45020920,
+    45021922,
+    45030050,
+    45050042,
+    45102030,
+    45200010,
+    45200072,
+    46001010,
+    46001020,
+    46001030,
+    46606010,
+    46606020,
+    47110038,
+    47702034,
+    500000010,
+    500000042,
+    500000066,
+    49500010,
+    49500020,
+    49500032,
+    50600083,
+    50900080,
+    51200085,
+    51701084,
+    52300096,
+    53700085,
+    53810094,
+    55800085,
+    56200084,
+    58600001,
+    58600090,
+    58800091,
+    523230033,
+    523240070,
+    533181070,
+    533181110
+  ],
+  "never_donor_npc_ids_definition": "与 exclude_slot_npc_ids 同表；c3710 模型双保险（never_donor_model_prefixes）；百智壳 523240070 禁捐（合成皮 53800084 可捐）；523230033 食粪者任务壳禁捐→523230035；533181070/533181110 夏玻利利/尤拉红灵壳（soul0 同伴皮）禁捐→523180050/523180000；拉车山妖 npc 46001010/20/30；池1 柏克/幼隶学者/米兰达芽（2026-08-05）；池2 七鳃鳗/墓穴术士/墓鸟（2026-08-05）；龙类实装 2026-08-05（契约黑名单·能飞龙）；柏克/辉石法师尸体 2026-08-06（契约黑名单·不随机不捐皮）；装饰尸体 c3661/c3662/c4711 2026-08-06（模型前缀禁捐+槽位保留）；**玛莲妮亚飞鸟分身** npc 21202056（T-068，2026-08-10）；**c4161 野狗** npc 41610252 随机不捐（人形槽捐皮必冻，2026-08-13）；**提比亚唤魂** 49500010/20/32 + 56200084（T-083 2026-08-18）；**满月女王** c2030/c2031 模型前缀禁捐+槽位保留（2026-09-01）；**圣特里娜 c5330** hard_block 不随机不捐（2026-09-11）；**沉默灵** 500000010/042/066 斗技场/龙墓站桩不打（2026-09-09）；**柳条人** c5230 已模型前缀不随机不捐（再确认）；**熔炉魔像** c5170 npc 51701084（2026-09-01 不随机不捐）；**残破喷火石像鬼** npc 47702034（c4770 仅此行禁捐，正常石像鬼/黑剑眷属可捐；2026-09-04 真机 F6）",
+  "donor_npc_id_remap": {
+    "523230033": 523230035,
+    "533181070": 523180050,
+    "533181110": 523180000
+  },
+  "donor_npc_id_remap_definition": "捐皮/复制行 base npc 纠偏：任务壳→战斗行（spawn 末列 npc_donor 与 T-052 base_npc）",
+  "donor_review_filter_enabled": true,
+  "donor_review_filter_enabled_definition": "运行时捐皮 compat 池应用筛选后捐皮审阅规则（donor_pool_review_filter + donor_pool_review_manual_excludes.json）；变更须重建 prep（PREP_VERSION / donor_review_excludes 指纹）",
+  "never_donor_hard_block_model_prefixes": [
+    "c2274",
+    "c2275",
+    "c2278",
+    "c5330"
+  ],
+  "never_donor_hard_block_model_prefixes_definition": "never_donor 且 donor_review_allowlist 不得覆写：结晶/白金蟹系（2026-08-31 真机 c4200_9000 误换 c2275）；**圣特里娜 c5330**（睡着·睡莲圣女，2026-09-11 用户：不随机不捐，白名单不得翻案）",
+  "donor_review_allowlist_enabled": true,
+  "donor_review_allowlist_enabled_definition": "捐皮池仅允许 筛选后捐池表 白名单 npc（donor_pool_review_allowlist.json）；审阅 md 仍 7 档，运行时对齐现网 6 池 CATEGORY_ORDER；变更审阅表后重跑 export 并重建 prep",
+  "npc_copy_unified_team_type": {
+    "enabled": true,
+    "team_type": 6
+  },
+  "npc_copy_unified_team_type_definition": "T-061：T-052 NpcParam 复制行统一 teamType（阵营）；统一为 6（原版主流敌对，非 0 同伴）；禁红灵27等与路边6互殴；改后须 regenerate+apply",
+  "donor_min_effective_hp": 101,
+  "donor_min_effective_hp_definition": "审阅有效 HP 低于此值禁捐（101=≤100 不捐；npc_effective_hp_for_review 口径）",
+  "siege_weapon_model_prefixes": [
+    "c8100",
+    "c8101",
+    "c8110"
+  ],
+  "siege_operator_c1000_profiles": [
+    {
+      "talk_id": 1000,
+      "npc_id": 10000000,
+      "label": "ballista_operator"
+    },
+    {
+      "talk_id": 2000,
+      "npc_id": 10001000,
+      "label": "trebuchet_operator"
+    }
+  ],
+  "siege_operator_think_id": 1,
+  "siege_operator_definition": "攻城操作员：① MSB Events.Mounts 骑手（MountPartName=c81xx）；② c1000+think=1+talk/npc 成对（1000/10000000 弩炮，2000/10001000 投石）。禁止宽 npc 段。",
+  "hub_map_ids": [
+    "m11_10_00_00",
+    "m12_04_00_00"
+  ],
+  "hub_map_id_prefixes": [
+    "m11_10_"
+  ],
+  "hub_map_skip_definition": "仅大赐福 m11_10_00_00 + 木桩训练 m12_04_00_00；王城 m12_01/m12_02 等城内图参与随机",
+  "pristine_map_ids": [
+    "m30_10_00_00",
+    "m60_09_11_02",
+    "m60_09_12_02",
+    "m60_10_08_02",
+    "m60_11_14_02",
+    "m60_12_14_02",
+    "m60_38_46_00",
+    "m60_43_40_00",
+    "m60_41_37_00"
+  ],
+  "pristine_map_definition": "灵庙：事件层 m60_09_11/12 + m60_10_08/11_14/12_14（c4450×6 槽，见 cnv_mausoleum_slots）+ m30_10 战车传送(c8120) + 石像鬼锚点(m60_38_46/m60_43_40/m60_41_37)；不参与随机，apply 后删 overlay",
+  "cnv_mausoleum_slots": [
+    {
+      "event_map": "m60_09_11_02",
+      "slot": "m60_36_47_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44500020,
+      "think": 44500000,
+      "walk_route": "歩く霊廟",
+      "region": "游荡灵庙本体"
+    },
+    {
+      "event_map": "m60_09_11_02",
+      "slot": "m60_38_47_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44501020,
+      "think": 44500000,
+      "walk_route": "霊廟巡回",
+      "region": "啜泣半岛灵庙"
+    },
+    {
+      "event_map": "m60_09_12_02",
+      "slot": "m60_37_48_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44501020,
+      "think": 44500000,
+      "walk_route": "霊廟巡回",
+      "region": "灵庙巡逻B"
+    },
+    {
+      "event_map": "m60_10_08_02",
+      "slot": "m60_42_33_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44500012,
+      "think": 44500000,
+      "walk_route": "霊廟移動ポイント",
+      "region": "巡逻路点（槽名含格子 m60_42_33；非 m60_42_37 关卡前方地面图）"
+    },
+    {
+      "event_map": "m60_11_14_02",
+      "slot": "m60_47_58_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44500052,
+      "think": 44500000,
+      "walk_route": "walk_route_c4450",
+      "region": "盖利德灵庙"
+    },
+    {
+      "event_map": "m60_12_14_02",
+      "slot": "m60_51_57_00-c4450_9000",
+      "model": "c4450",
+      "npc": 44500050,
+      "think": 44500000,
+      "walk_route": "walk_route_c4450_56",
+      "region": "雪山灵庙"
+    }
+  ],
+  "cnv_mausoleum_slots_definition": "真源 mod/map/MapStudio（enemy_index 扫描）；仅事件层 MSB 含 c4450×6；地面图 m60_42_37_00 等无灵庙槽。槽不进随机池、不作捐皮",
+  "cnv_caravan_event_maps": [
+    "m60_11_09_02",
+    "m60_11_09_12"
+  ],
+  "cnv_caravan_event_slot_model_prefixes": [
+    "c0110",
+    "c0100",
+    "c4600"
+  ],
+  "cnv_caravan_event_slots_definition": "东边巨人拉车过场（事件层 MSB m60_11_09_02/12）：仅 c0110/c0100（领队假人）+ c4600（拉车巨人）原位不随机；c0110/c0100 禁止 suppress 沉底。小兵/随从 c4311/c4300 仍随机（密集契约）。拉车 npc 46001010/20/30 仍 exclude/never_donor。不禁 c4460 全局捐皮",
+  "anchor_plant_slot_model_prefixes": [
+    "c4481",
+    "c4483"
+  ],
+  "anchor_plant_donor_model_prefixes": [
+    "c4481",
+    "c4482",
+    "c4483",
+    "c5381"
+  ],
+  "anchor_plant_slot_definition": "米兰达芽/花植物锚点槽：仅植物族捐皮；防人形 T 字架冻住",
+  "dungeon_boss_map_id_prefixes": [
+    "m30_",
+    "m31_",
+    "m32_",
+    "m35_"
+  ],
+  "dungeon_boss_map_id_prefixes_definition": "洞窟/墓地/英雄墓 MSB 前缀；源槽归类走 dungeon_source_slot_policy",
+  "dungeon_boss_arena_tgt_overrides": {
+    "m30_04_00_00:c3400_9000": {
+      "night": 1.0
+    }
+  },
+  "dungeon_boss_arena_tgt_overrides_definition": "试点：覆盖洞墓 c####_9000 默认锁 3 池 minor_boss；键 map_id:entity → 目标池权重",
+  "dungeon_source_slot_policy": {
+    "definition": "洞窟/墓地源槽：c####_9000 + bossSoul/major/MSB名Boss/高卢恩/已知洞穴Boss模型 升 2~7 池；_9001+ 召唤与走廊一律 1 池",
+    "promote_9000_min_getSoul": 500,
+    "promote_9000_boss_model_prefixes": [
+      "c2100",
+      "c2140",
+      "c2500",
+      "c3050",
+      "c3100",
+      "c3350",
+      "c3400",
+      "c3550",
+      "c3664",
+      "c3701",
+      "c4130",
+      "c4171",
+      "c4260",
+      "c4290",
+      "c4340",
+      "c4470",
+      "c4580",
+      "c4630",
+      "c4640",
+      "c4660",
+      "c4680",
+      "c4690",
+      "c4720",
+      "c4721",
+      "c4820",
+      "c4910",
+      "c4950",
+      "c4960",
+      "c4980",
+      "c5000",
+      "c5070",
+      "c5200",
+      "c5311",
+      "c5380"
+    ]
+  },
+  "slot_map_kind_overrides": {
+    "m60_42_38_00:c3100_9000": "dungeon"
+  },
+  "slot_map_kind_overrides_definition": "按 map_id:entity 覆盖室内判定；野外 MSB 小范围遭遇（如战士棚旁铃珠猎人）标 dungeon，禁飞行/过大捐皮",
+  "interior_map_id_prefixes": [
+    "m10_00_",
+    "m10_01_",
+    "m12_01_",
+    "m12_02_",
+    "m12_07_",
+    "m12_08_",
+    "m12_09_",
+    "m14_",
+    "m15_",
+    "m16_",
+    "m30_",
+    "m31_",
+    "m35_"
+  ],
+  "interior_map_definition": "城内/室内 MSB：含史东薇尔 m10_00_、洞窟 m30_、墓室 m31_（末段 _00 也按 dungeon）；effective_map_kind=dungeon（禁飞行捐皮、狭窄体型辅助）",
+  "keep_original_slot_model_prefixes": [
+    "c2274",
+    "c2275",
+    "c2278",
+    "c3661",
+    "c3662",
+    "c4711",
+    "c4190",
+    "c4191",
+    "c4192",
+    "c6201",
+    "c3200",
+    "c3201",
+    "c3210",
+    "c4450",
+    "c4911",
+    "c8120",
+    "c4950",
+    "c5620",
+    "c2151",
+    "c4351",
+    "c4352",
+    "c4353",
+    "c4355",
+    "c5512",
+    "c5680"
+  ],
+  "keep_original_slot_definition": "圣甲虫、流浪商人、游荡灵庙、装饰尸体（c3661/c3662/c4711）、大龙奥尔蒂斯、**提比亚唤魂 c4950/c5620**（原位刷新、不捐皮，T-083 2026-08-18）、**水银空壳 c2151（collision_perch 零捐）**、**骑乘骑士 c4351/4352/4353/4355（MSB 骑马姿态导致站立/巡逻槽位零捐）**、**幽影 c5512**、**轮式弩炮 c5680**（挂载型/姿态不兼容捐皮站桩）：槽位不随机、全池禁捐皮。c4351/c4353 原在 trash_donor_model_prefixes 已移除（结构性零捐，2026-09-04 P0-2）。装饰尸体另见 decorative_corpse_model_prefixes_definition（用户 2026-08-14：不沉底、保持原版 MSB）",
+  "keep_original_map_entity_slots": [
+    ["m60_51_36_00", "c0000_9008"],
+    ["m60_51_36_00", "c0000_9009"],
+    ["m60_51_36_00", "c0000_9011"],
+    ["m60_51_36_00", "c0000_9012"]
+  ],
+  "keep_original_map_entity_slots_definition": "单图+实体名原位（不随机不捐槽位）。2026-09-17：红狮子城祭典助战 Human/葛托克/Okina/瑟萝莉娜；防 is_red_spirit_combat_slot 误判进 5 池。禁 19390 全局、禁宽 exclude_slot_npc_ids",
+  "decorative_corpse_model_prefixes": [
+    "c3661",
+    "c3662",
+    "c4711"
+  ],
+  "decorative_corpse_model_prefixes_definition": "用户口径装饰品（锁不上的尸体模型）：c3661/c3662/c4711 腐败遗体/拉卡德尸体等。槽位不随机、全池禁捐、不写 suppress_decorative 沉底、apply 保持原版 MSB 姿势与坐标（2026-08-14 用户确认）",
+  "decorative_slot_model_prefixes": [
+    "c0100",
+    "c0110",
+    "c0120",
+    "c0130"
+  ],
+  "decorative_slot_suppress_definition": "假人壳沉底（c0100 系 + npc==think 占位）：不随机 + apply 写 cnv:suppress_decorative 沉 Y；**有 walk_route 的巡逻领队假人不沉底（T-097 / 门前蝙蝠群）**；**巨人马车事件图 cnv_caravan_event_maps 上 c0110/c0100 亦不沉底（2026-09-09）**。≠ 用户口径装饰品（c366 尸体见 decorative_corpse_model_prefixes_definition，不沉底）",
+  "quadruped_slot_model_prefixes": [
+    "c3180",
+    "c4070",
+    "c4071",
+    "c4160",
+    "c4161",
+    "c4162",
+    "c4163",
+    "c4164",
+    "c4165",
+    "c4166",
+    "c4167",
+    "c5540",
+    "c5541",
+    "c5700",
+    "c6050"
+  ],
+  "quadruped_slot_model_prefixes_definition": "四足战斗单位（狼/狗/熊等）：体态兼容桶=quadruped（T-076）",
+  "flying_slot_model_prefixes": [
+    "c4200",
+    "c6001"
+  ],
+  "flying_slot_model_prefixes_definition": "飞行体态桶（T-076）；仅人蝠 c4200 + 鹰 c6001（用户 2026-08-20）。大乌鸦/死之鸟/死亡仪式鸟走各自脚本飞或 aerial 槽反扫，不进本桶。龙类 c450x/c451x/c4520 仍不算飞行（2026-08-19）",
+  "script_patrol_flyer_model_prefixes": [
+    "c4200"
+  ],
+  "script_patrol_flyer_model_prefixes_definition": "脚本飞巡槽识别前缀（门前 c4200 等）；配对只认历史状态（T-085/T-087/T-088）；无必须飞行体态、无飞行皮软排前",
+  "sit_slot_oversized_donor_model_prefixes": [
+    "c4550"
+  ],
+  "sit_slot_oversized_donor_model_prefixes_definition": "坐/蹲槽（backup_anim>0）禁用的超大四足捐皮（T-083 c4311_9000 大狗卡墙 2026-08-18）",
+  "physique_compat_definition": "T-076：抽签时人形/四足/飞行/蹲坐只收同体态捐皮；写盘走428",
+  "scarab_model_prefixes": [
+    "c4190",
+    "c4191",
+    "c4192",
+    "c6201"
+  ],
+  "scarab_model_prefixes_definition": "圣甲虫（含 DLC c6201）：槽位不随机、全池 never_donor",
+  "mausoleum_model_prefixes": [
+    "c4450"
+  ],
+  "mausoleum_model_prefixes_definition": "漫步灵庙（游荡灵庙）：槽位不随机、全池 never_donor；不含灵庙士兵/骑士",
+  "exclude_donor_model_prefixes": [
+    "c1000",
+    "c0100",
+    "c0110",
+    "c0120",
+    "c0130",
+    "c5652",
+    "c8100",
+    "c8101",
+    "c8110",
+    "c8120",
+    "c4450",
+    "c4911",
+    "c2050",
+    "c3710",
+    "c5230",
+    "c5390",
+    "c5391",
+    "c5392"
+  ],
+  "never_donor_model_prefixes": [
+    "c3010",
+    "c3300",
+    "c1000",
+    "c4060",
+    "c4361",
+    "c4362",
+    "c4363",
+    "c4364",
+    "c4365",
+    "c4368",
+    "c4492",
+    "c4601",
+    "c4602",
+    "c4604",
+    "c8100",
+    "c8101",
+    "c8110",
+    "c8120",
+    "c4450",
+    "c4911",
+    "c2050",
+    "c3666",
+    "c3665",
+    "c4190",
+    "c4191",
+    "c4192",
+    "c6201",
+    "c3200",
+    "c3201",
+    "c3210",
+    "c5240",
+    "c5241",
+    "c3250",
+    "c3251",
+    "c3600",
+    "c3640",
+    "c3664",
+    "c4610",
+    "c4620",
+    "c4690",
+    "c5050",
+    "c5070",
+    "c5110",
+    "c5270",
+    "c6091",
+    "c2160",
+    "c2110",
+    "c4430",
+    "c5900",
+    "c5990",
+    "c3710",
+    "c2040",
+    "c5120",
+    "c5230",
+    "c5390",
+    "c5391",
+    "c5392",
+    "c4500",
+    "c4501",
+    "c4502",
+    "c4503",
+    "c4504",
+    "c4505",
+    "c4510",
+    "c4511",
+    "c4520",
+    "c4530",
+    "c4690",
+    "c5370",
+    "c5580",
+    "c5581",
+    "c5661",
+    "c5662",
+    "c6050",
+    "c2271",
+    "c2274",
+    "c2275",
+    "c2277",
+    "c2278",
+    "c4230",
+    "c4070",
+    "c4071",
+    "c5540",
+    "c5541",
+    "c4241",
+    "c3661",
+    "c3662",
+    "c4711",
+    "c4950",
+    "c5620",
+    "c2030",
+    "c2031",
+    "c5170",
+    "c5330"
+  ],
+  "never_donor_orb_critter_definition": "轨道/挂点 AI：c4430 遗迹虫、c5900/c5990 DLC 环境球永不作捐皮；**闪电球 c2150 可捐（T-097）**；**水银空壳 c2151（21050001）结构零捐，禁捐皮（2026-09-04 P0-1）**",
+  "never_donor_critter_performance_definition": "c6050 野猪；c2271/c2277 普通小螃蟹（禁捐皮、槽仍可被随机）；c2274/c2275/c2278 结晶/白金蟹系（不随机不捐皮，2026-08-31）；c4230 小陆章鱼；c4070/c4071/c5540/c5541 低血狼；c4241 巨型手指怪：禁捐皮（c2274/5/8 另禁槽随机）",
+  "invisible_enemy_model_prefixes": [
+    "c8101",
+    "c8110"
+  ],
+  "horse_mount_model_prefixes": [
+    "c3160",
+    "c3250",
+    "c4060",
+    "c4361",
+    "c4362",
+    "c4363",
+    "c4364",
+    "c4365",
+    "c4368",
+    "c4601",
+    "c4602",
+    "c4604",
+    "c6090"
+  ],
+  "horse_mount_definition": "马匹挂载体/骑士马模型：不作捐皮、马槽不随机（含黑夜骑兵 c3160）；c6091 为法魂龟 Boss 误标，不在此列",
+  "exclude_donor_think_min": 500000000,
+  "script_event_slot_definition": "槽位跳过：MSB think>=exclude_donor_think_min 且 Npc getSoul=0（门卫/事件贵族）；带对话 sp 的红灵仍按 talk_npc 跳过",
+  "dialogue_npc_sp_effect_ids": [
+    10440,
+    10441,
+    9510,
+    9630,
+    9634,
+    9642,
+    18699
+  ],
+  "dialogue_npc_sp_definition": "NpcParam 对话事件：10440/10441 指痕；9510 对话菜单；CNV 同伴 ≥2 个 9630+9634+9642+18699（托普斯 soul=500 亦中）；90300+90060+90100 且 soul=0",
+  "exclude_donor_npc_equals_think_below": 10000000,
+  "passive_animal_definition": "不主动攻击的动物（鹿/羊/松鼠/鹰等）；狼、熊、腐败狗等会主动开战的不算",
+  "passive_animal_model_prefixes": [
+    "c6001",
+    "c6010",
+    "c6020",
+    "c6030",
+    "c6040",
+    "c6050",
+    "c6060",
+    "c6070",
+    "c6080",
+    "c6081",
+    "c6100",
+    "c6090"
+  ],
+  "archetypes_path": "enemy_archetypes.json",
+  "trash_donor_model_prefixes": [
+    "c3661",
+    "c4000",
+    "c4010",
+    "c4020",
+    "c4030",
+    "c4040",
+    "c4070",
+    "c4080",
+    "c4100",
+    "c4160",
+    "c4161",
+    "c4180",
+    "c4200",
+    "c4250",
+    "c4300",
+    "c4310",
+    "c4311",
+    "c4312",
+    "c4313",
+    "c4314",
+    "c4315",
+    "c4321",
+    "c4371",
+    "c4372",
+    "c4374",
+    "c4440",
+    "c4481"
+  ],
+  "donor_model_weights": {
+    "c4240": 0.25,
+    "c431": 4.0,
+    "c437": 4.0,
+    "c4300": 3.0,
+    "c4120": 0.15,
+    "c4160": 0.5,
+    "c4161": 0.5,
+    "c4162": 0.5,
+    "c4163": 0.5,
+    "c4164": 0.5,
+    "c4165": 0.5,
+    "c4166": 0.5,
+    "c4167": 0.5,
+    "c3800": 0.5,
+    "c3360": 2.5,
+    "c3361": 2.5,
+    "c3370": 2.5,
+    "c3371": 2.5,
+    "c3970": 2.5
+  },
+  "donor_model_weights_definition": "捐皮第3层 model 相对权重；缺省 1.0；0=不捐皮。c4240/c4250 手指怪 0.25（性能）；c4241 已 never_donor；祖灵系列 c336x/c337x/c3970=2.5；c4120 斗士 0.15；c3800 尊腐骑士 0.5；c4430 已 never_donor；c2150 闪电球可捐（T-097）；c431/c437/c4300 见注释",
+  "pool_model_weight_overrides": {
+    "trash": {
+      "c4560": 0.35,
+      "c3800": 0.45,
+      "c3350": 0.4,
+      "c7100": 0.35,
+      "c3080": 0.5,
+      "c3750": 0.5,
+      "c3650": 0.5,
+      "c4491": 0.5,
+      "c3070": 0.5,
+      "c5830": 0.45,
+      "c5040": 0.55
+    },
+    "elite": {
+      "c5251": 0.45,
+      "c5521": 0.5,
+      "c5880": 0.5,
+      "c6210": 0.5,
+      "c5830": 0.5,
+      "c4480": 0.5,
+      "c4481": 0.5,
+      "c4482": 0.5,
+      "c4483": 0.5
+    },
+    "minor_boss": {
+      "c6231": 0.3,
+      "c5830": 0.35,
+      "c5850": 0.5,
+      "c5690": 0.6
+    },
+    "evergaol": {
+      "c5661": 0.25,
+      "c4051": 0.45,
+      "c3050": 0.5,
+      "c3180": 0.5,
+      "c5011": 0.55,
+      "c5000": 0.6,
+      "c3460": 0.65
+    },
+    "major_boss": {
+      "c5810": 0.35,
+      "c2190": 0.35,
+      "c5840": 0.45,
+      "c4135": 0.5,
+      "c2501": 0.55,
+      "c4850": 0.55,
+      "c5820": 0.55,
+      "c5920": 0.6
+    },
+    "night": {}
+  },
+  "pool_model_weight_overrides_definition": "同池（tgt_cat）内单皮乘数；与 donor_model_weights 叠乘。未列=1.0；c3181 红狼留空（用户另修）。1 池植物类另见 trash_archetype_pick.review_group_weight_overrides.植物类=0.5；2 池 c4480~c4483 米兰达系列=0.5（2026-08-07）。",
+  "trash_archetype_pick": {
+    "mode": "balanced",
+    "model_count_exponent": 0.4,
+    "uniform_model_within_archetype": true,
+    "archetype_weight_overrides": {
+      "ancestral": 3.0,
+      "beastman": 3.0,
+      "fodder": 0.125
+    },
+    "review_group_weight_overrides": {
+      "动物类": 0.5,
+      "植物类": 0.5,
+      "士兵类": 0.75
+    },
+    "definition": "仅 1 池第2层：本槽可抽原型先等权，再按桶内 distinct model 数^exponent 微调；archetype_weight_overrides 单独加权（祖灵 ancestral/beastman ×3；垃圾兵 fodder ×0.125，2026-08-04 自 0.25 再 ×0.5）；review_group_weight_overrides 按审阅分组（动物/植物/士兵等）再乘。exponent=0 纯原型等权；uniform_model_within_archetype=true 时第3层桶内 model 均匀。"
+  },
+  "donor_same_slot_model_weight": 0.25,
+  "donor_same_slot_model_weight_definition": "2~7 池：捐皮 model 与槽位原皮相同时整组权重 × 此系数，组内各皮均分（例：10 皮龙人未撞原皮各 0.1；撞原皮整组 0.25→各 0.025）；1 池 trash 不生效",
+  "donor_think_sanitize": {
+    "enabled": true,
+    "max_eye_dist": 35,
+    "max_search_eye_dist": 25,
+    "max_sight_forget_time": 20,
+    "max_backhome_dist": 45,
+    "max_backhome_battle_dist": 80,
+    "max_ear_dist": 5,
+    "max_nose_dist": 25,
+    "default_field_think_id": 30200000,
+    "preserve_think_prefixes": [
+      "4200",
+      "4260"
+    ],
+    "explicit_remap": {
+      "31810933": 31810000,
+      "31810932": 31810000
+    }
+  },
+  "donor_think_sanitize_definition": "跨模型换皮时清洗 NpcThink：视距/脱战/遗忘超阈值 → 回退 npc 族默认或 default_field_think_id（30200000）。preserve_think_prefixes 保留墓穴看门犬喷火/冰 AI（4260*）；CSV 无此行视为非法 think 不可回退。max_eye_dist=35 · max_backhome_dist=45。",
+  "night_think_clamp": {
+    "enabled": true,
+    "targets": {
+      "eye_dist": 40,
+      "searchEye_dist": 20,
+      "eye_angX": 60,
+      "eye_angY": 45,
+      "searchEye_angY": 20,
+      "SightTargetForgetTime": 8,
+      "MemoryTargetForgetTime": 10,
+      "SoundTargetForgetTime": 3,
+      "BackHomeLife_OnHitEneWal": 5,
+      "backhomeDist": 50,
+      "maxBackhomeDist": 70,
+      "backhomeBattleDist": 20,
+      "TeamAttackEffectivity": 35,
+      "callHelp_CallValidRange": 0,
+      "callHelp_CallValidMinDistTarget": 0,
+      "ear_dist": 0.1,
+      "nose_dist": 0,
+      "BattleStartDist": 25,
+      "disableDark": 0
+    },
+    "remap_logic_31000_to": 10000,
+    "remap_logic_30000_to": 10000
+  },
+  "night_think_clamp_definition": "5 池红灵（2026-09-09）：保留 battleGoal=29999；logicId 31000/30000→10000；感知 eye≤40·searchEye≤20·ang 60/45/20·开战25·回家≤50/70/20；压死 9999。",
+  "donor_archetype_weights": {
+    "soldier": 22.4,
+    "knight": 8.0,
+    "c4120": 0.12
+  },
+  "donor_archetype_weights_definition": "legacy 模式用：捐皮第2层 trash/Boss 原型相对权重；balanced 模式忽略本表。soldier=22.4；knight=8.0；c4120=0.12",
+  "dlc_donor_pick_multiplier": 5,
+  "dlc_trash_pick_multiplier": 2,
+  "dlc_trash_donor_model_prefixes": [
+    "c0120",
+    "c3850",
+    "c5010",
+    "c5011",
+    "c5040",
+    "c5060",
+    "c5061",
+    "c5080",
+    "c5090",
+    "c5110",
+    "c5160",
+    "c5180",
+    "c5181",
+    "c5190",
+    "c5193",
+    "c5241",
+    "c5251",
+    "c5271",
+    "c5280",
+    "c5330",
+    "c5340",
+    "c5350",
+    "c5381",
+    "c5421",
+    "c5440",
+    "c5460",
+    "c5480",
+    "c5511",
+    "c5512",
+    "c5513",
+    "c5520",
+    "c5521",
+    "c5522",
+    "c5523",
+    "c5524",
+    "c5525",
+    "c5526",
+    "c5527",
+    "c5530",
+    "c5540",
+    "c5541",
+    "c5550",
+    "c5551",
+    "c5560",
+    "c5570",
+    "c5590",
+    "c5591",
+    "c5630",
+    "c5641",
+    "c5651",
+    "c5700",
+    "c5701",
+    "c5720",
+    "c5740",
+    "c5760",
+    "c5761",
+    "c5800",
+    "c5830",
+    "c5880",
+    "c5930",
+    "c5931",
+    "c5940",
+    "c5980",
+    "c6210",
+    "c6220",
+    "c6232",
+    "c6233",
+    "c6240",
+    "c6290",
+    "c6291",
+    "c6300"
+  ],
+  "dlc_trash_definition": "DLC 幽影之地捐皮：m61 扫描入库（排除 c5401/c5410/c5450/c5240/c5490 环境生物）；NpcParam 选行按有效 HP + 优先 20007 倍率包；全图混池",
+  "humanoid_slot_exclude_boss_donor_prefixes": [
+    "c2200",
+    "c5120",
+    "c5270"
+  ],
+  "humanoid_slot_exclude_donor_prefixes": [
+    "c4241"
+  ],
+  "humanoid_slot_allow_donor_prefixes": [
+    "c3360",
+    "c3361",
+    "c3370",
+    "c3371",
+    "c3970"
+  ],
+  "humanoid_slot_exclude_donor_definition": "仅 humanoid 体型槽禁捐皮；c4241 大号手指攀附者（chrHitR≈5.8，性能）",
+  "humanoid_slot_allow_donor_definition": "祖灵系列（民/萨满/角兽人）可贴人形槽；白名单绕开 compact Boss 捐皮额外限制",
+  "boss_pool_exclude_donor_prefixes": [
+    "c3010",
+    "c4100",
+    "c4101",
+    "c2110",
+    "c4492",
+    "c5230",
+    "c5390",
+    "c5391",
+    "c5392",
+    "c2030",
+    "c2031",
+    "c5170",
+    "c2151",
+    "c5330"
+  ],
+  "boss_pool_exclude_donor_definition": "…柳条人/影树化身(c5230)；**熔炉魔像(c5170)**；DLC山妖拉车(c5390~2)；**满月女王** c2030/c2031 + synthetic:rennala_c2030（2026-09-01 用户：不随机不捐）；**圣特里娜 c5330**（2026-09-11 睡着·睡莲圣女：不随机不捐）。碎星 c4730 仍按白名单可捐（流星风险另验）。c4460 原位槽 exclude_slot，可作捐皮。",
+  "boss_pool_exclude_synthetic_template_ids": [],
+  "radahn_phase1_think_id": 47300000,
+  "radahn_landed_npc_id": 47300041,
+  "radahn_phase1_battle_goal_id": 473000,
+  "radahn_phase1_definition": "【遗留】apply 可注入 Helper + emevd；流星飞天风险仍在；2026-08-05 按白名单解封 2~7 捐皮",
+  "boss_pool_exclude_synthetic_definition": "废止（T-097 · 2026-09-02）：不再按 template_id 精确封 synthetic；满月等仍靠 boss_pool_exclude_donor_prefixes / never_donor",
+  "minor_boss_donor_model_prefixes": [
+    "c2010",
+    "c2100",
+    "c2190",
+    "c2501",
+    "c3050",
+    "c3100",
+    "c3181",
+    "c3252",
+    "c3350",
+    "c3400",
+    "c3550",
+    "c3630",
+    "c3664",
+    "c3666",
+    "c4130",
+    "c4171",
+    "c4242",
+    "c4051",
+    "c4260",
+    "c4290",
+    "c4470",
+    "c4580",
+    "c4620",
+    "c4630",
+    "c4640",
+    "c4650",
+    "c4660",
+    "c4680",
+    "c4690",
+    "c4720",
+    "c4721",
+    "c4751",
+    "c4910",
+    "c4950",
+    "c4960",
+    "c5000",
+    "c5070",
+    "c5200",
+    "c5311",
+    "c5380",
+    "c0100",
+    "c5011",
+    "c5030",
+    "c5081",
+    "c5170",
+    "c5192",
+    "c5210",
+    "c5250",
+    "c5300",
+    "c5312",
+    "c5320",
+    "c5360",
+    "c5370",
+    "c5551",
+    "c5580",
+    "c5630",
+    "c5640",
+    "c5680",
+    "c5512",
+    "c5690",
+    "c5780",
+    "c5790",
+    "c5830",
+    "c5850",
+    "c5890",
+    "c5960",
+    "c5970",
+    "c6231",
+    "c6251",
+    "c6260",
+    "c6270",
+    "c6310"
+  ],
+  "minor_boss_donor_model_definition": "2 池 minor_boss 捐皮白名单：仅洞穴/墓地/红灵等具名 Boss 皮；洞窟小怪即使 catalog 标 minor_boss 也不进 2 池；c4980/c4820/c4340/c2140 等归野外或不当洞穴 Boss 捐皮",
+  "shared_model_force_trash_unless_synthetic_prefixes": [
+    "c4600"
+  ],
+  "shared_model_force_trash_definition": "大树守卫(c4600)与拉车山妖同模：非 synthetic 且非 Boss 战点 _9000 槽 → 1 池；synthetic:tree_sentinel_* 保留 6 池",
+  "dlc_map_tile_min": 50,
+  "needs_summon_model_prefixes": [
+    "c4950",
+    "c4960"
+  ],
+  "synthetic_boss_templates": [
+    {
+      "template_id": "synthetic:godrick_c4750",
+      "model": "c4750",
+      "npc": 47500014,
+      "think": 47500000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:morgott_c4760",
+      "model": "c4760",
+      "npc": 47600050,
+      "think": 47600900,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:rykard_c4710",
+      "model": "c4710",
+      "npc": 47100038,
+      "think": 47100000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:mohg_c4670",
+      "model": "c4670",
+      "npc": 46700065,
+      "think": 46700000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:fire_giant_c5270",
+      "model": "c5270",
+      "npc": 52700100,
+      "think": 52700000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:malenia_c5700",
+      "model": "c5700",
+      "npc": 57000083,
+      "think": 57000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:maliketh_c5110",
+      "model": "c5110",
+      "npc": 51100080,
+      "think": 51100000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:godfrey_c5770",
+      "model": "c5770",
+      "npc": 57700084,
+      "think": 57700000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:elden_beast_c2200",
+      "model": "c2200",
+      "npc": 22000078,
+      "think": 22000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:radagon_c4800",
+      "model": "c4800",
+      "npc": 48000010,
+      "think": 48000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:rennala_c2030",
+      "model": "c2030",
+      "npc": 20300024,
+      "think": 20300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:radahn_c4730",
+      "model": "c4730",
+      "npc": 47300041,
+      "think": 47300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:watchdog_c4260",
+      "model": "c4260",
+      "npc": 42600110,
+      "think": 42600000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:scion_c4690",
+      "model": "c4690",
+      "npc": 46900008,
+      "think": 46900000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:rellana_c5300",
+      "model": "c5300",
+      "npc": 53000082,
+      "think": 53000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:messmer_c5130",
+      "model": "c5130",
+      "npc": 51300099,
+      "think": 51300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:consort_radahn_c5220",
+      "model": "c5220",
+      "npc": 52200089,
+      "think": 52200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:bayle_c5120",
+      "model": "c5120",
+      "npc": 51200085,
+      "think": 51200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:romina_c5030",
+      "model": "c5030",
+      "npc": 50300094,
+      "think": 50300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:midra_c5050",
+      "model": "c5050",
+      "npc": 50500086,
+      "think": 50500000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:dancing_lion_c5210",
+      "model": "c5210",
+      "npc": 52100088,
+      "think": 52100000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:divine_lion_c5210",
+      "model": "c5210",
+      "npc": 52100080,
+      "think": 52100000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:scadutree_c5230",
+      "model": "c5230",
+      "npc": 52300096,
+      "think": 52300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:death_knight_c5070",
+      "model": "c5070",
+      "npc": 50700081,
+      "think": 50700000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:putrescent_c5020",
+      "model": "c5020",
+      "npc": 50200087,
+      "think": 50200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:inquisitor_c5311",
+      "model": "c5311",
+      "npc": 53110286,
+      "think": 53110000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:jori_c5320",
+      "model": "c5320",
+      "npc": 53200186,
+      "think": 53200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:metyr_c5200",
+      "model": "c5200",
+      "npc": 52000097,
+      "think": 52000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "dlc"
+    },
+    {
+      "template_id": "synthetic:gideon_c5380",
+      "model": "c5380",
+      "npc": 53800084,
+      "think": 53800000,
+      "chara": -1,
+      "category": "evergaol",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:blaidd_c2010",
+      "model": "c2010",
+      "npc": 20109140,
+      "think": 20100000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:niall_c3050",
+      "model": "c3050",
+      "npc": 30500140,
+      "think": 30500000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:elemer_c3100",
+      "model": "c3100",
+      "npc": 31000020,
+      "think": 31000000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:loretta_c3252",
+      "model": "c3252",
+      "npc": 32520921,
+      "think": 32520000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:cemetery_shade_c3664",
+      "model": "c3664",
+      "npc": 36640040,
+      "think": 36640000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:runebear_c4630",
+      "model": "c4630",
+      "npc": 46300032,
+      "think": 46300000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:tree_spirit_c4640",
+      "model": "c4640",
+      "npc": 46400033,
+      "think": 46400000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:fallingstar_c4680",
+      "model": "c4680",
+      "npc": 46800032,
+      "think": 46800000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:virgin_c4470",
+      "model": "c4470",
+      "npc": 44700020,
+      "think": 44700000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:magma_wyrm_c4910",
+      "model": "c4910",
+      "npc": 49100032,
+      "think": 49100000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:deathbird_c4980",
+      "model": "c4980",
+      "npc": 49801020,
+      "think": 49800000,
+      "chara": -1,
+      "category": "minor_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:onze_c5810",
+      "model": "c5810",
+      "npc": 58100980,
+      "think": 58100000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:devonia_c5800",
+      "model": "c5800",
+      "npc": 58000094,
+      "think": 58000000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:black_knight_c5840",
+      "model": "c5840",
+      "npc": 58400590,
+      "think": 58400000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:matriarch_c3570",
+      "model": "c3570",
+      "npc": 35700028,
+      "think": 35700000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:dyru_c3460",
+      "model": "c3460",
+      "npc": 34600913,
+      "think": 34601000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:rhys_c3252",
+      "model": "c3252",
+      "npc": 32520921,
+      "think": 32520000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:einar_c3050",
+      "model": "c3050",
+      "npc": 30500051,
+      "think": 30500000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:dakk_c4380",
+      "model": "c4380",
+      "npc": 43800130,
+      "think": 43800000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:goras_c4630",
+      "model": "c4630",
+      "npc": 46300032,
+      "think": 46300000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:seera_c5210",
+      "model": "c5210",
+      "npc": 52100088,
+      "think": 52100000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:sigur_c3150",
+      "model": "c3150",
+      "npc": 31500010,
+      "think": 31500000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:skarde_c2500",
+      "model": "c2500",
+      "npc": 25000042,
+      "think": 25000000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:daergarf_c5860",
+      "model": "c5860",
+      "npc": 58600090,
+      "think": 58600000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:caimar_c5820",
+      "model": "c5820",
+      "npc": 58200095,
+      "think": 58200000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:vessel_rot_c5920",
+      "model": "c5920",
+      "npc": 59200181,
+      "think": 59200000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:konrad_c5010",
+      "model": "c5010",
+      "npc": 50100000,
+      "think": 50100000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:oleg_c3000",
+      "model": "c3000",
+      "npc": 30008040,
+      "think": 30000000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:sanguivaros_c4502",
+      "model": "c4502",
+      "npc": 45020022,
+      "think": 45020920,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:shabiri_c3480",
+      "model": "c3480",
+      "npc": 34800000,
+      "think": 34800000,
+      "chara": -1,
+      "category": "cnv_special",
+      "donor_origin": "cnv"
+    },
+    {
+      "template_id": "synthetic:margit_c2130",
+      "model": "c2130",
+      "npc": 21300050,
+      "think": 21300000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:red_wolf_c4370",
+      "model": "c4370",
+      "npc": 31810052,
+      "think": 43700000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:placidusax_c4520",
+      "model": "c4520",
+      "npc": 45200010,
+      "think": 45200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:fortissax_c4510",
+      "model": "c4510",
+      "npc": 45100010,
+      "think": 45100000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:godskin_apostle_c3560",
+      "model": "c3560",
+      "npc": 35600030,
+      "think": 35600000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:godfrey_shade_c4720",
+      "model": "c4720",
+      "npc": 47200050,
+      "think": 47200000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:tree_sentinel_c4600",
+      "model": "c4600",
+      "npc": 46000030,
+      "think": 46000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:darriwil_c4290",
+      "model": "c4290",
+      "npc": 42900010,
+      "think": 42900000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:alecto_c2100",
+      "model": "c2100",
+      "npc": 21000010,
+      "think": 21000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    },
+    {
+      "template_id": "synthetic:crucible_evergaol_c2500",
+      "model": "c2500",
+      "npc": 25000010,
+      "think": 25000000,
+      "chara": -1,
+      "category": "major_boss",
+      "donor_origin": "base"
+    }
+  ],
+  "dlc_boss_model_prefixes": [
+    "c5000",
+    "c5010",
+    "c5020",
+    "c5030",
+    "c5050",
+    "c5051",
+    "c5070",
+    "c5081",
+    "c5130",
+    "c5131",
+    "c5132",
+    "c5140",
+    "c5141",
+    "c5170",
+    "c5200",
+    "c5210",
+    "c5220",
+    "c5221",
+    "c5232",
+    "c5242",
+    "c5250",
+    "c5260",
+    "c5261",
+    "c5300",
+    "c5311",
+    "c5312",
+    "c5320",
+    "c5330",
+    "c5360",
+    "c5370",
+    "c5380",
+    "c5820",
+    "c5830",
+    "c5840",
+    "c5860",
+    "c5890",
+    "c0100",
+    "c5011",
+    "c5192",
+    "c5551",
+    "c5580",
+    "c5630",
+    "c5640",
+    "c5690",
+    "c5780",
+    "c5790",
+    "c5850",
+    "c5960",
+    "c5970",
+    "c6231",
+    "c6251",
+    "c6260",
+    "c6270",
+    "c6310",
+    "c5661"
+  ],
+  "cnv_boss_model_prefixes": [
+    "c2501",
+    "c5800",
+    "c5810",
+    "c5820",
+    "c5840",
+    "c5860",
+    "c5870",
+    "c5880",
+    "c5900",
+    "c5910",
+    "c5920"
+  ],
+  "donor_origin_by_model_prefix": [
+    {
+      "prefix": "c0100",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c0120",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c3850",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5000",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5010",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5011",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5020",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5030",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5040",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5050",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5051",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5060",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5061",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5070",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5080",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5081",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5090",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5110",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5130",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5131",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5132",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5140",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5141",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5160",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5170",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5180",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5181",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5190",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5192",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5200",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5210",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5220",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5221",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5230",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5232",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5241",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5242",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5250",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5251",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5260",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5261",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5271",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5280",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5300",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5311",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5312",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5320",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5330",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5340",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5360",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5370",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5380",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5381",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5390",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5391",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5421",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5440",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5460",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5480",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5511",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5513",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5520",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5521",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5522",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5523",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5524",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5525",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5526",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5527",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5530",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5540",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5541",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5550",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5551",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5560",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5570",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5580",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5590",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5591",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5620",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5630",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5640",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5641",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5651",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5661",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5690",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5700",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5701",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5720",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5740",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5760",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5761",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5780",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5790",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5800",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5810",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5820",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5830",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5840",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5840",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5850",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5860",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5860",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5870",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5880",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5890",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5900",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5910",
+      "origin": "cnv"
+    },
+    {
+      "prefix": "c5930",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5931",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5940",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5960",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5970",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5980",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c5990",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6210",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6220",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6231",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6232",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6233",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6240",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6251",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6260",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6270",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6290",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6291",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6300",
+      "origin": "dlc"
+    },
+    {
+      "prefix": "c6310",
+      "origin": "dlc"
+    }
+  ],
+  "model_prefix_display_zh": {
+    "c3661": "腐败遗体",
+    "c3000": "流放士兵",
+    "c3020": "大流放士兵",
+    "c3060": "巨型骷髅",
+    "c3061": "巨兽骷髅",
+    "c3070": "庆典牛头人",
+    "c3080": "小恶魔",
+    "c3170": "白金之子弓手",
+    "c3150": "黑夜骑兵",
+    "c3160": "灵马（黑夜骑兵）",
+    "c3171": "黑夜骑兵（菲利亚）",
+    "c3180": "白金弓手的狼",
+    "c3300": "诺克斯剑士",
+    "c3320": "银泪",
+    "c3330": "巨型银泪",
+    "c3350": "结晶人",
+    "c3360": "祖灵民（弓）",
+    "c3361": "腐败祖灵民",
+    "c3370": "祖灵萨满",
+    "c3371": "腐败祖灵萨满",
+    "c3400": "守墓斗士",
+    "c3450": "畸形人",
+    "c3451": "鳞畸形人",
+    "c3460": "狮子混种",
+    "c3470": "白金之子",
+    "c3471": "大白金之子",
+    "c3500": "大骷髅（矛）",
+    "c3510": "骷髅（剑盾）",
+    "c3610": "神谕使者",
+    "c3620": "大神谕使者",
+    "c3650": "黄金树守卫",
+    "c3660": "平民亡灵",
+    "c3662": "大腐败遗体",
+    "c3670": "白金之子老法师",
+    "c3700": "堕落调香师",
+    "c3701": "调香师",
+    "c3702": "辉石法师",
+    "c3710": "亚兹勒（彗星亚兹勒）",
+    "c3703": "随从（页面）",
+    "c3704": "战场法师",
+    "c3750": "泥人",
+    "c3800": "腐败骑士",
+    "c3810": "腐败眷属",
+    "c3850": "幽影人偶",
+    "c3860": "鸟形傀儡",
+    "c3900": "火焰修士",
+    "c3901": "黑焰修士",
+    "c3950": "蛇人",
+    "c3970": "祖灵角兽人",
+    "c4570": "蚯蚓脸",
+    "c4000": "还魂追随者",
+    "c4010": "小兵（亡魂系）",
+    "c4040": "火蛞蝓",
+    "c4050": "凯丹佣兵",
+    "c4060": "战马",
+    "c4070": "狼",
+    "c4071": "白狼",
+    "c4080": "鼠",
+    "c4090": "大鼠",
+    "c4100": "亚人",
+    "c4101": "大亚人",
+    "c4110": "亚人萨满",
+    "c4120": "亚人首领",
+    "c4140": "蜗牛",
+    "c4150": "喷火蜥怪",
+    "c4160": "大野狗",
+    "c4161": "野狗",
+    "c4162": "大盗狗",
+    "c4163": "盗狗",
+    "c4164": "大血野狗",
+    "c4165": "血野狗",
+    "c4166": "大腐败野狗",
+    "c4167": "腐败野狗",
+    "c4170": "腐败血肉块",
+    "c4180": "灵魂水母",
+    "c4190": "大红露滴圣甲虫",
+    "c4191": "红露滴圣甲虫",
+    "c4192": "巨型蓝露滴圣甲虫",
+    "c6201": "圣甲虫（DLC）",
+    "c4200": "失乡骑士（人蝠）",
+    "c4201": "失乡骑士（歌剧蝠）",
+    "c4210": "战鹰",
+    "c4230": "小陆章鱼",
+    "c4240": "手指攀附者",
+    "c4242": "巨型指虫",
+    "c4250": "小型手指攀附者",
+    "c4270": "老狮子虫",
+    "c4280": "巨蚁",
+    "c4281": "骷髅铠巨蚁",
+    "c4290": "猎犬骑士",
+    "c4300": "流浪贵族",
+    "c4310": "士兵（通用）",
+    "c4311": "葛瑞克士兵",
+    "c4312": "雷亚卢卡利亚士兵",
+    "c4313": "罗德尔士兵",
+    "c4314": "拉塔恩士兵",
+    "c4315": "灵庙士兵",
+    "c4316": "圣树士兵",
+    "c4321": "恶兵",
+    "c4351": "葛瑞克骑士",
+    "c4352": "杜鹃骑士",
+    "c4353": "罗德尔骑士",
+    "c4354": "红狮子骑士",
+    "c4355": "灵庙骑士",
+    "c4356": "圣树骑士",
+    "c4358": "骑士（变种）",
+    "c4361": "葛瑞克骑士的马",
+    "c4362": "杜鹃骑士的马",
+    "c4363": "罗德尔骑士的马",
+    "c4364": "红狮子骑士的马",
+    "c4365": "灵庙骑士的马",
+    "c4368": "战马（变种）",
+    "c4371": "葛瑞克脚注兵",
+    "c4372": "雷亚卢卡利亚脚注兵",
+    "c4373": "罗德尔脚注兵",
+    "c4374": "拉塔恩脚注兵",
+    "c4375": "灵庙脚注兵",
+    "c4376": "圣树脚注兵",
+    "c4377": "拦路强盗",
+    "c4380": "唤星者",
+    "c4381": "罪人",
+    "c4382": "挖石矿工",
+    "c4383": "辉石矿工",
+    "c4384": "辉石矿工（重）",
+    "c4385": "腐败信徒",
+    "c4430": "遗迹虫（辉石团监视球）",
+    "c4440": "陆地喷汁虫",
+    "c4441": "巨型陆地喷汁虫",
+    "c4442": "巨型陆地喷汁虫（II）",
+    "c4481": "米兰达芽",
+    "c4483": "腐败米兰达芽",
+    "c4490": "活壶战士",
+    "c4491": "活壶",
+    "c4492": "巨大活壶",
+    "c4550": "大头狗（巨型犬·同模树守卫）",
+    "c4560": "大乌鸦（巨型鸦）",
+    "c4561": "大头乌鸦（血犬伴鸦）",
+    "c4600": "山妖",
+    "c4630": "卢恩熊",
+    "c4660": "守护魔像",
+    "c4670": "鲜血君王蒙格",
+    "c4710": "拉卡德",
+    "c4720": "初始之王葛孚雷",
+    "c4730": "碎星拉塔恩",
+    "c4750": "接肢葛瑞克",
+    "c4760": "恶兆王蒙格特",
+    "c4800": "黄金律法拉达冈",
+    "c4911": "大龙奥尔蒂斯（固定超大Boss·不参与）",
+    "c4810": "黄金树化身",
+    "c4811": "小黄金树（腐烂化身）",
+    "c4370": "拉达冈的红狼",
+    "c4510": "死龙弗尔桑克斯",
+    "c4520": "龙王普拉米迪克斯",
+    "c4980": "死之鸟",
+    "c5010": "黄金河马",
+    "c5011": "黄金河马",
+    "c5020": "腐败骑士",
+    "c5030": "花蕾圣女萝蜜娜",
+    "c5040": "咒刃",
+    "c5050": "米德拉",
+    "c5060": "七鳃鳗",
+    "c5061": "大型七鳃鳗",
+    "c5080": "血魔",
+    "c5081": "血魔首领",
+    "c5090": "墓鸟",
+    "c5110": "玛利喀斯",
+    "c5120": "恐怖贝勒",
+    "c5130": "穿刺者梅瑟莫",
+    "c5160": "火焰骑士",
+    "c5192": "巨型蜘蛛蝎",
+    "c5193": "幽影咒术师",
+    "c5200": "指头之母梅提尔",
+    "c5210": "神兽舞狮",
+    "c5220": "约定之王拉塔恩",
+    "c5230": "柳条人（影树化身）",
+    "c5251": "角萨满",
+    "c5270": "壶内脏",
+    "c5271": "蓓蕾信徒",
+    "c5300": "双月骑士蕾菈娜",
+    "c5311": "拷问官",
+    "c5320": "老将盖乌斯",
+    "c5330": "圣特里娜",
+    "c5340": "幽影矿工",
+    "c5350": "蜥蜴眼",
+    "c5360": "巨兽骷髅",
+    "c5380": "米兰达之花",
+    "c5381": "幽影异形",
+    "c5391": "山妖骑士",
+    "c5392": "幽影杂兵（III）",
+    "c5700": "玛莲妮亚",
+    "c5770": "战士荷莱·露",
+    "c5810": "半人剑圣·翁兹",
+    "c5840": "黑骑士（法魂）",
+    "c5800": "熔炉骑士·德沃尼亚",
+    "c6100": "小动物/杂兵",
+    "c2200": "艾尔登之兽",
+    "c5180": "幽影士兵（轻）",
+    "c5181": "幽影士兵（重·II）",
+    "c5190": "巨型蜘蛛蝎",
+    "c5280": "冬灯",
+    "c5310": "幽影杂兵（IV）",
+    "c2100": "黑刀刺客",
+    "c2130": "恶兆妖鬼玛尔基特",
+    "c2140": "噩兆之子",
+    "c2150": "闪电球",
+    "c2041": "腐败幼虫",
+    "c2277": "死亡螃蟹",
+    "c2278": "螃蟹（变种）",
+    "c2271": "螃蟹",
+    "c2272": "巨型黑蟹",
+    "c2273": "黑蟹",
+    "c2274": "巨型白金蟹",
+    "c2275": "白金螃蟹",
+    "c2276": "巨型死亡蟹",
+    "c2040": "幼隶学者",
+    "c2500": "熔炉骑士",
+    "c4020": "王室亡魂",
+    "c4030": "王室亡魂（变种）",
+    "c4220": "巨型陆章鱼",
+    "c4420": "巨型小龙虾",
+    "c4820": "恶兆猎人",
+    "c4950": "提比亚唤魂",
+    "c4960": "巨型骷髅躯干",
+    "c3010": "流放骑士",
+    "c2060": "双指",
+    "c2110": "野兽祭司古兰格",
+    "c3100": "铃珠猎人",
+    "c3250": "龙装大树守卫",
+    "c3251": "大树守卫",
+    "c3600": "石像君王",
+    "c3666": "「金面具」",
+    "c3720": "拉斯卡",
+    "c3730": "魔法师瑟濂",
+    "c4340": "南瓜头",
+    "c4620": "暗星/畸形星",
+    "c4650": "龙人士兵",
+    "c5890": "黑骑士战马",
+    "c8100": "弩炮",
+    "c8101": "投石机",
+    "c8120": "无情战车",
+    "c3550": "鲜血贵族",
+    "c3560": "神皮使徒",
+    "c3570": "神皮贵族",
+    "c3910": "黄金树哨兵/火焰主教",
+    "c5550": "指之随从",
+    "c5560": "指之随从",
+    "c6031": "熊",
+    "c6082": "大蜻蜓",
+    "c6090": "乌龟",
+    "c7000": "落鹰士兵",
+    "c0000": "红灵（玩家）",
+    "c3252": "禁卫骑士罗蕾塔",
+    "c3050": "老将尼奥尔",
+    "c2501": "斯卡德（熔炉背叛者）",
+    "c5820": "塑灵者凯玛（暂定）",
+    "c5860": "戴尔加夫（暂定）",
+    "c5920": "封印神之子嗣（暂定）",
+    "c5370": "古龙瑟涅桑克斯",
+    "c5661": "腐烂灵龙",
+    "c5580": "尖刺山飞龙",
+    "c5690": "龙颜喷火兵",
+    "c5850": "巨型公羊",
+    "c6310": "坠星兽",
+    "c5830": "梅瑟莫士兵",
+    "c5651": "梅瑟莫脚注兵",
+    "c5620": "提比亚唤魂",
+    "c5511": "幽影灵",
+    "c5512": "幽影灵",
+    "c5513": "幽影灵",
+    "c5523": "幽影猎犬",
+    "c5525": "辫毛流浪狗",
+    "c5526": "血野狗",
+    "c5527": "染血流浪狗",
+    "c5740": "腐朽信徒",
+    "c6232": "封印祭司",
+    "c6233": "封印祭司",
+    "c5590": "溃烂尸客",
+    "c5591": "溃烂尸客",
+    "c5540": "幽影狼",
+    "c5541": "幽影狼",
+    "c6220": "幽影狼",
+    "c5570": "幽影乌鸦",
+    "c5460": "尖峰山羊",
+    "c5530": "幽影蝠",
+    "c5990": "腐爪蜥蜴",
+    "c6210": "劳赫弓手",
+    "c5880": "灵泉术士",
+    "c5980": "深渊巡行者",
+    "c5630": "巨型小龙虾",
+    "c5641": "海岸海盗",
+    "c5551": "巨型指虫",
+    "c5900": "封印树人",
+    "c6290": "封印树人",
+    "c6240": "熔泥造物",
+    "c4603": "挖石山妖",
+    "c5312": "拷问官",
+    "c5390": "山妖",
+    "c5640": "大螃蟹",
+    "c5250": "角战士",
+    "c6260": "死亡仪式鸟",
+    "c5170": "熔炉魔像",
+    "c5070": "死亡骑士",
+    "c5790": "守护魔像",
+    "c5780": "卢恩熊",
+    "c5960": "腐烂树灵",
+    "c5970": "掳人少女人偶",
+    "c6231": "调香师",
+    "c6270": "王室幽魂",
+    "c5680": "轮式弩炮",
+    "c5260": "魔像铁匠"
+  },
+  "map_id_display_zh": {
+    "m11_10_00_00": "大赐福（圆桌厅堂）",
+    "m30_10_00_00": "无情战车传送层",
+    "m60_09_11_02": "游荡灵庙事件层A",
+    "m60_09_12_02": "游荡灵庙事件层B",
+    "m60_10_08_02": "灵庙巡逻路点事件层",
+    "m60_11_14_02": "灵庙事件层·盖利德",
+    "m60_12_14_02": "灵庙事件层·雪山",
+    "m60_38_46_00": "啜泣半岛·灵庙锚点",
+    "m60_41_37_00": "宁姆格福·灵庙锚点（西侧）",
+    "m60_43_40_00": "宁姆格福·灵庙锚点（东侧）",
+    "m60_42_37_00": "宁姆格福·关卡前哨"
+  },
+  "cnv_named_boss_bindings": [
+    {
+      "id": "matriarch",
+      "zh": "神皮女组长",
+      "en": "Godskin Matriarch",
+      "model": "c3570",
+      "npc": 35700028,
+      "think": 35700000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "m34_11 神授塔 npc=35700028"
+    },
+    {
+      "id": "matriarch_c2035",
+      "zh": "神皮祖母",
+      "en": "Godskin Matriarch",
+      "model": "c2035",
+      "npc": 20350000,
+      "think": 20350000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "m34_11 c2035_9000 捐皮模板 npc=20350000"
+    },
+    {
+      "id": "dyru",
+      "zh": "迪鲁（拾荒王）",
+      "en": "Dyru, Scavenger King",
+      "model": "c3460",
+      "npc": 34600913,
+      "think": 34601000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "m60_43_30 摩恩Boss npc 名 Leonine Castle Morne Boss"
+    },
+    {
+      "id": "onze",
+      "zh": "半人剑圣·翁兹",
+      "en": "Onze",
+      "model": "c5810",
+      "npc": 58100980,
+      "think": 58100000,
+      "category": "major_boss",
+      "confidence": "high",
+      "evidence": "自定义 model + 合成"
+    },
+    {
+      "id": "devonia",
+      "zh": "熔炉骑士·德沃尼亚",
+      "en": "Devonia",
+      "model": "c5800",
+      "npc": 58000094,
+      "think": 58000000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "Devonia Hammer + 合成"
+    },
+    {
+      "id": "black_knight",
+      "zh": "黑骑士（法魂）",
+      "en": "Black Knight (CNV)",
+      "model": "c5840",
+      "npc": 58400590,
+      "think": 58400000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "自定义 model + 合成"
+    },
+    {
+      "id": "rhys",
+      "zh": "里斯（卡利亚典范）",
+      "en": "Rhys, Carian Paragon",
+      "model": "c3252",
+      "npc": 32520921,
+      "think": 32520000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "Wiki/TV：替换罗蕾塔 → Loretta 皮 c3252"
+    },
+    {
+      "id": "einar",
+      "zh": "艾纳尔（冰之守护者）",
+      "en": "Einar, Ice Guardian",
+      "model": "c3050",
+      "npc": 30500051,
+      "think": 30500000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "Wiki：尼尔动画 → Commander c3050"
+    },
+    {
+      "id": "dakk",
+      "zh": "达克（唤星领主）",
+      "en": "Dakk, Starcaller Lord",
+      "model": "c4380",
+      "npc": 43800130,
+      "think": 43800000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "AtkParam/ChrModel Starcaller=4380；红狮城替熔炉+畸形"
+    },
+    {
+      "id": "dakk_starcaller_lord",
+      "zh": "达克（唤星领主）",
+      "en": "Dakk, Starcaller Lord",
+      "model": "c4051",
+      "npc": 40510000,
+      "think": 40510000,
+      "category": "minor_boss",
+      "confidence": "high",
+      "evidence": "法魂Boss战体 c4051_9000（NpcParam Dakk- Starcaller Lord）"
+    },
+    {
+      "id": "colossal_fingercreeper_gelmir",
+      "zh": "巨型指虫（东格密尔Boss）",
+      "en": "Colossal Fingercreeper (East Mt. Gelmir boss)",
+      "model": "c4242",
+      "npc": 42428821,
+      "think": 42420000,
+      "category": "minor_boss",
+      "confidence": "high",
+      "evidence": "m16 火山官邸 c4242_9015；NpcParam 名含 East Mt. Gelmir boss"
+    },
+    {
+      "id": "goras",
+      "zh": "戈拉斯（梦之灾厄）",
+      "en": "Goras, Scourge of Dreams",
+      "model": "c4630",
+      "npc": 46300032,
+      "think": 46300000,
+      "category": "cnv_special",
+      "confidence": "high",
+      "evidence": "Wiki：卢恩熊；诺克龙仿身原位"
+    },
+    {
+      "id": "seera",
+      "zh": "西拉（远古之刃）",
+      "en": "Seera, Blade of the Ancients",
+      "model": "c5210",
+      "npc": 52100088,
+      "think": 52100000,
+      "category": "cnv_special",
+      "confidence": "medium",
+      "evidence": "TV：Elder Lion 皮；法姆替神皮双子（暂绑舞狮/狮皮 c5210）"
+    },
+    {
+      "id": "sigur",
+      "zh": "西格德（黑夜队长）",
+      "en": "Sigur, Night's Captain",
+      "model": "c3150",
+      "npc": 31500010,
+      "think": 31500000,
+      "category": "cnv_special",
+      "confidence": "medium",
+      "evidence": "TV：黑夜骑兵队长；替葛孚雷黄金影"
+    },
+    {
+      "id": "skarde",
+      "zh": "斯卡德（熔炉背叛者）",
+      "en": "Skarde, Crucible's Betrayer",
+      "model": "c2500",
+      "npc": 25000042,
+      "think": 25000000,
+      "category": "cnv_special",
+      "confidence": "medium",
+      "evidence": "熔炉骑士皮；灰城另有 c2501 实体但 NpcParam 缺 25010000"
+    },
+    {
+      "id": "konrad",
+      "zh": "康拉德（纯血骑士）",
+      "en": "Konrad, Pureblood Knight",
+      "model": "c5010",
+      "npc": 50100000,
+      "think": 50100000,
+      "category": "cnv_special",
+      "confidence": "low",
+      "evidence": "TV：火骑士系纯血骑士；暂绑梅瑟莫士兵皮"
+    },
+    {
+      "id": "oleg",
+      "zh": "流放骑士奥列格",
+      "en": "Banished Knight Oleg",
+      "model": "c3000",
+      "npc": 30008040,
+      "think": 30000000,
+      "category": "cnv_special",
+      "confidence": "medium",
+      "evidence": "黄金家系监牢替戈德弗罗伊；流放骑士皮"
+    },
+    {
+      "id": "daergarf",
+      "zh": "戴尔加夫（地下大法师）",
+      "en": "Daergarf",
+      "model": "c5860",
+      "npc": 58600090,
+      "think": 58600000,
+      "category": "cnv_special",
+      "confidence": "low",
+      "evidence": "自定义大血量 c5860 暂定；地图未扫到"
+    },
+    {
+      "id": "caimar",
+      "zh": "塑灵者凯玛",
+      "en": "Spiritshaper Caimar",
+      "model": "c5820",
+      "npc": 58200095,
+      "think": 58200000,
+      "category": "cnv_special",
+      "confidence": "low",
+      "evidence": "自定义 c5820 暂定；替英勇石像鬼"
+    },
+    {
+      "id": "vessel_rot",
+      "zh": "封印神之子嗣",
+      "en": "Scion of the Sealed God",
+      "model": "c5920",
+      "npc": 59200181,
+      "think": 59200000,
+      "category": "cnv_special",
+      "confidence": "low",
+      "evidence": "自定义 c5920 暂定；腐败湖"
+    },
+    {
+      "id": "sanguivaros",
+      "zh": "血焰龙·桑吉瓦洛斯",
+      "en": "Bloodflame Dragon Sanguivaros",
+      "model": "c4502",
+      "npc": 45020022,
+      "think": 45020920,
+      "category": "cnv_special",
+      "confidence": "low",
+      "evidence": "暂绑飞龙变体；蒙格温"
+    },
+    {
+      "id": "shabiri",
+      "zh": "夏比利的选民",
+      "en": "Shabiri's Chosen",
+      "model": "c3480",
+      "npc": 34800000,
+      "think": 34800000,
+      "category": "cnv_special",
+      "confidence": "medium",
+      "evidence": "m60_43_30 c3480_9000 摩恩癫火 Boss；原位槽 cnv_original_boss_slot_npc_ids"
+    }
+  ],
+  "cnv_special_boss_model_prefixes": [
+    "c5800",
+    "c5820",
+    "c5840",
+    "c5860",
+    "c5920"
+  ],
+  "cnv_special_definition": "7池=仅法魂具名Boss（cnv_named_boss_bindings：合成 donor_origin=cnv，或地图 npc 与绑定一致）；共享皮矿工等踢出。世界实体 c810x 仍归本类但 never_donor",
+  "humanoid_slot_major_boss_definition": "6池捐皮贴人形/小型槽：禁 c2200/c5120/c5270（艾尔登之兽/狂龙贝勒/火焰巨人）；仍禁 flying 体型与 never_donor",
+  "size_tier_placement_aux": {
+    "definition": "不改动七类池。狭窄环境（洞窟 m30/墓穴 m31/室内/城内）：≤中型可捐；大型/超巨/主线Boss/飞龙古龙一律不捐（含室内 Boss 位 · T-097）",
+    "narrow_map_kinds": [
+      "dungeon"
+    ],
+    "narrow_map_medium_max_tier": "medium",
+    "narrow_map_block_dragon_donor_prefixes": [
+      "c4500",
+      "c4501",
+      "c4502",
+      "c4503",
+      "c4504",
+      "c4505",
+      "c4510",
+      "c4511",
+      "c4520",
+      "c4690",
+      "c5370",
+      "c5580",
+      "c5661"
+    ],
+    "compact_slot_tiers": [
+      "tiny",
+      "small",
+      "humanoid"
+    ],
+    "compact_slot_donor_block_tiers": [
+      "mounted",
+      "tall",
+      "boss",
+      "large",
+      "colossal"
+    ]
+  },
+  "dlc_trash_taxonomy_force_prefixes": [
+    "c3850",
+    "c5011",
+    "c5040",
+    "c5080",
+    "c5160",
+    "c5251",
+    "c5271",
+    "c5280",
+    "c5460",
+    "c5511",
+    "c5512",
+    "c5513",
+    "c5530",
+    "c5540",
+    "c5541",
+    "c5550",
+    "c5551",
+    "c5560",
+    "c5570",
+    "c5590",
+    "c5591",
+    "c5630",
+    "c5641",
+    "c5651",
+    "c5740",
+    "c5830",
+    "c5880",
+    "c5900",
+    "c5980",
+    "c5990",
+    "c6210",
+    "c6220",
+    "c6232",
+    "c6233",
+    "c6240",
+    "c6290"
+  ],
+  "dlc_trash_taxonomy_definition": "用户口径 DLC 小怪分类（dlc_trash_taxonomy.json）；强制进 1 池捐皮前缀",
+  "pool_pick_mode_default": "balanced_npc",
+  "pool_pick_mode_default_definition": "各目标池默认抽签：balanced_npc=稀缺槽优先+软上限+最少负载（目标 Top10≈End10）；uniform_npc=每槽独立均匀抽 npc；model_weighted=原型/model 组（旧）；uniform_template=每模板等权。night 仍可读 night_pick_mode。",
+  "pool_pick_mode_overrides": {},
+  "night_pick_mode": "balanced_npc",
+  "night_pick_mode_definition": "5 池红灵抽签：balanced_npc=稀缺槽优先+软上限压平（推荐）；uniform_npc=每槽独立均匀；model_weighted=按 model 组均分（旧）；uniform_template=每模板等权。",
+  "night_spatial_quota": {
+    "enabled": false,
+    "cell_xz": 100,
+    "cell_y": 10,
+    "max_per_cell": 1
+  },
+  "night_spatial_quota_definition": "T-066：代码仍可读；2026-09-18 用户拍板 enabled=false（去掉 5 池空间格限额，允许红灵扎堆）。历史格径曾 50×50×高5 / 100×100×高10。",
+  "major_boss_spatial_quota": {
+    "enabled": false,
+    "cell_xz": 50,
+    "cell_y": 5,
+    "max_per_cell": 1
+  },
+  "major_boss_spatial_quota_definition": "T-069：代码仍可读；2026-09-18 用户拍板 enabled=false（去掉 6 池空间格限额）。室内 _9000 兼容池仍有效。",
+  "indoor_dungeon_boss_arena_exclude_donor_prefixes": [
+    "c4342",
+    "c4470",
+    "c5970"
+  ],
+  "indoor_dungeon_boss_arena_exclude_donor_definition": "洞窟/墓地室内终点战点（c####_9000）禁捐：笼头死骑士 c4342、掳人少女人偶 c4470/c5970（挂天花板/小室隐形，T-071）",
+  "summon_clone_trash_rune_npc_ids": [
+    21202056
+  ],
+  "summon_clone_trash_rune_entity_tokens": [
+    "c2120_9001"
+  ],
+  "summon_clone_trash_rune_definition": "T-070：仅这些召唤/技能分身捐皮按 1 池 trash 发卢恩；禁止用捐皮名 _9001+ 后缀泛化（会误伤洞穴 Boss）。",
+  "night_npc_weight_overrides": {},
+  "night_npc_weight_overrides_definition": "5 池红灵组内单皮权重（按 npc id）；缺省 1.0。2026-08-06 用户要求全归 1 做均衡基线测试；与 pool_model_weight_overrides.night 叠乘。",
+  "pool_npc_balance_auto_enabled": true,
+  "pool_npc_balance_auto_clip": [
+    0.25,
+    8.0
+  ],
+  "pool_npc_balance_auto_definition": "balanced_npc：仅结构尾皮自动加权；公平池恒 1.0，按最少出场抽签。",
+  "pool_npc_structural_tail_ratio": 0.2,
+  "pool_npc_structural_tail_min_slots": 5,
+  "pool_npc_structural_tail_max_cap_ratio": 0.78,
+  "pool_npc_structural_tail_npcs": {},
+  "pool_npc_structural_tail_definition": "T-098：自动按可投槽打尾已废止。本键仅保留兼容；真正生效的是 pool_npc_structural_tail_npcs 手工冷门（默认空）。ratio/min_slots/max_cap_ratio 不再驱动抽签。",
+  "pool_npc_structural_tail_exempt_size_tiers": [
+    "large",
+    "colossal",
+    "boss"
+  ],
+  "pool_npc_structural_tail_exempt_size_tiers_definition": "T-097b 遗留键；T-098 废止自动尾皮后不再参与逻辑（可忽略）",
+  "pool_npc_balance_weight_overrides": {
+    "elite": {
+      "55500093": 8.0,
+      "55500050": 8.0,
+      "46801930": 8.0,
+      "46800032": 8.0,
+      "46030930": 8.0,
+      "46000014": 8.0,
+      "45802132": 8.0,
+      "44420040": 8.0,
+      "44410020": 8.0
+    },
+    "major_boss": {
+      "47300041": 8.0,
+      "47300040": 8.0,
+      "47500014": 8.0,
+      "50300094": 8.0,
+      "51300099": 8.0,
+      "20300024": 8.0,
+      "22000078": 8.0,
+      "53000001": 8.0,
+      "21002922": 8.0,
+      "50200087": 8.0,
+      "52000097": 8.0,
+      "52200089": 8.0,
+      "47601050": 8.0
+    },
+    "evergaol": {
+      "35700028": 3.0,
+      "35700950": 3.0,
+      "46700065": 3.0,
+      "46700964": 3.0,
+      "47700070": 3.0,
+      "47701242": 3.0,
+      "51701084": 3.0
+    },
+    "trash": {
+      "50600000": 2.5,
+      "25000014": 2.5,
+      "33300862": 2.5,
+      "45700030": 2.5
+    }
+  },
+  "pool_npc_balance_weight_overrides_definition": "balanced_npc 手动加权（池→npc→倍率）；覆盖自动权重。可投槽极少的皮单独抬高。"
+}

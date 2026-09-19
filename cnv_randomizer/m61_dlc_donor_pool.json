@@ -1,0 +1,1267 @@
+{
+  "version": 2,
+  "source": "m61_msb_scan",
+  "exclude_prefixes": [
+    "c5240",
+    "c5401",
+    "c5410",
+    "c5450",
+    "c5490"
+  ],
+  "never_donor_prefixes": [
+    "c4950",
+    "c5120",
+    "c5620"
+  ],
+  "min_trash_combat_hp": 1000,
+  "min_boss_combat_hp": 500,
+  "trash": [
+    {
+      "prefix": "c5110",
+      "zh": "玛利喀斯",
+      "m61_slots": 228,
+      "npc": 51100683,
+      "table_hp": 223,
+      "effective_hp": 2160,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5900",
+      "zh": "封印树人",
+      "m61_slots": 160,
+      "npc": 59000094,
+      "table_hp": 192,
+      "effective_hp": 2526,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5590",
+      "zh": "溃烂尸客",
+      "m61_slots": 155,
+      "npc": 55900483,
+      "table_hp": 275,
+      "effective_hp": 2664,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5560",
+      "zh": "指之随从",
+      "m61_slots": 125,
+      "npc": 55600093,
+      "table_hp": 105,
+      "effective_hp": 1381,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5090",
+      "zh": "幽影哨兵",
+      "m61_slots": 116,
+      "npc": 50900080,
+      "table_hp": 161,
+      "effective_hp": 1135,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5540",
+      "zh": "幽影狼",
+      "m61_slots": 115,
+      "npc": 55400090,
+      "table_hp": 78,
+      "effective_hp": 782,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5440",
+      "zh": "—",
+      "m61_slots": 105,
+      "npc": 54400194,
+      "table_hp": 82,
+      "effective_hp": 1079,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5760",
+      "zh": "—",
+      "m61_slots": 101,
+      "npc": 57600080,
+      "table_hp": 162,
+      "effective_hp": 1142,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5080",
+      "zh": "劳赫弓手",
+      "m61_slots": 95,
+      "npc": 50801094,
+      "table_hp": 346,
+      "effective_hp": 4552,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5651",
+      "zh": "劳赫骑士",
+      "m61_slots": 76,
+      "npc": 56511581,
+      "table_hp": 147,
+      "effective_hp": 1266,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5480",
+      "zh": "—",
+      "m61_slots": 69,
+      "npc": 54800094,
+      "table_hp": 378,
+      "effective_hp": 4973,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5060",
+      "zh": "幽影士兵",
+      "m61_slots": 69,
+      "npc": 50600083,
+      "table_hp": 159,
+      "effective_hp": 1540,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5523",
+      "zh": "—",
+      "m61_slots": 68,
+      "npc": 55230094,
+      "table_hp": 162,
+      "effective_hp": 2131,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5381",
+      "zh": "幽影异形",
+      "m61_slots": 68,
+      "npc": 53810094,
+      "table_hp": 119,
+      "effective_hp": 1566,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5740",
+      "zh": "腐朽信徒",
+      "m61_slots": 60,
+      "npc": 57407094,
+      "table_hp": 313,
+      "effective_hp": 4118,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5570",
+      "zh": "幽影乌鸦",
+      "m61_slots": 56,
+      "npc": 55700090,
+      "table_hp": 179,
+      "effective_hp": 1796,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5641",
+      "zh": "海岸海盗",
+      "m61_slots": 51,
+      "npc": 56410083,
+      "table_hp": 28,
+      "effective_hp": 271,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5190",
+      "zh": "幽影哨兵（II）",
+      "m61_slots": 49,
+      "npc": 51903094,
+      "table_hp": 168,
+      "effective_hp": 2210,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5530",
+      "zh": "幽影蝠",
+      "m61_slots": 35,
+      "npc": 55300180,
+      "table_hp": 126,
+      "effective_hp": 888,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5550",
+      "zh": "指之随从",
+      "m61_slots": 30,
+      "npc": 55500093,
+      "table_hp": 747,
+      "effective_hp": 9828,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6290",
+      "zh": "封印树人",
+      "m61_slots": 29,
+      "npc": 62902090,
+      "table_hp": 192,
+      "effective_hp": 1926,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5460",
+      "zh": "尖峰山羊",
+      "m61_slots": 27,
+      "npc": 54600183,
+      "table_hp": 27,
+      "effective_hp": 262,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5421",
+      "zh": "—",
+      "m61_slots": 26,
+      "npc": 54211080,
+      "table_hp": 681,
+      "effective_hp": 4799,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5527",
+      "zh": "—",
+      "m61_slots": 17,
+      "npc": 55270094,
+      "table_hp": 162,
+      "effective_hp": 2131,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5990",
+      "zh": "腐爪蜥蜴",
+      "m61_slots": 16,
+      "npc": 59900294,
+      "table_hp": 127,
+      "effective_hp": 1671,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5521",
+      "zh": "—",
+      "m61_slots": 16,
+      "npc": 55210081,
+      "table_hp": 162,
+      "effective_hp": 1395,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5525",
+      "zh": "—",
+      "m61_slots": 16,
+      "npc": 55250082,
+      "table_hp": 162,
+      "effective_hp": 1569,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5761",
+      "zh": "—",
+      "m61_slots": 15,
+      "npc": 57610080,
+      "table_hp": 556,
+      "effective_hp": 3918,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5541",
+      "zh": "幽影狼",
+      "m61_slots": 14,
+      "npc": 55410090,
+      "table_hp": 409,
+      "effective_hp": 4103,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5040",
+      "zh": "展望镇佣兵",
+      "m61_slots": 13,
+      "npc": 50400494,
+      "table_hp": 840,
+      "effective_hp": 11051,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5522",
+      "zh": "—",
+      "m61_slots": 12,
+      "npc": 55220081,
+      "table_hp": 338,
+      "effective_hp": 2910,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6300",
+      "zh": "—",
+      "m61_slots": 12,
+      "npc": 63000094,
+      "table_hp": 126,
+      "effective_hp": 1658,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5511",
+      "zh": "幽影灵",
+      "m61_slots": 12,
+      "npc": 55110098,
+      "table_hp": 376,
+      "effective_hp": 4306,
+      "hp_mult": 11.4531,
+      "hp_mult_desc": "20007060×11.4531",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5241",
+      "zh": "—",
+      "m61_slots": 11,
+      "npc": 52410095,
+      "table_hp": 371,
+      "effective_hp": 3988,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5340",
+      "zh": "幽影矿工",
+      "m61_slots": 11,
+      "npc": 53400000,
+      "table_hp": 1939,
+      "effective_hp": 1939,
+      "hp_mult": 1.0,
+      "hp_mult_desc": "×1",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5940",
+      "zh": "—",
+      "m61_slots": 11,
+      "npc": 59400087,
+      "table_hp": 174,
+      "effective_hp": 1993,
+      "hp_mult": 11.4531,
+      "hp_mult_desc": "20007060×11.4531",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6240",
+      "zh": "熔泥造物",
+      "m61_slots": 9,
+      "npc": 62400083,
+      "table_hp": 187,
+      "effective_hp": 1812,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5180",
+      "zh": "幽影士兵（轻）",
+      "m61_slots": 8,
+      "npc": 51800080,
+      "table_hp": 1939,
+      "effective_hp": 13664,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6232",
+      "zh": "封印祭司",
+      "m61_slots": 8,
+      "npc": 62322082,
+      "table_hp": 267,
+      "effective_hp": 2587,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5280",
+      "zh": "展望镇佣兵",
+      "m61_slots": 8,
+      "npc": 52800086,
+      "table_hp": 323,
+      "effective_hp": 4401,
+      "hp_mult": 13.625,
+      "hp_mult_desc": "20007100×13.625",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5700",
+      "zh": "玛莲妮亚",
+      "m61_slots": 5,
+      "npc": 57001083,
+      "table_hp": 119,
+      "effective_hp": 1153,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c0120",
+      "zh": "—",
+      "m61_slots": 4,
+      "npc": 1200000,
+      "table_hp": 1939,
+      "effective_hp": 1939,
+      "hp_mult": 1.0,
+      "hp_mult_desc": "×1",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5526",
+      "zh": "—",
+      "m61_slots": 4,
+      "npc": 55260094,
+      "table_hp": 338,
+      "effective_hp": 4447,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5930",
+      "zh": "—",
+      "m61_slots": 4,
+      "npc": 59301084,
+      "table_hp": 613,
+      "effective_hp": 6590,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6233",
+      "zh": "封印祭司",
+      "m61_slots": 4,
+      "npc": 62330082,
+      "table_hp": 353,
+      "effective_hp": 3420,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5061",
+      "zh": "幽影士兵（重）",
+      "m61_slots": 4,
+      "npc": 50610893,
+      "table_hp": 210,
+      "effective_hp": 2763,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5513",
+      "zh": "幽影灵",
+      "m61_slots": 3,
+      "npc": 55130083,
+      "table_hp": 305,
+      "effective_hp": 2955,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5524",
+      "zh": "—",
+      "m61_slots": 3,
+      "npc": 55240082,
+      "table_hp": 338,
+      "effective_hp": 3274,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6291",
+      "zh": "—",
+      "m61_slots": 3,
+      "npc": 62910090,
+      "table_hp": 531,
+      "effective_hp": 5327,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5800",
+      "zh": "熔炉骑士·德沃尼亚",
+      "m61_slots": 2,
+      "npc": 58000094,
+      "table_hp": 840,
+      "effective_hp": 11051,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5701",
+      "zh": "—",
+      "m61_slots": 2,
+      "npc": 57010083,
+      "table_hp": 233,
+      "effective_hp": 2257,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5520",
+      "zh": "—",
+      "m61_slots": 2,
+      "npc": 55200095,
+      "table_hp": 338,
+      "effective_hp": 3634,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5931",
+      "zh": "—",
+      "m61_slots": 2,
+      "npc": 59310084,
+      "table_hp": 671,
+      "effective_hp": 7213,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5980",
+      "zh": "深渊巡行者",
+      "m61_slots": 2,
+      "npc": 59809290,
+      "table_hp": 429,
+      "effective_hp": 4303,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5160",
+      "zh": "暗影骑士",
+      "m61_slots": 2,
+      "npc": 51600199,
+      "table_hp": 864,
+      "effective_hp": 10584,
+      "hp_mult": 12.25,
+      "hp_mult_desc": "20007080×12.25",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5720",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 57200083,
+      "table_hp": 534,
+      "effective_hp": 5173,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5251",
+      "zh": "蓓蕾僧侣",
+      "m61_slots": 1,
+      "npc": 52510089,
+      "table_hp": 141,
+      "effective_hp": 1987,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6210",
+      "zh": "劳赫弓手",
+      "m61_slots": 1,
+      "npc": 62100092,
+      "table_hp": 487,
+      "effective_hp": 5966,
+      "hp_mult": 12.25,
+      "hp_mult_desc": "20007080×12.25",
+      "category": "trash"
+    },
+    {
+      "prefix": "c6220",
+      "zh": "幽影狼",
+      "m61_slots": 1,
+      "npc": 62200092,
+      "table_hp": 774,
+      "effective_hp": 9482,
+      "hp_mult": 12.25,
+      "hp_mult_desc": "20007080×12.25",
+      "category": "trash"
+    },
+    {
+      "prefix": "c5181",
+      "zh": "幽影士兵（重·II）",
+      "m61_slots": 1,
+      "npc": 51810085,
+      "table_hp": 1939,
+      "effective_hp": 27328,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "trash"
+    },
+    {
+      "prefix": "c3850",
+      "zh": "幽影人偶",
+      "m61_slots": 0,
+      "category": "trash",
+      "npc": 38500050,
+      "table_hp": 179,
+      "effective_hp": 867,
+      "hp_mult": 4.844,
+      "hp_mult_desc": "7120×4.844"
+    },
+    {
+      "prefix": "c5271",
+      "zh": "蓓蕾信徒",
+      "m61_slots": 0,
+      "category": "trash",
+      "npc": 52710098,
+      "table_hp": 666,
+      "effective_hp": 7628,
+      "hp_mult": 11.4531,
+      "hp_mult_desc": "20007060×11.4531"
+    },
+    {
+      "prefix": "c5512",
+      "zh": "幽影灵",
+      "m61_slots": 0,
+      "category": "trash",
+      "npc": 55120098,
+      "table_hp": 626,
+      "effective_hp": 7170,
+      "hp_mult": 11.4531,
+      "hp_mult_desc": "20007060×11.4531"
+    },
+    {
+      "prefix": "c5591",
+      "zh": "溃烂尸客",
+      "m61_slots": 0,
+      "category": "trash",
+      "npc": 55910087,
+      "table_hp": 1893,
+      "effective_hp": 21681,
+      "hp_mult": 11.4531,
+      "hp_mult_desc": "20007060×11.4531"
+    },
+    {
+      "prefix": "c5880",
+      "zh": "灵泉术士",
+      "m61_slots": 0,
+      "category": "trash",
+      "npc": 58800091,
+      "table_hp": 210,
+      "effective_hp": 2481,
+      "hp_mult": 11.8125,
+      "hp_mult_desc": "20007070×11.8125"
+    }
+  ],
+  "boss": [
+    {
+      "prefix": "c5830",
+      "zh": "劳赫骑士",
+      "m61_slots": 206,
+      "npc": 58309090,
+      "table_hp": 192,
+      "effective_hp": 1926,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c0100",
+      "zh": "—",
+      "m61_slots": 127,
+      "npc": 51709000,
+      "table_hp": 1939,
+      "effective_hp": 1939,
+      "hp_mult": 1.0,
+      "hp_mult_desc": "×1",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5360",
+      "zh": "幽影战士",
+      "m61_slots": 66,
+      "npc": 53601084,
+      "table_hp": 148,
+      "effective_hp": 1591,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5311",
+      "zh": "幽影小Boss",
+      "m61_slots": 54,
+      "npc": 53110094,
+      "table_hp": 173,
+      "effective_hp": 2276,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5661",
+      "zh": "腐烂灵龙",
+      "m61_slots": 44,
+      "npc": 56610095,
+      "table_hp": 153,
+      "effective_hp": 1645,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "field_boss"
+    },
+    {
+      "prefix": "c5840",
+      "zh": "黑骑士（法魂）",
+      "m61_slots": 29,
+      "npc": 58400081,
+      "table_hp": 512,
+      "effective_hp": 4408,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "cnv_special"
+    },
+    {
+      "prefix": "c6231",
+      "zh": "—",
+      "m61_slots": 21,
+      "npc": 62310081,
+      "table_hp": 184,
+      "effective_hp": 1584,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5250",
+      "zh": "—",
+      "m61_slots": 14,
+      "npc": 52500194,
+      "table_hp": 453,
+      "effective_hp": 5960,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5850",
+      "zh": "哀恸者",
+      "m61_slots": 10,
+      "npc": 58500180,
+      "table_hp": 448,
+      "effective_hp": 3157,
+      "hp_mult": 7.0469,
+      "hp_mult_desc": "20007000×7.04688",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5690",
+      "zh": "孤牢骑士",
+      "m61_slots": 10,
+      "npc": 56900090,
+      "table_hp": 441,
+      "effective_hp": 4424,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5170",
+      "zh": "—",
+      "m61_slots": 9,
+      "npc": 51701084,
+      "table_hp": 12800,
+      "effective_hp": 137600,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5890",
+      "zh": "—",
+      "m61_slots": 9,
+      "npc": 58900090,
+      "table_hp": 448,
+      "effective_hp": 4494,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5380",
+      "zh": "幽影小Boss",
+      "m61_slots": 8,
+      "npc": 53800094,
+      "table_hp": 1939,
+      "effective_hp": 25510,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5640",
+      "zh": "—",
+      "m61_slots": 7,
+      "npc": 56400083,
+      "table_hp": 357,
+      "effective_hp": 3458,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5790",
+      "zh": "—",
+      "m61_slots": 6,
+      "npc": 57900095,
+      "table_hp": 5236,
+      "effective_hp": 56287,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5011",
+      "zh": "蓓蕾骑士",
+      "m61_slots": 6,
+      "npc": 50110094,
+      "table_hp": 1408,
+      "effective_hp": 18524,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5780",
+      "zh": "—",
+      "m61_slots": 5,
+      "npc": 57800095,
+      "table_hp": 2585,
+      "effective_hp": 27789,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5081",
+      "zh": "幽影士兵（变种）",
+      "m61_slots": 5,
+      "npc": 50810194,
+      "table_hp": 1094,
+      "effective_hp": 14393,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5860",
+      "zh": "戴尔加夫（暂定）",
+      "m61_slots": 4,
+      "npc": 58600001,
+      "table_hp": 3661,
+      "effective_hp": 27172,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "cnv_special"
+    },
+    {
+      "prefix": "c5630",
+      "zh": "海岸海盗",
+      "m61_slots": 4,
+      "npc": 56300083,
+      "table_hp": 876,
+      "effective_hp": 8486,
+      "hp_mult": 9.6875,
+      "hp_mult_desc": "20007030×9.6875",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5192",
+      "zh": "幽影士兵（II）",
+      "m61_slots": 4,
+      "npc": 51920094,
+      "table_hp": 422,
+      "effective_hp": 5552,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5320",
+      "zh": "老将盖乌斯",
+      "m61_slots": 4,
+      "npc": 53200089,
+      "table_hp": 576,
+      "effective_hp": 8118,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "field_boss"
+    },
+    {
+      "prefix": "c5820",
+      "zh": "塑灵者凯玛（暂定）",
+      "m61_slots": 3,
+      "npc": 58200001,
+      "table_hp": 2585,
+      "effective_hp": 19186,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "cnv_special"
+    },
+    {
+      "prefix": "c6270",
+      "zh": "—",
+      "m61_slots": 3,
+      "npc": 62700084,
+      "table_hp": 679,
+      "effective_hp": 7299,
+      "hp_mult": 10.75,
+      "hp_mult_desc": "20007050×10.75",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5580",
+      "zh": "咒剑士拉比卡士",
+      "m61_slots": 3,
+      "npc": 55800085,
+      "table_hp": 2704,
+      "effective_hp": 38110,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5030",
+      "zh": "花蕾圣女萝蜜娜",
+      "m61_slots": 2,
+      "npc": 50300001,
+      "table_hp": 2540,
+      "effective_hp": 18852,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "major_boss"
+    },
+    {
+      "prefix": "c5210",
+      "zh": "神兽舞狮",
+      "m61_slots": 2,
+      "npc": 52100001,
+      "table_hp": 2330,
+      "effective_hp": 17293,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5970",
+      "zh": "—",
+      "m61_slots": 2,
+      "npc": 59700190,
+      "table_hp": 1418,
+      "effective_hp": 14224,
+      "hp_mult": 10.0312,
+      "hp_mult_desc": "20007040×10.0312",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c6251",
+      "zh": "—",
+      "m61_slots": 2,
+      "npc": 62510000,
+      "table_hp": 1745,
+      "effective_hp": 1745,
+      "hp_mult": 1.0,
+      "hp_mult_desc": "×1",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5680",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 56800081,
+      "table_hp": 679,
+      "effective_hp": 5846,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c6260",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 62601000,
+      "table_hp": 2447,
+      "effective_hp": 2447,
+      "hp_mult": 1.0,
+      "hp_mult_desc": "×1",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5960",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 59600081,
+      "table_hp": 2713,
+      "effective_hp": 23357,
+      "hp_mult": 8.6094,
+      "hp_mult_desc": "20007020×8.60938",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5300",
+      "zh": "双月骑士蕾菈娜",
+      "m61_slots": 1,
+      "npc": 53000001,
+      "table_hp": 2765,
+      "effective_hp": 20522,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5000",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 50000001,
+      "table_hp": 2765,
+      "effective_hp": 20522,
+      "hp_mult": 7.422,
+      "hp_mult_desc": "7200×7.422",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5312",
+      "zh": "—",
+      "m61_slots": 1,
+      "npc": 53120189,
+      "table_hp": 346,
+      "effective_hp": 4876,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c6310",
+      "zh": "黄金河马",
+      "m61_slots": 1,
+      "npc": 63101093,
+      "table_hp": 1893,
+      "effective_hp": 24673,
+      "hp_mult": 13.034,
+      "hp_mult_desc": "20007110×13.034",
+      "category": "evergaol"
+    },
+    {
+      "prefix": "c5551",
+      "zh": "指之随从",
+      "m61_slots": 1,
+      "npc": 55510093,
+      "table_hp": 1493,
+      "effective_hp": 19642,
+      "hp_mult": 13.1562,
+      "hp_mult_desc": "20007090×13.1562",
+      "category": "minor_boss"
+    },
+    {
+      "prefix": "c5370",
+      "zh": "古龙瑟涅桑克斯",
+      "m61_slots": 1,
+      "npc": 53700085,
+      "table_hp": 1876,
+      "effective_hp": 26440,
+      "hp_mult": 14.0938,
+      "hp_mult_desc": "20007110×14.0938",
+      "category": "field_boss"
+    }
+  ],
+  "skipped": [
+    {
+      "prefix": "c5470",
+      "slots": 64,
+      "max_eff": 224,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c5430",
+      "slots": 39,
+      "max_eff": 368,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c5193",
+      "slots": 30,
+      "max_eff": 763,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c3000",
+      "slots": 15,
+      "max_eff": 222,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c6320",
+      "slots": 12,
+      "max_eff": 914,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c4380",
+      "slots": 10,
+      "max_eff": 0,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c5471",
+      "slots": 7,
+      "max_eff": 224,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c3010",
+      "slots": 5,
+      "max_eff": 0,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c4210",
+      "slots": 4,
+      "max_eff": 257,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c3020",
+      "slots": 4,
+      "max_eff": 0,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c3310",
+      "slots": 4,
+      "reason": "no_npc"
+    },
+    {
+      "prefix": "c5472",
+      "slots": 4,
+      "max_eff": 224,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c4383",
+      "slots": 4,
+      "max_eff": 0,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c8100",
+      "slots": 3,
+      "max_eff": 775,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c7005",
+      "slots": 3,
+      "reason": "no_npc"
+    },
+    {
+      "prefix": "c2300",
+      "slots": 2,
+      "reason": "no_npc"
+    },
+    {
+      "prefix": "c3705",
+      "slots": 2,
+      "reason": "no_npc"
+    },
+    {
+      "prefix": "c3600",
+      "slots": 2,
+      "max_eff": 0,
+      "reason": "low_hp"
+    },
+    {
+      "prefix": "c120",
+      "slots": 1,
+      "max_eff": 39,
+      "reason": "low_hp"
+    }
+  ]
+}

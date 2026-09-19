@@ -1,0 +1,120 @@
+法魂 CNV 3.0 — 地上/宝箱物品刷新：开源 mod 做法对照
+====================================================
+
+## 结论（2026-07-16 实测）
+
+Smithbox 只改 ItemLotParam_map → Import CSV → 保存 mod\regulation.bin
+→ 先锋箱仍失色石、马车仍「白光空捡」。
+
+说明：对 CNV 3.0 这三类拾取，**单靠静态改 bin 不够**（或改的不是游戏实际读的那张表/那条链路）。
+
+mod\regulation.bin 体积已从 2,364,448 变到 2,364,496，说明 Smithbox 确实写入了文件；
+但进游戏行为不变 → 问题在「运行时读什么」，不是「没保存」。
+
+---
+
+## 开源 / 社区 mod 怎么做的
+
+### 1. LukeYui — elden_ring_item_randomiser（原版 ER，最佳技术参考）
+https://github.com/LukeYui/elden_ring_item_randomiser
+
+做法（两层，缺一不可）：
+  A. 启动后等 solo_param_repository 就绪，**直接在内存里 shuffle ItemLotParam_map**
+     （见 Randomiser/randomiser.cpp → ShuffleItemLotParam_map，偏移 0x670）
+  B. MinHook 钩住 **MapItemManagerImp** 和 **LuaEventManagerImp** 的给物函数
+     （见 Hooks/item_randomiser_hooks.cpp → RandomiseItemHook）
+     玩家捡东西时在 hook 里改 ItemInfo，再调用原函数入包。
+
+要点：**不是只改磁盘上的 regulation.bin**，而是改「游戏已加载进内存的 param」+「捡取瞬间」。
+
+---
+
+### 2. hhhxiao — SimpleCERItemRamdomizer（法魂 CER 2.x）
+https://github.com/hhhxiao/SimpleCERItemRamdomizer
+Nexus: https://www.nexusmods.com/eldenring/mods/7473
+
+做法：**运行时 ID 交换**（拿到武器/法术时把 ID 换成随机后的 ID）。
+配置进 config_eldenring.toml 的 external_dlls。
+
+⚠ 你的 me3\convergence.me3 里已注释掉 SCIR：
+   「CNV 3.0 不兼容，捡取会崩（即使空表）」
+→ 说明法魂 3.0 不能照搬 CER 2.x 的 SCIR，需要新 hook / 新偏移。
+
+---
+
+### 3. hjhhh — Elden Ring Item and Enemy Randomizer（Nexus 428，原版 ER）
+https://www.nexusmods.com/eldenring/mods/428
+
+做法：随机器工具 **整包输出** regulation.bin + 配套文件，ModEngine 加载。
+不是 Smithbox 手工改几行 CSV；且针对 **原版** ER 版本对齐，不能直接套 CNV 3.0 bin。
+
+---
+
+### 4. ignitesouls — UniversalReplacementRandomizer（C# 库）
+https://github.com/ignitesouls/UniversalReplacementRandomizer
+
+做法：种子确定性 ID 映射（Fisher-Yates + validator）。
+给「随机逻辑」用，仍需你自己接到 **内存改 param** 或 **捡取 hook** 上。
+
+---
+
+### 5. Nordgaren — Erd-Tools-CPP / Debug Tool
+https://github.com/Nordgaren/Erd-Tools-CPP
+CNV 调试：https://github.com/Topdude/ER-Convergence-Debug-Tool
+
+用途：游戏内调试、flag、部分 param 行为；**不是**完整地图掉落随机器。
+可用来 **确认捡取时实际 lot / item id**（下一步定位真 lot 用）。
+
+---
+
+## CNV 3.0 特殊点（和原版 ER 不同）
+
+| 项目 | 说明 |
+|------|------|
+| ItemLot 类别 | CNV 常用 weapon=0, goods=1（不是原版 2/1） |
+| 地上光柱拾取 | event 90005750 / 20000732：光柱 SFX + AwardItemsIncludingClients(lot) |
+| Material Node | ItemLot 998700 + AssetEnvironmentGeometryParam 99870（失色石类） |
+| 圣所 / 职业 | mod\event\ + CharaInit，**不能**只靠 ItemLot |
+| ME3 加载 | convergence.me3 → package path = ../mod（含 regulation.bin + event） |
+| 地图 MSB | 马车等物品 lot 绑在 **原版 map** 里，lot 号在 MSB，内容在 ItemLot |
+
+---
+
+## 推荐技术路线（CNV 3.0 随机器）
+
+**放弃**：仅 Smithbox 改 ItemLotParam_map 期望地上/马车生效。
+
+**改为**（参考 LukeYui，针对 CNV 3.0 重写）：
+
+1. **DLL 注入**（ME3 [[natives]]，与 ErdTools 同级）
+2. 游戏启动后：
+   - 定位 solo_param_repository（需 CNV 3.0 / 当前 exe 新签名）
+   - 在内存中改写 ItemLotParam_map（可用现有 Python 生成的映射表）
+3. **Hook 捡取**（MapItemManager + LuaEventManager，签名需重找）
+4. 种子 + spoiler 文本（沿用 tools\cnv_randomizer\output\）
+
+**可选辅助**：
+- 用 ErdTools / Debug Tool 进游戏看捡取瞬间 item id
+- 先测 lot **102100**（关卡前哨砥石箱）是否吃 ItemLot：区分「整张表无效」vs「只有那三个 lot 走别的链路」
+
+---
+
+## 和「提灯双处改」的对应关系
+
+| 提灯 | 地上拾取 / 失色节点 |
+|------|---------------------|
+| 武器 residentSpEffectId | （部分武器发光） |
+| SpEffectVfxParam 5400/5401 | CreateAssetfollowingSFX（90005750 光柱） |
+| — | AwardItemsIncludingClients(lot) → ItemLotParam_map |
+| — | Material Node 还多 AssetEnvironmentGeometryParam |
+
+只改 ItemLot ≈ 只改「给什么」；光柱还在、空捡 = 光效/事件侧还在，给物侧 ID+category 对不上或根本没读到你的 bin。
+
+---
+
+## 相关本地文件
+
+- 随机脚本：tools\cnv_randomizer\randomize_map_lots.py
+- 测试补丁：tools\cnv_randomizer\apply_test_chests.py
+- ME3 配置：me3\convergence.me3
+- ErdTools 拾取：mod\dll\erd_tools.ini（pickup_items=0 只影响自动拾取，不影响手动捡）

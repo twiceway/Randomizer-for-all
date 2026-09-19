@@ -1,0 +1,22 @@
+{
+
+  "by_category": {
+
+    "trash": 80,
+
+    "night": 6500,
+
+    "evergaol": 4500,
+
+    "minor_boss": 6500,
+
+    "major_boss": 12000,
+
+    "cnv_special": 8000
+
+  },
+
+  "by_category_definition": "tgt_cat 卢恩阶梯基准。T-058：trash/elite/minor/evergaol 等 HP 平衡池不再 × 地图 tier；major/night 仍可地图缩放。trash/elite 封顶、Boss 保底。night 与 minor_boss 同档阶梯。废止 Boss ÷10。"
+
+}
+

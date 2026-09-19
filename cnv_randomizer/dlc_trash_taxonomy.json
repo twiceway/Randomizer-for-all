@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "description": "DLC 路边小怪用户口径分类 → 捐皮池1 原型彩票；模型对照 Character.json + m61 扫描",
+  "force_trash_min_hp": 0,
+  "archetypes": [
+    {
+      "id": "dlc_knight",
+      "label_zh": "DLC·骑士类",
+      "entries": [
+        {
+          "zh": "劳赫骑士",
+          "en": "Rauh Knight",
+          "models": ["c5830", "c5651"],
+          "note": "Messmer Soldier / Foot Soldier，劳赫遗迹主力"
+        },
+        {
+          "zh": "蓓蕾骑士",
+          "en": "Bud Knight",
+          "models": ["c5011"],
+          "note": "梅瑟莫轻甲士兵，花蕾/蓓蕾线圣属性骑士皮"
+        },
+        {
+          "zh": "暗影骑士",
+          "en": "Umbral Knight",
+          "models": ["c5160"],
+          "note": "Fire Knight，暗影要塞守军"
+        },
+        {
+          "zh": "展望镇佣兵",
+          "en": "Prospect Town Mercenary",
+          "models": ["c5040", "c5280"],
+          "note": "墓地平原展望镇：Curseblade 脚注 + Winter-Lantern"
+        }
+      ]
+    },
+    {
+      "id": "dlc_spirit_rot",
+      "label_zh": "DLC·灵体腐朽",
+      "entries": [
+        {
+          "zh": "幽影灵",
+          "en": "Umbral Shade",
+          "models": ["c5511", "c5512", "c5513"],
+          "note": "Shade / Cemetery Shade，恩尼尔伊利姆灵体"
+        },
+        {
+          "zh": "腐朽信徒",
+          "en": "Rot Devotee",
+          "models": ["c5740"],
+          "note": "Kindred of Rot"
+        },
+        {
+          "zh": "蓓蕾信徒",
+          "en": "Bud Follower",
+          "models": ["c5271"],
+          "note": "Jar Innards，花蕾线举缸追随者"
+        },
+        {
+          "zh": "封印祭司",
+          "en": "Sealing Priest",
+          "models": ["c6232", "c6233"],
+          "note": "Catacombs Sorcerer"
+        },
+        {
+          "zh": "溃烂尸客",
+          "en": "Festering Guest",
+          "models": ["c5590", "c5591"],
+          "note": "Putrid Flesh"
+        }
+      ]
+    },
+    {
+      "id": "dlc_beast",
+      "label_zh": "DLC·野兽龙族",
+      "entries": [
+        {
+          "zh": "幽影狼",
+          "en": "Umbral Wolf",
+          "models": ["c5540", "c5541", "c6220"],
+          "note": "DLC Wolf / Stray 变体"
+        },
+        {
+          "zh": "幽影乌鸦",
+          "en": "Umbral Crow",
+          "models": ["c5570"],
+          "note": "Marionette Soldier（官译幽影乌鸦）"
+        },
+        {
+          "zh": "尖峰山羊",
+          "en": "Jagged Peak Ram",
+          "models": ["c5460"],
+          "note": "Murre/山羊类，尖峰之地"
+        },
+        {
+          "zh": "幽影蝠",
+          "en": "Umbral Bat",
+          "models": ["c5530"],
+          "note": "Man-Bat"
+        },
+        {
+          "zh": "腐爪蜥蜴",
+          "en": "Rot Lizard",
+          "models": ["c5990"],
+          "note": "Basilisk"
+        }
+      ]
+    },
+    {
+      "id": "dlc_elite",
+      "label_zh": "DLC·人形精英",
+      "entries": [
+        {
+          "zh": "劳赫弓手",
+          "en": "Rauh Archer",
+          "models": ["c5080", "c6210"],
+          "note": "Bloodfiend + Albinauric Archer"
+        },
+        {
+          "zh": "灵泉术士",
+          "en": "Spirit Spring Sorcerer",
+          "models": ["c5880"],
+          "note": "Putrescence Sorcerer"
+        },
+        {
+          "zh": "蓓蕾僧侣",
+          "en": "Bud Monk",
+          "models": ["c5251"],
+          "note": "Horned Shaman"
+        },
+        {
+          "zh": "深渊巡行者",
+          "en": "Abyssal Warden",
+          "models": ["c5980"],
+          "note": "Omenkiller"
+        },
+        {
+          "zh": "海岸海盗",
+          "en": "Cerulean Coast Marauder",
+          "models": ["c5630", "c5641"],
+          "note": "Giant Crayfish + Crab，青色海岸"
+        }
+      ]
+    },
+    {
+      "id": "dlc_special",
+      "label_zh": "DLC·特殊怪",
+      "entries": [
+        {
+          "zh": "幽影人偶",
+          "en": "Umbral Puppet",
+          "models": ["c3850"],
+          "note": "Marionette 基础皮；DLC 槽位亦见 c5570"
+        },
+        {
+          "zh": "指之随从",
+          "en": "Finger Kin",
+          "models": ["c5560", "c5550", "c5551"],
+          "note": "Fingercreeper 小/大"
+        },
+        {
+          "zh": "封印树人",
+          "en": "Sealing Treant",
+          "models": ["c5900", "c6290"],
+          "note": "Man-Fly 树灵皮（c5830 归劳赫骑士）"
+        },
+        {
+          "zh": "熔泥造物",
+          "en": "Putrescence Construct",
+          "models": ["c6240"],
+          "note": "融泥区域造物"
+        }
+      ]
+    }
+  ]
+}

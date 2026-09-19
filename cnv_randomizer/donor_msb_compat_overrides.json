@@ -1,0 +1,27 @@
+{
+  "_contract": "敌人类别映射契约.md §捐皮 MSB 初态表 · 手工覆盖自动规则；键=template_id",
+  "_fields": {
+    "force_donor_msb": "true=apply 绝对用捐皮出场 MSB，覆盖原槽站立/巡逻保留",
+    "compat_standing_keep": "可进站立槽且不强制捐皮出场（一般与 force 相反）",
+    "compat_patrol_keep": "可进巡逻槽且保留原槽路（一般与 force 相反）",
+    "note": "真机备注"
+  },
+  "overrides": {
+    "m60_49_52_00:c4980_9000": {
+      "force_donor_msb": true,
+      "note": "利耶尼亚死之鸟出处；捐到路边槽须强制捐皮出场"
+    },
+    "m60_49_38_00:c4980_9000": {
+      "force_donor_msb": true,
+      "note": "死之鸟出处样板"
+    },
+    "m61_47_47_00:c5525_9000": {
+      "force_donor_msb": false,
+      "note": "T-076 四足范例 · 辫毛流浪狗（npc=55250095）· T-076 默认 428 写盘"
+    },
+    "m60_51_36_00:c4314_9033": {
+      "force_donor_msb": true,
+      "note": "T-078 探针 C3 · 红狮子士兵捐到门前蝙蝠脚本槽；自动表 force=false，探针/脚本槽须强制捐皮出场（配套 npc=43140041 think=43140000）"
+    }
+  }
+}

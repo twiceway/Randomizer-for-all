@@ -1,0 +1,36 @@
+# Smithbox 合并随机 — 推荐用 CSV（比 Mass Edit 粘贴省事）
+
+## 这个报错不是路径问题
+
+  Could not find row filter. Check your colon placement. (line 1)
+
+意思是：Mass Edit 文本框里第 1 行命令格式错了。
+常见原因：
+  - 把「文件路径」贴进了文本框（错）
+  - 应该贴「文件里面的内容」（对）
+  - 或用了中文冒号 ： 而不是英文冒号 :
+
+---
+
+## 推荐：Import CSV（3 分钟搞定）
+
+1. Smithbox → Param Editor
+2. 左侧选中 ItemLotParam_map
+3. 顶部 Tools → Data Transfer → Import CSV → All fields
+4. 选文件：
+   V:\games\Elden Ring\Game\tools\cnv_randomizer\output\ItemLotParam_map.csv
+5. Ctrl+S 保存
+6. 检查 mod\regulation.bin 大小约 2,364,448（不是 3,136,624）
+
+---
+
+## 若仍想用 Mass Edit
+
+1. 用记事本打开（不要贴路径）：
+   output\ItemLotParam_map.massedit
+2. Ctrl+A 全选 → Ctrl+C 复制「全文」
+3. 粘贴到 Mass Edit 的 Input 框
+4. 先只测一行，应类似：
+   param ItemLotParam_map: id 2230: lotItemId01: = 5191100;
+5. 注意冒号必须是英文 :
+6. Apply → Ctrl+S

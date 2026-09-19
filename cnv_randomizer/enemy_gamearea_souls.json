@@ -1,0 +1,3596 @@
+{
+  "definition": "getSoul=0 时反查 GameAreaParam.bonusSoul_single。优先级：manual钉死 → GameArea/Npc 强名匹配 → 单GameArea地图上的 boss 旗 npc → model 手工/派生。lookup 顺序：getSoul>0 用原值；否则 by_npc → by_model → by_category。",
+  "generated_from": {
+    "NpcParam": "V:\\games\\Elden Ring\\Game\\csv\\NpcParam.csv",
+    "GameAreaParam": "V:\\games\\Elden Ring\\Game\\csv\\GameAreaParam.csv",
+    "enemy_index": "V:\\1_mel\\Ringrandom\\cnv_randomizer\\cache\\enemy_index.json"
+  },
+  "stats": {
+    "by_npc_count": 204,
+    "by_model_count": 101,
+    "game_area_with_bonus": 209,
+    "zero_template_npcs": 683,
+    "zero_template_covered": 193,
+    "boss_flag_soul0": 308,
+    "boss_flag_soul0_covered": 150
+  },
+  "by_npc": {
+    "22000000": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "source": "manual:npc->19000800",
+      "npc_name": "艾尔登之兽 Elden Beast",
+      "is_soul_get_by_boss": false,
+      "models": []
+    },
+    "22000078": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "source": "manual:npc->19000800",
+      "npc_name": "艾尔登之兽",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2200"
+      ]
+    },
+    "21900078": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "source": "manual:npc->19000800",
+      "npc_name": "黄金律法拉达冈",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2190"
+      ]
+    },
+    "48000010": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "source": "manual:npc->19000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4800"
+      ]
+    },
+    "52200089": {
+      "bonus_soul": 500000,
+      "game_area_id": 20010800,
+      "source": "manual:npc->20010800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5220"
+      ]
+    },
+    "48001935": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "source": "manual:model:c4800->19000800",
+      "npc_name": "恶兆之子蒙格",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4800"
+      ]
+    },
+    "51200085": {
+      "bonus_soul": 490000,
+      "game_area_id": 2054390800,
+      "source": "manual:npc->2054390800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5120"
+      ]
+    },
+    "57000083": {
+      "bonus_soul": 480000,
+      "game_area_id": 15000800,
+      "source": "manual:npc->15000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c5700"
+      ]
+    },
+    "21200000": {
+      "bonus_soul": 480000,
+      "game_area_id": 15000800,
+      "source": "manual:npc->15000800",
+      "npc_name": "女武神玛莲妮亚 Malenia- Blade of Miquella",
+      "is_soul_get_by_boss": false,
+      "models": []
+    },
+    "46700065": {
+      "bonus_soul": 420000,
+      "game_area_id": 12050800,
+      "source": "manual:npc->12050800",
+      "npc_name": "希芙拉河祖灵之王",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4670"
+      ]
+    },
+    "52000097": {
+      "bonus_soul": 420000,
+      "game_area_id": 25000800,
+      "source": "manual:npc->25000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5200"
+      ]
+    },
+    "46700000": {
+      "bonus_soul": 420000,
+      "game_area_id": 12050800,
+      "source": "manual:model:c4670->12050800",
+      "npc_name": "祖灵 Ancestor Spirit",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4670"
+      ]
+    },
+    "50500086": {
+      "bonus_soul": 410000,
+      "game_area_id": 28000800,
+      "source": "manual:npc->28000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5050"
+      ]
+    },
+    "51300099": {
+      "bonus_soul": 400000,
+      "game_area_id": 21010800,
+      "source": "manual:npc->21010800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5130"
+      ]
+    },
+    "50300094": {
+      "bonus_soul": 380000,
+      "game_area_id": 2044450800,
+      "source": "manual:npc->2044450800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5030"
+      ]
+    },
+    "50300000": {
+      "bonus_soul": 380000,
+      "game_area_id": 2044450800,
+      "source": "manual:npc->2044450800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": []
+    },
+    "50300001": {
+      "bonus_soul": 380000,
+      "game_area_id": 2044450800,
+      "source": "manual:npc->2044450800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": []
+    },
+    "45200010": {
+      "bonus_soul": 280000,
+      "game_area_id": 13000830,
+      "source": "manual:npc->13000830",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4520"
+      ]
+    },
+    "53000082": {
+      "bonus_soul": 240000,
+      "game_area_id": 2048440800,
+      "source": "manual:npc->2048440800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5300"
+      ]
+    },
+    "53000000": {
+      "bonus_soul": 240000,
+      "game_area_id": 2048440800,
+      "source": "manual:model:c5300->2048440800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c5300"
+      ]
+    },
+    "52300096": {
+      "bonus_soul": 230000,
+      "game_area_id": 2047390800,
+      "source": "manual:npc->2047390800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5230"
+      ]
+    },
+    "51100080": {
+      "bonus_soul": 220000,
+      "game_area_id": 13000800,
+      "source": "manual:npc->13000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c5110"
+      ]
+    },
+    "50200087": {
+      "bonus_soul": 220000,
+      "game_area_id": 22000800,
+      "source": "manual:npc->22000800",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5020"
+      ]
+    },
+    "47700000": {
+      "bonus_soul": 220000,
+      "game_area_id": 13000800,
+      "source": "name:Maliketh- the Black Blade->13000800",
+      "npc_name": "英雄石像鬼 Black Blade Kindred",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4770"
+      ]
+    },
+    "49801052": {
+      "bonus_soul": 220000,
+      "game_area_id": 1048570800,
+      "source": "map_single:m60_48_57_00.msb.dcx->1048570800",
+      "npc_name": "化圣雪原死亡仪式鸟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4980"
+      ]
+    },
+    "52700100": {
+      "bonus_soul": 180000,
+      "game_area_id": 1052520800,
+      "source": "manual:npc->1052520800",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c5270"
+      ]
+    },
+    "31700000": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "source": "name:Great Wyrm Theodorix - Albinauric Rise (->1050560800",
+      "npc_name": "仪典镇三连发射手 Albinauric Archer",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3170"
+      ]
+    },
+    "34700000": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "source": "name:Great Wyrm Theodorix - Albinauric Rise (->1050560800",
+      "npc_name": "白金之子 Albinauric",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3470"
+      ]
+    },
+    "36700000": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "source": "name:Great Wyrm Theodorix - Albinauric Rise (->1050560800",
+      "npc_name": "白金村民 Albinauric Lookout",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3670"
+      ]
+    },
+    "49110052": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "source": "map_single:m60_50_56_00.msb.dcx->1050560800",
+      "npc_name": "化圣雪原大土龙席欧朵利克",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4911"
+      ]
+    },
+    "52700000": {
+      "bonus_soul": 180000,
+      "game_area_id": 1052520800,
+      "source": "manual:model:c5270->1052520800",
+      "npc_name": "翁斯坦",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c5270"
+      ]
+    },
+    "39010000": {
+      "bonus_soul": 170000,
+      "game_area_id": 13000850,
+      "source": "name:Godskin Duo->13000850",
+      "npc_name": "神皮修道士 Godskin Monk",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3901"
+      ]
+    },
+    "36610000": {
+      "bonus_soul": 160000,
+      "game_area_id": 1050570850,
+      "source": "name:Putrid Avatar - Minor Erdtree (Snowfield->1050570850",
+      "npc_name": "蘑菇人 Putrid Corpse",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3661"
+      ]
+    },
+    "47100038": {
+      "bonus_soul": 130000,
+      "game_area_id": 16000800,
+      "source": "manual:npc->16000800",
+      "npc_name": "噬神大蛇",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4710"
+      ]
+    },
+    "47101038": {
+      "bonus_soul": 130000,
+      "game_area_id": 16000800,
+      "source": "manual:model:c4710->16000800",
+      "npc_name": "亵渎君王拉卡德",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4710"
+      ]
+    },
+    "21300534": {
+      "bonus_soul": 120000,
+      "game_area_id": 11000800,
+      "source": "manual:npc->11000800",
+      "npc_name": "王城罗德尔恶兆王蒙葛特",
+      "is_soul_get_by_boss": true,
+      "models": []
+    },
+    "47600050": {
+      "bonus_soul": 120000,
+      "game_area_id": 11000800,
+      "source": "manual:npc->11000800",
+      "npc_name": "火焰巨人",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4760"
+      ]
+    },
+    "48200000": {
+      "bonus_soul": 120000,
+      "game_area_id": 1034420800,
+      "source": "name:Omenkiller->1034420800",
+      "npc_name": "恶兆猎人 Omenkiller",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4820"
+      ]
+    },
+    "45021922": {
+      "bonus_soul": 120000,
+      "game_area_id": 1034420800,
+      "source": "map_single:m60_34_42_00.msb.dcx->1034420800",
+      "npc_name": "辉石龙亚杜拉-月光祭坛",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4502"
+      ]
+    },
+    "46209152": {
+      "bonus_soul": 120000,
+      "game_area_id": 32110800,
+      "source": "map_single:m32_11_00_00.msb.dcx->32110800",
+      "npc_name": "艾丝缇分身",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4620"
+      ]
+    },
+    "46200952": {
+      "bonus_soul": 120000,
+      "game_area_id": 32110800,
+      "source": "map_single:m32_11_00_00.msb.dcx->32110800",
+      "npc_name": "化圣雪原黑暗繁星艾丝缇-耶罗·亚尼斯坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4620"
+      ]
+    },
+    "47601050": {
+      "bonus_soul": 120000,
+      "game_area_id": 11000800,
+      "source": "manual:model:c4760->11000800",
+      "npc_name": "火焰巨人-恶神觉醒",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4760"
+      ]
+    },
+    "35500000": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "source": "name:Sanguine Noble->34130800",
+      "npc_name": "鲜血贵族（无加成） Sanguine Noble",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3550"
+      ]
+    },
+    "543430052": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "source": "name:Sanguine Noble->34130800",
+      "npc_name": "鲜血贵族 Sanguine Noble",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c0000"
+      ]
+    },
+    "35600042": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "source": "map_single:m34_13_00_00.msb.dcx->34130800",
+      "npc_name": "龙墓神皮使徒-盖利德神授塔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3560"
+      ]
+    },
+    "34600000": {
+      "bonus_soul": 93000,
+      "game_area_id": 31120800,
+      "source": "name:Misbegotten Crusader->31120800",
+      "npc_name": "狮子混种 Large Misbegotten",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3460"
+      ]
+    },
+    "34601952": {
+      "bonus_soul": 93000,
+      "game_area_id": 31120800,
+      "source": "map_single:m31_12_00_00.msb.dcx->31120800",
+      "npc_name": "化圣雪原混种圣骑士-安身洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3460"
+      ]
+    },
+    "30107051": {
+      "bonus_soul": 90000,
+      "game_area_id": 1051570800,
+      "source": "map_single:m60_51_57_00.msb.dcx->1051570800",
+      "npc_name": "巨人山顶索尔城失乡骑士-双剑-应老将尼奥召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3010"
+      ]
+    },
+    "30106051": {
+      "bonus_soul": 90000,
+      "game_area_id": 1051570800,
+      "source": "map_single:m60_51_57_00.msb.dcx->1051570800",
+      "npc_name": "巨人山顶索尔城失乡骑士-剑盾-应老将尼奥召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3010"
+      ]
+    },
+    "30500051": {
+      "bonus_soul": 90000,
+      "game_area_id": 1051570800,
+      "source": "map_single:m60_51_57_00.msb.dcx->1051570800",
+      "npc_name": "老将尼奥",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3050"
+      ]
+    },
+    "38100000": {
+      "bonus_soul": 88000,
+      "game_area_id": 1051430800,
+      "source": "name:Black Blade Kindred - Bestial Sanctum (C->1051430800",
+      "npc_name": "腐败眷属 Kindred of Rot",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3810"
+      ]
+    },
+    "47701242": {
+      "bonus_soul": 88000,
+      "game_area_id": 1051430800,
+      "source": "map_single:m60_51_43_00.msb.dcx->1051430800",
+      "npc_name": "龙墓黑剑眷属-长戟+大剑",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4770"
+      ]
+    },
+    "71000000": {
+      "bonus_soul": 83000,
+      "game_area_id": 30170800,
+      "source": "name:Ancient Hero of Zamor->30170800",
+      "npc_name": "萨米尔古英雄（无加成） Ancient Hero of Zamor",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c7100"
+      ]
+    },
+    "71000950": {
+      "bonus_soul": 83000,
+      "game_area_id": 30170800,
+      "source": "map_single:m30_17_00_00.msb.dcx->30170800",
+      "npc_name": "巨人山顶萨米尔英雄-巨人战争英雄墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c7100"
+      ]
+    },
+    "57700084": {
+      "bonus_soul": 80000,
+      "game_area_id": 11000850,
+      "source": "manual:npc->11000850",
+      "npc_name": "",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c5770"
+      ]
+    },
+    "47200050": {
+      "bonus_soul": 80000,
+      "game_area_id": 11000850,
+      "source": "manual:npc->11000850",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4720"
+      ]
+    },
+    "21000000": {
+      "bonus_soul": 80000,
+      "game_area_id": 1033420800,
+      "source": "name:Alecto- Black Knife Ringleader->1033420800",
+      "npc_name": "黑刀刺客（无加成） Black Knife Assassin",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c2100"
+      ]
+    },
+    "45050000": {
+      "bonus_soul": 80000,
+      "game_area_id": 1052410800,
+      "source": "name:Flying Dragon Greyll - Dragonbarrow (Cae->1052410800",
+      "npc_name": "龙母旁小黑龙 Lesser Elder Dragon",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4505"
+      ]
+    },
+    "506010040": {
+      "bonus_soul": 80000,
+      "game_area_id": 1052410800,
+      "source": "name:Flying Dragon Greyll - Dragonbarrow (Cae->1052410800",
+      "npc_name": "龙飨大教堂 Cathedral of Dragon Communion",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c0100"
+      ]
+    },
+    "21002922": {
+      "bonus_soul": 80000,
+      "game_area_id": 1033420800,
+      "source": "map_single:m60_33_42_00.msb.dcx->1033420800",
+      "npc_name": "黑刀之首亚勒托",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2100"
+      ]
+    },
+    "46200062": {
+      "bonus_soul": 80000,
+      "game_area_id": 12040800,
+      "source": "map_single:m12_04_00_00.msb.dcx->12040800",
+      "npc_name": "安瑟尔河黑暗弃子艾丝缇-安瑟尔河尽头",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4620"
+      ]
+    },
+    "47200070": {
+      "bonus_soul": 80000,
+      "game_area_id": 11000850,
+      "source": "manual:model:c4720->11000850",
+      "npc_name": "初始之王葛孚雷",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4720"
+      ]
+    },
+    "523040050": {
+      "bonus_soul": 75000,
+      "game_area_id": 1053560800,
+      "source": "map_single:m60_53_56_00.msb.dcx->1053560800",
+      "npc_name": "圆桌骑士维克",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c0000"
+      ]
+    },
+    "47300040": {
+      "bonus_soul": 70000,
+      "game_area_id": 1052380800,
+      "source": "manual:npc->1052380800",
+      "npc_name": "碎星拉塔恩",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4730"
+      ]
+    },
+    "41402950": {
+      "bonus_soul": 70000,
+      "game_area_id": 31220800,
+      "source": "map_single:m31_22_00_00.msb.dcx->31220800",
+      "npc_name": "巨人山顶洞窟唤灵蜗牛-唤灵洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4140"
+      ]
+    },
+    "35700950": {
+      "bonus_soul": 70000,
+      "game_area_id": 31220800,
+      "source": "map_single:m31_22_00_00.msb.dcx->31220800",
+      "npc_name": "巨人山顶洞窟神皮贵族-唤灵洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3570"
+      ]
+    },
+    "35600950": {
+      "bonus_soul": 70000,
+      "game_area_id": 31220800,
+      "source": "map_single:m31_22_00_00.msb.dcx->31220800",
+      "npc_name": "巨人山顶洞窟神皮使徒-唤灵洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3560"
+      ]
+    },
+    "39700000": {
+      "bonus_soul": 65000,
+      "game_area_id": 31100800,
+      "source": "name:Beastman of Farum Azula->31100800",
+      "npc_name": "亚兹拉的兽人 Azula Beastman",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3970"
+      ]
+    },
+    "41200000": {
+      "bonus_soul": 65000,
+      "game_area_id": 31100800,
+      "source": "name:Beastman of Farum Azula->31100800",
+      "npc_name": "亚人首领 Demi-Human Beastman",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4120"
+      ]
+    },
+    "39701942": {
+      "bonus_soul": 65000,
+      "game_area_id": 31100800,
+      "source": "map_single:m31_10_00_00.msb.dcx->31100800",
+      "npc_name": "龙墓洞窟法姆·亚兹拉的兽人-大刀-龙墓洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3970"
+      ]
+    },
+    "46400942": {
+      "bonus_soul": 64000,
+      "game_area_id": 30160800,
+      "source": "map_single:m30_16_00_00.msb.dcx->30160800",
+      "npc_name": "盖利德腐败树灵-英灵地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4640"
+      ]
+    },
+    "45102030": {
+      "bonus_soul": 60000,
+      "game_area_id": 1037510800,
+      "source": "map_single:m60_37_51_00.msb.dcx->1037510800",
+      "npc_name": "亚坛高原古龙兰斯桑克斯",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4510"
+      ]
+    },
+    "47700250": {
+      "bonus_soul": 60000,
+      "game_area_id": 1049520800,
+      "source": "map_single:m60_49_52_00.msb.dcx->1049520800",
+      "npc_name": "禁域黑剑眷属-双刃剑+斧",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4770"
+      ]
+    },
+    "32500033": {
+      "bonus_soul": 50000,
+      "game_area_id": 1045520800,
+      "source": "map_single:m60_45_52_00.msb.dcx->1045520800",
+      "npc_name": "王城外围龙装大树守卫",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3250"
+      ]
+    },
+    "31000042": {
+      "bonus_soul": 50000,
+      "game_area_id": 1048410800,
+      "source": "map_single:m60_48_41_00.msb.dcx->1048410800",
+      "npc_name": "龙墓灵珠猎人",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3100"
+      ]
+    },
+    "46400950": {
+      "bonus_soul": 48000,
+      "game_area_id": 30180800,
+      "source": "map_single:m30_18_00_00.msb.dcx->30180800",
+      "npc_name": "巨人山顶腐烂树灵-巨人山顶的地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4640"
+      ]
+    },
+    "20300024": {
+      "bonus_soul": 40000,
+      "game_area_id": 14000800,
+      "source": "manual:npc->14000800",
+      "npc_name": "满月女王蕾娜拉-1阶段",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2030"
+      ]
+    },
+    "20310024": {
+      "bonus_soul": 40000,
+      "game_area_id": 14000800,
+      "source": "manual:npc->14000800",
+      "npc_name": "满月女王蕾娜菈",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2031"
+      ]
+    },
+    "45010040": {
+      "bonus_soul": 38000,
+      "game_area_id": 1048370800,
+      "source": "map_single:m60_48_37_00.msb.dcx->1048370800",
+      "npc_name": "步入腐败艾基格斯-盖利德",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4501"
+      ]
+    },
+    "31500050": {
+      "bonus_soul": 36000,
+      "game_area_id": 1048510800,
+      "source": "map_single:m60_48_51_00.msb.dcx->1048510800",
+      "npc_name": "禁域黑夜骑兵-剑刃戟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3150"
+      ]
+    },
+    "31600050": {
+      "bonus_soul": 36000,
+      "game_area_id": 1048510800,
+      "source": "map_single:m60_48_51_00.msb.dcx->1048510800",
+      "npc_name": "黑夜骑士的马",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3160"
+      ]
+    },
+    "21403050": {
+      "bonus_soul": 29000,
+      "game_area_id": 34140850,
+      "source": "map_single:m34_14_00_00.msb.dcx->34140850",
+      "npc_name": "罗德尔恶兆孪生子-大刀-东亚坛神授塔-区域加成为巨人山顶",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2140"
+      ]
+    },
+    "21403150": {
+      "bonus_soul": 29000,
+      "game_area_id": 34140850,
+      "source": "map_single:m34_14_00_00.msb.dcx->34140850",
+      "npc_name": "罗德尔恶兆孪生子-大斧-东亚坛神授塔-区域加成为巨人山顶",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2140"
+      ]
+    },
+    "49800033": {
+      "bonus_soul": 29000,
+      "game_area_id": 1044530800,
+      "source": "map_single:m60_44_53_00.msb.dcx->1044530800",
+      "npc_name": "王城外围死之鸟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4980"
+      ]
+    },
+    "25000000": {
+      "bonus_soul": 28000,
+      "game_area_id": 30100800,
+      "source": "name:Crucible Knight Ordovis->30100800",
+      "npc_name": "熔炉骑士（无加成） Crucible Knight",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c2500"
+      ]
+    },
+    "25000933": {
+      "bonus_soul": 28000,
+      "game_area_id": 30100800,
+      "source": "map_single:m30_10_00_00.msb.dcx->30100800",
+      "npc_name": "亚坛高原首席熔炉骑士奥陶琶斯-亚雷萨英雄墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "46900000": {
+      "bonus_soul": 26000,
+      "game_area_id": 1039500800,
+      "source": "name:Godefroy the Grafted - Golden Lineage Ev->1039500800",
+      "npc_name": "接肢贵族后裔（无加成） Grafted Scion",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4690"
+      ]
+    },
+    "49100026": {
+      "bonus_soul": 24000,
+      "game_area_id": 39200800,
+      "source": "map_single:m39_20_00_00.msb.dcx->39200800",
+      "npc_name": "熔岩土龙马卡尔-古遗迹断崖",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4910"
+      ]
+    },
+    "31000931": {
+      "bonus_soul": 24000,
+      "game_area_id": 1039540800,
+      "source": "map_single:m60_39_54_00.msb.dcx->1039540800",
+      "npc_name": "铁棘艾隆梅尔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3100"
+      ]
+    },
+    "46800032": {
+      "bonus_soul": 21000,
+      "game_area_id": 1036540800,
+      "source": "map_single:m60_36_54_00.msb.dcx->1036540800",
+      "npc_name": "格密尔火山坠星成兽-第9休息站",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4680"
+      ]
+    },
+    "31811032": {
+      "bonus_soul": 21000,
+      "game_area_id": 30090800,
+      "source": "map_single:m30_09_00_00.msb.dcx->30090800",
+      "npc_name": "格密尔火山红狼-格密尔英雄墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3181"
+      ]
+    },
+    "47500014": {
+      "bonus_soul": 20000,
+      "game_area_id": 10000800,
+      "source": "manual:npc->10000800",
+      "npc_name": "接肢葛瑞克",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4750"
+      ]
+    },
+    "32511030": {
+      "bonus_soul": 20000,
+      "game_area_id": 1041510800,
+      "source": "map_single:m60_41_51_00.msb.dcx->1041510800",
+      "npc_name": "亚坛高原大树守卫-哨兵火把",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3251"
+      ]
+    },
+    "32510030": {
+      "bonus_soul": 20000,
+      "game_area_id": 1041510800,
+      "source": "map_single:m60_41_51_00.msb.dcx->1041510800",
+      "npc_name": "亚坛高原大树守卫-黄金大盾",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3251"
+      ]
+    },
+    "31000033": {
+      "bonus_soul": 20000,
+      "game_area_id": 1043530800,
+      "source": "map_single:m60_43_53_00.msb.dcx->1043530800",
+      "npc_name": "王城外围灵珠猎人",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3100"
+      ]
+    },
+    "49100032": {
+      "bonus_soul": 19000,
+      "game_area_id": 1035530800,
+      "source": "map_single:m60_35_53_00.msb.dcx->1035530800",
+      "npc_name": "熔岩土龙-沸滚河终点",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4910"
+      ]
+    },
+    "36001933": {
+      "bonus_soul": 16000,
+      "game_area_id": 34120800,
+      "source": "map_single:m34_12_00_00.msb.dcx->34120800",
+      "npc_name": "亚坛高原石肤黑王-西亚坛神授塔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3600"
+      ]
+    },
+    "34001133": {
+      "bonus_soul": 15000,
+      "game_area_id": 30130800,
+      "source": "map_single:m30_13_00_00.msb.dcx->30130800",
+      "npc_name": "亚坛高原守墓斗士-双链锤-亚雷萨副墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3400"
+      ]
+    },
+    "44910933": {
+      "bonus_soul": 15000,
+      "game_area_id": 30130800,
+      "source": "map_single:m30_13_00_00.msb.dcx->30130800",
+      "npc_name": "亚坛高原地下墓地小战士壶",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4491"
+      ]
+    },
+    "30600000": {
+      "bonus_soul": 14000,
+      "game_area_id": 1038520340,
+      "source": "name:Tibia Mariner - Wyndham Ruins (Altus Pla->1038520340",
+      "npc_name": "骷髅斧兵 Undead Mariner",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3060"
+      ]
+    },
+    "49500032": {
+      "bonus_soul": 14000,
+      "game_area_id": 1038520340,
+      "source": "map_single:m60_38_52_00.msb.dcx->1038520340",
+      "npc_name": "亚坛高原-提比亚的唤声船",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4950"
+      ]
+    },
+    "35600030": {
+      "bonus_soul": 14000,
+      "game_area_id": 1042550800,
+      "source": "map_single:m60_42_55_00.msb.dcx->1042550800",
+      "npc_name": "亚坛高原神皮使徒-风车村多明努拉",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3560"
+      ]
+    },
+    "45020920": {
+      "bonus_soul": 14000,
+      "game_area_id": 1034450800,
+      "source": "map_single:m60_34_45_00.msb.dcx->1034450800",
+      "npc_name": "辉石龙史玛拉格-利耶尼亚湖",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4502"
+      ]
+    },
+    "41300000": {
+      "bonus_soul": 13000,
+      "game_area_id": 1037530800,
+      "source": "name:Demi-Human Queen - Primeval Sorcerer Azu->1037530800",
+      "npc_name": "亚人女王 Demi-Human Queen",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4130"
+      ]
+    },
+    "41300032": {
+      "bonus_soul": 13000,
+      "game_area_id": 1037530800,
+      "source": "map_single:m60_37_53_00.msb.dcx->1037530800",
+      "npc_name": "格密尔火山亚人女王玛姬-隐士村",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4130"
+      ]
+    },
+    "46700964": {
+      "bonus_soul": 13000,
+      "game_area_id": 12080800,
+      "source": "map_single:m12_08_00_00.msb.dcx->12080800",
+      "npc_name": "希芙拉河祖灵",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4670"
+      ]
+    },
+    "21300014": {
+      "bonus_soul": 12000,
+      "game_area_id": 10000850,
+      "source": "manual:npc->10000850",
+      "npc_name": "史东薇尔恶兆妖鬼玛尔基特-史东薇尔城门口",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2130"
+      ]
+    },
+    "21300050": {
+      "bonus_soul": 12000,
+      "game_area_id": 10000850,
+      "source": "manual:npc->10000850",
+      "npc_name": "",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c2130"
+      ]
+    },
+    "42602932": {
+      "bonus_soul": 12000,
+      "game_area_id": 30070800,
+      "source": "map_single:m30_07_00_00.msb.dcx->30070800",
+      "npc_name": "亚坛高原归树看门犬-巨剑-威达姆地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4260"
+      ]
+    },
+    "30208040": {
+      "bonus_soul": 12000,
+      "game_area_id": 1049380800,
+      "source": "map_single:m60_49_38_00.msb.dcx->1049380800",
+      "npc_name": "盖利德强壮流刑士兵幻影-大斧",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3020"
+      ]
+    },
+    "30500140": {
+      "bonus_soul": 12000,
+      "game_area_id": 1049380800,
+      "source": "map_single:m60_49_38_00.msb.dcx->1049380800",
+      "npc_name": "老将欧尼尔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3050"
+      ]
+    },
+    "30008040": {
+      "bonus_soul": 12000,
+      "game_area_id": 1049380800,
+      "source": "map_single:m60_49_38_00.msb.dcx->1049380800",
+      "npc_name": "盖利德流刑士兵幻影-剑",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3000"
+      ]
+    },
+    "45021920": {
+      "bonus_soul": 12000,
+      "game_area_id": 1034500800,
+      "source": "map_single:m60_34_50_00.msb.dcx->1034500800",
+      "npc_name": "辉石龙亚杜拉-三姊妹塔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4502"
+      ]
+    },
+    "21300000": {
+      "bonus_soul": 12000,
+      "game_area_id": 10000850,
+      "source": "manual:model:c2130->10000850",
+      "npc_name": "恶兆玛尔基特 Margit",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c2130"
+      ]
+    },
+    "46801930": {
+      "bonus_soul": 11000,
+      "game_area_id": 1041500800,
+      "source": "map_single:m60_41_50_00.msb.dcx->1041500800",
+      "npc_name": "亚坛高原坠星兽物-坠星大坑",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4680"
+      ]
+    },
+    "21000830": {
+      "bonus_soul": 10800,
+      "game_area_id": 1040520800,
+      "source": "map_single:m60_40_52_00.msb.dcx->1040520800",
+      "npc_name": "亚坛高原黑刀刺客-尊贵者的英雄墓地入口",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2100"
+      ]
+    },
+    "45700000": {
+      "bonus_soul": 10000,
+      "game_area_id": 1041530800,
+      "source": "name:Wormface - Woodfolk Ruins (Altus Plateau->1041530800",
+      "npc_name": "蚯蚓脸 Large Wormface",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4570"
+      ]
+    },
+    "45800000": {
+      "bonus_soul": 10000,
+      "game_area_id": 1041530800,
+      "source": "name:Wormface - Woodfolk Ruins (Altus Plateau->1041530800",
+      "npc_name": "巨大蚯蚓脸 Giant Wormface",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4580"
+      ]
+    },
+    "31600030": {
+      "bonus_soul": 10000,
+      "game_area_id": 1039510800,
+      "source": "map_single:m60_39_51_00.msb.dcx->1039510800",
+      "npc_name": "黑夜骑士的马",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3160"
+      ]
+    },
+    "31501030": {
+      "bonus_soul": 10000,
+      "game_area_id": 1039510800,
+      "source": "map_single:m60_39_51_00.msb.dcx->1039510800",
+      "npc_name": "亚坛高原黑夜骑兵-链枷",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3150"
+      ]
+    },
+    "38100932": {
+      "bonus_soul": 10000,
+      "game_area_id": 31070800,
+      "source": "map_single:m31_07_00_00.msb.dcx->31070800",
+      "npc_name": "格密尔火山洞窟腐败眷属-沸滚河洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3810"
+      ]
+    },
+    "45800030": {
+      "bonus_soul": 10000,
+      "game_area_id": 1041530800,
+      "source": "map_single:m60_41_53_00.msb.dcx->1041530800",
+      "npc_name": "亚坛高原大蚯蚓脸-丰饶森林小黄金树",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4580"
+      ]
+    },
+    "46030930": {
+      "bonus_soul": 9600,
+      "game_area_id": 32040800,
+      "source": "map_single:m32_04_00_00.msb.dcx->32040800",
+      "npc_name": "宁姆格福挖石山妖-巨型棍棒-旧亚坛坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4603"
+      ]
+    },
+    "37000000": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "source": "name:Perfumer Tricia->30120800",
+      "npc_name": "堕落调香师 Depraved Perfumer",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3700"
+      ]
+    },
+    "37010000": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "source": "name:Perfumer Tricia->30120800",
+      "npc_name": "调香师 White Veil Perfumer",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3701"
+      ]
+    },
+    "34600930": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "source": "map_single:m30_12_00_00.msb.dcx->30120800",
+      "npc_name": "亚坛高原混种战士-丑恶地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3460"
+      ]
+    },
+    "37011930": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "source": "map_single:m30_12_00_00.msb.dcx->30120800",
+      "npc_name": "亚坛高原调香师托莉夏-丑恶地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3701"
+      ]
+    },
+    "33500930": {
+      "bonus_soul": 9000,
+      "game_area_id": 32050800,
+      "source": "map_single:m32_05_00_00.msb.dcx->32050800",
+      "npc_name": "亚坛高原坑道结晶人-圆刃刀-亚坛坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "33501930": {
+      "bonus_soul": 9000,
+      "game_area_id": 32050800,
+      "source": "map_single:m32_05_00_00.msb.dcx->32050800",
+      "npc_name": "亚坛高原坑道结晶人-长枪-亚坛坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "35500930": {
+      "bonus_soul": 8800,
+      "game_area_id": 1040530800,
+      "source": "map_single:m60_40_53_00.msb.dcx->1040530800",
+      "npc_name": "亚坛高原鲜血贵族",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3550"
+      ]
+    },
+    "41301030": {
+      "bonus_soul": 8500,
+      "game_area_id": 1038510800,
+      "source": "map_single:m60_38_51_00.msb.dcx->1038510800",
+      "npc_name": "亚坛高原亚人女王姬丽卡-卢克斯废墟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4130"
+      ]
+    },
+    "44800930": {
+      "bonus_soul": 8400,
+      "game_area_id": 31180800,
+      "source": "map_single:m31_18_00_00.msb.dcx->31180800",
+      "npc_name": "亚坛高原洞窟病花米兰达-调香师隐藏洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4480"
+      ]
+    },
+    "48200930": {
+      "bonus_soul": 8400,
+      "game_area_id": 31180800,
+      "source": "map_single:m31_18_00_00.msb.dcx->31180800",
+      "npc_name": "亚坛高原洞窟恶兆猎人-调香师隐藏洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4820"
+      ]
+    },
+    "37040000": {
+      "bonus_soul": 7800,
+      "game_area_id": 1049390850,
+      "source": "name:Battlemage Hugues - Sellia Crystal Tunne->1049390850",
+      "npc_name": "战场魔法师 Battlemage",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3704"
+      ]
+    },
+    "49801020": {
+      "bonus_soul": 7800,
+      "game_area_id": 1036450340,
+      "source": "map_single:m60_36_45_00.msb.dcx->1036450340",
+      "npc_name": "利耶尼亚死亡仪式鸟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4980"
+      ]
+    },
+    "46801940": {
+      "bonus_soul": 7600,
+      "game_area_id": 32080800,
+      "source": "map_single:m32_08_00_00.msb.dcx->32080800",
+      "npc_name": "盖利德坑道坠星兽物-瑟利亚结晶坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4680"
+      ]
+    },
+    "49100940": {
+      "bonus_soul": 7500,
+      "game_area_id": 32070800,
+      "source": "map_single:m32_07_00_00.msb.dcx->32070800",
+      "npc_name": "盖利德坑道熔岩土龙-盖尔坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4910"
+      ]
+    },
+    "42601940": {
+      "bonus_soul": 7400,
+      "game_area_id": 30140800,
+      "source": "map_single:m30_14_00_00.msb.dcx->30140800",
+      "npc_name": "盖利德归树看门犬--巨杖-三头-小黄金树地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4260"
+      ]
+    },
+    "42600940": {
+      "bonus_soul": 7400,
+      "game_area_id": 30140800,
+      "source": "map_single:m30_14_00_00.msb.dcx->30140800",
+      "npc_name": "盖利德归树看门犬--巨剑-三头-小黄金树地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4260"
+      ]
+    },
+    "33500940": {
+      "bonus_soul": 7100,
+      "game_area_id": 31110800,
+      "source": "map_single:m31_11_00_00.msb.dcx->31110800",
+      "npc_name": "盖利德洞窟结晶人-圆刃刀-瑟利亚隐藏洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "33501940": {
+      "bonus_soul": 7100,
+      "game_area_id": 31110800,
+      "source": "map_single:m31_11_00_00.msb.dcx->31110800",
+      "npc_name": "盖利德洞窟结晶人-长枪-瑟利亚隐藏洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "33502940": {
+      "bonus_soul": 7100,
+      "game_area_id": 31110800,
+      "source": "map_single:m31_11_00_00.msb.dcx->31110800",
+      "npc_name": "盖利德洞窟结晶人-法杖-瑟利亚隐藏洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "38000000": {
+      "bonus_soul": 7000,
+      "game_area_id": 31200800,
+      "source": "name:Cleanrot Knight->31200800",
+      "npc_name": "尊腐骑士 Cleanrot Knight",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3800"
+      ]
+    },
+    "38000940": {
+      "bonus_soul": 7000,
+      "game_area_id": 31200800,
+      "source": "map_single:m31_20_00_00.msb.dcx->31200800",
+      "npc_name": "盖莉德洞窟-玛莲妮亚的尊腐骑士-枪剑-废弃洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3800"
+      ]
+    },
+    "36640000": {
+      "bonus_soul": 6800,
+      "game_area_id": 30150800,
+      "source": "name:Cemetery Shade->30150800",
+      "npc_name": "墓地影子 Cemetery Shade",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3664"
+      ]
+    },
+    "36640040": {
+      "bonus_soul": 6800,
+      "game_area_id": 30150800,
+      "source": "map_single:m30_15_00_00.msb.dcx->30150800",
+      "npc_name": "盖利德墓地影子-盖利德地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3664"
+      ]
+    },
+    "34000000": {
+      "bonus_soul": 6700,
+      "game_area_id": 31210800,
+      "source": "name:Frenzied Duelist->31210800",
+      "npc_name": "腐败斗士 Grave Warden Duelist",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3400"
+      ]
+    },
+    "49800020": {
+      "bonus_soul": 6600,
+      "game_area_id": 1037420340,
+      "source": "map_single:m60_37_42_00.msb.dcx->1037420340",
+      "npc_name": "利耶尼亚死之鸟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4980"
+      ]
+    },
+    "45500000": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "source": "name:Monstrous Dog - Southwest of Caelid High->1048400800",
+      "npc_name": "巨狗 Monstrous Dog",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4550"
+      ]
+    },
+    "45600000": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "source": "name:Monstrous Dog - Southwest of Caelid High->1048400800",
+      "npc_name": "巨鸦 Monstrous Crow",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4560"
+      ]
+    },
+    "43401940": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "source": "map_single:m60_48_40_00.msb.dcx->1048400800",
+      "npc_name": "盖利德发狂南瓜头士兵-大锤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4340"
+      ]
+    },
+    "31000020": {
+      "bonus_soul": 6000,
+      "game_area_id": 1037460800,
+      "source": "map_single:m60_37_46_00.msb.dcx->1037460800",
+      "npc_name": "利耶尼亚灵珠猎人",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3100"
+      ]
+    },
+    "37020000": {
+      "bonus_soul": 5600,
+      "game_area_id": 1036480340,
+      "source": "name:Night's Cavalry - East Raya Lucaria Gate->1036480340",
+      "npc_name": "学院法师 Raya Lucaria Scholar",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3702"
+      ]
+    },
+    "31500020": {
+      "bonus_soul": 5600,
+      "game_area_id": 1036480340,
+      "source": "map_single:m60_36_48_00.msb.dcx->1036480340",
+      "npc_name": "利耶尼亚黑夜骑兵-剑刃戟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3150"
+      ]
+    },
+    "31600020": {
+      "bonus_soul": 5600,
+      "game_area_id": 1036480340,
+      "source": "map_single:m60_36_48_00.msb.dcx->1036480340",
+      "npc_name": "黑夜骑士的马",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3160"
+      ]
+    },
+    "71000012": {
+      "bonus_soul": 5400,
+      "game_area_id": 1042330800,
+      "source": "map_single:m60_42_33_00.msb.dcx->1042330800",
+      "npc_name": "啜泣半岛萨米尔英雄",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c7100"
+      ]
+    },
+    "45000010": {
+      "bonus_soul": 5000,
+      "game_area_id": 1043360800,
+      "source": "map_single:m60_43_36_00.msb.dcx->1043360800",
+      "npc_name": "飞龙亚基尔-亚基尔湖",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4500"
+      ]
+    },
+    "48200920": {
+      "bonus_soul": 4900,
+      "game_area_id": 1035420800,
+      "source": "map_single:m60_35_42_00.msb.dcx->1035420800",
+      "npc_name": "利耶尼亚恶兆猎人-白金村",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4820"
+      ]
+    },
+    "49500020": {
+      "bonus_soul": 4700,
+      "game_area_id": 1039440800,
+      "source": "map_single:m60_39_44_00.msb.dcx->1039440800",
+      "npc_name": "利耶尼亚-提比亚的唤声船",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4950"
+      ]
+    },
+    "31811024": {
+      "bonus_soul": 4600,
+      "game_area_id": 1033450800,
+      "source": "map_single:m60_33_45_00.msb.dcx->1033450800",
+      "npc_name": "拉达冈的红狼",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3181"
+      ]
+    },
+    "31600012": {
+      "bonus_soul": 3900,
+      "game_area_id": 1044320340,
+      "source": "map_single:m60_44_32_00.msb.dcx->1044320340",
+      "npc_name": "黑夜骑士的马",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3160"
+      ]
+    },
+    "31501012": {
+      "bonus_soul": 3900,
+      "game_area_id": 1044320340,
+      "source": "map_single:m60_44_32_00.msb.dcx->1044320340",
+      "npc_name": "啜泣半岛黑夜骑兵-链枷",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3150"
+      ]
+    },
+    "49800012": {
+      "bonus_soul": 3900,
+      "game_area_id": 1044320340,
+      "source": "map_single:m60_44_32_00.msb.dcx->1044320340",
+      "npc_name": "啜泣半岛死之鸟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4980"
+      ]
+    },
+    "34600913": {
+      "bonus_soul": 3800,
+      "game_area_id": 1043300800,
+      "source": "map_single:m60_43_30_00.msb.dcx->1043300800",
+      "npc_name": "摩恩城狮子混种",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3460"
+      ]
+    },
+    "523560020": {
+      "bonus_soul": 3800,
+      "game_area_id": 1038410800,
+      "source": "map_single:m60_38_41_00.msb.dcx->1038410800",
+      "npc_name": "盗火的亚当",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c0000"
+      ]
+    },
+    "42900000": {
+      "bonus_soul": 3600,
+      "game_area_id": 31050800,
+      "source": "name:Bloodhound Knight->31050800",
+      "npc_name": "猎犬骑士 Bloodhound Knight",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4290"
+      ]
+    },
+    "48100012": {
+      "bonus_soul": 3600,
+      "game_area_id": 1043330800,
+      "source": "map_single:m60_43_33_00.msb.dcx->1043330800",
+      "npc_name": "啜泣半岛黄金树的化身",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4810"
+      ]
+    },
+    "36001920": {
+      "bonus_soul": 3600,
+      "game_area_id": 1036500800,
+      "source": "map_single:m60_36_50_00.msb.dcx->1036500800",
+      "npc_name": "利耶尼亚石肤黑王-王室墓地的封印监牢",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3600"
+      ]
+    },
+    "33501920": {
+      "bonus_soul": 3300,
+      "game_area_id": 31060800,
+      "source": "map_single:m31_06_00_00.msb.dcx->31060800",
+      "npc_name": "利耶尼亚洞窟结晶人-长枪-学院结晶洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "33502920": {
+      "bonus_soul": 3300,
+      "game_area_id": 31060800,
+      "source": "map_single:m31_06_00_00.msb.dcx->31060800",
+      "npc_name": "利耶尼亚洞窟结晶人-法杖-学院结晶洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "38000920": {
+      "bonus_soul": 3300,
+      "game_area_id": 31040800,
+      "source": "map_single:m31_04_00_00.msb.dcx->31040800",
+      "npc_name": "利耶尼亚洞窟-玛莲妮亚的尊腐骑士-枪剑-留水洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3800"
+      ]
+    },
+    "32510010": {
+      "bonus_soul": 3200,
+      "game_area_id": 1042360800,
+      "source": "map_single:m60_42_36_00.msb.dcx->1042360800",
+      "npc_name": "宁姆格福大树守卫-黄金大盾",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3251"
+      ]
+    },
+    "46900008": {
+      "bonus_soul": 3200,
+      "game_area_id": 10010800,
+      "source": "map_single:m10_01_00_00.msb.dcx->10010800",
+      "npc_name": "接肢贵族后裔-候王礼拜堂",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4690"
+      ]
+    },
+    "40200000": {
+      "bonus_soul": 3100,
+      "game_area_id": 1034480800,
+      "source": "name:Royal Revenant - Kingsrealm Ruins (Liurn->1034480800",
+      "npc_name": "王室幽魂 Royal Revenant",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4020"
+      ]
+    },
+    "40200920": {
+      "bonus_soul": 3100,
+      "game_area_id": 1034480800,
+      "source": "map_single:m60_34_48_00.msb.dcx->1034480800",
+      "npc_name": "利耶尼亚王室幽魂-王室领地废墟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4020"
+      ]
+    },
+    "33500000": {
+      "bonus_soul": 3000,
+      "game_area_id": 32020800,
+      "source": "name:Crystalian (Ringblade)->32020800",
+      "npc_name": "结晶人 Crystalian",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3350"
+      ]
+    },
+    "25006020": {
+      "bonus_soul": 3000,
+      "game_area_id": 30030800,
+      "source": "map_single:m30_03_00_00.msb.dcx->30030800",
+      "npc_name": "利耶尼亚地下墓地斧型熔炉骑士-龙尾-唤灵蜗牛召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "25006120": {
+      "bonus_soul": 3000,
+      "game_area_id": 30030800,
+      "source": "map_single:m30_03_00_00.msb.dcx->30030800",
+      "npc_name": "利耶尼亚地下墓地斧型熔炉骑士-喉囊-唤灵蜗牛召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "41402920": {
+      "bonus_soul": 3000,
+      "game_area_id": 30030800,
+      "source": "map_single:m30_03_00_00.msb.dcx->30030800",
+      "npc_name": "利耶尼亚唤灵蜗牛-绝路地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4140"
+      ]
+    },
+    "25007020": {
+      "bonus_soul": 3000,
+      "game_area_id": 30030800,
+      "source": "map_single:m30_03_00_00.msb.dcx->30030800",
+      "npc_name": "利耶尼亚地下墓地树型熔炉骑士-犀角-唤灵蜗牛召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "25007120": {
+      "bonus_soul": 3000,
+      "game_area_id": 30030800,
+      "source": "map_single:m30_03_00_00.msb.dcx->30030800",
+      "npc_name": "利耶尼亚地下墓地树型熔炉骑士-龙角-唤灵蜗牛召唤",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "33500920": {
+      "bonus_soul": 3000,
+      "game_area_id": 32020800,
+      "source": "map_single:m32_02_00_00.msb.dcx->32020800",
+      "npc_name": "利耶尼亚坑道结晶人-圆刃刀-雷亚卢卡利亚结晶坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3350"
+      ]
+    },
+    "46300000": {
+      "bonus_soul": 2600,
+      "game_area_id": 31010800,
+      "source": "name:Runebear->31010800",
+      "npc_name": "卢恩熊 Runebear",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4630"
+      ]
+    },
+    "31600010": {
+      "bonus_soul": 2400,
+      "game_area_id": 1043370340,
+      "source": "map_single:m60_43_37_00.msb.dcx->1043370340",
+      "npc_name": "黑夜骑兵的马",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3160"
+      ]
+    },
+    "31500010": {
+      "bonus_soul": 2400,
+      "game_area_id": 1043370340,
+      "source": "map_single:m60_43_37_00.msb.dcx->1043370340",
+      "npc_name": "宁姆格福黑夜骑兵-剑刃戟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3150"
+      ]
+    },
+    "49500010": {
+      "bonus_soul": 2400,
+      "game_area_id": 1045390800,
+      "source": "map_single:m60_45_39_00.msb.dcx->1045390800",
+      "npc_name": "宁姆格福-提比亚的唤声船",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4950"
+      ]
+    },
+    "42600512": {
+      "bonus_soul": 2400,
+      "game_area_id": 30010800,
+      "source": "map_single:m30_01_00_00.msb.dcx->30010800",
+      "npc_name": "啜泣半岛归树看门犬-巨剑-三头-穿刺地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4261"
+      ]
+    },
+    "36640012": {
+      "bonus_soul": 2200,
+      "game_area_id": 30000800,
+      "source": "map_single:m30_00_00_00.msb.dcx->30000800",
+      "npc_name": "啜泣半岛墓地影子-灵庙原野地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3664"
+      ]
+    },
+    "25000010": {
+      "bonus_soul": 2100,
+      "game_area_id": 1042370800,
+      "source": "map_single:m60_42_37_00.msb.dcx->1042370800",
+      "npc_name": "宁姆格福熔炉骑士",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2500"
+      ]
+    },
+    "44810912": {
+      "bonus_soul": 2100,
+      "game_area_id": 31020800,
+      "source": "map_single:m31_02_00_00.msb.dcx->31020800",
+      "npc_name": "啜泣半岛洞窟小米兰达-BOSS房",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4481"
+      ]
+    },
+    "44800912": {
+      "bonus_soul": 2100,
+      "game_area_id": 31020800,
+      "source": "map_single:m31_02_00_00.msb.dcx->31020800",
+      "npc_name": "啜泣半岛病花米兰达-灵庙原野洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4480"
+      ]
+    },
+    "34510912": {
+      "bonus_soul": 2000,
+      "game_area_id": 32000800,
+      "source": "map_single:m32_00_00_00.msb.dcx->32000800",
+      "npc_name": "啜泣半岛坑道片鳞混种-摩恩坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3451"
+      ]
+    },
+    "42900010": {
+      "bonus_soul": 1900,
+      "game_area_id": 1044350800,
+      "source": "map_single:m60_44_35_00.msb.dcx->1044350800",
+      "npc_name": "猎犬骑士达瑞威尔",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4290"
+      ]
+    },
+    "46030910": {
+      "bonus_soul": 1800,
+      "game_area_id": 32010800,
+      "source": "map_single:m32_01_00_00.msb.dcx->32010800",
+      "npc_name": "宁姆格福挖石山妖-巨型棍棒-宁姆格福坑道",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4603"
+      ]
+    },
+    "36500000": {
+      "bonus_soul": 1700,
+      "game_area_id": 31170800,
+      "source": "name:Guardian Golem->31170800",
+      "npc_name": "树人 Erdtree Guardian",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c3650"
+      ]
+    },
+    "42700000": {
+      "bonus_soul": 1700,
+      "game_area_id": 31170800,
+      "source": "name:Guardian Golem->31170800",
+      "npc_name": "狮子守护者 Lion Guardian",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4270"
+      ]
+    },
+    "34001110": {
+      "bonus_soul": 1700,
+      "game_area_id": 30040800,
+      "source": "map_single:m30_04_00_00.msb.dcx->30040800",
+      "npc_name": "宁姆格福守墓斗士-双链锤-蒙流地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c3400"
+      ]
+    },
+    "21001010": {
+      "bonus_soul": 1600,
+      "game_area_id": 30110800,
+      "source": "map_single:m30_11_00_00.msb.dcx->30110800",
+      "npc_name": "宁姆格福黑刀刺客-受伤-无披风-死亡降临地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c2100"
+      ]
+    },
+    "42600110": {
+      "bonus_soul": 1300,
+      "game_area_id": 30020800,
+      "source": "map_single:m30_02_00_00.msb.dcx->30020800",
+      "npc_name": "宁姆格福归树看门犬-巨剑-风暴根脚地下墓地",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4260"
+      ]
+    },
+    "41000910": {
+      "bonus_soul": 1200,
+      "game_area_id": 31150800,
+      "source": "map_single:m31_15_00_00.msb.dcx->31150800",
+      "npc_name": "宁姆格福洞窟普通亚人-刀盾",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4100"
+      ]
+    },
+    "41200910": {
+      "bonus_soul": 1200,
+      "game_area_id": 31150800,
+      "source": "map_single:m31_15_00_00.msb.dcx->31150800",
+      "npc_name": "宁姆格福洞窟亚人首领-海岸洞窟",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4120"
+      ]
+    },
+    "41002910": {
+      "bonus_soul": 1200,
+      "game_area_id": 31150800,
+      "source": "map_single:m31_15_00_00.msb.dcx->31150800",
+      "npc_name": "宁姆格福洞窟普通亚人-棍棒",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4100"
+      ]
+    },
+    "43400000": {
+      "bonus_soul": 1100,
+      "game_area_id": 1044360800,
+      "source": "name:Mad Pumpkin Head - Waypoint Ruins (Limgr->1044360800",
+      "npc_name": "发狂南瓜头士兵 Mad Pumpkin Head",
+      "is_soul_get_by_boss": false,
+      "models": [
+        "c4340"
+      ]
+    },
+    "43400910": {
+      "bonus_soul": 1100,
+      "game_area_id": 1044360800,
+      "source": "map_single:m60_44_36_00.msb.dcx->1044360800",
+      "npc_name": "宁姆格福发狂南瓜头士兵-链枷",
+      "is_soul_get_by_boss": true,
+      "models": [
+        "c4340"
+      ]
+    }
+  },
+  "by_model": {
+    "c2200": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "from_npc": null,
+      "zh": "艾尔登之兽",
+      "source": "manual"
+    },
+    "c4800": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "from_npc": null,
+      "zh": "拉达冈",
+      "source": "manual"
+    },
+    "c5220": {
+      "bonus_soul": 500000,
+      "game_area_id": 20010800,
+      "from_npc": null,
+      "zh": "约定之王拉塔恩",
+      "source": "manual"
+    },
+    "c2190": {
+      "bonus_soul": 500000,
+      "game_area_id": 19000800,
+      "from_npc": 21900078,
+      "zh": "",
+      "source": "derived"
+    },
+    "c5120": {
+      "bonus_soul": 490000,
+      "game_area_id": 2054390800,
+      "from_npc": null,
+      "zh": "狂龙贝勒",
+      "source": "manual"
+    },
+    "c5700": {
+      "bonus_soul": 480000,
+      "game_area_id": 15000800,
+      "from_npc": null,
+      "zh": "玛莲妮亚",
+      "source": "manual"
+    },
+    "c2120": {
+      "bonus_soul": 480000,
+      "game_area_id": 15000800,
+      "from_npc": null,
+      "zh": "",
+      "source": "manual"
+    },
+    "c4670": {
+      "bonus_soul": 420000,
+      "game_area_id": 12050800,
+      "from_npc": null,
+      "zh": "蒙格",
+      "source": "manual"
+    },
+    "c5200": {
+      "bonus_soul": 420000,
+      "game_area_id": 25000800,
+      "from_npc": null,
+      "zh": "幽影Boss",
+      "source": "manual"
+    },
+    "c5050": {
+      "bonus_soul": 410000,
+      "game_area_id": 28000800,
+      "from_npc": null,
+      "zh": "米德拉",
+      "source": "manual"
+    },
+    "c5130": {
+      "bonus_soul": 400000,
+      "game_area_id": 21010800,
+      "from_npc": null,
+      "zh": "梅瑟莫",
+      "source": "manual"
+    },
+    "c5030": {
+      "bonus_soul": 380000,
+      "game_area_id": 2044450800,
+      "from_npc": null,
+      "zh": "萝蜜娜",
+      "source": "manual"
+    },
+    "c4520": {
+      "bonus_soul": 280000,
+      "game_area_id": 13000830,
+      "from_npc": null,
+      "zh": "",
+      "source": "manual"
+    },
+    "c5300": {
+      "bonus_soul": 240000,
+      "game_area_id": 2048440800,
+      "from_npc": null,
+      "zh": "幽影Boss",
+      "source": "manual"
+    },
+    "c5230": {
+      "bonus_soul": 230000,
+      "game_area_id": 2047390800,
+      "from_npc": null,
+      "zh": "幽影小Boss",
+      "source": "manual"
+    },
+    "c5110": {
+      "bonus_soul": 220000,
+      "game_area_id": 13000800,
+      "from_npc": null,
+      "zh": "玛利喀斯",
+      "source": "manual"
+    },
+    "c5020": {
+      "bonus_soul": 220000,
+      "game_area_id": 22000800,
+      "from_npc": null,
+      "zh": "腐败骑士",
+      "source": "manual"
+    },
+    "c4770": {
+      "bonus_soul": 220000,
+      "game_area_id": 13000800,
+      "from_npc": 47700000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4980": {
+      "bonus_soul": 220000,
+      "game_area_id": 1048570800,
+      "from_npc": 49801052,
+      "zh": "场地Boss",
+      "source": "derived"
+    },
+    "c5270": {
+      "bonus_soul": 180000,
+      "game_area_id": 1052520800,
+      "from_npc": null,
+      "zh": "火焰巨人",
+      "source": "manual"
+    },
+    "c3170": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "from_npc": 31700000,
+      "zh": "白金之子弓手",
+      "source": "derived"
+    },
+    "c3470": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "from_npc": 34700000,
+      "zh": "白金之子",
+      "source": "derived"
+    },
+    "c3670": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "from_npc": 36700000,
+      "zh": "白金之子老法师",
+      "source": "derived"
+    },
+    "c4911": {
+      "bonus_soul": 180000,
+      "game_area_id": 1050560800,
+      "from_npc": 49110052,
+      "zh": "大龙奥尔蒂斯（固定超大Boss·不参与）",
+      "source": "derived"
+    },
+    "c3901": {
+      "bonus_soul": 170000,
+      "game_area_id": 13000850,
+      "from_npc": 39010000,
+      "zh": "黑焰修士",
+      "source": "derived"
+    },
+    "c3661": {
+      "bonus_soul": 160000,
+      "game_area_id": 1050570850,
+      "from_npc": 36610000,
+      "zh": "腐败遗体",
+      "source": "derived"
+    },
+    "c4710": {
+      "bonus_soul": 130000,
+      "game_area_id": 16000800,
+      "from_npc": null,
+      "zh": "拉卡德",
+      "source": "manual"
+    },
+    "c4760": {
+      "bonus_soul": 120000,
+      "game_area_id": 11000800,
+      "from_npc": null,
+      "zh": "蒙格特",
+      "source": "manual"
+    },
+    "c4820": {
+      "bonus_soul": 120000,
+      "game_area_id": 1034420800,
+      "from_npc": 48200000,
+      "zh": "恶兆猎人",
+      "source": "derived"
+    },
+    "c4502": {
+      "bonus_soul": 120000,
+      "game_area_id": 1034420800,
+      "from_npc": 45021922,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4620": {
+      "bonus_soul": 120000,
+      "game_area_id": 32110800,
+      "from_npc": 46209152,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3550": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "from_npc": 35500000,
+      "zh": "鲜血贵族",
+      "source": "derived"
+    },
+    "c0000": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "from_npc": 543430052,
+      "zh": "红灵（玩家）",
+      "source": "derived"
+    },
+    "c3560": {
+      "bonus_soul": 94000,
+      "game_area_id": 34130800,
+      "from_npc": 35600042,
+      "zh": "神皮使徒",
+      "source": "derived"
+    },
+    "c3460": {
+      "bonus_soul": 93000,
+      "game_area_id": 31120800,
+      "from_npc": 34600000,
+      "zh": "迪鲁（拾荒王）",
+      "source": "derived"
+    },
+    "c3050": {
+      "bonus_soul": 90000,
+      "game_area_id": 1051570800,
+      "from_npc": 30500051,
+      "zh": "艾纳尔（冰之守护者）",
+      "source": "derived"
+    },
+    "c3010": {
+      "bonus_soul": 90000,
+      "game_area_id": 1051570800,
+      "from_npc": 30107051,
+      "zh": "流放骑士",
+      "source": "derived"
+    },
+    "c3810": {
+      "bonus_soul": 88000,
+      "game_area_id": 1051430800,
+      "from_npc": 38100000,
+      "zh": "腐败眷属",
+      "source": "derived"
+    },
+    "c7100": {
+      "bonus_soul": 83000,
+      "game_area_id": 30170800,
+      "from_npc": 71000000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c5770": {
+      "bonus_soul": 80000,
+      "game_area_id": 11000850,
+      "from_npc": null,
+      "zh": "荷莱·露",
+      "source": "manual"
+    },
+    "c4720": {
+      "bonus_soul": 80000,
+      "game_area_id": 11000850,
+      "from_npc": null,
+      "zh": "场地Boss",
+      "source": "manual"
+    },
+    "c2100": {
+      "bonus_soul": 80000,
+      "game_area_id": 1033420800,
+      "from_npc": 21000000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4505": {
+      "bonus_soul": 80000,
+      "game_area_id": 1052410800,
+      "from_npc": 45050000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c0100": {
+      "bonus_soul": 80000,
+      "game_area_id": 1052410800,
+      "from_npc": 506010040,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4730": {
+      "bonus_soul": 70000,
+      "game_area_id": 1052380800,
+      "from_npc": null,
+      "zh": "拉塔恩",
+      "source": "manual"
+    },
+    "c4140": {
+      "bonus_soul": 70000,
+      "game_area_id": 31220800,
+      "from_npc": 41402950,
+      "zh": "蜗牛",
+      "source": "derived"
+    },
+    "c3570": {
+      "bonus_soul": 70000,
+      "game_area_id": 31220800,
+      "from_npc": 35700950,
+      "zh": "神皮女组长",
+      "source": "derived"
+    },
+    "c3970": {
+      "bonus_soul": 65000,
+      "game_area_id": 31100800,
+      "from_npc": 39700000,
+      "zh": "祖灵角兽人",
+      "source": "derived"
+    },
+    "c4120": {
+      "bonus_soul": 65000,
+      "game_area_id": 31100800,
+      "from_npc": 41200000,
+      "zh": "亚人首领",
+      "source": "derived"
+    },
+    "c4640": {
+      "bonus_soul": 64000,
+      "game_area_id": 30160800,
+      "from_npc": 46400942,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4510": {
+      "bonus_soul": 60000,
+      "game_area_id": 1037510800,
+      "from_npc": 45102030,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3100": {
+      "bonus_soul": 50000,
+      "game_area_id": 1048410800,
+      "from_npc": 31000042,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3250": {
+      "bonus_soul": 50000,
+      "game_area_id": 1045520800,
+      "from_npc": 32500033,
+      "zh": "",
+      "source": "derived"
+    },
+    "c2030": {
+      "bonus_soul": 40000,
+      "game_area_id": 14000800,
+      "from_npc": null,
+      "zh": "",
+      "source": "manual"
+    },
+    "c2031": {
+      "bonus_soul": 40000,
+      "game_area_id": 14000800,
+      "from_npc": 20310024,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4501": {
+      "bonus_soul": 38000,
+      "game_area_id": 1048370800,
+      "from_npc": 45010040,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3160": {
+      "bonus_soul": 36000,
+      "game_area_id": 1048510800,
+      "from_npc": 31600050,
+      "zh": "灵马（黑夜骑兵）",
+      "source": "derived"
+    },
+    "c3150": {
+      "bonus_soul": 36000,
+      "game_area_id": 1048510800,
+      "from_npc": 31500050,
+      "zh": "西格德/黑夜骑兵",
+      "source": "derived"
+    },
+    "c2140": {
+      "bonus_soul": 29000,
+      "game_area_id": 34140850,
+      "from_npc": 21403050,
+      "zh": "噩兆之子",
+      "source": "derived"
+    },
+    "c2500": {
+      "bonus_soul": 28000,
+      "game_area_id": 30100800,
+      "from_npc": 25000000,
+      "zh": "斯卡德/熔炉骑士",
+      "source": "derived"
+    },
+    "c4690": {
+      "bonus_soul": 26000,
+      "game_area_id": 1039500800,
+      "from_npc": 46900000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4910": {
+      "bonus_soul": 24000,
+      "game_area_id": 39200800,
+      "from_npc": 49100026,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4680": {
+      "bonus_soul": 21000,
+      "game_area_id": 1036540800,
+      "from_npc": 46800032,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3181": {
+      "bonus_soul": 21000,
+      "game_area_id": 30090800,
+      "from_npc": 31811032,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4750": {
+      "bonus_soul": 20000,
+      "game_area_id": 10000800,
+      "from_npc": null,
+      "zh": "葛瑞克",
+      "source": "manual"
+    },
+    "c3251": {
+      "bonus_soul": 20000,
+      "game_area_id": 1041510800,
+      "from_npc": 32511030,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3600": {
+      "bonus_soul": 16000,
+      "game_area_id": 34120800,
+      "from_npc": 36001933,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3400": {
+      "bonus_soul": 15000,
+      "game_area_id": 30130800,
+      "from_npc": 34001133,
+      "zh": "墓地影子",
+      "source": "derived"
+    },
+    "c4491": {
+      "bonus_soul": 15000,
+      "game_area_id": 30130800,
+      "from_npc": 44910933,
+      "zh": "活壶",
+      "source": "derived"
+    },
+    "c3060": {
+      "bonus_soul": 14000,
+      "game_area_id": 1038520340,
+      "from_npc": 30600000,
+      "zh": "巨型骷髅",
+      "source": "derived"
+    },
+    "c4950": {
+      "bonus_soul": 14000,
+      "game_area_id": 1038520340,
+      "from_npc": 49500032,
+      "zh": "提比亚唤魂",
+      "source": "derived"
+    },
+    "c4130": {
+      "bonus_soul": 13000,
+      "game_area_id": 1037530800,
+      "from_npc": 41300000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c2130": {
+      "bonus_soul": 12000,
+      "game_area_id": 10000850,
+      "from_npc": null,
+      "zh": "",
+      "source": "manual"
+    },
+    "c4260": {
+      "bonus_soul": 12000,
+      "game_area_id": 30070800,
+      "from_npc": 42602932,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3020": {
+      "bonus_soul": 12000,
+      "game_area_id": 1049380800,
+      "from_npc": 30208040,
+      "zh": "大流放士兵",
+      "source": "derived"
+    },
+    "c3000": {
+      "bonus_soul": 12000,
+      "game_area_id": 1049380800,
+      "from_npc": 30008040,
+      "zh": "流放士兵",
+      "source": "derived"
+    },
+    "c4570": {
+      "bonus_soul": 10000,
+      "game_area_id": 1041530800,
+      "from_npc": 45700000,
+      "zh": "蚯蚓脸",
+      "source": "derived"
+    },
+    "c4580": {
+      "bonus_soul": 10000,
+      "game_area_id": 1041530800,
+      "from_npc": 45800000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4603": {
+      "bonus_soul": 9600,
+      "game_area_id": 32040800,
+      "from_npc": 46030930,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3700": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "from_npc": 37000000,
+      "zh": "堕落调香师",
+      "source": "derived"
+    },
+    "c3701": {
+      "bonus_soul": 9400,
+      "game_area_id": 30120800,
+      "from_npc": 37010000,
+      "zh": "调香师",
+      "source": "derived"
+    },
+    "c3350": {
+      "bonus_soul": 9000,
+      "game_area_id": 32050800,
+      "from_npc": 33500930,
+      "zh": "结晶人",
+      "source": "derived"
+    },
+    "c4480": {
+      "bonus_soul": 8400,
+      "game_area_id": 31180800,
+      "from_npc": 44800930,
+      "zh": "",
+      "source": "derived"
+    },
+    "c3704": {
+      "bonus_soul": 7800,
+      "game_area_id": 1049390850,
+      "from_npc": 37040000,
+      "zh": "战场法师",
+      "source": "derived"
+    },
+    "c3800": {
+      "bonus_soul": 7000,
+      "game_area_id": 31200800,
+      "from_npc": 38000000,
+      "zh": "腐败骑士",
+      "source": "derived"
+    },
+    "c3664": {
+      "bonus_soul": 6800,
+      "game_area_id": 30150800,
+      "from_npc": 36640000,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4340": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "from_npc": 43401940,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4550": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "from_npc": 45500000,
+      "zh": "大头狗（巨型犬·同模树守卫）",
+      "source": "derived"
+    },
+    "c4560": {
+      "bonus_soul": 6300,
+      "game_area_id": 1048400800,
+      "from_npc": 45600000,
+      "zh": "大乌鸦（巨型鸦）",
+      "source": "derived"
+    },
+    "c3702": {
+      "bonus_soul": 5600,
+      "game_area_id": 1036480340,
+      "from_npc": 37020000,
+      "zh": "辉石法师",
+      "source": "derived"
+    },
+    "c4500": {
+      "bonus_soul": 5000,
+      "game_area_id": 1043360800,
+      "from_npc": 45000010,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4290": {
+      "bonus_soul": 3600,
+      "game_area_id": 31050800,
+      "from_npc": 42900000,
+      "zh": "猎犬骑士",
+      "source": "derived"
+    },
+    "c4810": {
+      "bonus_soul": 3600,
+      "game_area_id": 1043330800,
+      "from_npc": 48100012,
+      "zh": "小黄金树（黄金树化身）",
+      "source": "derived"
+    },
+    "c4020": {
+      "bonus_soul": 3100,
+      "game_area_id": 1034480800,
+      "from_npc": 40200000,
+      "zh": "王室亡魂",
+      "source": "derived"
+    },
+    "c4630": {
+      "bonus_soul": 2600,
+      "game_area_id": 31010800,
+      "from_npc": 46300000,
+      "zh": "戈拉斯/卢恩熊",
+      "source": "derived"
+    },
+    "c4261": {
+      "bonus_soul": 2400,
+      "game_area_id": 30010800,
+      "from_npc": 42600512,
+      "zh": "",
+      "source": "derived"
+    },
+    "c4481": {
+      "bonus_soul": 2100,
+      "game_area_id": 31020800,
+      "from_npc": 44810912,
+      "zh": "米兰达芽",
+      "source": "derived"
+    },
+    "c3451": {
+      "bonus_soul": 2000,
+      "game_area_id": 32000800,
+      "from_npc": 34510912,
+      "zh": "鳞畸形人",
+      "source": "derived"
+    },
+    "c3650": {
+      "bonus_soul": 1700,
+      "game_area_id": 31170800,
+      "from_npc": 36500000,
+      "zh": "石像守护者",
+      "source": "derived"
+    },
+    "c4270": {
+      "bonus_soul": 1700,
+      "game_area_id": 31170800,
+      "from_npc": 42700000,
+      "zh": "老狮子虫",
+      "source": "derived"
+    },
+    "c4100": {
+      "bonus_soul": 1200,
+      "game_area_id": 31150800,
+      "from_npc": 41000910,
+      "zh": "亚人",
+      "source": "derived"
+    }
+  },
+  "game_areas": {
+    "19000800": {
+      "bonus_soul": 500000,
+      "name": "[Stone Platform] Elden Beast"
+    },
+    "20010800": {
+      "bonus_soul": 500000,
+      "name": ""
+    },
+    "2054390800": {
+      "bonus_soul": 490000,
+      "name": ""
+    },
+    "15000800": {
+      "bonus_soul": 480000,
+      "name": "[Miquella's Haligtree]"
+    },
+    "12050800": {
+      "bonus_soul": 420000,
+      "name": "[Mohgwyn Palace]"
+    },
+    "25000800": {
+      "bonus_soul": 420000,
+      "name": ""
+    },
+    "28000800": {
+      "bonus_soul": 410000,
+      "name": ""
+    },
+    "21010800": {
+      "bonus_soul": 400000,
+      "name": ""
+    },
+    "2044450800": {
+      "bonus_soul": 380000,
+      "name": ""
+    },
+    "11050800": {
+      "bonus_soul": 300000,
+      "name": "[Leyndell- Ashen Capital]"
+    },
+    "13000830": {
+      "bonus_soul": 280000,
+      "name": "[Crumbling Farum Azula] Dragonlord Placidusax"
+    },
+    "2050480800": {
+      "bonus_soul": 260000,
+      "name": ""
+    },
+    "2052430800": {
+      "bonus_soul": 260000,
+      "name": ""
+    },
+    "2048440800": {
+      "bonus_soul": 240000,
+      "name": ""
+    },
+    "2047390800": {
+      "bonus_soul": 230000,
+      "name": ""
+    },
+    "2049480800": {
+      "bonus_soul": 230000,
+      "name": ""
+    },
+    "13000800": {
+      "bonus_soul": 220000,
+      "name": "[Crumbling Farum Azula] Maliketh- the Black Blade"
+    },
+    "22000800": {
+      "bonus_soul": 220000,
+      "name": ""
+    },
+    "1048570800": {
+      "bonus_soul": 220000,
+      "name": "Death Rite Bird - Ordina- Liturgical Town (Snowfield)"
+    },
+    "2044470800": {
+      "bonus_soul": 210000,
+      "name": ""
+    },
+    "2051450720": {
+      "bonus_soul": 210000,
+      "name": ""
+    },
+    "15000850": {
+      "bonus_soul": 200000,
+      "name": "[Miquella's Haligtree]"
+    },
+    "21000850": {
+      "bonus_soul": 200000,
+      "name": ""
+    },
+    "2054390850": {
+      "bonus_soul": 200000,
+      "name": ""
+    },
+    "1050560800": {
+      "bonus_soul": 180000,
+      "name": "Great Wyrm Theodorix - Albinauric Rise (Mountaintops)"
+    },
+    "1052520800": {
+      "bonus_soul": 180000,
+      "name": "Fire Giant - Giant's Forge (Mountaintops)"
+    },
+    "2046460800": {
+      "bonus_soul": 180000,
+      "name": ""
+    },
+    "2049450800": {
+      "bonus_soul": 180000,
+      "name": ""
+    },
+    "13000850": {
+      "bonus_soul": 170000,
+      "name": "[Crumbling Farum Azula] Godskin Duo"
+    },
+    "2052480800": {
+      "bonus_soul": 170000,
+      "name": ""
+    },
+    "41020800": {
+      "bonus_soul": 160000,
+      "name": ""
+    },
+    "1050570850": {
+      "bonus_soul": 160000,
+      "name": "Putrid Avatar - Minor Erdtree (Snowfield)"
+    },
+    "11050850": {
+      "bonus_soul": 150000,
+      "name": "[Leyndell- Ashen Capital]"
+    },
+    "16000800": {
+      "bonus_soul": 130000,
+      "name": "[Volcano Manor]"
+    },
+    "40010800": {
+      "bonus_soul": 130000,
+      "name": ""
+    },
+    "43010800": {
+      "bonus_soul": 130000,
+      "name": ""
+    },
+    "11000800": {
+      "bonus_soul": 120000,
+      "name": "[Leyndell- Royal Capital] Morgott- the Omen King"
+    },
+    "20000800": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "32110800": {
+      "bonus_soul": 120000,
+      "name": "[Yelough Anix Tunnel] Astel- Stars of Darkness"
+    },
+    "1034420800": {
+      "bonus_soul": 120000,
+      "name": "[Liurnia of the Lakes] Omenkiller"
+    },
+    "2048380850": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "2049430800": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "2050470800": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "2050480860": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "2052400800": {
+      "bonus_soul": 120000,
+      "name": ""
+    },
+    "40000800": {
+      "bonus_soul": 110000,
+      "name": ""
+    },
+    "35000800": {
+      "bonus_soul": 100000,
+      "name": "[Subterranean Shunning-Grounds]"
+    },
+    "41010800": {
+      "bonus_soul": 100000,
+      "name": ""
+    },
+    "1054560800": {
+      "bonus_soul": 100000,
+      "name": "Borealis the Freezing Fog - Freezing Fields (Mountaintops)"
+    },
+    "2045440800": {
+      "bonus_soul": 100000,
+      "name": ""
+    },
+    "2046400800": {
+      "bonus_soul": 100000,
+      "name": ""
+    },
+    "34130800": {
+      "bonus_soul": 94000,
+      "name": "[Divine Tower of Caelid] Sanguine Noble"
+    },
+    "31120800": {
+      "bonus_soul": 93000,
+      "name": "[Cave of the Forlorn] Misbegotten Crusader"
+    },
+    "1051400800": {
+      "bonus_soul": 91000,
+      "name": "Putrid Avatar - Dragonbarrow Fork (Caelid)"
+    },
+    "12030850": {
+      "bonus_soul": 90000,
+      "name": "[Deeproot Depths]"
+    },
+    "1051570800": {
+      "bonus_soul": 90000,
+      "name": "Commander Niall - Castle Soul (Mountaintops)"
+    },
+    "2049410800": {
+      "bonus_soul": 90000,
+      "name": ""
+    },
+    "2051440800": {
+      "bonus_soul": 90000,
+      "name": ""
+    },
+    "1051430800": {
+      "bonus_soul": 88000,
+      "name": "Black Blade Kindred - Bestial Sanctum (Caelid)"
+    },
+    "1248550800": {
+      "bonus_soul": 84000,
+      "name": "Night's Cavalry - Sourthwest (Mountaintops)"
+    },
+    "30170800": {
+      "bonus_soul": 83000,
+      "name": "[Giant-Conquering Hero's Grave] Ancient Hero of Zamor"
+    },
+    "11000850": {
+      "bonus_soul": 80000,
+      "name": "[Leyndell- Royal Capital] Godfrey- First Elden Lord"
+    },
+    "12040800": {
+      "bonus_soul": 80000,
+      "name": "[Ainsel River - Boss] Astel- Naturalborn of the Void"
+    },
+    "41000800": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "43000800": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "1033420800": {
+      "bonus_soul": 80000,
+      "name": "[Moonlight Altar] Alecto- Black Knife Ringleader"
+    },
+    "1052410800": {
+      "bonus_soul": 80000,
+      "name": "Flying Dragon Greyll - Dragonbarrow (Caelid)"
+    },
+    "2046380800": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "2046450800": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "2047450800": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "2049430850": {
+      "bonus_soul": 80000,
+      "name": ""
+    },
+    "30190800": {
+      "bonus_soul": 78000,
+      "name": "[Consecrated Snowfield Catacombs] Putrid Godskin Noble"
+    },
+    "1050570800": {
+      "bonus_soul": 77000,
+      "name": "Death Rite Bird - West of Castle So (Mountaintops)"
+    },
+    "1053560800": {
+      "bonus_soul": 75000,
+      "name": "Roundtable Knight Vyke - Lord Contender's Evergaol (Mountaintops)"
+    },
+    "31220800": {
+      "bonus_soul": 70000,
+      "name": "[Spiritcaller's Cave] Spirit-Caller Snail"
+    },
+    "1052380800": {
+      "bonus_soul": 70000,
+      "name": "Starscourge Radahn - Battlefield (Caelid)"
+    },
+    "1052560800": {
+      "bonus_soul": 70000,
+      "name": "Erdtree Avatar - Minor Erdtree (Mountaintops)"
+    },
+    "2046410800": {
+      "bonus_soul": 70000,
+      "name": ""
+    },
+    "31100800": {
+      "bonus_soul": 65000,
+      "name": "[Dragonbarrow Cave] Beastman of Farum Azula"
+    },
+    "30160800": {
+      "bonus_soul": 64000,
+      "name": "[War-Dead Catacombs] Putrid Tree Spirit"
+    },
+    "1037510800": {
+      "bonus_soul": 60000,
+      "name": "Ancient Dragon Lansseax - Abandoned Coffin (Altus Plateau)"
+    },
+    "1041520800": {
+      "bonus_soul": 60000,
+      "name": "Ancient Dragon Lansseax - Rampartside Path (Altus Plateau)"
+    },
+    "1049520800": {
+      "bonus_soul": 60000,
+      "name": "Black Blade Kindred - Before Grand Lift of Rold (Mountaintops)"
+    },
+    "12010850": {
+      "bonus_soul": 58000,
+      "name": "[Ainsel River]"
+    },
+    "16000850": {
+      "bonus_soul": 50000,
+      "name": "[Volcano Manor]"
+    },
+    "30200800": {
+      "bonus_soul": 50000,
+      "name": "[Hidden Path to the Haligtree]"
+    },
+    "1045520800": {
+      "bonus_soul": 50000,
+      "name": "Draconic Tree Sentinel - Capital Rampart (Capital Outskirts)"
+    },
+    "1048410800": {
+      "bonus_soul": 50000,
+      "name": "Ball-Bearing Hunter - Isolated Merchant's Shack (Dragonbarrow)"
+    },
+    "30180800": {
+      "bonus_soul": 48000,
+      "name": "[Giants' Mountaintop Catacombs] Ulcerated Tree Sprit"
+    },
+    "1052410850": {
+      "bonus_soul": 42000,
+      "name": "Night's Cavalry - Dragonbarrow (Caelid)"
+    },
+    "12030800": {
+      "bonus_soul": 40000,
+      "name": "[Deeproot Depths]"
+    },
+    "14000800": {
+      "bonus_soul": 40000,
+      "name": "[Academy of Raya Lucaria]"
+    },
+    "1048370800": {
+      "bonus_soul": 38000,
+      "name": "Decaying Ekzykes - Caelid Highway South (Caelid)"
+    },
+    "1048510800": {
+      "bonus_soul": 36000,
+      "name": "Night's Cavalry - Forbidden Lands (Mountaintops)"
+    },
+    "12020800": {
+      "bonus_soul": 30000,
+      "name": "[Siofra River]"
+    },
+    "35000850": {
+      "bonus_soul": 30000,
+      "name": "[Subterranean Shunning-Grounds]"
+    },
+    "34140850": {
+      "bonus_soul": 29000,
+      "name": "[Divine Tower of East Altus]"
+    },
+    "1044530800": {
+      "bonus_soul": 29000,
+      "name": "Death Rite Bird - Minor Erdtree (Capital Outskirts)"
+    },
+    "30100800": {
+      "bonus_soul": 28000,
+      "name": "[Auriza Hero's Grave] Crucible Knight Ordovis"
+    },
+    "1039500800": {
+      "bonus_soul": 26000,
+      "name": "Godefroy the Grafted - Golden Lineage Evergaol (Altus Plateau)"
+    },
+    "12030390": {
+      "bonus_soul": 25000,
+      "name": "[Deeproot Depths]"
+    },
+    "12090800": {
+      "bonus_soul": 24000,
+      "name": "[Nokron- Eternal City - Boss]"
+    },
+    "39200800": {
+      "bonus_soul": 24000,
+      "name": "[Ruin-Strewn Precipice]"
+    },
+    "1039540800": {
+      "bonus_soul": 24000,
+      "name": "Elemer of the Briar - Shaded Castle (Altus Plateau)"
+    },
+    "30090800": {
+      "bonus_soul": 21000,
+      "name": "[Gelmir Hero's Grave] Red Wolf of the Champion"
+    },
+    "1036540800": {
+      "bonus_soul": 21000,
+      "name": "Full-Grown Fallingstar Beast - Crater (Mt. Gelmir)"
+    },
+    "10000800": {
+      "bonus_soul": 20000,
+      "name": "[Stormveil Castle] Godrick the Grafted"
+    },
+    "30080800": {
+      "bonus_soul": 20000,
+      "name": "[Sainted Hero's Grave]"
+    },
+    "1041510800": {
+      "bonus_soul": 20000,
+      "name": "Tree Sentinel - Tree Sentinel Duo (Altus Plateau)"
+    },
+    "1043530800": {
+      "bonus_soul": 20000,
+      "name": "Ball-Bearing Hunter - Hermit Merchant's Shack (Capital Outskirts)"
+    },
+    "1035530800": {
+      "bonus_soul": 19000,
+      "name": "Magma Wyrm - Seethewater Terminus (Mt. Gelmir)"
+    },
+    "1037540810": {
+      "bonus_soul": 18000,
+      "name": "Ulcerated Tree Spirit - Minor Erdtree (Mt. Gelmir)"
+    },
+    "12020830": {
+      "bonus_soul": 16000,
+      "name": "[Siofra River] Dragonkin Soldier"
+    },
+    "34120800": {
+      "bonus_soul": 16000,
+      "name": "[Divine Tower of West Altus] Onyx Lord"
+    },
+    "1051360800": {
+      "bonus_soul": 16000,
+      "name": "Crucible Knight - Redmane Castle (Caelid)"
+    },
+    "18000800": {
+      "bonus_soul": 15000,
+      "name": "[Stranded Graveyard]"
+    },
+    "30130800": {
+      "bonus_soul": 15000,
+      "name": "[Auriza Side Tomb] Godskin Noble"
+    },
+    "1049370850": {
+      "bonus_soul": 15000,
+      "name": "Death Rite Bird - Southern Aeonia Swamp Bank (Caelid)"
+    },
+    "14000850": {
+      "bonus_soul": 14000,
+      "name": "[Academy of Raya Lucaria]"
+    },
+    "1034450800": {
+      "bonus_soul": 14000,
+      "name": "[Liurnia of the Lakes]"
+    },
+    "1038520340": {
+      "bonus_soul": 14000,
+      "name": "Tibia Mariner - Wyndham Ruins (Altus Plateau)"
+    },
+    "1042550800": {
+      "bonus_soul": 14000,
+      "name": "Godskin Apostle - Windmill Heights (Altus Plateau)"
+    },
+    "12080800": {
+      "bonus_soul": 13000,
+      "name": "[Siofra River - Boss]"
+    },
+    "1037530800": {
+      "bonus_soul": 13000,
+      "name": "Demi-Human Queen - Primeval Sorcerer Azur (Mt. Gelmir)"
+    },
+    "10000850": {
+      "bonus_soul": 12000,
+      "name": "[Stormveil Castle]"
+    },
+    "12010800": {
+      "bonus_soul": 12000,
+      "name": "[Ainsel River]"
+    },
+    "30070800": {
+      "bonus_soul": 12000,
+      "name": "[Wyndham Catacombs] Erdtree Burial Watchdog"
+    },
+    "1034500800": {
+      "bonus_soul": 12000,
+      "name": "Glintstone Dragon Adula - Ranni's Rise (Liurnia)"
+    },
+    "1049380800": {
+      "bonus_soul": 12000,
+      "name": "Commander O'Neil - East Aeonia Swamp (Caelid)"
+    },
+    "31090800": {
+      "bonus_soul": 11000,
+      "name": "[Volcano Cave] Demi-Human Queen Margot"
+    },
+    "1041500800": {
+      "bonus_soul": 11000,
+      "name": "Fallingstar Beast - South of Tree Sentinel Duo (Altus Plateau)"
+    },
+    "1040520800": {
+      "bonus_soul": 10800,
+      "name": "Black Knife Assassin - Sainted Hero's Grave Entrance (Altus Plateau)"
+    },
+    "0": {
+      "bonus_soul": 10000,
+      "name": ""
+    },
+    "1": {
+      "bonus_soul": 10000,
+      "name": ""
+    },
+    "12020850": {
+      "bonus_soul": 10000,
+      "name": "[Siofra River]"
+    },
+    "16000860": {
+      "bonus_soul": 10000,
+      "name": "[Volcano Manor]"
+    },
+    "31070800": {
+      "bonus_soul": 10000,
+      "name": "[Seethewater Cave] Kindred of Rot"
+    },
+    "1035500800": {
+      "bonus_soul": 10000,
+      "name": "Royal Knight Loretta - Carian Manor (Liurnia)"
+    },
+    "1039510800": {
+      "bonus_soul": 10000,
+      "name": "Night's Cavalry - Altus Highway Junction (Altus Plateau)"
+    },
+    "1041530800": {
+      "bonus_soul": 10000,
+      "name": "Wormface - Woodfolk Ruins (Altus Plateau)"
+    },
+    "32040800": {
+      "bonus_soul": 9600,
+      "name": "[Old Altus Tunnel] Stonedigger Troll"
+    },
+    "1047400800": {
+      "bonus_soul": 9600,
+      "name": "Putrid Avatar - Minor Erdtree (Caelid)"
+    },
+    "30120800": {
+      "bonus_soul": 9400,
+      "name": "[Unsightly Catacombs] Perfumer Tricia"
+    },
+    "31190800": {
+      "bonus_soul": 9000,
+      "name": "[Sage's Cave] Necromancer Garris"
+    },
+    "31190850": {
+      "bonus_soul": 9000,
+      "name": "Necromancer Garris - Sage's Cave (Altus Plateau)"
+    },
+    "32050800": {
+      "bonus_soul": 9000,
+      "name": "[Altus Tunnel] Stonedigger Troll"
+    },
+    "1040530800": {
+      "bonus_soul": 8800,
+      "name": "Sanguine Noble - Writheblood Ruins (Altus Plateau)"
+    },
+    "1038510800": {
+      "bonus_soul": 8500,
+      "name": "Demi-Human Queen - Lux Ruins (Altus Plateau)"
+    },
+    "1049370800": {
+      "bonus_soul": 8500,
+      "name": "Night's Cavalry - Southern Aeonia Swamp Bank (Caelid)"
+    },
+    "31180800": {
+      "bonus_soul": 8400,
+      "name": "[Perfumer's Grotto] Omenkiller"
+    },
+    "1036450340": {
+      "bonus_soul": 7800,
+      "name": "Death Rite Bird - Gate Town Northwest (Liurnia)"
+    },
+    "1049390850": {
+      "bonus_soul": 7800,
+      "name": "Battlemage Hugues - Sellia Crystal Tunnel Entrance (Caelid)"
+    },
+    "32080800": {
+      "bonus_soul": 7600,
+      "name": "[Sellia Crystal Tunnel] Fallingstar Beast"
+    },
+    "32070800": {
+      "bonus_soul": 7500,
+      "name": "[Gael Tunnel] Magma Wyrm"
+    },
+    "30140800": {
+      "bonus_soul": 7400,
+      "name": "[Minor Erdtree Catacombs] Erdtree Burial Watchdog"
+    },
+    "31110800": {
+      "bonus_soul": 7100,
+      "name": "[Sellia Hideaway] Crystalians"
+    },
+    "31200800": {
+      "bonus_soul": 7000,
+      "name": "[Abandoned Cave] Cleanrot Knight"
+    },
+    "30150800": {
+      "bonus_soul": 6800,
+      "name": "[Caelid Catacombs] Cemetery Shade"
+    },
+    "31210800": {
+      "bonus_soul": 6700,
+      "name": "[Gaol Cave] Frenzied Duelist"
+    },
+    "1037420340": {
+      "bonus_soul": 6600,
+      "name": "Death Rite Bird - Laskyar Ruins (Liurnia)"
+    },
+    "1049390800": {
+      "bonus_soul": 6400,
+      "name": "Nox Priest - West Sellia (Caelid)"
+    },
+    "1048400800": {
+      "bonus_soul": 6300,
+      "name": "Monstrous Dog - Southwest of Caelid Highway South (Caelid)"
+    },
+    "1037460800": {
+      "bonus_soul": 6000,
+      "name": "Ball-Bearing Hunter - Church of Vows (Liurnia)"
+    },
+    "1033430800": {
+      "bonus_soul": 5800,
+      "name": "[Liurnia of the Lakes] Erdtree Avatar"
+    },
+    "1038480800": {
+      "bonus_soul": 5800,
+      "name": "Erdtree Avatar - Minor Erdtree (Liurnia)"
+    },
+    "1036480340": {
+      "bonus_soul": 5600,
+      "name": "Night's Cavalry - East Raya Lucaria Gate (Liurnia)"
+    },
+    "1039430340": {
+      "bonus_soul": 5600,
+      "name": "Night's Cavalry - Liurnia Highway Far North (Liurnia)"
+    },
+    "1042330800": {
+      "bonus_soul": 5400,
+      "name": "Ancient Hero of Zamor - Weeping Evergaol (Weeping Penisula)"
+    },
+    "1043360800": {
+      "bonus_soul": 5000,
+      "name": "Flying Dragon Agheel - Dragon-Burnt Ruins (Limgrave)"
+    },
+    "1035420800": {
+      "bonus_soul": 4900,
+      "name": "Omenkiller - Village of the Albinaurics (Liurnia)"
+    },
+    "1039440800": {
+      "bonus_soul": 4700,
+      "name": "Tibia Mariner - Jarburg (Liurnia)"
+    },
+    "1033450800": {
+      "bonus_soul": 4600,
+      "name": "[Liurnia of the Lakes] Bols- Carian Knight"
+    },
+    "30050850": {
+      "bonus_soul": 4200,
+      "name": "[Black Knife Catacombs] Black Knife Assassin"
+    },
+    "1044320340": {
+      "bonus_soul": 3900,
+      "name": "Death Rite Bird - Castle Morne Approach (Weeping Penisula)"
+    },
+    "1038410800": {
+      "bonus_soul": 3800,
+      "name": "Adan- Thief of Fire - Malefactor's Evergaol (Liurnia)"
+    },
+    "1043300800": {
+      "bonus_soul": 3800,
+      "name": "Leonine Misbegotten - Castle Morne (Weeping Penisula)"
+    },
+    "31050800": {
+      "bonus_soul": 3600,
+      "name": "[Lakeside Crystal Cave] Bloodhound Knight"
+    },
+    "1036500800": {
+      "bonus_soul": 3600,
+      "name": "Onyx Lord - Royal Grave Evergaol (Liurnia)"
+    },
+    "1043330800": {
+      "bonus_soul": 3600,
+      "name": "Erdtree Avatar - Minor Erdtree (Weeping Penisula)"
+    },
+    "30050800": {
+      "bonus_soul": 3500,
+      "name": "[Black Knife Catacombs] Cemetery Shade"
+    },
+    "1044320342": {
+      "bonus_soul": 3400,
+      "name": "Night's Cavalry - Castle Morne Approach (Weeping Penisula)"
+    },
+    "31040800": {
+      "bonus_soul": 3300,
+      "name": "[Stillwater Cave] Cleanrot Knight"
+    },
+    "31060800": {
+      "bonus_soul": 3300,
+      "name": "[Academy Crystal Cave] Crystalians"
+    },
+    "10010800": {
+      "bonus_soul": 3200,
+      "name": "[Chapel of Anticipation] Grafted Scion"
+    },
+    "30060800": {
+      "bonus_soul": 3200,
+      "name": "[Cliffbottom Catacombs] Erdtree Burial Watchdog"
+    },
+    "1042360800": {
+      "bonus_soul": 3200,
+      "name": "Tree Sentinel - Church of Elleh (Limgrave)"
+    },
+    "1034480800": {
+      "bonus_soul": 3100,
+      "name": "Royal Revenant - Kingsrealm Ruins (Liurnia)"
+    },
+    "30030800": {
+      "bonus_soul": 3000,
+      "name": "[Road's End Catacombs] Spirit-Caller Snail"
+    },
+    "32020800": {
+      "bonus_soul": 3000,
+      "name": "[Raya Lucaria Crystal Tunnel] Crystalian (Ringblade)"
+    },
+    "1042380800": {
+      "bonus_soul": 2800,
+      "name": "Death Rite Bird - Stormgate (Limgrave)"
+    },
+    "1042380850": {
+      "bonus_soul": 2700,
+      "name": "Ball-Bearing Hunter - Warmaster's Shack (Limgrave)"
+    },
+    "31010800": {
+      "bonus_soul": 2600,
+      "name": "[Earthbore Cave] Runebear"
+    },
+    "30010800": {
+      "bonus_soul": 2400,
+      "name": "[Impaler's Catacombs] Erdtree Burial Watchdog"
+    },
+    "1043370340": {
+      "bonus_soul": 2400,
+      "name": "Night's Cavalry - Agheel Lake North (Limgrave)"
+    },
+    "1045390800": {
+      "bonus_soul": 2400,
+      "name": "Tibia Mariner - Summonwater Village (Limgrave)"
+    },
+    "30000800": {
+      "bonus_soul": 2200,
+      "name": "[Tombsward Catacombs] Cemetery Shade"
+    },
+    "31020800": {
+      "bonus_soul": 2100,
+      "name": "[Tombsward Cave] Miranda the Blighted Bloom"
+    },
+    "1042370800": {
+      "bonus_soul": 2100,
+      "name": "Crucible Knight - Stormhill Evergaol (Limgrave)"
+    },
+    "32000800": {
+      "bonus_soul": 2000,
+      "name": "[Morne Tunnel] Scaly Misbegotten"
+    },
+    "1044350800": {
+      "bonus_soul": 1900,
+      "name": "Bloodhound Knight Darriwill - Forlorn Hound Evergaol (Limgrave)"
+    },
+    "32010800": {
+      "bonus_soul": 1800,
+      "name": "[Limgrave Tunnels] Stonedigger Troll"
+    },
+    "30040800": {
+      "bonus_soul": 1700,
+      "name": "[Murkwater Catacombs] Godskin Noble"
+    },
+    "31170800": {
+      "bonus_soul": 1700,
+      "name": "[Highroad Cave] Guardian Golem"
+    },
+    "30110800": {
+      "bonus_soul": 1600,
+      "name": "[Deathtouched Catacombs] Black Knife Assassin"
+    },
+    "30020800": {
+      "bonus_soul": 1300,
+      "name": "[Stormfoot Catacombs] Erdtree Burial Watchdog"
+    },
+    "31150800": {
+      "bonus_soul": 1200,
+      "name": "[Coastal Cave] Demi-Human Chief"
+    },
+    "1044360800": {
+      "bonus_soul": 1100,
+      "name": "Mad Pumpkin Head - Waypoint Ruins (Limgrave)"
+    },
+    "31030800": {
+      "bonus_soul": 1000,
+      "name": "[Groveside Cave] Beastman of Farum Azula"
+    },
+    "18000850": {
+      "bonus_soul": 400,
+      "name": "[Stranded Graveyard]"
+    }
+  }
+}

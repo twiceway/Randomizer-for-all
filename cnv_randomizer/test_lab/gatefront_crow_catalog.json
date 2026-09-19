@@ -1,0 +1,63 @@
+{
+  "schema": "gatefront_crow_catalog_v1",
+  "filter": "enemy_index_c4560_c4561",
+  "purpose": "gatefront_crow_lineup_variety",
+  "batch_size": 14,
+  "entries": {
+    "crow_c4560_45600000_m11100000": {
+      "key": "crow_c4560_45600000_m11100000",
+      "english": "Giant Crow",
+      "npc": 45600000,
+      "think": 45600000,
+      "model": "c4560",
+      "template": "m11_10_00_00:c4560_9041",
+      "source_msb": "m11_10_00_00",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    },
+    "crow_c4560_45600040_m60473900": {
+      "key": "crow_c4560_45600040_m60473900",
+      "english": "Giant Crow",
+      "npc": 45600040,
+      "think": 45600000,
+      "model": "c4560",
+      "template": "m60_47_39_00:c4560_9000",
+      "source_msb": "m60_47_39_00",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    },
+    "crow_c4560_45601050_m60515300": {
+      "key": "crow_c4560_45601050_m60515300",
+      "english": "Giant Crow (Snowfield)",
+      "npc": 45601050,
+      "think": 45609990,
+      "model": "c4560",
+      "template": "m60_51_53_00:c4560_9002",
+      "source_msb": "m60_51_53_00",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    },
+    "crow_c4560_45601850_m60515300": {
+      "key": "crow_c4560_45601850_m60515300",
+      "english": "Giant Crow (Snowfield)",
+      "npc": 45601850,
+      "think": 45609990,
+      "model": "c4560",
+      "template": "m60_51_53_00:c4560_9001",
+      "source_msb": "m60_51_53_00",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    },
+    "crow_c4561_45610050_m30030000": {
+      "key": "crow_c4561_45610050_m30030000",
+      "english": "Monstrous Rotten Crow - Road's End Catacombs",
+      "npc": 45610050,
+      "think": 45610010,
+      "model": "c4561",
+      "template": "m30_03_00_00:c3080_9002",
+      "source_msb": "m30_03_00_00",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    }
+  }
+}

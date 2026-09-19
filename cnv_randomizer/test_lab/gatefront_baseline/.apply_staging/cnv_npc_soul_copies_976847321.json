@@ -1,0 +1,93 @@
+{
+  "schema": "cnv_npc_soul_copies_v2",
+  "seed": 976847321,
+  "id_base": 880000000,
+  "think_id_base": 890000000,
+  "copies": [
+    {
+      "copy_id": 880000000,
+      "base_npc": 43110010,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000001,
+      "base_npc": 43111110,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000002,
+      "base_npc": 43111210,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000003,
+      "base_npc": 43112010,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000004,
+      "base_npc": 43112110,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000005,
+      "base_npc": 43114010,
+      "get_soul": 5678,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    }
+  ],
+  "difficulty": {
+    "enabled": true,
+    "user_mult": 1.0,
+    "baseline_over_vanilla": 1.05,
+    "user_mult_min": 0.25,
+    "user_mult_max": 2.0
+  }
+}

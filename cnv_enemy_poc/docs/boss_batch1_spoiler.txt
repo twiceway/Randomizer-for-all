@@ -1,0 +1,10 @@
+﻿# Boss batch 1 — Gatefront test placements
+seed=42001
+map=m60_42_37_00
+# slot	donor_key	donor_map	donor_entity	model
+c4311_9018	random_dragon	m60_38_52_00.msb.dcx:c4960_9003	c4960
+c4311_9010	godrick	csv_fallback c4750	c4750
+c4311_9022	elden_beast	csv_fallback c5200	c5200
+
+In-game: quit fully -> Start_Convergence -> new char or NG -> Gatefront
+Check: dragon terrain at forest patrol, Godrick phases, Elden Beast at camp sit spot

@@ -1,0 +1,10 @@
+# CNV pickup hook — ME3 natives（装进游戏自动写入）
+
+由 `mod_install.py` / GUI「安装本mod到游戏」幂等插入到 `Game/me3/convergence.me3`：
+
+```toml
+[[natives]]
+path = './../mod/dll/cnv_pickup_hook.dll'
+```
+
+契约：`.ai/docs/装进游戏契约.md`

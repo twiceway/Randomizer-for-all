@@ -1,0 +1,11 @@
+{
+  "_comment": "CNV runtime pickup ids that differ from CSV/regulation. Each key is the CSV/canonical id; values are extra raw ids seen in give_item logs.",
+  "10160": [5250000],
+  "2008603": [8801, 2020006],
+  "8871": [],
+  "8801": [],
+  "2000400": [],
+  "18080000": [],
+  "2219005": [],
+  "2550005": []
+}

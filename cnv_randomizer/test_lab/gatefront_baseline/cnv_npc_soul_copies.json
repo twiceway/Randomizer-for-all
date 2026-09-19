@@ -1,0 +1,458 @@
+{
+  "schema": "cnv_npc_soul_copies_v2",
+  "seed": 976847321,
+  "id_base": 880000000,
+  "think_id_base": 890000000,
+  "copies": [
+    {
+      "copy_id": 880000000,
+      "base_npc": 20108562,
+      "get_soul": 54763,
+      "hp": 1386,
+      "defFlickPower": 27,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000001,
+      "base_npc": 35001050,
+      "get_soul": 674,
+      "hp": 156,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID2": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000002,
+      "base_npc": 36100054,
+      "get_soul": 674,
+      "hp": 178,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID0": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000003,
+      "base_npc": 37011930,
+      "get_soul": 674,
+      "hp": 194,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000004,
+      "base_npc": 37030052,
+      "get_soul": 674,
+      "hp": 371,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000005,
+      "base_npc": 38502050,
+      "get_soul": 674,
+      "hp": 188,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000006,
+      "base_npc": 38600050,
+      "get_soul": 674,
+      "hp": 182,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000007,
+      "base_npc": 41610252,
+      "get_soul": 674,
+      "hp": 171,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID3": "7070",
+        "spEffectID4": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000008,
+      "base_npc": 41700152,
+      "get_soul": 674,
+      "hp": 289,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID0": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000009,
+      "base_npc": 43114015,
+      "get_soul": 590,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000010,
+      "base_npc": 43130435,
+      "get_soul": 674,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000011,
+      "base_npc": 43140542,
+      "get_soul": 674,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000012,
+      "base_npc": 43150052,
+      "get_soul": 674,
+      "hp": 202,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000013,
+      "base_npc": 43747042,
+      "get_soul": 674,
+      "hp": 155,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000014,
+      "base_npc": 44607840,
+      "get_soul": 674,
+      "hp": 460,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000015,
+      "base_npc": 44800064,
+      "get_soul": 674,
+      "hp": 2036,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID3": "7070",
+        "spEffectID4": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000016,
+      "base_npc": 44830030,
+      "get_soul": 674,
+      "hp": 126,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000017,
+      "base_npc": 46500060,
+      "get_soul": 37912,
+      "hp": 2351,
+      "defFlickPower": 93,
+      "sp_effect_overrides": {
+        "spEffectID3": "7070",
+        "spEffectID4": "7400"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000018,
+      "base_npc": 50100098,
+      "get_soul": 101100,
+      "hp": 3105,
+      "defFlickPower": 139,
+      "sp_effect_overrides": {
+        "spEffectID2": "7070",
+        "spEffectID4": "7400"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000019,
+      "base_npc": 55120098,
+      "get_soul": 674,
+      "hp": 658,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000020,
+      "base_npc": 55900483,
+      "get_soul": 674,
+      "hp": 289,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID0": "7070",
+        "spEffectID1": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000021,
+      "base_npc": 56512081,
+      "get_soul": 674,
+      "hp": 155,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000022,
+      "base_npc": 57600080,
+      "get_soul": 674,
+      "hp": 171,
+      "defFlickPower": 22,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000023,
+      "base_npc": 57800095,
+      "get_soul": 88816,
+      "hp": 2715,
+      "defFlickPower": 93,
+      "sp_effect_overrides": {
+        "spEffectID0": "7070",
+        "spEffectID1": "7400"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000024,
+      "base_npc": 59301084,
+      "get_soul": 674,
+      "hp": 644,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID4": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000025,
+      "base_npc": 62100092,
+      "get_soul": 674,
+      "hp": 512,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000026,
+      "base_npc": 62322082,
+      "get_soul": 674,
+      "hp": 281,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000027,
+      "base_npc": 62330082,
+      "get_soul": 674,
+      "hp": 371,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000028,
+      "base_npc": 62400083,
+      "get_soul": 674,
+      "hp": 197,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID0": "7070",
+        "spEffectID1": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000029,
+      "base_npc": 62700084,
+      "get_soul": 77611,
+      "hp": 713,
+      "defFlickPower": 77,
+      "sp_effect_overrides": {
+        "spEffectID0": "7070",
+        "spEffectID1": "7400"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000030,
+      "base_npc": 71000150,
+      "get_soul": 674,
+      "hp": 894,
+      "defFlickPower": 43,
+      "sp_effect_overrides": {
+        "spEffectID1": "7400",
+        "spEffectID3": "7070"
+      },
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000031,
+      "base_npc": 500000042,
+      "get_soul": 54763,
+      "hp": 2036,
+      "defFlickPower": 27,
+      "sp_effect_overrides": {
+        "spEffectID0": "7070",
+        "spEffectID1": "7400"
+      },
+      "team_type": 6,
+      "slot_tier": 5
+    },
+    {
+      "copy_id": 880000032,
+      "base_npc": 543890000,
+      "get_soul": 54763,
+      "hp": 1629,
+      "defFlickPower": 27,
+      "sp_effect_overrides": {
+        "spEffectID1": "7070",
+        "spEffectID2": "7400"
+      },
+      "slot_tier": 5
+    }
+  ],
+  "think_copies": [
+    {
+      "copy_id": 890000000,
+      "base_think": 20108500,
+      "field_overrides": {
+        "eye_dist": "15",
+        "searchEye_dist": "7",
+        "maxBackhomeDist": "45"
+      },
+      "slot_tier": 5,
+      "ai_scale": 0.5556,
+      "adaptive_lift": 0.0
+    },
+    {
+      "copy_id": 890000001,
+      "base_think": 44300000,
+      "field_overrides": {
+        "searchEye_dist": "7",
+        "maxBackhomeDist": "45"
+      },
+      "slot_tier": 5,
+      "ai_scale": 0.5556,
+      "adaptive_lift": 0.0
+    },
+    {
+      "copy_id": 890000002,
+      "base_think": 500000000,
+      "field_overrides": {
+        "searchEye_dist": "7",
+        "maxBackhomeDist": "45",
+        "backhomeBattleDist": "12",
+        "SightTargetForgetTime": "8"
+      },
+      "slot_tier": 5,
+      "ai_scale": 0.5556,
+      "adaptive_lift": 0.0
+    }
+  ],
+  "difficulty": {
+    "enabled": true,
+    "user_mult": 1.0,
+    "baseline_over_vanilla": 1.05,
+    "user_mult_min": 0.25,
+    "user_mult_max": 2.0
+  }
+}

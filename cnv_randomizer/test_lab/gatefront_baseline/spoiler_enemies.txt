@@ -1,0 +1,64 @@
+# spoiler_enemies seed=976847321
+replaced=45
+
+m60_42_37_00	c2500_9000	major_boss→major_boss	c5010	npc=880000018	rune=101100
+m60_42_37_00	c4070_9000	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9001	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9015	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9016	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9017	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9018	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9019	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9020	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4070_9021	trash→trash	c4161	npc=880000007	rune=674
+m60_42_37_00	c4200_9000	trash→trash	c3860	npc=880000006	rune=674
+m60_42_37_00	c4200_9001	trash→trash	c3703	npc=880000004	rune=674
+m60_42_37_00	c4200_9002	trash→elite	c7100	npc=880000030	rune=674
+m60_42_37_00	c4311_9000	trash→trash	c3701	npc=880000003	rune=674
+m60_42_37_00	c4311_9001	trash→night	c0000	npc=880000031	rune=54763
+m60_42_37_00	c4311_9002	trash→trash	c4311	npc=880000009	rune=590
+m60_42_37_00	c4311_9004	trash→evergaol	c5780	npc=880000023	rune=88816
+m60_42_37_00	c4311_9005	trash→elite	c6240	npc=880000028	rune=674
+m60_42_37_00	c4311_9006	trash→elite	c5930	npc=880000024	rune=674
+m60_42_37_00	c4311_9008	trash→trash	c4170	npc=880000008	rune=674
+m60_42_37_00	c4311_9009	trash→trash	c4315	npc=880000012	rune=674
+m60_42_37_00	c4311_9010	trash→trash	c4374	npc=880000013	rune=674
+m60_42_37_00	c4311_9011	trash→trash	c3850	npc=880000005	rune=674
+m60_42_37_00	c4311_9012	trash→elite	c6210	npc=880000025	rune=674
+m60_42_37_00	c4311_9013	trash→minor_boss	c6270	npc=880000029	rune=77611
+m60_42_37_00	c4311_9014	trash→elite	c5512	npc=880000019	rune=674
+m60_42_37_00	c4311_9015	trash→elite	c6233	npc=880000027	rune=674
+m60_42_37_00	c4311_9018	trash→trash	c5760	npc=880000022	rune=674
+m60_42_37_00	c4311_9019	trash→evergaol	c4650	npc=880000017	rune=37912
+m60_42_37_00	c4311_9020	trash→elite	c5590	npc=880000020	rune=674
+m60_42_37_00	c4311_9021	trash→trash	c5651	npc=880000021	rune=674
+m60_42_37_00	c4311_9022	trash→night	c2010	npc=880000000	rune=54763
+m60_42_37_00	c4430_9001	trash→night	c0000	npc=880000032	rune=54763
+m60_42_37_00	c4430_9003	trash→trash	c4460	npc=880000014	rune=674
+m60_42_37_00	c4430_9005	trash→elite	c6232	npc=880000026	rune=674
+m60_42_37_00	c4430_9006	trash→trash	c4314	npc=880000011	rune=674
+m60_42_37_00	c4430_9007	trash→trash	c4313	npc=880000010	rune=674
+m60_42_37_00	c4430_9008	trash→trash	c3610	npc=880000002	rune=674
+m60_42_37_00	c4430_9009	trash→elite	c4480	npc=880000015	rune=674
+m60_42_37_00	c4440_9000	trash→trash	c4483	npc=880000016	rune=674
+m60_42_37_00	c4440_9001	trash→trash	c3500	npc=880000001	rune=674
+m60_42_37_00	c0100_9000	trash→decorative	c0100	npc=0	rune=0
+m60_42_37_00	c0100_9001	trash→decorative	c0100	npc=0	rune=0
+m60_42_37_00	c0100_9002	trash→decorative	c0100	npc=0	rune=0
+m60_42_37_00	c0100_9003	trash→decorative	c0100	npc=0	rune=0
+
+# warnings
+slot_prep_cache=on
+mount_pair_randomize=off（黑夜骑兵/树守卫等成套骑马槽保持原版；见 T-056）
+slot_prep_cache=on donors=374 rows=89
+density_lookup_warn: 密度库过期（meta=39632c1dd96c572e index=bd76052b8dcb4957）— 请先「扫描地图」重建
+night_spatial_quota_blocked=19
+major_boss_spatial_quota_blocked=7
+donor_pool trash archetypes(cache)=45 pick_plans=41
+donor_pool mount_pairs=35
+enemy_archetype_lottery=on (原型均匀→皮均匀；步兵禁骑马；配对骑手=全局成套骑马池)
+decorative_suppress=4
+spawn_written slots=45 path=cnv_enemy_spawn_map_976847321.txt
+spawn_audit=map_spawn_audit_m60_42_37_00.txt
+t052_npc_copies_patched regulation=V:\games\Elden Ring\Game\mod\regulation.bin ok added=33 removed=32 think_added=3 think_removed=0 regulation=V:\games\Elden Ring\Game\mod\regulation.bin
+radahn_phase1_ok radahn_phase1 battleGoal=473000 removed_legacy_think=0 landed_npc=47300041 fx=1 tae=skip_dll_landing_shim

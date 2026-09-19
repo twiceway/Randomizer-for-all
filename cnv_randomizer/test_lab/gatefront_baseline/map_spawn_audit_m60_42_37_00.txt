@@ -1,0 +1,96 @@
+# map_spawn_audit map=m60_42_37_00 seed=976847321
+# 列：实体名 | 模型 | 体态 | 放置 | 角色 | 策略 | pick | spawn | 状态 | 说明
+
+c0100_9000	c0100	humanoid	collision_anchor	skip_other	skip	False	True	SKIP	npc
+c0100_9001	c0100	humanoid	patrol	skip_other	skip	False	True	SKIP	npc
+c0100_9002	c0100	humanoid	patrol	skip_other	skip	False	True	SKIP	npc
+c0100_9003	c0100	humanoid	patrol	skip_other	skip	False	True	SKIP	npc
+c1000_9000	c1000	humanoid	ground	story_talk	skip	False	False	SKIP	npc
+c1000_9002	c1000	humanoid	ground	story_talk	skip	False	False	SKIP	npc
+c2500_9000	c2500	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4070_9000	c4070	quadruped	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4070_9001	c4070	quadruped	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4070_9015	c4070	quadruped	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4070_9016	c4070	quadruped	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4070_9017	c4070	quadruped	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4070_9018	c4070	quadruped	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4070_9019	c4070	quadruped	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4070_9020	c4070	quadruped	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4070_9021	c4070	quadruped	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4191_9000	c4191	perch	perch_or_squat	keep_original	skip	False	False	SKIP	scarab
+c4191_9001	c4191	humanoid	ground	keep_original	skip	False	False	SKIP	scarab
+c4200_9000	c4200	humanoid	collision_anchor	combat_ledge	participate	True	True	OK_SPAWN	
+c4200_9001	c4200	humanoid	collision_anchor	combat_ledge	participate	True	True	OK_SPAWN	
+c4200_9002	c4200	humanoid	collision_anchor	combat_ledge	participate	True	True	OK_SPAWN	
+c4311_9000	c4311	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4311_9001	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9002	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9004	c4311	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4311_9005	c4311	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4311_9006	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9008	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9009	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9010	c4311	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4311_9011	c4311	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4311_9012	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9013	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9014	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9015	c4311	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4311_9018	c4311	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4311_9019	c4311	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4311_9020	c4311	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4311_9021	c4311	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4311_9022	c4311	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4351_9000	c4351	humanoid	patrol	combat_patrol	participate	False	False	MISSING_PICK	未进pick(空池/skip/quota)
+c4430_9001	c4430	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4430_9003	c4430	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4430_9005	c4430	humanoid	patrol	combat_patrol	participate	True	True	OK_SPAWN	
+c4430_9006	c4430	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4430_9007	c4430	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4430_9008	c4430	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4430_9009	c4430	perch	perch_or_squat	combat_perch	participate	True	True	OK_SPAWN	
+c4440_9000	c4440	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c4440_9001	c4440	humanoid	ground	combat_ground	participate	True	True	OK_SPAWN	
+c6001_9001	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6001_9002	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6001_9003	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6001_9004	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6001_9005	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6001_9006	c6001	flying	aerial_model	ambient_animal	skip	False	False	SKIP	animal
+c6010_9000	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9002	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9003	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9005	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9006	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9007	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9008	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9009	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9012	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6010_9014	c6010	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6040_9000	c6040	humanoid	ground	ambient_animal	skip	False	False	SKIP	animal
+c6040_9001	c6040	humanoid	ground	ambient_animal	skip	False	False	SKIP	animal
+c6050_9000	c6050	quadruped	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6050_9001	c6050	quadruped	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9005	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9006	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9007	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9008	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9009	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9010	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9011	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6060_9012	c6060	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6080_9000	c6080	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6080_9001	c6080	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6090_9000	c6090	humanoid	ground	ambient_animal	skip	False	False	SKIP	animal
+c6100_9003	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9004	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9009	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9010	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9011	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9015	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9016	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+c6100_9017	c6100	humanoid	patrol	ambient_animal	skip	False	False	SKIP	animal
+
+# 汇总 participate_ok_spawn=41 skip=47 missing_pick=1 missing_spawn=0 spawn_total=45 pick_total=41
+# MISSING_PICK 实体:
+  - c4351_9000

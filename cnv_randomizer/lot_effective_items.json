@@ -1,0 +1,6 @@
+{
+  "_comment": "CNV give_item id when it differs from ItemLotParam CSV. Hook lot patch only — does NOT change shuffle participation (CSV id is used for that).",
+  "41010240": {
+    "1": 15020
+  }
+}

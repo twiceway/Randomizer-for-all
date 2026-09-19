@@ -1,0 +1,36 @@
+{
+  "_comment": "include_dlc=false 时：下列物品 ID、lot 编号、地名关键词对应的捡取点整点跳过，不进地图随机池。",
+  "id_ranges": [
+    [2000000, 2999999],
+    [20000000, 29999999],
+    [30000000, 39999999],
+    [40000000, 49999999]
+  ],
+  "lot_id_ranges": [
+    [2051000000, 2059999999],
+    [34100000, 34199999]
+  ],
+  "region_keywords": [
+    "Shadow",
+    "Scadu",
+    "Gravesite",
+    "Jagged",
+    "Rauh",
+    "Cerulean Coast",
+    "Charo",
+    "Enir-Ilim",
+    "Belurat",
+    "Specimen",
+    "Elphael",
+    "Midra",
+    "Manus",
+    "Finger Ruins",
+    "Finger Birthing",
+    "Fingeriter",
+    "Divine Gateway",
+    "Scorpion River",
+    "Rivermouth",
+    "Ancient Ruins",
+    "Cerulean Bay"
+  ]
+}

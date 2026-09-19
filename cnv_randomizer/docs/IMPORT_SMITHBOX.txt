@@ -1,0 +1,91 @@
+# Smithbox 合并随机 CSV — 必读
+
+## 结论先说
+
+- **Import → From file → All fields** 这个选法没问题。
+- bin 变成 **3,136,624**（约 3.1MB）= Smithbox **整包升级成原版 1.16.1**，不是「合并 CSV 正常变大」。
+- 所以会出现：**职业变回原版 10 职业**、圣所金道具/出门异常。
+- 随机本身没问题：最新 spoiler 里 **没有** `lot 28000000` / `lot 40000000`。
+
+---
+
+## 不要用这个工程合并
+
+```
+V:\games\box\          工程名 ER1161
+GameRoot → ELDEN RING\Game
+```
+
+在这里打开/保存 regulation，Smithbox 会把法魂 bin **升级** 成 3.1MB。
+**不要**把 `box\regulation.bin` 复制到 `mod\`。
+
+---
+
+## 正确操作（法魂 3.0）
+
+### 0. 先恢复能玩的 mod bin
+
+从法魂备份里，把 **合并前能出 27 职业** 的那份 `regulation.bin` 复制到：
+
+```
+Game\mod\regulation.bin
+```
+
+你当前 `Game\regulation.bin` = **2,364,448**（可作恢复来源之一，以你备份里能玩的那份为准）。
+保存/合并后若是 **3,136,624** → 一定错了，不要用。
+
+### 1. 跑随机
+
+```
+tools\cnv_randomizer\RUN_RANDOMIZE.bat
+```
+
+确认 `output\spoiler_*.txt` 里 **没有** `lot 28000` / `lot 40000`。
+
+### 2. Smithbox 打开方式（关键）
+
+**Smithbox 2.2 没有「直接打开 bin」**，必须用 Create Project。详细中文步骤见：
+`tools\cnv_randomizer\SMITHBOX_223_STEP_BY_STEP.txt`
+或双击 `OPEN_SMITHBOX_CNV.bat`
+
+简要：
+1. 启动 `V:\games\Smithbox-2-2-3-2026-06-26-a\Smithbox.exe`
+2. **不要**打开 `V:\games\box\` 旧工程
+3. **Create Project** → Project Type: **Elden Ring**（不是 Nightreign）
+4. Project Directory: `Game\mod`（含 regulation.bin）
+5. Data Directory: `Game`（含 eldenring.exe）
+6. 若弹出 **Upgrade regulation** → **取消**
+7. Param Editor → `ItemLotParam_map`
+8. **推荐 Mass Edit** 粘贴 `output\ItemLotParam_map.massedit` → Apply
+   （Import CSV 整张表风险更大，不推荐）
+9. **Ctrl+S** 保存到 `mod\regulation.bin`
+
+### 3. 保存后自检
+
+| 大小 | 含义 |
+|------|------|
+| 与合并前 **差不多**（如 2.36MB / 2.97MB，差几 KB～几十 KB） | 可能正常 |
+| **3,136,624** | 错了，已变原版，恢复重来 |
+
+### 4. 进游戏
+
+`Start_Convergence_ME3.bat` → **新开 CNV 档** → 圣所 + 职业。
+
+---
+
+## 若 Smithbox 一保存就变 3.1MB
+
+说明当前 Smithbox 版本 **无法** 在「不升级」前提下保存法魂 bin。
+
+备选：
+
+1. 换 **与法魂 regulation 版本匹配** 的旧版 DSMapStudio / Smithbox
+2. 或只用 **massedit 补丁**（只改 1244 个 lot，不导入整张 CSV）：
+   `tools\cnv_randomizer\output\ItemLotParam_map.massedit`
+   在 DSMS 里打开 mod\bin → Mass Edit 粘贴执行（若你那边 CLI 可用）
+
+---
+
+## 出问题恢复
+
+把合并前备份的 `mod\regulation.bin` 盖回去即可。

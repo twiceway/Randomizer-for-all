@@ -1,0 +1,40 @@
+﻿=== V44_OVERLAY ===
+c3470_9000	model=c3703	pos=(-100.6,237.4,126.2)	backup=-1	walk=''	think=37030000	npc=880001655
+c3470_9001	model=c3000	pos=(-98.0,237.4,118.9)	backup=-1	walk=''	think=30005000	npc=880000194
+c3470_9002	model=c6232	pos=(-109.6,237.4,130.6)	backup=-1	walk=''	think=62322000	npc=880007790
+c3470_9003	model=c3155	pos=(-117.3,237.4,123.0)	backup=-1	walk=''	think=31550000	npc=880000887
+c3470_9012	model=c3470	pos=(-97.9,237.4,-6.4)	backup=-1	walk=''	think=34702000	npc=34702120
+c4140_9000 NOT_FOUND
+c4140_9001 NOT_FOUND
+c4140_9003 NOT_FOUND
+c4140_9006 NOT_FOUND
+=== V45_OVERLAY ===
+c3470_9000	model=c6233	pos=(14.8,237.6,44.1)	backup=-1	walk=''	think=62330000	npc=880007959
+c3470_9001	model=c3155	pos=(17.1,237.6,39.9)	backup=-1	walk=''	think=31550000	npc=880000909
+c3470_9002	model=c5512	pos=(64.6,237.6,-31.7)	backup=-1	walk=''	think=55120000	npc=880005296
+c3470_9003 NOT_FOUND
+c3470_9012 NOT_FOUND
+c4140_9000	model=c7100	pos=(79.5,237.8,90.1)	backup=-1	walk=''	think=71000100	npc=880008393
+c4140_9001	model=c4315	pos=(73.3,239.4,112.5)	backup=-1	walk=''	think=43150000	npc=880003790
+c4140_9003	model=c4315	pos=(74.6,237.8,90.1)	backup=-1	walk=''	think=43150000	npc=880003790
+c4140_9006	model=c5360	pos=(73.8,238.6,107.7)	backup=-1	walk=''	think=53602100	npc=880004948
+=== V44_VAN ===
+c3470_9000	model=c3470	pos=(-100.6,237.4,126.2)	backup=702	walk='宸″洖銉兗銉?鑷敱宸″洖'	think=34704000	npc=34704120
+c3470_9001	model=c3470	pos=(-98.0,237.4,118.9)	backup=702	walk='宸″洖銉兗銉?鑷敱宸″洖'	think=34704000	npc=34704120
+c3470_9002	model=c3470	pos=(-109.6,237.4,130.6)	backup=702	walk='宸″洖銉兗銉?鑷敱宸″洖'	think=34704000	npc=34704120
+c3470_9003	model=c3470	pos=(-117.3,237.4,123.0)	backup=702	walk='宸″洖銉兗銉?鑷敱宸″洖'	think=34704000	npc=34704120
+c3470_9012	model=c3470	pos=(-97.9,237.4,-6.4)	backup=-1	walk=''	think=34702000	npc=34702120
+c4140_9000 NOT_FOUND
+c4140_9001 NOT_FOUND
+c4140_9003 NOT_FOUND
+c4140_9006 NOT_FOUND
+=== V45_VAN ===
+c3470_9000	model=c3470	pos=(14.8,237.6,44.1)	backup=-1	walk=''	think=34700500	npc=34700120
+c3470_9001	model=c3470	pos=(17.1,237.6,39.9)	backup=-1	walk=''	think=34700500	npc=34700120
+c3470_9002	model=c3470	pos=(64.6,237.6,-31.7)	backup=-1	walk=''	think=34700500	npc=34700120
+c3470_9003 NOT_FOUND
+c3470_9012 NOT_FOUND
+c4140_9000	model=c4140	pos=(79.5,237.8,90.1)	backup=700	walk=''	think=41404000	npc=41404020
+c4140_9001	model=c4140	pos=(73.3,239.4,112.5)	backup=700	walk=''	think=41404000	npc=41404020
+c4140_9003	model=c4140	pos=(74.6,237.8,90.1)	backup=700	walk=''	think=41404000	npc=41404020
+c4140_9006	model=c4140	pos=(73.8,238.6,107.7)	backup=700	walk=''	think=41404000	npc=41404020

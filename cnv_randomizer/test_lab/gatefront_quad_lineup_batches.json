@@ -1,0 +1,311 @@
+{
+  "schema": "gatefront_quad_lineup_v2",
+  "map_id": "m60_42_37_00",
+  "batch_size": 14,
+  "marked_notes": 14,
+  "grace_note_excluded": 1,
+  "unique_mark_slots": [
+    "c4311_9008",
+    "c4311_9002",
+    "c4311_9005",
+    "c4351_9000",
+    "c4311_9014"
+  ],
+  "unique_write_slots": [
+    "c4311_9008",
+    "c4311_9002",
+    "c4311_9005",
+    "c4351_9000",
+    "c4311_9014"
+  ],
+  "total_quadrupeds": 10,
+  "total_batches": 1,
+  "batches": [
+    {
+      "batch": 1,
+      "count": 14,
+      "rows": [
+        {
+          "idx": 1,
+          "note": 2,
+          "mark_slot": "c4311_9008",
+          "test_slot": "c4311_9008",
+          "appearance_slot": "c4311_9008",
+          "world_est": [
+            31.1,
+            108.8,
+            80.7
+          ],
+          "quad_key": "quad_c4160_41600014_m10000000",
+          "english": "Large Stray (Stormveil Castle)",
+          "npc": 41600014,
+          "model": "c4160",
+          "template": "m10_00_00_00:c4160_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 2,
+          "note": 3,
+          "mark_slot": "c4311_9002",
+          "test_slot": "c4311_9002",
+          "appearance_slot": "c4311_9002",
+          "world_est": [
+            47.6,
+            106.3,
+            85.9
+          ],
+          "quad_key": "quad_c4162_41620072_m13000000",
+          "english": "Large Azula Stray",
+          "npc": 41620072,
+          "model": "c4162",
+          "template": "m13_00_00_00:c4162_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "collision_anchor_no_backup",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 3,
+          "note": 4,
+          "mark_slot": "c4311_9005",
+          "test_slot": "c4311_9005",
+          "appearance_slot": "c4311_9005",
+          "world_est": [
+            78.2,
+            100.7,
+            82.1
+          ],
+          "quad_key": "quad_c4164_41640830_m60405300",
+          "english": "Large Bloodbane Stray",
+          "npc": 41640830,
+          "model": "c4164",
+          "template": "m60_40_53_00:c4164_9001",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_701",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 4,
+          "note": 5,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            106.4,
+            94.9,
+            72.3
+          ],
+          "quad_key": "quad_c4164_41650060_m30030000",
+          "english": "Rotten Dog",
+          "npc": 41650060,
+          "model": "c4164",
+          "template": "m30_03_00_00:c3080_9001",
+          "physique_bucket": "perch",
+          "donor_pose_label": "collision_anchor_no_backup",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 5,
+          "note": 6,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            94.8,
+            96.1,
+            76.1
+          ],
+          "quad_key": "quad_c4165_41650935_m35000000",
+          "english": "Bloodbane Stray (Boss)",
+          "npc": 41650935,
+          "model": "c4165",
+          "template": "m35_00_00_00:c4165_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "collision_anchor_no_backup",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 6,
+          "note": 7,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            89.8,
+            96.6,
+            77.3
+          ],
+          "quad_key": "quad_c4166_41660050_m12010000",
+          "english": "Large Mushroom Dog - Lake of Rot",
+          "npc": 41660050,
+          "model": "c4166",
+          "template": "m12_01_00_00:c3750_9251",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 7,
+          "note": 8,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            102.6,
+            95.3,
+            73.8
+          ],
+          "quad_key": "quad_c4166_41660040_m60473700",
+          "english": "Large Rotten Stray",
+          "npc": 41660040,
+          "model": "c4166",
+          "template": "m60_47_37_00:c4166_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_701",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 8,
+          "note": 9,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            96.6,
+            96.0,
+            75.8
+          ],
+          "quad_key": "quad_c5520_55200095_m61474700",
+          "english": "Stray",
+          "npc": 55200095,
+          "model": "c5520",
+          "template": "m61_47_47_00:c5520_9000",
+          "physique_bucket": "humanoid",
+          "donor_pose_label": "ground_stand",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 9,
+          "note": 10,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            89.4,
+            96.6,
+            77.4
+          ],
+          "quad_key": "quad_c5526_55260094_m61444600",
+          "english": "Bloodbane Stray",
+          "npc": 55260094,
+          "model": "c5526",
+          "template": "m61_44_46_00:c5526_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_705",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 10,
+          "note": 11,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            94.8,
+            96.2,
+            76.2
+          ],
+          "quad_key": "quad_c5700_57001083_m61463900",
+          "english": "Demi-Human",
+          "npc": 57001083,
+          "model": "c5700",
+          "template": "m61_46_39_00:c5700_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 11,
+          "note": 12,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            101.1,
+            95.5,
+            74.7
+          ],
+          "quad_key": "quad_c4160_41600014_m10000000",
+          "english": "Large Stray (Stormveil Castle)",
+          "npc": 41600014,
+          "model": "c4160",
+          "template": "m10_00_00_00:c4160_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 12,
+          "note": 13,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            106.7,
+            94.9,
+            72.2
+          ],
+          "quad_key": "quad_c4162_41620072_m13000000",
+          "english": "Large Azula Stray",
+          "npc": 41620072,
+          "model": "c4162",
+          "template": "m13_00_00_00:c4162_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "collision_anchor_no_backup",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 13,
+          "note": 14,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            96.3,
+            96.0,
+            75.9
+          ],
+          "quad_key": "quad_c4164_41640830_m60405300",
+          "english": "Large Bloodbane Stray",
+          "npc": 41640830,
+          "model": "c4164",
+          "template": "m60_40_53_00:c4164_9001",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_701",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 14,
+          "note": 15,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            90.9,
+            96.5,
+            77.0
+          ],
+          "quad_key": "quad_c4164_41650060_m30030000",
+          "english": "Rotten Dog",
+          "npc": 41650060,
+          "model": "c4164",
+          "template": "m30_03_00_00:c3080_9001",
+          "physique_bucket": "perch",
+          "donor_pose_label": "collision_anchor_no_backup",
+          "donor_cycle": 1
+        }
+      ]
+    }
+  ]
+}

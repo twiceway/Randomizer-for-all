@@ -1,0 +1,68 @@
+# 不用 Smithbox 合并随机 — 推荐 DSMSPortable
+
+法魂改 regulation.bin，目前靠谱的基本就这一家（DSMS / Smithbox / DSMSPortable）。
+**最省事的是命令行 DSMSPortable**：只打 massedit 补丁，不导整张 CSV，也不会弹出 Upgrade 升级整包。
+
+---
+
+## 方案 A（推荐）：你 Game 里已有 DSMSPortable
+
+### 下载（若 exe 坏了或要更新）
+
+- **DSMSPortable v1.9**  
+  https://github.com/mountlover/DSMSPortable/releases/latest  
+  下 `DSMSPortablev1.9.zip`，解压到：  
+  `Game\tools\DSMSPortable\`
+
+- **.NET 6 桌面运行时**（没装会报错码 <0）  
+  https://dotnet.microsoft.com/en-us/download/dotnet/6.0  
+  选 **Desktop Runtime x64**
+
+### 用法（三步）
+
+1. 恢复能玩的 `mod\regulation.bin`（合并前有 27 职业那份）
+2. `tools\cnv_randomizer\RUN_RANDOMIZE.bat`
+3. `tools\cnv_randomizer\APPLY_TO_REGULATION.bat`
+
+APPLY 只会把 `output\ItemLotParam_map.massedit` 打进 bin，**不升级整包**。
+
+### 手动命令（bat 失败时）
+
+在 `Game\tools\DSMSPortable` 目录打开 cmd：
+
+```
+DSMSPortable.exe "V:\games\Elden Ring\Game\mod\regulation.bin" -G ER -P "V:\games\Elden Ring\Game\" -M "V:\games\Elden Ring\Game\tools\cnv_randomizer\output\ItemLotParam_map.massedit" -O "V:\games\Elden Ring\Game\mod\regulation.bin.tmp"
+```
+
+成功后把 `.tmp` 改名为 `regulation.bin`。
+
+错误码 **7** = 加载 param 超时，多试一次或关掉占文件的程序。
+
+---
+
+## 方案 B：仍要用图形界面
+
+### Smithbox（SB 难用但功能全）
+
+- https://github.com/vawser/Smithbox/releases/latest  
+- 下 zip 解压即用，**不要**用会 Upgrade 的工程  
+- 优先用 **Mass Edit** 粘贴 `ItemLotParam_map.massedit`，比 Import 整张 CSV 安全
+
+### 旧版 DS Map Studio（不推荐法魂 3.0）
+
+- https://github.com/soulsmods/DSMapStudio/releases/latest  
+- 只支持 **1.12 以前** 的 regulation，法魂 3.0 多半打不开
+
+---
+
+## 没有「一键合并」的第三方神器
+
+网上没有比 DSMS 家族更简单、又支持新版 ER regulation 的独立小工具。
+随机脚本已经帮你生成好了 **massedit**，用 DSMSPortable 打进去即可。
+
+---
+
+## 合并后检查
+
+- bin 大小应和合并前 **差不多**（不要变成 **3,136,624**）
+- 新开 CNV 档：27 职业 + 圣所金道具

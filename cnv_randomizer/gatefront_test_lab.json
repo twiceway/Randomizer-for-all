@@ -1,0 +1,12 @@
+{
+  "_comment": "四足认外观：F6 14 槽捐皮；全图其余槽固定原版士兵；不走随机种子",
+  "map_id": "m60_42_37_00",
+  "seed": 976847321,
+  "vanilla_baseline": true,
+  "mode": "night_lineup",
+  "vanilla_npc": false,
+  "slots": {},
+  "quad_batch": 1,
+  "fly_batch": 1,
+  "ignore_slot_compat": true
+}
