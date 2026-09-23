@@ -1,0 +1,4948 @@
+using System.Reflection;
+using System.Security.Cryptography;
+
+using System.Text;
+
+using System.Text.Json;
+
+using System.Collections.Concurrent;
+
+using System.Diagnostics;
+
+using System.Threading;
+
+using System.Threading.Tasks;
+
+using SoulsFormats;
+using SoulsFormats.Cryptography;
+
+
+
+static partial class Program
+
+{
+
+    const string MapId = "m60_42_37_00";
+
+    const string MapRelPath = "map/mapstudio/m60_42_37_00.msbe.dcx";
+
+    const uint WagonGroupId = 1042375810u;
+
+    const string SourceModel = "c4311"; // Godrick Soldier (Gatefront caravan)
+
+    const string TargetModel = "c3251";  // Tree Sentinel
+
+    const int TargetNpcParam = 32510010; // Tree Sentinel (Limgrave field)
+
+    const int TargetThinkParam = 32510900; // from m60_42_36_00 field sentinel
+
+    const int SourceNpcParam = 43110010;   // Gatefront Godrick soldier (sword+shield)
+    const string EnemyOverlayPackage = "cnv_enemy";
+
+
+
+    static int Main(string[] args)
+
+    {
+
+        var gameDir = ResolveGameDir(args);
+
+        var msbOverride = ResolveMsbOverride(args);
+
+        var mode = args.FirstOrDefault(a => !a.StartsWith("--")) ?? "list";
+
+        var detailLog = new StringBuilder();
+
+
+
+        Log(detailLog, $"mode={mode}");
+
+        Log(detailLog, $"game_dir={gameDir}");
+
+        Log(detailLog, $"tool_root={ResolveToolRoot()}");
+
+        Log(detailLog, $"ringrandom_root={ResolveRingrandomRoot()}");
+
+        if (!string.IsNullOrWhiteSpace(msbOverride))
+
+        {
+
+            Log(detailLog, $"--msb override={msbOverride}");
+
+        }
+
+
+
+        if (mode == "verify")
+        {
+            return VerifyParams(ResolveCsvDir(gameDir), detailLog);
+        }
+
+        if (mode == "restore")
+        {
+            return RestoreOverlay(gameDir, detailLog);
+        }
+
+        if (mode == "scan-donors")
+        {
+            return ScanDonors(gameDir, detailLog);
+        }
+
+        if (mode == "index-export")
+        {
+            return ExportEnemyIndex(gameDir, args, detailLog);
+        }
+
+        if (mode == "pickup-index-export")
+        {
+            return ExportPickupIndex(gameDir, args, detailLog);
+        }
+
+        if (mode == "apply-map")
+        {
+            return ApplySpawnMap(gameDir, args, detailLog);
+        }
+
+        string? loadPath = msbOverride;
+        if (mode is "patch" or "boss-batch1" or "boss-batch2")
+        {
+            loadPath = ResolvePatchSource(gameDir, detailLog);
+            if (loadPath == null)
+            {
+                Console.Error.WriteLine(
+                    """
+                    Cannot patch: read CNV mod MSB failed (repair Convergence if missing or already corrupted).
+                    Output goes to mod/cnv_enemy/ — CNV mod/map/MapStudio is read-only.
+                    Run: ENEMY_POC.bat restore   to remove overlay only
+                    """);
+                WriteDetailLog(detailLog, "patch_failed=no_cnv_source");
+                return 1;
+            }
+        }
+
+        var load = LoadMap(gameDir, MapRelPath, loadPath, detailLog);
+
+        var msb = ReadMsbe(load.Bytes);
+
+        var enemies = msb.Parts.Enemies;
+
+
+
+        var wagonSoldiers = FilterSoldiers(enemies, wagonOnly: true);
+
+        var allSoldiers = FilterSoldiers(enemies, wagonOnly: false);
+
+        var treeSentinels = enemies
+
+            .Where(e => e.ModelName.StartsWith(TargetModel, StringComparison.OrdinalIgnoreCase))
+
+            .OrderBy(e => e.EntityID)
+
+            .ToList();
+
+
+
+        Log(detailLog, $"msb_source={load.SourcePath}");
+
+        Log(detailLog, $"msb_source_bytes={load.Bytes.Length}");
+
+        Log(detailLog, $"msb_source_sha256={load.Sha256}");
+
+        Log(detailLog, $"map={MapId} total_enemies={enemies.Count}");
+
+        Log(detailLog, $"wagon_group_{WagonGroupId}_{SourceModel}={wagonSoldiers.Count}");
+
+        Log(detailLog, $"all_{SourceModel}={allSoldiers.Count}");
+
+        Log(detailLog, $"reference_{TargetModel}={treeSentinels.Count}");
+
+
+
+        Console.WriteLine($"Map {MapId}: {enemies.Count} enemies");
+
+        Console.WriteLine($"  MSB source: {load.SourcePath} ({load.Bytes.Length} bytes)");
+
+        Console.WriteLine($"  wagon-group {SourceModel} (group {WagonGroupId}): {wagonSoldiers.Count}");
+
+        Console.WriteLine($"  all {SourceModel}: {allSoldiers.Count}");
+
+        Console.WriteLine($"  reference {TargetModel}: {treeSentinels.Count}");
+
+
+
+        if (treeSentinels.Count > 0)
+
+        {
+
+            var refEnemy = treeSentinels[0];
+
+            var refLine =
+
+                $"  ref entity={refEnemy.EntityID} npc={refEnemy.NPCParamID} think={refEnemy.ThinkParamID} chara={refEnemy.CharaInitID}";
+
+            Console.WriteLine(refLine);
+
+            Log(detailLog, refLine.Trim());
+
+        }
+
+
+
+        foreach (var e in wagonSoldiers)
+
+        {
+
+            var line = FormatEnemy("wagon", e);
+
+            Console.WriteLine(line);
+
+            Log(detailLog, line.Trim());
+
+        }
+
+
+
+        if (wagonSoldiers.Count == 0)
+
+        {
+
+            Console.WriteLine("  (no wagon-group soldiers — listing all Godrick soldiers on map)");
+
+            Log(detailLog, "no_wagon_group_soldiers=true");
+
+            foreach (var e in allSoldiers.Take(12))
+
+            {
+
+                var line = FormatEnemy("soldier", e, includePos: true);
+
+                Console.WriteLine(line);
+
+                Log(detailLog, line.Trim());
+
+            }
+
+        }
+
+
+
+        if (mode == "list")
+        {
+            Console.WriteLine();
+            Console.WriteLine("Run: patch   — replace ALL Gatefront Godrick soldiers with Tree Sentinel");
+            Console.WriteLine("     boss-batch1 — 3 slots: random dragon + Godrick + Elden Beast (Gatefront test)");
+            Console.WriteLine("     boss-batch2 — 5 slots: real dragon + Elden Beast c2200 + 3 rune compare");
+            Console.WriteLine("     scan-donors — list boss/dragon templates in CNV mod/map");
+            Console.WriteLine("     index-export — export ALL map MSB enemies to JSON (overworld+legacy; --out= path)");
+            Console.WriteLine("     pickup-index-export — export MSB treasure placements (ItemLot) to JSON (--out= path)");
+            Console.WriteLine("     apply-map — patch MSB overlay from cnv_enemy_spawn_map.txt (--spawn-map= path)");
+            Console.WriteLine("     restore — delete mod/cnv_enemy overlay (CNV source untouched)");
+            Console.WriteLine("     inspect — dump idle/patrol MSB fields for soldiers vs Tree Sentinel ref");
+            Console.WriteLine("     verify — check NpcParam/NpcThinkParam in Game\\csv (no MSB needed)");
+            WriteDetailLog(detailLog, "list");
+            return 0;
+        }
+
+        if (mode == "inspect")
+        {
+            DumpEnemyStates(allSoldiers, gameDir, detailLog);
+            WriteDetailLog(detailLog, "inspect");
+            return 0;
+        }
+
+        if (mode == "area")
+        {
+            var areaId = args.FirstOrDefault(a => uint.TryParse(a, out _)) is { } s && uint.TryParse(s, out var id) ? id : 1042372808u;
+            DumpArea(msb, areaId);
+            return 0;
+        }
+
+        if (mode == "boss-batch1")
+        {
+            return RunBossBatch(
+                gameDir, msb, enemies, detailLog, args,
+                Batch1Plan, 42001, "boss_batch1", "boss_batch1_spoiler.txt",
+                "Boss batch 1 — Gatefront (seed {0})",
+                "Only 3 soldier slots change; all other enemies stay vanilla.",
+                "Check: dragon terrain at forest patrol, Godrick phases, Elden Beast at camp sit spot");
+        }
+
+        if (mode == "boss-batch2")
+        {
+            return RunBossBatch(
+                gameDir, msb, enemies, detailLog, args,
+                Batch2Plan, 42002, "boss_batch2", "boss_batch2_spoiler.txt",
+                "Boss batch 2 — Gatefront (seed {0})",
+                "5 slots: real dragon + Elden Beast c2200 + 3 rune tier compares.",
+                "Check: dragon visible at wagon field, Elden Beast model, rune amounts on 9004/9008/9012 kills");
+        }
+
+
+
+        if (mode != "patch")
+
+        {
+
+            Console.Error.WriteLine($"Unknown mode: {mode}");
+
+            return 2;
+
+        }
+
+
+
+        var patchTargets = allSoldiers;
+
+        if (patchTargets.Count == 0)
+
+        {
+
+            Console.Error.WriteLine("No soldiers found on this map.");
+
+            Log(detailLog, "ERROR=no_soldiers_to_patch");
+
+            WriteDetailLog(detailLog, "patch_failed");
+
+            return 1;
+
+        }
+
+
+
+        Log(detailLog, $"patch_scope=all_{SourceModel}_on_{MapId}");
+
+        Log(detailLog, $"patch_count={patchTargets.Count}");
+
+        Log(detailLog, $"target_model={TargetModel} target_npc={TargetNpcParam} target_think={TargetThinkParam}");
+
+        DumpArea(msb, 1042372808u);
+        Log(detailLog, "vanguard_warp_area=1042372808 (Gatefront bridge — must come from CNV MSB, not vanilla cache)");
+
+        EnsureEnemyModel(msb, TargetModel, gameDir, detailLog);
+
+        Console.WriteLine();
+
+        Console.WriteLine($"Patching {patchTargets.Count} {SourceModel} -> {TargetModel} ...");
+
+
+
+        var patchRecords = new List<PatchRecord>();
+
+        foreach (var enemy in patchTargets)
+
+        {
+
+            var record = new PatchRecord
+
+            {
+
+                Name = enemy.Name,
+
+                EntityId = enemy.EntityID,
+
+                PosX = enemy.Position.X,
+
+                PosY = enemy.Position.Y,
+
+                PosZ = enemy.Position.Z,
+
+                Groups = string.Join(",", enemy.EntityGroupIDs),
+
+                BeforeModel = enemy.ModelName,
+
+                BeforeNpc = enemy.NPCParamID,
+
+                BeforeThink = enemy.ThinkParamID,
+
+                BeforeChara = enemy.CharaInitID,
+
+            };
+
+
+
+            enemy.ModelName = TargetModel;
+
+            enemy.NPCParamID = TargetNpcParam;
+
+            enemy.ThinkParamID = TargetThinkParam;
+
+            ApplyTransplantBehavior(enemy, record);
+
+            record.AfterModel = enemy.ModelName;
+
+            record.AfterNpc = enemy.NPCParamID;
+
+            record.AfterThink = enemy.ThinkParamID;
+
+            record.AfterChara = enemy.CharaInitID;
+
+            patchRecords.Add(record);
+
+
+
+            var line =
+                $"  PATCH #{patchRecords.Count:D2} name={record.Name} sit_clear={record.SitCleared} " +
+                $"backup {record.BeforeBackupAnim}->{record.AfterBackupAnim} route='{record.BeforeWalkRoute}' (unchanged)";
+
+            Console.WriteLine(line);
+
+            Log(detailLog, line.Trim());
+
+        }
+
+
+
+        var outDir = OverlayMapStudioDir(gameDir);
+        Directory.CreateDirectory(outDir);
+
+        var outMsb = Path.Combine(outDir, $"{MapId}.msb.dcx");
+        var outMsbe = Path.Combine(outDir, $"{MapId}.msbe.dcx");
+        var existingOverlay = File.Exists(outMsb);
+
+
+
+        Log(detailLog, $"overlay_mapstudio_dir={outDir}");
+        Log(detailLog, $"cnv_source_readonly={ModMsbPath(gameDir)}");
+        Log(detailLog, $"preexisting_overlay={existingOverlay}");
+
+        var written = WriteMsbe(msb);
+
+        File.WriteAllBytes(outMsb, written);
+
+        File.WriteAllBytes(outMsbe, written);
+
+
+
+        var verifyMsb = ReadMsbe(File.ReadAllBytes(outMsb));
+
+        var verifySentinels = verifyMsb.Parts.Enemies
+
+            .Where(e => e.ModelName.StartsWith(TargetModel, StringComparison.OrdinalIgnoreCase))
+
+            .ToList();
+
+        var verifySoldiers = FilterSoldiers(verifyMsb.Parts.Enemies, wagonOnly: false);
+
+
+
+        Log(detailLog, $"wrote_msb={outMsb} bytes={written.Length} sha256={Sha256Hex(written)}");
+
+        Log(detailLog, $"wrote_msbe={outMsbe} bytes={written.Length}");
+
+        Log(detailLog, $"verify_sentinel_count={verifySentinels.Count}");
+
+        Log(detailLog, $"verify_remaining_{SourceModel}={verifySoldiers.Count}");
+
+
+
+        Console.WriteLine();
+
+        Console.WriteLine($"Wrote overlay {outMsb} ({written.Length} bytes)");
+        Console.WriteLine($"CNV source NOT modified: {ModMsbPath(gameDir)}");
+        Console.WriteLine();
+        WriteMe3OverlayInstructions(gameDir, detailLog);
+
+        Console.WriteLine("In-game: fully quit game -> Start_Convergence.bat -> NG or new char -> Gatefront");
+
+
+
+        var manifestPath = Path.Combine(outDir, "cnv_enemy_poc_manifest.txt");
+
+        var manifest = BuildManifest(patchRecords, load, outMsb, outMsbe, verifySentinels.Count, verifySoldiers.Count);
+
+        File.WriteAllText(manifestPath, manifest, Encoding.UTF8);
+
+        Log(detailLog, $"manifest={manifestPath}");
+
+        Console.WriteLine($"Manifest {manifestPath}");
+
+
+
+        WriteDetailLog(detailLog, "patch");
+
+        var gameLog = Path.Combine(outDir, "cnv_enemy_poc_last_run.txt");
+
+        File.WriteAllText(gameLog, detailLog.ToString(), Encoding.UTF8);
+
+        Console.WriteLine($"Detail log {ResolveToolRoot()}\\enemy_poc_detail.txt");
+
+        Console.WriteLine($"Detail log (game) {gameLog}");
+
+
+
+        return verifySentinels.Count == patchTargets.Count && verifySoldiers.Count == 0 ? 0 : 3;
+
+    }
+
+
+
+    static string CnvMapStudioDir(string gameDir)
+    {
+        foreach (var path in new[]
+        {
+            Path.Combine(gameDir, "mod", "map", "MapStudio"),
+            Path.Combine(gameDir, "mod", "map", "mapstudio"),
+        })
+        {
+            if (Directory.Exists(path))
+            {
+                return path;
+            }
+        }
+
+        return Path.Combine(gameDir, "mod", "map", "MapStudio");
+    }
+
+    static string OverlayMapStudioDir(string gameDir) =>
+        Path.Combine(gameDir, "mod", EnemyOverlayPackage, "map", "MapStudio");
+
+    static string ModMsbPath(string gameDir) =>
+        Path.Combine(CnvMapStudioDir(gameDir), $"{MapId}.msb.dcx");
+
+    static string? LegacyBaselinePath(string gameDir)
+    {
+        var bak = ModMsbPath(gameDir) + ".cnv_bak";
+        return File.Exists(bak) ? bak : null;
+    }
+
+    static int CountModel(MSBE msb, string model) =>
+        msb.Parts.Enemies.Count(e => e.ModelName.StartsWith(model, StringComparison.OrdinalIgnoreCase));
+
+    static string? ResolvePatchSource(string gameDir, StringBuilder detailLog)
+    {
+        var modMsb = ModMsbPath(gameDir);
+        if (!File.Exists(modMsb))
+        {
+            Log(detailLog, "patch_source=missing_cnv_mod_msb");
+            Console.Error.WriteLine($"Missing CNV MSB: {modMsb}");
+            Console.Error.WriteLine("Repair/reinstall Convergence — do NOT use Smithbox export as source.");
+            return null;
+        }
+
+        var modBytes = File.ReadAllBytes(modMsb);
+        var modMsbData = ReadMsbe(modBytes);
+        var sentinels = CountModel(modMsbData, TargetModel);
+        var soldiers = CountModel(modMsbData, SourceModel);
+
+        if (soldiers == 0 && sentinels > 0)
+        {
+            Log(detailLog, $"patch_source=blocked cnv_msb_already_patched sentinels={sentinels}");
+            Console.Error.WriteLine("CNV mod/map/MapStudio/m60_42_37_00.msb.dcx already has Tree Sentinels (was overwritten earlier).");
+            Console.Error.WriteLine("Repair Convergence once, then patch again (output goes to mod/cnv_enemy/).");
+            return null;
+        }
+
+        if (modBytes.Length < 60_000)
+        {
+            Console.WriteLine($"WARNING: CNV MSB only {modBytes.Length} bytes (expected ~73 KB). Repair Convergence before patch.");
+            Log(detailLog, $"WARNING=small_cnv_msb bytes={modBytes.Length}");
+        }
+
+        Log(detailLog, $"patch_source=cnv_mod_msb path={modMsb} bytes={modBytes.Length} soldiers={soldiers}");
+        Console.WriteLine($"Patch source (read-only): {modMsb} ({modBytes.Length} bytes, {soldiers} soldiers)");
+        return modMsb;
+    }
+
+    static int RestoreOverlay(string gameDir, StringBuilder detailLog)
+    {
+        var overlayRoot = Path.Combine(gameDir, "mod", EnemyOverlayPackage);
+        if (Directory.Exists(overlayRoot))
+        {
+            Directory.Delete(overlayRoot, recursive: true);
+            Log(detailLog, $"removed_overlay={overlayRoot}");
+            Console.WriteLine($"Removed overlay: {overlayRoot}");
+        }
+        else
+        {
+            Console.WriteLine("No overlay to remove (mod/cnv_enemy missing).");
+        }
+
+        var legacyBak = LegacyBaselinePath(gameDir);
+        if (legacyBak != null)
+        {
+            File.Copy(legacyBak, ModMsbPath(gameDir), overwrite: true);
+            Console.WriteLine($"Restored CNV MSB from legacy backup: {legacyBak}");
+            Log(detailLog, $"restored_cnv_from={legacyBak}");
+        }
+
+        WriteDetailLog(detailLog, "restore");
+        Console.WriteLine("CNV mod/map/MapStudio left as-is unless legacy .cnv_bak existed.");
+        return 0;
+    }
+
+    static void WriteMe3OverlayInstructions(string gameDir, StringBuilder detailLog)
+    {
+        var snippetPath = Path.Combine(ResolveToolRoot(), "cnv_enemy_me3_snippet.toml");
+        var snippet = """
+            # Add ONCE to Game/me3/convergence.me3 (after convergence-er package):
+            [[package]]
+            id = "cnv-enemy-poc"
+            path = "./../mod/cnv_enemy"
+            load_after = [{ id = "convergence-er", optional = false }]
+            """;
+        File.WriteAllText(snippetPath, snippet, Encoding.UTF8);
+        Log(detailLog, $"me3_snippet={snippetPath}");
+
+        var me3Path = Path.Combine(gameDir, "me3", "convergence.me3");
+        Console.WriteLine("ME3 overlay (loads AFTER Convergence, does not edit CNV files):");
+        Console.WriteLine($"  Append snippet from: {snippetPath}");
+        Console.WriteLine($"  To: {me3Path}");
+        Console.WriteLine("  Disable: ENEMY_POC.bat restore");
+    }
+
+    static void DumpArea(MSBE msb, uint entityId)
+    {
+        var hits = new List<MSBE.Region>();
+        foreach (var region in msb.Regions.GetEntries())
+        {
+            if (region is MSBE.Region r && r.EntityID == entityId)
+            {
+                hits.Add(r);
+            }
+        }
+
+        Console.WriteLine($"Map {MapId}: area entity {entityId} hits={hits.Count}");
+        foreach (var r in hits)
+        {
+            Console.WriteLine($"  name={r.Name} pos=({r.Position.X:F1},{r.Position.Y:F1},{r.Position.Z:F1}) mapId={r.MapID}");
+        }
+    }
+
+    static void DumpEnemyStates(List<MSBE.Part.Enemy> soldiers, string gameDir, StringBuilder detailLog)
+    {
+        var refEnemy = FindEnemyPartEntry(gameDir, TargetModel, detailLog);
+        if (refEnemy != null)
+        {
+            var line = FormatEnemyState("REF_SENTINEL", refEnemy);
+            Console.WriteLine(line);
+            Log(detailLog, line.Trim());
+        }
+        else
+        {
+            Console.WriteLine("  (no Tree Sentinel reference part found in mod maps)");
+        }
+
+        foreach (var e in soldiers)
+        {
+            var line = FormatEnemyState("SOLDIER", e);
+            Console.WriteLine(line);
+            Log(detailLog, line.Trim());
+        }
+    }
+
+    static string FormatEnemyState(string label, MSBE.Part.Enemy e) =>
+        $"  {label} name={e.Name} npc={e.NPCParamID} think={e.ThinkParamID} " +
+        $"backup_anim={e.BackupEventAnimID} walk_route='{e.WalkRouteName}' collision='{e.CollisionPartName}' " +
+        $"chara={e.CharaInitID} platoon={e.PlatoonID} chr_activate={e.ChrActivateCondParamID} spfx={e.SpEffectSetParamID}";
+
+    static MSBE.Part.Enemy? FindEnemyPartEntry(string gameDir, string modelName, StringBuilder detailLog)
+    {
+        var mapStudio = CnvMapStudioDir(gameDir);
+        foreach (var fileName in new[] { "m60_42_36_00.msb.dcx", "m60_41_51_00.msb.dcx" })
+        {
+            var path = Path.Combine(mapStudio, fileName);
+            if (!File.Exists(path))
+            {
+                continue;
+            }
+
+            var donor = ReadMsbe(File.ReadAllBytes(path));
+            var part = donor.Parts.Enemies.FirstOrDefault(e => e.ModelName.StartsWith(modelName, StringComparison.OrdinalIgnoreCase));
+            if (part != null)
+            {
+                Log(detailLog, $"state_ref_map={path} state_ref_name={part.Name}");
+                return part;
+            }
+        }
+
+        return null;
+    }
+
+    static readonly string[] SiegeWeaponModelPrefixes =
+    {
+        "c8100", // ballista / trebuchet body
+        "c8101", // giant ballista
+        "c8110", // dragon-flame / flamethrower siege
+    };
+
+    static bool IsSiegeWeaponPartName(string? partName)
+    {
+        if (string.IsNullOrWhiteSpace(partName))
+        {
+            return false;
+        }
+
+        var name = partName.ToLowerInvariant();
+        return SiegeWeaponModelPrefixes.Any(p => name.StartsWith(p, StringComparison.Ordinal));
+    }
+
+    /// <summary>
+    /// MSB Events.Mounts: rider entity → siege weapon entity (c81xx).
+    /// </summary>
+    static Dictionary<string, string> IndexSiegeMountRiders(MSBE msb)
+    {
+        var riders = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var mountEvt in msb.Events.Mounts)
+        {
+            var mountPart = mountEvt.MountPartName ?? "";
+            if (!IsSiegeWeaponPartName(mountPart))
+            {
+                continue;
+            }
+
+            var riderPart = mountEvt.RiderPartName ?? "";
+            if (string.IsNullOrWhiteSpace(riderPart))
+            {
+                continue;
+            }
+
+            riders[riderPart] = mountPart;
+        }
+
+        return riders;
+    }
+
+
+    static HashSet<string> CollectWalkRouteNames(MSBE msb)
+    {
+        var names = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var route in msb.Routes.GetEntries())
+        {
+            if (!string.IsNullOrWhiteSpace(route.Name))
+            {
+                names.Add(route.Name);
+            }
+        }
+
+        return names;
+    }
+
+    static int SanitizeDanglingWalkRoutes(MSBE msb, StringBuilder? detailLog = null)
+    {
+        var valid = CollectWalkRouteNames(msb);
+        var cleared = 0;
+        foreach (var enemy in msb.Parts.Enemies)
+        {
+            if (string.IsNullOrWhiteSpace(enemy.WalkRouteName))
+            {
+                continue;
+            }
+
+            if (valid.Contains(enemy.WalkRouteName))
+            {
+                continue;
+            }
+
+            detailLog?.AppendLine(
+                $"sanitize_walk_route enemy={enemy.Name} route='{enemy.WalkRouteName}'");
+            enemy.WalkRouteName = "";
+            cleared++;
+        }
+
+        return cleared;
+    }
+
+    static HashSet<string> CollectCollisionPartNames(MSBE msb)
+    {
+        var names = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var part in msb.Parts.GetEntries())
+        {
+            if (!string.IsNullOrWhiteSpace(part.Name))
+            {
+                names.Add(part.Name);
+            }
+        }
+
+        return names;
+    }
+
+    static int SanitizeDanglingCollisionParts(MSBE msb, StringBuilder? detailLog = null)
+    {
+        var valid = CollectCollisionPartNames(msb);
+        var cleared = 0;
+        foreach (var enemy in msb.Parts.Enemies)
+        {
+            if (string.IsNullOrWhiteSpace(enemy.CollisionPartName))
+            {
+                continue;
+            }
+
+            if (valid.Contains(enemy.CollisionPartName))
+            {
+                continue;
+            }
+
+            detailLog?.AppendLine(
+                $"sanitize_collision enemy={enemy.Name} part='{enemy.CollisionPartName}'");
+            enemy.CollisionPartName = "";
+            cleared++;
+        }
+
+        return cleared;
+    }
+
+    static void TryDeleteFileIfExists(string? path)
+    {
+        if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+        {
+            return;
+        }
+
+        try
+        {
+            File.Delete(path);
+        }
+        catch
+        {
+            // best-effort cleanup after failed MSB write
+        }
+    }
+
+    static void WriteOverlayMsbPair(MSBE msb, string outMsb, string outMsbe, StringBuilder? detailLog = null)
+    {
+        // T-073 §2.1: target-slot WalkRoute must survive apply. Convergence MSBs often keep
+        // Japanese / legacy route names on enemies while msb.Routes only lists runtime stubs —
+        // SanitizeDanglingWalkRoutes would strip every patrol slot (真机：狗站桩不巡逻).
+        // Collision sanitize stays (map-local part names).
+        var clearedCollisions = SanitizeDanglingCollisionParts(msb, detailLog);
+        if (clearedCollisions > 0 && detailLog != null)
+        {
+            detailLog.AppendLine($"sanitize_collision_total={clearedCollisions}");
+        }
+
+        var tempMsb = outMsb + ".tmp";
+        TryDeleteFileIfExists(tempMsb);
+        try
+        {
+            WriteMsbeToPath(msb, tempMsb);
+            if (new FileInfo(tempMsb).Length == 0)
+            {
+                throw new IOException($"msb_write_empty {outMsb}");
+            }
+
+            if (File.Exists(outMsb))
+            {
+                File.Delete(outMsb);
+            }
+
+            File.Move(tempMsb, outMsb);
+            TryWriteOutputMsbeCopy(outMsb, outMsbe);
+        }
+        catch
+        {
+            TryDeleteFileIfExists(tempMsb);
+            TryDeleteFileIfExists(outMsb);
+            TryDeleteFileIfExists(outMsbe);
+            throw;
+        }
+    }
+
+    static string? ResolveDonorMapId(string templateId, string fallbackMapId)
+    {
+        if (string.IsNullOrWhiteSpace(templateId))
+        {
+            return fallbackMapId;
+        }
+
+        if (templateId.StartsWith("synthetic:", StringComparison.OrdinalIgnoreCase))
+        {
+            return SyntheticTemplateSources.TryGetValue(templateId, out var src)
+                ? src.MapId
+                : fallbackMapId;
+        }
+
+        var colon = templateId.IndexOf(':');
+        if (colon <= 0)
+        {
+            return fallbackMapId;
+        }
+
+        return templateId[..colon];
+    }
+
+    sealed record SyntheticTemplateSource(string MapId, string EntityName);
+
+    static readonly Dictionary<string, SyntheticTemplateSource> SyntheticSourceOverrides =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["synthetic:godfrey_c5770"] = new("m29_00_00_00", "c5770_9000"),
+            ["synthetic:radahn_c4730"] = new("m42_03_00_00", "c4730_9000"),
+            ["synthetic:red_wolf_c4370"] = new("m14_02_00_00", "c4370_9000"),
+        };
+
+    static Dictionary<string, SyntheticTemplateSource> SyntheticTemplateSources =
+        new(StringComparer.OrdinalIgnoreCase);
+
+    static void LoadSyntheticTemplateSources()
+    {
+        SyntheticTemplateSources = new Dictionary<string, SyntheticTemplateSource>(StringComparer.OrdinalIgnoreCase);
+        var categoriesPath = Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "enemy_categories.json");
+        var indexPath = Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "enemy_index.json");
+        if (!File.Exists(categoriesPath))
+        {
+            foreach (var kv in SyntheticSourceOverrides)
+            {
+                SyntheticTemplateSources[kv.Key] = kv.Value;
+            }
+
+            return;
+        }
+
+        using var categoriesDoc = JsonDocument.Parse(File.ReadAllText(categoriesPath, Encoding.UTF8));
+        if (!categoriesDoc.RootElement.TryGetProperty("synthetic_boss_templates", out var templates)
+            || templates.ValueKind != JsonValueKind.Array)
+        {
+            return;
+        }
+
+        Dictionary<string, List<(string MapId, string EntityName, int Rank)>> indexByModel = new(
+            StringComparer.OrdinalIgnoreCase);
+        if (File.Exists(indexPath))
+        {
+            using var indexDoc = JsonDocument.Parse(File.ReadAllText(indexPath, Encoding.UTF8));
+            if (indexDoc.RootElement.TryGetProperty("templates", out var indexTemplates)
+                && indexTemplates.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var row in indexTemplates.EnumerateArray())
+                {
+                    var donorMap = row.TryGetProperty("donor_map", out var mapEl)
+                        ? mapEl.GetString() ?? ""
+                        : "";
+                    var donorEntity = row.TryGetProperty("donor_entity", out var entityEl)
+                        ? entityEl.GetString() ?? ""
+                        : "";
+                    var model = row.TryGetProperty("model", out var modelEl)
+                        ? modelEl.GetString() ?? ""
+                        : "";
+                    if (string.IsNullOrWhiteSpace(model)
+                        || string.IsNullOrWhiteSpace(donorMap)
+                        || string.Equals(donorMap, "synthetic", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    var mapId = donorMap
+                        .Replace(".msb.dcx", "", StringComparison.OrdinalIgnoreCase)
+                        .Replace(".msbe.dcx", "", StringComparison.OrdinalIgnoreCase);
+                    if (!IsValidDonorMapId(mapId) || string.IsNullOrWhiteSpace(donorEntity))
+                    {
+                        continue;
+                    }
+
+                    var rank = ScoreSyntheticIndexSource(mapId, donorEntity);
+                    if (!indexByModel.TryGetValue(model, out var hits))
+                    {
+                        hits = new List<(string, string, int)>();
+                        indexByModel[model] = hits;
+                    }
+
+                    hits.Add((mapId, donorEntity, rank));
+                }
+            }
+        }
+
+        foreach (var raw in templates.EnumerateArray())
+        {
+            var templateId = raw.TryGetProperty("template_id", out var idEl)
+                ? idEl.GetString() ?? ""
+                : "";
+            if (string.IsNullOrWhiteSpace(templateId))
+            {
+                continue;
+            }
+
+            if (SyntheticSourceOverrides.TryGetValue(templateId, out var overrideSrc))
+            {
+                SyntheticTemplateSources[templateId] = overrideSrc;
+                continue;
+            }
+
+            var configuredMap = raw.TryGetProperty("source_map", out var srcMapEl)
+                ? srcMapEl.GetString() ?? ""
+                : "";
+            var configuredEntity = raw.TryGetProperty("source_entity", out var srcEntityEl)
+                ? srcEntityEl.GetString() ?? ""
+                : "";
+            if (IsValidDonorMapId(configuredMap) && !string.IsNullOrWhiteSpace(configuredEntity))
+            {
+                SyntheticTemplateSources[templateId] = new SyntheticTemplateSource(
+                    configuredMap,
+                    configuredEntity);
+                continue;
+            }
+
+            var model = raw.TryGetProperty("model", out var modelEl)
+                ? modelEl.GetString() ?? ""
+                : "";
+            if (string.IsNullOrWhiteSpace(model)
+                || !indexByModel.TryGetValue(model, out var hits)
+                || hits.Count == 0)
+            {
+                continue;
+            }
+
+            var best = hits
+                .OrderByDescending(hit => hit.Rank)
+                .ThenBy(hit => hit.MapId, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(hit => hit.EntityName, StringComparer.OrdinalIgnoreCase)
+                .First();
+            SyntheticTemplateSources[templateId] = new SyntheticTemplateSource(
+                best.MapId,
+                best.EntityName);
+        }
+
+        foreach (var kv in SyntheticSourceOverrides)
+        {
+            SyntheticTemplateSources.TryAdd(kv.Key, kv.Value);
+        }
+
+        Console.WriteLine($"apply-map: synthetic_sources={SyntheticTemplateSources.Count}");
+        Console.Out.Flush();
+    }
+
+    static int ScoreSyntheticIndexSource(string mapId, string entityName)
+    {
+        var score = 0;
+        if (entityName.Contains("_9000", StringComparison.OrdinalIgnoreCase))
+        {
+            score += 100;
+        }
+
+        if (mapId.StartsWith("m30_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m31_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m32_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m11_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m12_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m13_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m14_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m20_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m21_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m28_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m29_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m41_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m42_", StringComparison.OrdinalIgnoreCase)
+            || mapId.StartsWith("m61_", StringComparison.OrdinalIgnoreCase))
+        {
+            score += 50;
+        }
+
+        if (mapId.StartsWith("m60_", StringComparison.OrdinalIgnoreCase))
+        {
+            score += 10;
+        }
+
+        return score;
+    }
+
+    static bool IsEnemyModelStub(MSBE.Model.Enemy model) =>
+        GetEnemyModelInstanceCount(model) <= 0;
+
+    static int GetEnemyModelInstanceCount(MSBE.Model.Enemy model)
+    {
+        var prop = model.GetType().GetProperty(
+            "InstanceCount",
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            ?? typeof(MSBE.Model).GetProperty(
+                "InstanceCount",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (prop?.GetValue(model) is int count)
+        {
+            return count;
+        }
+
+        return 0;
+    }
+
+    static MSBE.Model.Enemy? FindEnemyModelOnMsb(MSBE msb, string modelName) =>
+        msb.Models.Enemies.FirstOrDefault(
+            m => string.Equals(m.Name, modelName, StringComparison.OrdinalIgnoreCase))
+        as MSBE.Model.Enemy;
+
+    static bool TryReplaceEnemyModelOnMsb(MSBE msb, string modelName, MSBE.Model.Enemy replacement)
+    {
+        for (var i = 0; i < msb.Models.Enemies.Count; i++)
+        {
+            if (!string.Equals(msb.Models.Enemies[i].Name, modelName, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            msb.Models.Enemies[i] = (MSBE.Model.Enemy)replacement.DeepCopy();
+            return true;
+        }
+
+        return false;
+    }
+
+    static void AddEnemyModelToMsb(
+        MSBE msb,
+        MSBE.Model.Enemy model,
+        ISet<string>? mapModelNames)
+    {
+        msb.Models.Enemies.Add((MSBE.Model.Enemy)model.DeepCopy());
+        if (mapModelNames?.Add(model.Name) == true)
+        {
+            MarkCnvMapModelIndexDirty();
+        }
+    }
+
+    static string EnemyModelSibPath(string modelName) =>
+        $@"N:\GR\data\Model\chr\{modelName}\sib\{modelName}.sib";
+
+    static MSBE.Model.Enemy CreateEnemyModelStub(string modelName) =>
+        new()
+        {
+            Name = modelName,
+            SibPath = EnemyModelSibPath(modelName),
+        };
+
+    /// <summary>T-067: do not pre-fill registry with SibPath-only stubs; miss → FindEnemyModelEntry.</summary>
+    static void SupplementModelRegistryFromSpawnEntries(
+        Dictionary<string, (string MapFile, MSBE.Model.Enemy Model)> registry,
+        IReadOnlyList<SpawnMapEntry> entries)
+    {
+        _ = registry;
+        _ = entries;
+    }
+
+    static List<string> CollectWarmMapFiles(
+        IReadOnlyList<IGrouping<string, SpawnMapEntry>> mapGroups,
+        IReadOnlyList<SpawnMapEntry> entries)
+    {
+        var files = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var group in mapGroups)
+        {
+            files.Add($"{group.Key}.msb.dcx");
+        }
+
+        foreach (var entry in entries)
+        {
+            var donorMapId = ResolveDonorMapId(entry.TemplateId, entry.MapId);
+            if (!string.IsNullOrWhiteSpace(donorMapId))
+            {
+                files.Add($"{donorMapId}.msb.dcx");
+            }
+        }
+
+        foreach (var src in SyntheticTemplateSources.Values)
+        {
+            if (IsValidDonorMapId(src.MapId))
+            {
+                files.Add($"{src.MapId}.msb.dcx");
+            }
+        }
+
+        files.Add("m60_42_36_00.msb.dcx");
+        files.Add("m60_41_51_00.msb.dcx");
+
+        return files.OrderBy(f => f, StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    static void EnsureEnemyModel(
+        MSBE msb,
+        string modelName,
+        string gameDir,
+        StringBuilder detailLog,
+        bool quiet = false,
+        string? preferDonorMapId = null,
+        IReadOnlyDictionary<string, (string MapFile, MSBE.Model.Enemy Model)>? modelRegistry = null,
+        ISet<string>? mapModelNames = null)
+    {
+        var existingOnMap = FindEnemyModelOnMsb(msb, modelName);
+        var hasCompleteOnMap = existingOnMap != null
+            && (mapModelNames == null || mapModelNames.Contains(modelName))
+            && !IsEnemyModelStub(existingOnMap);
+        if (hasCompleteOnMap)
+        {
+            return;
+        }
+
+        MSBE.Model.Enemy? replacement = null;
+        string replacementSource = "";
+
+        if (modelRegistry != null
+            && modelRegistry.TryGetValue(modelName, out var cached)
+            && !IsEnemyModelStub(cached.Model))
+        {
+            replacement = cached.Model;
+            replacementSource = $"from_cache={cached.MapFile}";
+        }
+
+        if (replacement == null && !ModelRegistryMissCache.Contains(modelName))
+        {
+            var modelEntry = FindEnemyModelEntry(gameDir, modelName, detailLog, preferDonorMapId);
+            if (modelEntry != null && !IsEnemyModelStub(modelEntry.Value.Model))
+            {
+                replacement = modelEntry.Value.Model;
+                replacementSource = $"from_map={modelEntry.Value.MapPath}";
+            }
+            else if (ModelRegistryScopedToSpawn)
+            {
+                ModelRegistryMissCache.Add(modelName);
+            }
+        }
+
+        if (replacement != null)
+        {
+            if (existingOnMap != null)
+            {
+                TryReplaceEnemyModelOnMsb(msb, modelName, replacement);
+                Interlocked.Increment(ref ModelEnsureUpgradeCount);
+                Log(detailLog, $"model_registry={modelName} status=upgraded {replacementSource}");
+                if (!quiet)
+                {
+                    Console.WriteLine($"Model registry: upgraded {modelName} {replacementSource}");
+                }
+            }
+            else
+            {
+                AddEnemyModelToMsb(msb, replacement, mapModelNames);
+                Log(detailLog, $"model_registry={modelName} status=added {replacementSource}");
+                if (!quiet)
+                {
+                    Console.WriteLine($"Model registry: added {modelName} {replacementSource}");
+                }
+            }
+
+            return;
+        }
+
+        if (existingOnMap != null)
+        {
+            return;
+        }
+
+        var stub = CreateEnemyModelStub(modelName);
+        AddEnemyModelToMsb(msb, stub, mapModelNames);
+        Interlocked.Increment(ref ModelEnsureStubCount);
+        Log(detailLog, $"model_registry={modelName} status=stub_sib_only");
+        if (!quiet)
+        {
+            Console.WriteLine($"Model registry: stub {modelName} (SIB path only — no donor MSB model entry)");
+        }
+    }
+
+    static bool MsbSourceCacheEnabled = true;
+    static long MsbSourceCacheHits;
+    static long MsbSourceCacheMisses;
+    static bool ApplyProfileEnabled;
+    static readonly ApplyProfileStats ApplyProfile = new();
+    static ConcurrentDictionary<string, HashSet<string>> CnvMapModelIndex = new(StringComparer.OrdinalIgnoreCase);
+    static bool CnvMapModelIndexDirty;
+    static string CnvMapModelIndexFingerprint = "";
+    static long ModelEnsureStubCount;
+    static long ModelEnsureUpgradeCount;
+    static bool ModelRegistryScopedToSpawn;
+    static readonly HashSet<string> ModelRegistryMissCache = new(StringComparer.OrdinalIgnoreCase);
+    static SemaphoreSlim? MapApplyInflight;
+    static readonly ConcurrentDictionary<string, object> MsbSourceCacheFileLocks = new();
+
+    /// <summary>apply-map: one MSB parse per donor map, not per slot.</summary>
+    static readonly ConcurrentDictionary<string, Dictionary<string, MSBE.Part.Enemy>> DonorEnemyByMapCache =
+        new(StringComparer.OrdinalIgnoreCase);
+    static Dictionary<ulong, (string BdtPath, BHD5.FileHeader Header)>? BhdFileIndex;
+    static readonly object BhdFileIndexLock = new();
+
+    static MSBE? TryReadMsbFromPath(string path, StringBuilder detailLog, string mapFileName)
+    {
+        try
+        {
+            return MSBE.Read(path);
+        }
+        catch (Exception ex)
+        {
+            Log(detailLog, $"msb_stream_skip {mapFileName} path={path}: {ex.Message}");
+            return null;
+        }
+    }
+
+    static DCX.CompressionInfo MsbeWriteCompression(MSBE msb) =>
+        msb.Compression.Type is not (DCX.Type.Unknown or DCX.Type.None)
+            ? msb.Compression
+            : new DCX.DcxKrakCompressionInfo(DCX.KrakCompressionPreset.EldenRing);
+
+    static void WriteMsbeToPath(MSBE msb, string path) => msb.Write(path, MsbeWriteCompression(msb));
+
+    static MSBE? TryReadMsbSafe(string gameDir, string mapFileName, StringBuilder detailLog)
+    {
+        if (MsbSourceCacheEnabled)
+        {
+            var cachePath = MsbSourceCacheFilePath(gameDir, mapFileName);
+            if (File.Exists(cachePath))
+            {
+                var cached = TryReadMsbFromPath(cachePath, detailLog, mapFileName);
+                if (cached != null)
+                {
+                    Interlocked.Increment(ref MsbSourceCacheHits);
+                    return cached;
+                }
+            }
+        }
+
+        var modPath = Path.Combine(CnvMapStudioDir(gameDir), mapFileName);
+        if (File.Exists(modPath))
+        {
+            var fromMod = TryReadMsbFromPath(modPath, detailLog, mapFileName);
+            if (fromMod != null)
+            {
+                if (MsbSourceCacheEnabled)
+                {
+                    TryWriteMsbSourceCacheFromMod(gameDir, mapFileName, modPath);
+                    Interlocked.Increment(ref MsbSourceCacheMisses);
+                }
+
+                return fromMod;
+            }
+        }
+
+        var bytes = TryReadMapBytes(gameDir, mapFileName, detailLog);
+        if (bytes == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            if (MsbSourceCacheEnabled)
+            {
+                TryWriteMsbSourceCache(gameDir, mapFileName, bytes);
+                Interlocked.Increment(ref MsbSourceCacheMisses);
+                var cachePath = MsbSourceCacheFilePath(gameDir, mapFileName);
+                if (File.Exists(cachePath))
+                {
+                    return TryReadMsbFromPath(cachePath, detailLog, mapFileName);
+                }
+            }
+
+            var decomp = DCX.Is(bytes) ? DCX.Decompress(bytes) : bytes;
+            return ReadMsbe(decomp);
+        }
+        catch (Exception ex)
+        {
+            Log(detailLog, $"msb_safe_skip {mapFileName}: {ex.Message}");
+            return null;
+        }
+    }
+
+    static (string MapPath, MSBE.Model.Enemy Model)? FindEnemyModelEntry(
+        string gameDir,
+        string modelName,
+        StringBuilder detailLog,
+        string? preferDonorMapId = null)
+    {
+        if (ModelRegistryMissCache.Contains(modelName))
+        {
+            return null;
+        }
+
+        var mapStudio = CnvMapStudioDir(gameDir);
+        var preferredMaps = new List<string>();
+        if (IsValidDonorMapId(preferDonorMapId))
+        {
+            preferredMaps.Add($"{preferDonorMapId}.msb.dcx");
+            preferredMaps.Add($"{preferDonorMapId}.msbe.dcx");
+        }
+
+        var tried = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var fileName in preferredMaps)
+        {
+            if (!tried.Add(fileName))
+            {
+                continue;
+            }
+
+            var donor = TryReadMsbSafe(gameDir, fileName, detailLog);
+            var model = donor?.Models.Enemies.FirstOrDefault(m => m.Name == modelName);
+            if (model is MSBE.Model.Enemy enemyModel)
+            {
+                Log(detailLog, $"model_donor={fileName}");
+                return (fileName, enemyModel);
+            }
+        }
+
+        if (ModelRegistryScopedToSpawn)
+        {
+            ModelRegistryMissCache.Add(modelName);
+            Log(detailLog, $"model_donor=NOT_FOUND scoped=true tried={tried.Count}");
+            return null;
+        }
+
+        preferredMaps.AddRange(
+        [
+            "m60_42_36_00.msb.dcx",
+            "m60_41_51_00.msb.dcx",
+            $"{MapId}.msb.dcx",
+            $"{MapId}.msbe.dcx",
+        ]);
+
+        foreach (var fileName in preferredMaps)
+        {
+            if (!tried.Add(fileName))
+            {
+                continue;
+            }
+
+            var donor = TryReadMsbSafe(gameDir, fileName, detailLog);
+            var model = donor?.Models.Enemies.FirstOrDefault(m => m.Name == modelName);
+            if (model is MSBE.Model.Enemy enemyModel)
+            {
+                Log(detailLog, $"model_donor={fileName}");
+                return (fileName, enemyModel);
+            }
+        }
+
+        if (!ModelRegistryScopedToSpawn && Directory.Exists(mapStudio))
+        {
+            foreach (var path in Directory.EnumerateFiles(mapStudio, "*.msb.dcx"))
+            {
+                var fileName = Path.GetFileName(path);
+                if (!tried.Add(fileName))
+                {
+                    continue;
+                }
+
+                var donor = TryReadMsbSafe(gameDir, fileName, detailLog);
+                var model = donor?.Models.Enemies.FirstOrDefault(m => m.Name == modelName);
+                if (model is MSBE.Model.Enemy enemyModel)
+                {
+                    Log(detailLog, $"model_donor={fileName}");
+                    return (fileName, enemyModel);
+                }
+            }
+        }
+
+        if (ModelRegistryScopedToSpawn)
+        {
+            ModelRegistryMissCache.Add(modelName);
+        }
+
+        Log(detailLog, $"model_donor=NOT_FOUND tried={tried.Count}");
+        return null;
+    }
+
+    static bool IsValidDonorMapId(string? mapId) =>
+        !string.IsNullOrWhiteSpace(mapId)
+        && !string.Equals(mapId, "synthetic", StringComparison.OrdinalIgnoreCase)
+        && mapId.StartsWith("m", StringComparison.OrdinalIgnoreCase);
+
+    static List<MSBE.Part.Enemy> FilterSoldiers(IList<MSBE.Part.Enemy> enemies, bool wagonOnly) =>
+
+        enemies
+
+            .Where(e => e.ModelName.StartsWith(SourceModel, StringComparison.OrdinalIgnoreCase))
+
+            .Where(e => !wagonOnly || e.EntityGroupIDs.Contains(WagonGroupId))
+
+            .OrderBy(e => e.Name, StringComparer.OrdinalIgnoreCase)
+
+            .ThenBy(e => e.EntityID)
+
+            .ToList();
+
+
+
+    static string FormatEnemy(string label, MSBE.Part.Enemy e, bool includePos = false)
+
+    {
+
+        var pos = includePos ? $" pos=({e.Position.X:F0},{e.Position.Y:F0},{e.Position.Z:F0})" : "";
+
+        return
+
+            $"  {label} entity={e.EntityID} name={e.Name} model={e.ModelName} npc={e.NPCParamID} think={e.ThinkParamID} chara={e.CharaInitID}{pos} groups=[{string.Join(",", e.EntityGroupIDs)}]";
+
+    }
+
+
+
+    static string BuildManifest(
+
+        List<PatchRecord> records,
+
+        MsbLoadResult load,
+
+        string outMsb,
+
+        string outMsbe,
+
+        int verifySentinelCount,
+
+        int verifySoldierCount)
+
+    {
+
+        var sb = new StringBuilder();
+
+        sb.AppendLine("# CNV enemy swap POC — offline MSB override (ME3 loads mod/ at runtime)");
+
+        sb.AppendLine($"map={MapId}");
+
+        sb.AppendLine($"patched_count={records.Count}");
+
+        sb.AppendLine($"msb_source={load.SourcePath}");
+
+        sb.AppendLine($"msb_source_sha256={load.Sha256}");
+
+        sb.AppendLine($"output_msb={outMsb}");
+
+        sb.AppendLine($"output_msbe={outMsbe}");
+
+        sb.AppendLine($"verify_sentinel={verifySentinelCount} verify_remaining_soldier={verifySoldierCount}");
+
+        sb.AppendLine("test=Gatefront — ALL Godrick soldiers should be Tree Sentinel");
+
+        sb.AppendLine("launch=Use Start_Convergence.bat (ME3 + convergence.me3), not raw eldenring.exe");
+
+        sb.AppendLine("rollback=Delete mod/map/MapStudio/m60_42_37_00.msb.dcx and .msbe.dcx");
+
+        sb.AppendLine();
+
+        foreach (var r in records)
+
+        {
+
+            sb.AppendLine(
+
+                $"entity={r.EntityId} name={r.Name} pos=({r.PosX:F0},{r.PosY:F0},{r.PosZ:F0}) " +
+
+                $"before={r.BeforeModel}/{r.BeforeNpc}/{r.BeforeThink} after={r.AfterModel}/{r.AfterNpc}/{r.AfterThink}");
+
+        }
+
+
+
+        return sb.ToString();
+
+    }
+
+
+
+    static void WriteDetailLog(StringBuilder detailLog, string phase)
+
+    {
+
+        var path = Path.Combine(ResolveToolRoot(), "enemy_poc_detail.txt");
+
+        var header = $"=== enemy_poc_detail {phase} {DateTime.Now:u} ==={Environment.NewLine}";
+
+        File.WriteAllText(path, header + detailLog, Encoding.UTF8);
+
+    }
+
+
+
+    static void Log(StringBuilder detailLog, string line) => detailLog.AppendLine(line);
+
+
+
+    static MSBE ReadMsbe(byte[] fileBytes) => MSBE.Read(fileBytes);
+
+
+
+    static byte[] WriteMsbe(MSBE msb) => msb.Write(MsbeWriteCompression(msb));
+
+    sealed record DonorEntry(
+        string Label,
+        string MapFile,
+        string EnemyName,
+        string Model,
+        int Npc,
+        int Think,
+        int Chara);
+
+    static readonly (string SlotName, string DonorKey, string Note)[] Batch1Plan =
+    {
+        ("c4311_9018", "random_dragon", "巡逻兵 — 龙体型 / 地形"),
+        ("c4311_9010", "godrick", "营地巡逻 — 葛瑞克转阶段"),
+        ("c4311_9022", "elden_beast", "林边巡逻 — 艾尔登之兽（皮蛋）"),
+    };
+
+    static readonly (string SlotName, string DonorKey, string Note)[] Batch2Plan =
+    {
+        ("c4311_9006", "real_dragon", "马车旁空地 — 真龙（飞龙/桂雷尔）"),
+        ("c4311_9022", "elden_beast", "林边 — 艾尔登之兽 c2200"),
+        ("c4311_9004", "rune_trash", "卢恩对照 A — 矛兵级小怪"),
+        ("c4311_9008", "rune_medium", "卢恩对照 B — 野狗级中怪"),
+        ("c4311_9012", "rune_heavy", "卢恩对照 C — 大树守卫级"),
+    };
+
+    static readonly string[] GodrickProbeMaps =
+    {
+        "m60_43_35_00.msb.dcx", "m60_43_34_00.msb.dcx", "m60_43_31_00.msb.dcx", "m60_43_33_00.msb.dcx",
+        "m60_39_50_00.msb.dcx",
+    };
+
+    static readonly string[] EldenBeastProbeMaps =
+    {
+        "m60_61_44_00.msb.dcx", "m60_61_46_00.msb.dcx", "m60_62_47_00.msb.dcx", "m60_60_54_00.msb.dcx",
+        "m60_61_45_00.msb.dcx",
+    };
+
+    static readonly string[] DragonProbeMaps =
+    {
+        "m60_45_39_00.msb.dcx", "m60_41_51_00.msb.dcx", "m60_43_33_00.msb.dcx", "m60_42_36_00.msb.dcx",
+    };
+
+    static readonly string[] RuneMediumProbeMaps =
+    {
+        "m60_42_36_00.msb.dcx", "m60_42_37_00.msb.dcx", "m60_41_51_00.msb.dcx",
+    };
+
+    /// <summary>Batch1 legacy pool — includes mis-tagged c4960 revenants.</summary>
+    static readonly string[] DragonModelPrefixes =
+    {
+        "c4800", "c4810", "c4880", "c4900", "c4920", "c4930", "c4940", "c4950", "c4960",
+    };
+
+    static readonly string[] RealFlyingDragonPrefixes = { "c4500", "c4502" };
+    static readonly string[] RealFieldDragonPrefixes = { "c4810" };
+
+    static int ScanDonors(string gameDir, StringBuilder detailLog)
+    {
+        var mapStudio = CnvMapStudioDir(gameDir);
+        if (!Directory.Exists(mapStudio))
+        {
+            Console.Error.WriteLine($"Missing {mapStudio}");
+            return 1;
+        }
+
+        Console.WriteLine($"Scanning donor templates under {mapStudio}");
+        var dragons = new List<DonorEntry>();
+        var realDragons = new List<DonorEntry>();
+        var godricks = new List<DonorEntry>();
+        var beasts = new List<DonorEntry>();
+
+        foreach (var path in Directory.EnumerateFiles(mapStudio, "m60_*.msb.dcx").OrderBy(p => p))
+        {
+            MSBE msb;
+            try
+            {
+                msb = ReadMsbe(File.ReadAllBytes(path));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"  SKIP {Path.GetFileName(path)} ({ex.Message})");
+                continue;
+            }
+
+            var mapFile = Path.GetFileName(path);
+            foreach (var enemy in msb.Parts.Enemies)
+            {
+                var model = enemy.ModelName ?? "";
+                if (string.IsNullOrWhiteSpace(model))
+                {
+                    continue;
+                }
+
+                if (DragonModelPrefixes.Any(p => model.StartsWith(p, StringComparison.OrdinalIgnoreCase)))
+                {
+                    dragons.Add(new DonorEntry("dragon", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+                }
+
+                if (RealFlyingDragonPrefixes.Any(p => model.StartsWith(p, StringComparison.OrdinalIgnoreCase))
+                    || RealFieldDragonPrefixes.Any(p => model.StartsWith(p, StringComparison.OrdinalIgnoreCase)))
+                {
+                    realDragons.Add(new DonorEntry("real_dragon", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+                }
+                else if (model.StartsWith("c4750", StringComparison.OrdinalIgnoreCase))
+                {
+                    godricks.Add(new DonorEntry("godrick", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+                }
+                else if (model.StartsWith("c5200", StringComparison.OrdinalIgnoreCase))
+                {
+                    beasts.Add(new DonorEntry("elden_beast_c5200", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+                }
+                else if (model.StartsWith("c2200", StringComparison.OrdinalIgnoreCase))
+                {
+                    beasts.Add(new DonorEntry("elden_beast", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+                }
+            }
+        }
+
+        void PrintGroup(string title, List<DonorEntry> entries)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"== {title} ({entries.Count}) ==");
+            foreach (var e in entries.OrderBy(e => e.MapFile).ThenBy(e => e.EnemyName).Take(40))
+            {
+                var line = $"  {e.MapFile}  {e.EnemyName}  model={e.Model}  npc={e.Npc}  think={e.Think}  chara={e.Chara}";
+                Console.WriteLine(line);
+                Log(detailLog, line.Trim());
+            }
+            if (entries.Count > 40)
+            {
+                Console.WriteLine($"  ... and {entries.Count - 40} more");
+            }
+        }
+
+        PrintGroup("DRAGONS (legacy batch1 pool)", dragons);
+        PrintGroup("REAL DRAGONS c4500/c4502/c4810", realDragons);
+        PrintGroup("GODRICK c4750", godricks);
+        PrintGroup("ELDEN BEAST c2200 / c5200", beasts);
+
+        var cachePath = Path.Combine(ResolveToolRoot(), "boss_donors_scan.txt");
+        File.WriteAllText(cachePath, detailLog.ToString(), Encoding.UTF8);
+        Console.WriteLine();
+        Console.WriteLine($"Wrote {cachePath}");
+        WriteDetailLog(detailLog, "scan-donors");
+        return 0;
+    }
+
+    static int ExportEnemyIndex(string gameDir, string[] args, StringBuilder detailLog)
+    {
+        var outPath = ResolveIndexOutPath(args);
+        var maxMaps = ResolveMaxMaps(args);
+        var includeZeroNpc = ResolveIndexIncludeZeroNpc(args);
+        var mapStudio = CnvMapStudioDir(gameDir);
+        if (!Directory.Exists(mapStudio))
+        {
+            Console.Error.WriteLine($"Missing {mapStudio}");
+            return 1;
+        }
+
+        var slots = new List<Dictionary<string, object?>>();
+        var templates = new Dictionary<string, Dictionary<string, object?>>();
+        var routesByMap = new Dictionary<string, List<string>>();
+        var scanned = 0;
+        var skipped = 0;
+        var overworld = 0;
+        var legacy = 0;
+        var zeroNpcSkipped = 0;
+
+        // 全图：野外 m60/m61 + 副本/神授塔等（上次只扫 m60_ 会漏神皮女组长等）
+        foreach (var path in Directory.EnumerateFiles(mapStudio, "*.msb.dcx").OrderBy(p => p))
+        {
+            if (maxMaps > 0 && scanned >= maxMaps)
+            {
+                break;
+            }
+
+            MSBE msb;
+            try
+            {
+                msb = ReadMsbe(File.ReadAllBytes(path));
+            }
+            catch (Exception ex)
+            {
+                skipped++;
+                Log(detailLog, $"index_skip {Path.GetFileName(path)} {ex.Message}");
+                continue;
+            }
+
+            scanned++;
+            var mapId = Path.GetFileName(path).Replace(".msb.dcx", "", StringComparison.OrdinalIgnoreCase);
+            if (mapId.StartsWith("m60_", StringComparison.OrdinalIgnoreCase)
+                || mapId.StartsWith("m61_", StringComparison.OrdinalIgnoreCase))
+            {
+                overworld++;
+            }
+            else
+            {
+                legacy++;
+            }
+
+            var siegeMountRiders = IndexSiegeMountRiders(msb);
+            var routeNames = new List<string>();
+            foreach (var route in msb.Routes.GetEntries())
+            {
+                if (!string.IsNullOrWhiteSpace(route.Name))
+                {
+                    routeNames.Add(route.Name);
+                }
+            }
+            routesByMap[mapId] = routeNames.OrderBy(n => n, StringComparer.OrdinalIgnoreCase).ToList();
+
+            foreach (var enemy in msb.Parts.Enemies)
+            {
+                var model = enemy.ModelName ?? "";
+                if (string.IsNullOrWhiteSpace(model))
+                {
+                    continue;
+                }
+
+                if (enemy.NPCParamID <= 0)
+                {
+                    if (!includeZeroNpc)
+                    {
+                        zeroNpcSkipped++;
+                        continue;
+                    }
+                }
+
+                var walkRoute = enemy.WalkRouteName ?? "";
+                var slotRow = new Dictionary<string, object?>
+                {
+                    ["map_id"] = mapId,
+                    ["name"] = enemy.Name,
+                    ["model"] = model,
+                    ["npc"] = enemy.NPCParamID,
+                    ["think"] = enemy.ThinkParamID,
+                    ["chara"] = enemy.CharaInitID,
+                    ["entity_id"] = enemy.EntityID,
+                    ["walk_route"] = walkRoute,
+                    ["backup_anim"] = enemy.BackupEventAnimID,
+                    ["talk_id"] = enemy.TalkID,
+                    ["chr_activate"] = enemy.ChrActivateCondParamID,
+                    ["collision_part"] = enemy.CollisionPartName ?? "",
+                    ["platoon_id"] = enemy.PlatoonID,
+                    ["unk_t15"] = enemy.UnkT15,
+                    ["rot_x"] = enemy.Rotation.X,
+                    ["rot_y"] = enemy.Rotation.Y,
+                    ["rot_z"] = enemy.Rotation.Z,
+                    ["entity_groups"] = enemy.EntityGroupIDs?.ToArray() ?? Array.Empty<uint>(),
+                    ["sp_effect_set"] = enemy.SpEffectSetParamID?.ToArray() ?? Array.Empty<int>(),
+                    ["pos_x"] = enemy.Position.X,
+                    ["pos_y"] = enemy.Position.Y,
+                    ["pos_z"] = enemy.Position.Z,
+                };
+                if (enemy.NPCParamID <= 0)
+                {
+                    slotRow["is_zero_npc"] = true;
+                }
+                if (siegeMountRiders.TryGetValue(enemy.Name, out var siegeWeapon))
+                {
+                    slotRow["siege_mount_rider"] = true;
+                    slotRow["siege_mount_weapon"] = siegeWeapon;
+                }
+
+                slots.Add(slotRow);
+
+                var templateId = $"{mapId}:{enemy.Name}";
+                if (templates.ContainsKey(templateId))
+                {
+                    continue;
+                }
+
+                templates[templateId] = new Dictionary<string, object?>
+                {
+                    ["template_id"] = templateId,
+                    ["donor_map"] = $"{mapId}.msb.dcx",
+                    ["donor_entity"] = enemy.Name,
+                    ["model"] = model,
+                    ["npc"] = enemy.NPCParamID,
+                    ["think"] = enemy.ThinkParamID,
+                    ["chara"] = enemy.CharaInitID,
+                    ["walk_route"] = walkRoute,
+                    ["backup_anim"] = enemy.BackupEventAnimID,
+                    ["talk_id"] = enemy.TalkID,
+                    ["chr_activate"] = enemy.ChrActivateCondParamID,
+                    ["collision_part"] = enemy.CollisionPartName ?? "",
+                    ["platoon_id"] = enemy.PlatoonID,
+                    ["unk_t15"] = enemy.UnkT15,
+                    ["rot_x"] = enemy.Rotation.X,
+                    ["rot_y"] = enemy.Rotation.Y,
+                    ["rot_z"] = enemy.Rotation.Z,
+                    ["entity_groups"] = enemy.EntityGroupIDs?.ToArray() ?? Array.Empty<uint>(),
+                    ["sp_effect_set"] = enemy.SpEffectSetParamID?.ToArray() ?? Array.Empty<int>(),
+                    ["pos_x"] = enemy.Position.X,
+                    ["pos_y"] = enemy.Position.Y,
+                    ["pos_z"] = enemy.Position.Z,
+                };
+            }
+        }
+
+        var payload = new Dictionary<string, object?>
+        {
+            ["schema"] = "enemy_index_v2",
+            ["maps_scanned"] = scanned,
+            ["maps_skipped"] = skipped,
+            ["maps_overworld"] = overworld,
+            ["maps_legacy"] = legacy,
+            ["zero_npc_slots_skipped"] = zeroNpcSkipped,
+            ["routes_by_map"] = routesByMap,
+            ["slots"] = slots,
+            ["templates"] = templates.Values.ToList(),
+        };
+
+        Directory.CreateDirectory(Path.GetDirectoryName(outPath)!);
+        File.WriteAllText(
+            outPath,
+            JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true }),
+            Encoding.UTF8);
+        Console.WriteLine(
+            $"index-export maps={scanned} overworld={overworld} legacy={legacy} skip={skipped} "
+            + $"slots={slots.Count} templates={templates.Count}");
+        Console.WriteLine($"Wrote {outPath}");
+        Log(
+            detailLog,
+            $"index_export={outPath} maps={scanned} overworld={overworld} legacy={legacy} slots={slots.Count}");
+        WriteDetailLog(detailLog, "index-export");
+        return 0;
+    }
+
+    static bool ResolveIndexIncludeZeroNpc(string[] args) =>
+        args.Any(arg => string.Equals(arg, "--include-zero-npc", StringComparison.OrdinalIgnoreCase));
+
+    static int ExportPickupIndex(string gameDir, string[] args, StringBuilder detailLog)
+    {
+        var outPath = ResolvePickupIndexOutPath(args);
+        var maxMaps = ResolveMaxMaps(args);
+        var mapStudio = CnvMapStudioDir(gameDir);
+        if (!Directory.Exists(mapStudio))
+        {
+            Console.Error.WriteLine($"Missing {mapStudio}");
+            return 1;
+        }
+
+        var placements = new List<Dictionary<string, object?>>();
+        var scanned = 0;
+        var skipped = 0;
+        var treasureEvents = 0;
+
+        foreach (var path in Directory.EnumerateFiles(mapStudio, "*.msb.dcx").OrderBy(p => p))
+        {
+            if (maxMaps > 0 && scanned >= maxMaps)
+            {
+                break;
+            }
+
+            MSBE msb;
+            try
+            {
+                msb = ReadMsbe(File.ReadAllBytes(path));
+            }
+            catch (Exception ex)
+            {
+                skipped++;
+                Log(detailLog, $"pickup_index_skip {Path.GetFileName(path)} {ex.Message}");
+                continue;
+            }
+
+            scanned++;
+            var mapId = Path.GetFileName(path).Replace(".msb.dcx", "", StringComparison.OrdinalIgnoreCase);
+
+            foreach (var treasure in msb.Events.Treasures)
+            {
+                var lotId = treasure.ItemLotID;
+                if (lotId <= 0)
+                {
+                    continue;
+                }
+
+                treasureEvents++;
+                var treasurePart = treasure.TreasurePartName ?? "";
+                var entityKey = !string.IsNullOrWhiteSpace(treasurePart)
+                    ? treasurePart
+                    : (treasure.Name ?? $"lot_{lotId}");
+                placements.Add(new Dictionary<string, object?>
+                {
+                    ["map_id"] = mapId,
+                    ["entity"] = entityKey,
+                    ["name"] = treasure.Name ?? "",
+                    ["entity_id"] = treasure.EntityID,
+                    ["event_id"] = treasure.EventID,
+                    ["lot_id"] = lotId,
+                    ["treasure_part"] = treasurePart,
+                    ["in_chest"] = treasure.InChest,
+                    ["placement_kind"] = "treasure",
+                });
+            }
+        }
+
+        var payload = new Dictionary<string, object?>
+        {
+            ["version"] = 1,
+            ["generated_at"] = DateTime.UtcNow.ToString("o"),
+            ["maps_scanned"] = scanned,
+            ["maps_skipped"] = skipped,
+            ["treasure_events"] = treasureEvents,
+            ["placements"] = placements,
+        };
+
+        Directory.CreateDirectory(Path.GetDirectoryName(outPath)!);
+        File.WriteAllText(
+            outPath,
+            JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true }),
+            Encoding.UTF8);
+        Console.WriteLine(
+            $"pickup-index-export maps={scanned} skip={skipped} treasures={treasureEvents} "
+            + $"placements={placements.Count}");
+        Console.WriteLine($"Wrote {outPath}");
+        Log(
+            detailLog,
+            $"pickup_index_export={outPath} maps={scanned} skip={skipped} treasures={treasureEvents}");
+        WriteDetailLog(detailLog, "pickup-index-export");
+        return 0;
+    }
+
+    static int ApplySpawnMap(string gameDir, string[] args, StringBuilder detailLog)
+    {
+        var spawnMapPath = ResolveSpawnMapPath(args);
+        var mapFilter = ResolveMapFilter(args);
+        if (!File.Exists(spawnMapPath))
+        {
+            Console.Error.WriteLine($"Missing spawn map: {spawnMapPath}");
+            WriteDetailLog(detailLog, "apply-map_failed=no_spawn_map");
+            return 1;
+        }
+
+        var entries = ParseSpawnMap(spawnMapPath);
+        if (entries.Count == 0)
+        {
+            Console.Error.WriteLine($"No slot lines in spawn map: {spawnMapPath}");
+            WriteDetailLog(detailLog, "apply-map_failed=empty_spawn_map");
+            return 1;
+        }
+
+        if (!string.IsNullOrWhiteSpace(mapFilter))
+        {
+            entries = entries
+                .Where(e => string.Equals(e.MapId, mapFilter, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            Log(detailLog, $"apply_map_filter={mapFilter} entries={entries.Count}");
+        }
+
+        Console.WriteLine($"apply-map: {entries.Count} slots from {spawnMapPath}");
+        Log(detailLog, $"spawn_map={spawnMapPath} slots={entries.Count}");
+
+        var byMap = entries.GroupBy(e => e.MapId).OrderBy(g => g.Key, StringComparer.Ordinal);
+        var outDir = OverlayMapStudioDir(gameDir);
+        Directory.CreateDirectory(outDir);
+
+        var parallel = ResolveParallelDegree(args);
+        var maxParallel = ResolveMaxParallelDegree(args);
+        var mapInflight = ResolveMapInflightLimit(args);
+        var dynamicParallel = ResolveDynamicParallel(args);
+        MapApplyInflight?.Dispose();
+        MapApplyInflight = new SemaphoreSlim(mapInflight, mapInflight);
+        var quiet = ResolveQuietApply(args);
+        ApplyProfileEnabled = ResolveProfileApply(args);
+        ApplyProfile.Reset();
+        LastMapHeartbeatMs = 0;
+        ModelEnsureStubCount = 0;
+        ModelEnsureUpgradeCount = 0;
+        ModelRegistryScopedToSpawn = false;
+        ModelRegistryMissCache.Clear();
+        LoadSyntheticTemplateSources();
+        LoadDonorSlotCompatCache();
+        LoadTestMapApplyModes();
+        LoadApplySlot428Tags();
+        MsbSourceCacheEnabled = !ResolveNoMsbSourceCache(args);
+        MsbSourceCacheHits = 0;
+        MsbSourceCacheMisses = 0;
+        DonorEnemyByMapCache.Clear();
+        Console.WriteLine(
+            $"apply-map: parallel={parallel} max={maxParallel} inflight={mapInflight} "
+            + $"dynamic={dynamicParallel} quiet={quiet} msb_source_cache={MsbSourceCacheEnabled} stream_io=True");
+
+        var mapsWritten = 0;
+        var slotsPatched = 0;
+        var slotsMissing = 0;
+        var mapsMissing = 0;
+        var mapsWriteFailed = 0;
+
+        var mapStudio = CnvMapStudioDir(gameDir);
+        var mapStudioFingerprint = Directory.Exists(mapStudio)
+            ? ComputeMapStudioFingerprint(mapStudio)
+            : "";
+        LoadCnvMapModelIndex(mapStudioFingerprint);
+
+        var mapGroups = byMap.ToList();
+        var totalMaps = mapGroups.Count;
+        var warmMapFiles = CollectWarmMapFiles(mapGroups, entries);
+
+        var registryLogs = new ConcurrentBag<string>();
+        Console.WriteLine($"apply-map: building model registry ({warmMapFiles.Count} spawn-scope maps)…");
+        Console.Out.Flush();
+        var registrySw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+        var modelRegistry = BuildEnemyModelRegistry(gameDir, parallel, registryLogs, warmMapFiles);
+        registrySw?.Stop();
+        if (registrySw != null)
+        {
+            ApplyProfile.RegistryMs = registrySw.ElapsedMilliseconds;
+        }
+        foreach (var line in registryLogs)
+        {
+            Log(detailLog, line.Trim());
+        }
+        SupplementModelRegistryFromSpawnEntries(modelRegistry, entries);
+        Console.WriteLine($"apply-map: model registry={modelRegistry.Count} entries");
+        Console.Out.Flush();
+
+        ThreadPool.GetMinThreads(out var minWorker, out var minIo);
+        ThreadPool.SetMinThreads(
+            Math.Max(minWorker, parallel),
+            Math.Max(minIo, parallel));
+        EnsureBhdFileIndex(gameDir);
+        var warmSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+        WarmSourceMapDiskCache(gameDir, warmMapFiles, parallel);
+        warmSw?.Stop();
+        if (warmSw != null)
+        {
+            ApplyProfile.CacheWarmMs = warmSw.ElapsedMilliseconds;
+        }
+        var mapWallSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+        var mapResults = new ConcurrentBag<MapApplyResult>();
+        if (dynamicParallel)
+        {
+            ApplyMapGroupsDynamic(
+                mapGroups,
+                parallel,
+                maxParallel,
+                totalMaps,
+                gameDir,
+                outDir,
+                modelRegistry,
+                quiet,
+                mapResults);
+        }
+        else
+        {
+            var progress = new MapApplyProgress();
+            Parallel.ForEach(
+                mapGroups,
+                new ParallelOptions { MaxDegreeOfParallelism = Math.Min(parallel, maxParallel) },
+                group => ProcessMapGroupWork(
+                    group,
+                    gameDir,
+                    outDir,
+                    modelRegistry,
+                    quiet,
+                    mapResults,
+                    progress,
+                    totalMaps));
+        }
+        mapWallSw?.Stop();
+        if (mapWallSw != null)
+        {
+            ApplyProfile.MapWallMs = mapWallSw.ElapsedMilliseconds;
+        }
+
+        foreach (var result in mapResults.OrderBy(r => r.MapId, StringComparer.Ordinal))
+        {
+            mapsWritten += result.MapsWritten;
+            slotsPatched += result.SlotsPatched;
+            slotsMissing += result.SlotsMissing;
+            mapsMissing += result.MapsMissing;
+            mapsWriteFailed += result.MapsWriteFailed;
+            if (quiet)
+            {
+                continue;
+            }
+
+            foreach (var line in result.LogLines)
+            {
+                foreach (var sub in line.Split('\n'))
+                {
+                    var trimmed = sub.Trim();
+                    if (!string.IsNullOrEmpty(trimmed))
+                    {
+                        Log(detailLog, trimmed);
+                    }
+                }
+            }
+        }
+
+        var radahnLandings = mapResults.SelectMany(r => r.RadahnLandings).ToList();
+        WriteRadahnLandingManifest(outDir, radahnLandings);
+        if (radahnLandings.Count > 0)
+        {
+            Console.WriteLine($"apply-map: radahn_landing_slots={radahnLandings.Count}");
+            Log(detailLog, $"radahn_landing_slots={radahnLandings.Count}");
+        }
+
+        if (MsbSourceCacheEnabled)
+        {
+            Console.WriteLine(
+                $"apply-map: msb_source_cache hits={MsbSourceCacheHits} misses={MsbSourceCacheMisses}");
+            Console.Out.Flush();
+        }
+
+        if (DonorEnemyByMapCache.Count > 0)
+        {
+            Console.WriteLine($"apply-map: donor_enemy_index maps={DonorEnemyByMapCache.Count}");
+            Console.Out.Flush();
+        }
+
+        Console.WriteLine();
+        Console.WriteLine(
+            $"apply-map done: maps_written={mapsWritten} slots_patched={slotsPatched} "
+            + $"missing_slots={slotsMissing} missing_maps={mapsMissing} write_failed={mapsWriteFailed} "
+            + $"model_stubs={ModelEnsureStubCount} model_upgrades={ModelEnsureUpgradeCount}");
+        Log(
+            detailLog,
+            $"apply_summary maps={mapsWritten} slots={slotsPatched} missing_slots={slotsMissing} "
+            + $"missing_maps={mapsMissing} write_failed={mapsWriteFailed} model_stubs={ModelEnsureStubCount} "
+            + $"model_upgrades={ModelEnsureUpgradeCount}");
+
+        if (ModelEnsureStubCount > 0)
+        {
+            Console.Error.WriteLine(
+                $"apply-map: WARNING model_stubs={ModelEnsureStubCount} (stub_sib_only — missing textures/AI risk)");
+            Console.Error.Flush();
+        }
+
+        if (mapsWriteFailed > 0)
+        {
+            Console.Error.WriteLine(
+                $"apply-map: WARNING write_failed={mapsWriteFailed} (see FAIL lines above)");
+            Console.Error.Flush();
+        }
+
+        if (ApplyProfileEnabled)
+        {
+            ApplyProfile.PrintSummary(totalMaps, mapsWritten);
+        }
+
+        if (CnvMapModelIndexDirty)
+        {
+            TrySaveCnvMapModelIndexCache(CnvMapModelIndexFingerprint);
+        }
+
+        if (mapsWritten == 0)
+        {
+            WriteDetailLog(detailLog, "apply-map_failed=no_maps_written");
+            return 1;
+        }
+
+        WriteMe3OverlayInstructions(gameDir, detailLog);
+        Console.WriteLine("In-game: fully quit game -> Start_Convergence.bat -> test changed areas");
+
+        var manifestPath = Path.Combine(outDir, "cnv_enemy_apply_manifest.txt");
+        File.WriteAllText(manifestPath, detailLog.ToString(), Encoding.UTF8);
+        Console.WriteLine($"Manifest: {manifestPath}");
+        WriteDetailLog(detailLog, "apply-map_ok");
+        return 0;
+    }
+
+    static List<SpawnMapEntry> ParseSpawnMap(string path)
+    {
+        var entries = new List<SpawnMapEntry>();
+        foreach (var line in File.ReadAllLines(path, Encoding.UTF8))
+        {
+            var trimmed = line.Trim();
+            if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith('#'))
+            {
+                continue;
+            }
+
+            if (trimmed.Contains('=') && !trimmed.StartsWith("#"))
+            {
+                continue;
+            }
+
+            string[] parts;
+            if (trimmed.Contains('\t'))
+            {
+                parts = trimmed.Split('\t');
+            }
+            else
+            {
+                parts = trimmed.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
+            }
+            if (parts.Length < 10)
+            {
+                continue;
+            }
+
+            SpawnMapEntry entry;
+            if (trimmed.Contains('\t'))
+            {
+                if (!int.TryParse(parts[9], out var runeTab)
+                    || !int.TryParse(parts[8], out var charaTab)
+                    || !int.TryParse(parts[7], out var thinkTab)
+                    || !int.TryParse(parts[6], out var npcTab))
+                {
+                    continue;
+                }
+
+                entry = new SpawnMapEntry
+                {
+                    MapId = parts[0],
+                    EntityName = parts[1],
+                    SrcCat = parts[2],
+                    TgtCat = parts[3],
+                    TemplateId = parts[4],
+                    Model = parts[5],
+                    Npc = npcTab,
+                    Think = thinkTab,
+                    Chara = charaTab,
+                    RuneAmount = runeTab,
+                };
+                if (parts.Length >= 19
+                    && float.TryParse(parts[16], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var posX)
+                    && float.TryParse(parts[17], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var posY)
+                    && float.TryParse(parts[18], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var posZ))
+                {
+                    entry.HasPosition = true;
+                    entry.PosX = posX;
+                    entry.PosY = posY;
+                    entry.PosZ = posZ;
+                }
+            }
+            else if (!int.TryParse(parts[^1], out var rune)
+                || !int.TryParse(parts[^2], out var chara)
+                || !int.TryParse(parts[^3], out var think)
+                || !int.TryParse(parts[^4], out var npc))
+            {
+                continue;
+            }
+            else
+            {
+                entry = new SpawnMapEntry
+                {
+                    MapId = parts[0],
+                    EntityName = string.Join(" ", parts[1..^8]),
+                    SrcCat = parts[^8],
+                    TgtCat = parts[^7],
+                    TemplateId = parts[^6],
+                    Model = parts[^5],
+                    Npc = npc,
+                    Think = think,
+                    Chara = chara,
+                    RuneAmount = rune,
+                };
+            }
+
+            entries.Add(entry);
+        }
+
+        return entries;
+    }
+
+    static string ResolveSpawnMapPath(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--spawn-map=", StringComparison.OrdinalIgnoreCase))
+            {
+                return Path.GetFullPath(arg["--spawn-map=".Length..].Trim('"'));
+            }
+        }
+
+        return Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "output",
+            "runtime",
+            "cnv_enemy_spawn_map.txt");
+    }
+
+    static string? ResolveMapFilter(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--map-filter=", StringComparison.OrdinalIgnoreCase))
+            {
+                return arg["--map-filter=".Length..].Trim();
+            }
+        }
+
+        return null;
+    }
+
+    static int ResolveParallelDegree(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--parallel=", StringComparison.OrdinalIgnoreCase)
+                && int.TryParse(arg["--parallel=".Length..], out var parallel))
+            {
+                return Math.Max(1, parallel);
+            }
+        }
+
+        return Math.Max(1, Environment.ProcessorCount);
+    }
+
+    static int ResolveMaxParallelDegree(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--max-parallel=", StringComparison.OrdinalIgnoreCase)
+                && int.TryParse(arg["--max-parallel=".Length..], out var maxParallel))
+            {
+                return Math.Max(1, maxParallel);
+            }
+        }
+
+        return Math.Min(96, Math.Max(Environment.ProcessorCount * 2, 32));
+    }
+
+    static int ResolveMapInflightLimit(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--map-inflight=", StringComparison.OrdinalIgnoreCase)
+                && int.TryParse(arg["--map-inflight=".Length..], out var inflight))
+            {
+                return Math.Clamp(inflight, 1, 256);
+            }
+        }
+
+        return 48;
+    }
+
+    static bool ResolveDynamicParallel(string[] args) =>
+        args.Any(a => string.Equals(a, "--dynamic-parallel", StringComparison.OrdinalIgnoreCase));
+
+    sealed class MapApplyProgress
+    {
+        public int Done;
+    }
+
+    static long LastMapHeartbeatMs;
+
+    static void MaybeLogMapHeartbeat(int done, int totalMaps)
+    {
+        var now = Environment.TickCount64;
+        if (now - Volatile.Read(ref LastMapHeartbeatMs) < 10000)
+        {
+            return;
+        }
+
+        lock (typeof(Program))
+        {
+            if (now - LastMapHeartbeatMs < 10000)
+            {
+                return;
+            }
+
+            LastMapHeartbeatMs = now;
+        }
+
+        Console.WriteLine($"apply-map: map_heartbeat done={done}/{totalMaps}");
+        Console.Out.Flush();
+    }
+
+    static void ProcessMapGroupWork(
+        IGrouping<string, SpawnMapEntry> group,
+        string gameDir,
+        string outDir,
+        IReadOnlyDictionary<string, (string MapFile, MSBE.Model.Enemy Model)> modelRegistry,
+        bool quiet,
+        ConcurrentBag<MapApplyResult> mapResults,
+        MapApplyProgress progress,
+        int totalMaps)
+    {
+        MapApplyResult result;
+        MapApplyInflight?.Wait();
+        try
+        {
+            try
+            {
+                result = ApplySpawnMapGroup(group, gameDir, outDir, modelRegistry, quiet);
+            }
+            catch (Exception ex)
+            {
+                result = new MapApplyResult
+                {
+                    MapId = group.Key,
+                    MapsWriteFailed = 1,
+                    ConsoleLine = $"  FAIL {group.Key}: {ex.GetType().Name} — {ex.Message}",
+                };
+                result.LogLines.Add($"apply_exception={group.Key} {ex}");
+                Console.Error.WriteLine(result.ConsoleLine);
+            }
+        }
+        finally
+        {
+            MapApplyInflight?.Release();
+        }
+
+        mapResults.Add(result);
+        if (!string.IsNullOrEmpty(result.ConsoleLine))
+        {
+            if (result.ConsoleLine.Contains("FAIL", StringComparison.Ordinal)
+                || result.ConsoleLine.Contains("SKIP", StringComparison.Ordinal))
+            {
+                Console.Error.WriteLine(result.ConsoleLine);
+            }
+            else if (!quiet)
+            {
+                Console.WriteLine(result.ConsoleLine);
+            }
+        }
+
+        var n = Interlocked.Increment(ref progress.Done);
+        MaybeLogMapHeartbeat(progress.Done, totalMaps);
+        var progressStep = totalMaps <= 80 ? 1 : totalMaps <= 200 ? 5 : 10;
+        if (n == 1 || n == totalMaps || n % progressStep == 0)
+        {
+            Console.WriteLine($"apply-map: map_progress {n}/{totalMaps}");
+            Console.Out.Flush();
+        }
+    }
+
+    static void ApplyMapGroupsDynamic(
+        IReadOnlyList<IGrouping<string, SpawnMapEntry>> mapGroups,
+        int initialWorkers,
+        int maxWorkers,
+        int totalMaps,
+        string gameDir,
+        string outDir,
+        IReadOnlyDictionary<string, (string MapFile, MSBE.Model.Enemy Model)> modelRegistry,
+        bool quiet,
+        ConcurrentBag<MapApplyResult> mapResults)
+    {
+        var queue = new ConcurrentQueue<IGrouping<string, SpawnMapEntry>>(mapGroups);
+        var progress = new MapApplyProgress();
+        var running = 0;
+        var workers = 0;
+        var cores = Math.Max(1, Environment.ProcessorCount);
+        initialWorkers = Math.Clamp(initialWorkers, 1, maxWorkers);
+
+        void StartWorker()
+        {
+            Interlocked.Increment(ref workers);
+            Interlocked.Increment(ref running);
+            Task.Run(() =>
+            {
+                try
+                {
+                    while (queue.TryDequeue(out var group))
+                    {
+                        ProcessMapGroupWork(
+                            group,
+                            gameDir,
+                            outDir,
+                            modelRegistry,
+                            quiet,
+                            mapResults,
+                            progress,
+                            totalMaps);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"apply-map: worker_error {ex.GetType().Name} — {ex.Message}");
+                    Console.Error.Flush();
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref running);
+                }
+            });
+        }
+
+        for (var i = 0; i < initialWorkers; i++)
+        {
+            StartWorker();
+        }
+
+        var cpuMark = Process.GetCurrentProcess().TotalProcessorTime;
+        var wallMark = Stopwatch.StartNew();
+        var heartbeatMark = Stopwatch.StartNew();
+        while (progress.Done < totalMaps)
+        {
+            Thread.Sleep(400);
+            if (heartbeatMark.ElapsedMilliseconds >= 10000)
+            {
+                Console.WriteLine(
+                    $"apply-map: map_heartbeat done={progress.Done}/{totalMaps} "
+                    + $"queue={queue.Count} running={running}");
+                Console.Out.Flush();
+                heartbeatMark.Restart();
+            }
+
+            if (progress.Done >= totalMaps && running == 0)
+            {
+                break;
+            }
+
+            if (running == 0 && !queue.IsEmpty)
+            {
+                StartWorker();
+                continue;
+            }
+
+            if (queue.IsEmpty && running == 0)
+            {
+                break;
+            }
+
+            var cpuNow = Process.GetCurrentProcess().TotalProcessorTime;
+            var wallMs = Math.Max(1, wallMark.ElapsedMilliseconds);
+            var util = (cpuNow - cpuMark).TotalMilliseconds / (wallMs * cores);
+            var currentWorkers = Volatile.Read(ref workers);
+            if (util < 0.60 && currentWorkers < maxWorkers && !queue.IsEmpty)
+            {
+                var add = Math.Min(Math.Max(cores * 2, 8), maxWorkers - currentWorkers);
+                Console.WriteLine(
+                    $"apply-map: dynamic_scale workers={currentWorkers}->{currentWorkers + add} "
+                    + $"cpu_util={util:P0} queue={queue.Count}");
+                Console.Out.Flush();
+                for (var i = 0; i < add; i++)
+                {
+                    StartWorker();
+                }
+
+                cpuMark = cpuNow;
+                wallMark.Restart();
+            }
+            else if (util > 0.95 && currentWorkers > cores * 2)
+            {
+                // saturated — avoid runaway thread count on next scale check only
+                cpuMark = cpuNow;
+                wallMark.Restart();
+            }
+        }
+
+        while (running > 0)
+        {
+            Thread.Sleep(50);
+        }
+
+        Console.WriteLine($"apply-map: dynamic_done workers_peak={workers}");
+        Console.Out.Flush();
+    }
+
+    static bool ResolveQuietApply(string[] args) =>
+        args.Any(a => string.Equals(a, "--quiet", StringComparison.OrdinalIgnoreCase));
+
+    static bool ResolveProfileApply(string[] args) =>
+        args.Any(a => string.Equals(a, "--profile", StringComparison.OrdinalIgnoreCase));
+
+    sealed class ApplyProfileStats
+    {
+        public long RegistryMs;
+        public long CacheWarmMs;
+        public long MapWallMs;
+        public long ReadMs;
+        public long PatchMs;
+        public long EnsureModelMs;
+        public long TransplantMs;
+        public long SlotLogMs;
+        public long WriteKrakMs;
+        public long CopyMs;
+        public int MapsProfiled;
+        readonly ConcurrentBag<(string MapId, int Slots, long TotalMs, long WriteMs)> _slowest = new();
+
+        public void Reset()
+        {
+            RegistryMs = 0;
+            CacheWarmMs = 0;
+            MapWallMs = 0;
+            ReadMs = 0;
+            PatchMs = 0;
+            EnsureModelMs = 0;
+            TransplantMs = 0;
+            SlotLogMs = 0;
+            WriteKrakMs = 0;
+            CopyMs = 0;
+            MapsProfiled = 0;
+            while (_slowest.TryTake(out _))
+            {
+            }
+        }
+
+        public void AddMap(
+            string mapId,
+            int slots,
+            long readMs,
+            long patchMs,
+            long ensureModelMs,
+            long transplantMs,
+            long slotLogMs,
+            long writeKrakMs,
+            long copyMs)
+        {
+            Interlocked.Add(ref ReadMs, readMs);
+            Interlocked.Add(ref PatchMs, patchMs);
+            Interlocked.Add(ref EnsureModelMs, ensureModelMs);
+            Interlocked.Add(ref TransplantMs, transplantMs);
+            Interlocked.Add(ref SlotLogMs, slotLogMs);
+            Interlocked.Add(ref WriteKrakMs, writeKrakMs);
+            Interlocked.Add(ref CopyMs, copyMs);
+            Interlocked.Increment(ref MapsProfiled);
+            var total = readMs + patchMs + slotLogMs + writeKrakMs + copyMs;
+            _slowest.Add((mapId, slots, total, writeKrakMs + copyMs));
+        }
+
+        public void PrintSummary(int totalMaps, int mapsWritten)
+        {
+            var cpuSum = ReadMs + PatchMs + SlotLogMs + WriteKrakMs + CopyMs;
+            var denom = Math.Max(1, cpuSum);
+            Console.WriteLine(
+                $"apply-map: profile setup registry_ms={RegistryMs} cache_warm_ms={CacheWarmMs}");
+            Console.WriteLine(
+                $"apply-map: profile maps wall_ms={MapWallMs} maps={MapsProfiled} written={mapsWritten}");
+            Console.WriteLine(
+                $"apply-map: profile phase_ms read={ReadMs} patch={PatchMs} "
+                + $"ensure_model={EnsureModelMs} transplant={TransplantMs} "
+                + $"slotlog={SlotLogMs} write_krak={WriteKrakMs} copy_msbe={CopyMs} cpu_sum={cpuSum}");
+            Console.WriteLine(
+                $"apply-map: profile pct read={ReadMs * 100.0 / denom:F1}% "
+                + $"patch={PatchMs * 100.0 / denom:F1}% "
+                + $"slotlog={SlotLogMs * 100.0 / denom:F1}% "
+                + $"write_krak={WriteKrakMs * 100.0 / denom:F1}% "
+                + $"copy={CopyMs * 100.0 / denom:F1}%");
+            if (MapWallMs > 0)
+            {
+                Console.WriteLine(
+                    $"apply-map: profile parallel_efficiency cpu_sum/wall={cpuSum * 100.0 / MapWallMs:F0}% "
+                    + $"(>{100}% = threads overlap; low = I/O wait)");
+            }
+
+            foreach (var row in _slowest.OrderByDescending(r => r.TotalMs).Take(8))
+            {
+                Console.WriteLine(
+                    $"apply-map: profile slow map={row.MapId} slots={row.Slots} "
+                    + $"total_ms={row.TotalMs} write_ms={row.WriteMs}");
+            }
+
+            Console.Out.Flush();
+        }
+    }
+
+    static bool ResolveNoMsbSourceCache(string[] args) =>
+        args.Any(a => string.Equals(a, "--no-msb-source-cache", StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>MSB per-map model name index sources. CNV only for now; add vanilla/mod_* later.</summary>
+    static class MsbMapModelIndexSource
+    {
+        public const string Cnv = "cnv";
+        // Reserved: public const string Vanilla = "vanilla";
+    }
+
+    static string MapModelIndexCachePath(string source) =>
+        Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "msb_map_model_index",
+            source,
+            "map_model_names.json");
+
+    sealed class MapModelIndexCacheFile
+    {
+        public string Schema { get; set; } = "msb_map_model_index_v1";
+        public string Source { get; set; } = MsbMapModelIndexSource.Cnv;
+        public string Fingerprint { get; set; } = "";
+        public Dictionary<string, List<string>> Maps { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    }
+
+    static void LoadCnvMapModelIndex(string fingerprint)
+    {
+        CnvMapModelIndexFingerprint = fingerprint;
+        CnvMapModelIndexDirty = false;
+        CnvMapModelIndex = TryLoadMapModelIndexCache(MsbMapModelIndexSource.Cnv, fingerprint)
+            ?? new ConcurrentDictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        Console.WriteLine(
+            $"apply-map: map_model_index source={MsbMapModelIndexSource.Cnv} maps={CnvMapModelIndex.Count}");
+        Console.Out.Flush();
+    }
+
+    static ConcurrentDictionary<string, HashSet<string>>? TryLoadMapModelIndexCache(
+        string source,
+        string fingerprint)
+    {
+        var cachePath = MapModelIndexCachePath(source);
+        if (!File.Exists(cachePath) || string.IsNullOrWhiteSpace(fingerprint))
+        {
+            return null;
+        }
+
+        try
+        {
+            var data = JsonSerializer.Deserialize<MapModelIndexCacheFile>(File.ReadAllText(cachePath, Encoding.UTF8));
+            if (data == null
+                || !string.Equals(data.Schema, "msb_map_model_index_v1", StringComparison.Ordinal)
+                || !string.Equals(data.Source, source, StringComparison.OrdinalIgnoreCase)
+                || !string.Equals(data.Fingerprint, fingerprint, StringComparison.Ordinal))
+            {
+                return null;
+            }
+
+            var loaded = new ConcurrentDictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+            foreach (var (mapId, names) in data.Maps)
+            {
+                if (string.IsNullOrWhiteSpace(mapId) || names == null || names.Count == 0)
+                {
+                    continue;
+                }
+
+                loaded[mapId] = new HashSet<string>(names, StringComparer.OrdinalIgnoreCase);
+            }
+
+            return loaded.Count > 0 ? loaded : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    static void TrySaveCnvMapModelIndexCache(string fingerprint)
+    {
+        if (string.IsNullOrWhiteSpace(fingerprint) || CnvMapModelIndex.IsEmpty)
+        {
+            return;
+        }
+
+        try
+        {
+            var cachePath = MapModelIndexCachePath(MsbMapModelIndexSource.Cnv);
+            var payload = new MapModelIndexCacheFile
+            {
+                Source = MsbMapModelIndexSource.Cnv,
+                Fingerprint = fingerprint,
+                Maps = CnvMapModelIndex.ToDictionary(
+                    kv => kv.Key,
+                    kv => kv.Value.OrderBy(n => n, StringComparer.OrdinalIgnoreCase).ToList(),
+                    StringComparer.OrdinalIgnoreCase),
+            };
+            Directory.CreateDirectory(Path.GetDirectoryName(cachePath)!);
+            File.WriteAllText(
+                cachePath,
+                JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = false }),
+                Encoding.UTF8);
+            CnvMapModelIndexDirty = false;
+            Console.WriteLine(
+                $"apply-map: map_model_index saved source={MsbMapModelIndexSource.Cnv} maps={payload.Maps.Count}");
+            Console.Out.Flush();
+        }
+        catch
+        {
+            // cache write is optional
+        }
+    }
+
+    static HashSet<string> BuildMapModelNameSet(MSBE msb)
+    {
+        var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var model in msb.Models.Enemies)
+        {
+            if (model is MSBE.Model.Enemy enemyModel && !string.IsNullOrWhiteSpace(enemyModel.Name))
+            {
+                names.Add(enemyModel.Name);
+            }
+        }
+
+        return names;
+    }
+
+    static HashSet<string> GetMapModelNameSetForApply(string mapId, MSBE msb)
+    {
+        // Apply hot path: only names actually on this MSB (never trust stale JSON alone).
+        var liveNames = BuildMapModelNameSet(msb);
+        RecordMapModelNames(mapId, liveNames);
+        return liveNames;
+    }
+
+    static void MarkCnvMapModelIndexDirty()
+    {
+        CnvMapModelIndexDirty = true;
+    }
+
+    static void RecordMapModelNamesFromMsb(string mapId, MSBE msb)
+    {
+        var names = BuildMapModelNameSet(msb);
+        RecordMapModelNames(mapId, names);
+    }
+
+    static void RecordMapModelNames(string mapId, IEnumerable<string> names)
+    {
+        var changed = false;
+        CnvMapModelIndex.AddOrUpdate(
+            mapId,
+            _ =>
+            {
+                changed = true;
+                return new HashSet<string>(names, StringComparer.OrdinalIgnoreCase);
+            },
+            (_, existing) =>
+            {
+                foreach (var name in names)
+                {
+                    if (existing.Add(name))
+                    {
+                        changed = true;
+                    }
+                }
+
+                return existing;
+            });
+        if (changed)
+        {
+            CnvMapModelIndexDirty = true;
+        }
+    }
+
+    static Dictionary<string, (string MapFile, MSBE.Model.Enemy Model)> BuildEnemyModelRegistry(
+        string gameDir,
+        int parallel,
+        ConcurrentBag<string> logLines,
+        IReadOnlyList<string>? mapFilesFilter = null)
+    {
+        var mapStudio = CnvMapStudioDir(gameDir);
+        if (!Directory.Exists(mapStudio))
+        {
+            ModelRegistryScopedToSpawn = false;
+            return new Dictionary<string, (string, MSBE.Model.Enemy)>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        var fingerprint = ComputeMapStudioFingerprint(mapStudio);
+        var cachePath = ModelRegistryCachePath();
+        if (TryLoadModelRegistryCache(cachePath, fingerprint, out var cached))
+        {
+            ModelRegistryScopedToSpawn = mapFilesFilter is { Count: > 0 };
+            Console.WriteLine($"apply-map: model registry cache hit ({cached.Count} entries)");
+            Console.Out.Flush();
+            return cached;
+        }
+
+        var registry = new ConcurrentDictionary<string, (string, MSBE.Model.Enemy)>(
+            StringComparer.OrdinalIgnoreCase);
+        List<string> files;
+        if (mapFilesFilter is { Count: > 0 })
+        {
+            files = mapFilesFilter
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(f => f, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+            ModelRegistryScopedToSpawn = true;
+        }
+        else
+        {
+            files = Directory.EnumerateFiles(mapStudio, "*.msb.dcx").ToList();
+            ModelRegistryScopedToSpawn = false;
+        }
+
+        var totalFiles = files.Count;
+        var scanned = 0;
+        Parallel.ForEach(
+            files,
+            new ParallelOptions { MaxDegreeOfParallelism = parallel },
+            path =>
+            {
+                var fileName = Path.GetFileName(path);
+                var msb = TryReadMsbSafe(gameDir, fileName, new StringBuilder());
+                if (msb != null)
+                {
+                    foreach (var model in msb.Models.Enemies)
+                    {
+                        if (model is MSBE.Model.Enemy enemyModel)
+                        {
+                            registry.TryAdd(enemyModel.Name, (fileName, enemyModel));
+                        }
+                    }
+                }
+
+                var n = Interlocked.Increment(ref scanned);
+                if (n == 1 || n == totalFiles || n % 25 == 0)
+                {
+                    Console.WriteLine($"apply-map: registry_progress {n}/{totalFiles}");
+                    Console.Out.Flush();
+                }
+            });
+
+        var dict = registry.ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+        TrySaveModelRegistryCache(cachePath, fingerprint, dict);
+        return dict;
+    }
+
+    static string ModelRegistryCachePath() =>
+        Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "enemy_model_registry.json");
+
+    static string ComputeMapStudioFingerprint(string mapStudio)
+    {
+        long maxTicks = 0;
+        var count = 0;
+        foreach (var path in Directory.EnumerateFiles(mapStudio, "*.msb.dcx"))
+        {
+            count++;
+            var ticks = File.GetLastWriteTimeUtc(path).Ticks;
+            if (ticks > maxTicks)
+            {
+                maxTicks = ticks;
+            }
+        }
+
+        return $"{count}:{maxTicks}";
+    }
+
+    static string MsbSourceCacheRoot() =>
+        Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "msb_source");
+
+    static string MsbSourceCacheFingerprint(string gameDir) =>
+        ComputeMapStudioFingerprint(CnvMapStudioDir(gameDir)).Replace(':', '_');
+
+    static string MsbSourceCacheFilePath(string gameDir, string mapFileName)
+    {
+        var safeName = mapFileName.Replace(Path.DirectorySeparatorChar, '_');
+        return Path.Combine(
+            MsbSourceCacheRoot(),
+            MsbSourceCacheFingerprint(gameDir),
+            safeName + ".decomp");
+    }
+
+    static void TryWriteMsbSourceCache(string gameDir, string mapFileName, byte[] sourceBytes)
+    {
+        try
+        {
+            var decomp = DCX.Is(sourceBytes) ? DCX.Decompress(sourceBytes) : sourceBytes;
+            var cachePath = MsbSourceCacheFilePath(gameDir, mapFileName);
+            if (File.Exists(cachePath))
+            {
+                return;
+            }
+
+            var lockObj = MsbSourceCacheFileLocks.GetOrAdd(cachePath, _ => new object());
+            lock (lockObj)
+            {
+                if (File.Exists(cachePath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(Path.GetDirectoryName(cachePath)!);
+                File.WriteAllBytes(cachePath, decomp);
+            }
+        }
+        catch
+        {
+            // optional cache
+        }
+    }
+
+    static void EnsureBhdFileIndex(string gameDir)
+    {
+        if (BhdFileIndex != null)
+        {
+            return;
+        }
+
+        lock (BhdFileIndexLock)
+        {
+            if (BhdFileIndex != null)
+            {
+                return;
+            }
+
+            var index = new Dictionary<ulong, (string, BHD5.FileHeader)>();
+            foreach (var bhdName in new[] { "Data0.bhd", "Data1.bhd", "Data2.bhd", "Data3.bhd", "DLC.bhd" })
+            {
+                var bhdPath = Path.Combine(gameDir, bhdName);
+                if (!File.Exists(bhdPath))
+                {
+                    continue;
+                }
+
+                try
+                {
+                    using var bhdStream = File.OpenRead(bhdPath);
+                    var bhd = BHD5.Read(bhdStream, BHD5.Game.EldenRing);
+                    var bdtPath = Path.ChangeExtension(bhdPath, ".bdt");
+                    foreach (var bucket in bhd.Buckets)
+                    {
+                        for (var i = 0; i < bucket.Count; i++)
+                        {
+                            var header = bucket[i];
+                            index[header.FileNameHash] = (bdtPath, header);
+                        }
+                    }
+                }
+                catch
+                {
+                    // skip broken archive
+                }
+            }
+
+            BhdFileIndex = index;
+            Console.WriteLine($"apply-map: bhd_index entries={index.Count}");
+            Console.Out.Flush();
+        }
+    }
+
+    static void TryWriteMsbSourceCacheFromMod(string gameDir, string mapFileName, string modPath)
+    {
+        if (File.Exists(MsbSourceCacheFilePath(gameDir, mapFileName)))
+        {
+            return;
+        }
+
+        try
+        {
+            var bytes = File.ReadAllBytes(modPath);
+            TryWriteMsbSourceCache(gameDir, mapFileName, bytes);
+        }
+        catch
+        {
+            // optional cache
+        }
+    }
+
+    static void WarmSourceMapDiskCache(string gameDir, IReadOnlyList<string> mapFiles, int parallel)
+    {
+        var total = mapFiles.Count;
+        if (total == 0)
+        {
+            return;
+        }
+
+        Console.WriteLine($"apply-map: cache_warm {total} source maps (stream/disk)…");
+        Console.Out.Flush();
+        var warmed = 0;
+        Parallel.ForEach(
+            mapFiles,
+            new ParallelOptions { MaxDegreeOfParallelism = parallel },
+            mapFile =>
+            {
+                var mapId = mapFile.Replace(".msb.dcx", "", StringComparison.OrdinalIgnoreCase);
+                var cachePath = MsbSourceCacheFilePath(gameDir, mapFile);
+                MSBE? msb = null;
+                if (!File.Exists(cachePath))
+                {
+                    msb = TryReadMsbSafe(gameDir, mapFile, new StringBuilder());
+                }
+                else if (!CnvMapModelIndex.ContainsKey(mapId))
+                {
+                    msb = TryReadMsbFromPath(cachePath, new StringBuilder(), mapFile);
+                }
+
+                if (msb != null)
+                {
+                    RecordMapModelNamesFromMsb(mapId, msb);
+                }
+
+                var n = Interlocked.Increment(ref warmed);
+                if (n == 1 || n == total || n % 25 == 0)
+                {
+                    Console.WriteLine($"apply-map: prefetch_progress {n}/{total}");
+                    Console.Out.Flush();
+                }
+            });
+        Console.WriteLine($"apply-map: cache_warm done maps={total}");
+        Console.Out.Flush();
+    }
+
+    static void TryWriteOutputMsbeCopy(string outMsb, string outMsbe)
+    {
+        try
+        {
+            File.Copy(outMsb, outMsbe, overwrite: true);
+        }
+        catch (Exception ex)
+        {
+            throw new IOException($"msbe_copy_failed {outMsbe}: {ex.Message}", ex);
+        }
+    }
+
+    sealed class RegistryCacheEntry
+    {
+        public string Name { get; set; } = "";
+        public string MapFile { get; set; } = "";
+        public string SibPath { get; set; } = "";
+    }
+
+    sealed class RegistryCacheFile
+    {
+        public string Fingerprint { get; set; } = "";
+        public List<RegistryCacheEntry> Entries { get; set; } = new();
+    }
+
+    static bool TryLoadModelRegistryCache(
+        string cachePath,
+        string fingerprint,
+        out Dictionary<string, (string MapFile, MSBE.Model.Enemy Model)> registry)
+    {
+        // T-067: legacy disk cache stored SibPath-only rows → always rebuild in memory.
+        registry = new Dictionary<string, (string, MSBE.Model.Enemy)>(StringComparer.OrdinalIgnoreCase);
+        return false;
+    }
+
+    static void TrySaveModelRegistryCache(
+        string cachePath,
+        string fingerprint,
+        Dictionary<string, (string MapFile, MSBE.Model.Enemy Model)> registry)
+    {
+        _ = cachePath;
+        _ = fingerprint;
+        _ = registry;
+    }
+
+    static void EnsureModelsReferencedByEnemyParts(
+        MSBE msb,
+        string gameDir,
+        StringBuilder detailLog,
+        IReadOnlyDictionary<string, (string MapFile, MSBE.Model.Enemy Model)>? modelRegistry,
+        ISet<string>? mapModelNames)
+    {
+        var needed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var part in msb.Parts.Enemies)
+        {
+            if (!string.IsNullOrWhiteSpace(part.ModelName))
+            {
+                needed.Add(part.ModelName);
+            }
+        }
+
+        foreach (var modelName in needed)
+        {
+            if (mapModelNames != null && mapModelNames.Contains(modelName))
+            {
+                continue;
+            }
+
+            EnsureEnemyModel(
+                msb,
+                modelName,
+                gameDir,
+                detailLog,
+                quiet: true,
+                modelRegistry: modelRegistry,
+                mapModelNames: mapModelNames);
+        }
+    }
+
+    static Dictionary<string, MSBE.Part.Enemy> BuildEnemyLookupByName(
+        IList<MSBE.Part.Enemy> enemies,
+        string mapId,
+        StringBuilder detailLog,
+        MapApplyResult result)
+    {
+        var lookup = new Dictionary<string, MSBE.Part.Enemy>(StringComparer.OrdinalIgnoreCase);
+        foreach (var enemy in enemies)
+        {
+            if (lookup.ContainsKey(enemy.Name))
+            {
+                result.LogLines.Add($"apply_duplicate_enemy_name={mapId}:{enemy.Name}");
+                Log(detailLog, $"duplicate_enemy_name={enemy.Name} map={mapId}");
+                continue;
+            }
+
+            lookup[enemy.Name] = enemy;
+        }
+
+        return lookup;
+    }
+
+    sealed class MapApplyResult
+    {
+        public int MapsWritten;
+        public int SlotsPatched;
+        public int SlotsMissing;
+        public int SlotCompatRejects;
+        public int MapsMissing;
+        public int MapsWriteFailed;
+        public string MapId = "";
+        public string ConsoleLine = "";
+        public List<string> LogLines = new();
+        public List<RadahnLandingRecord> RadahnLandings { get; } = new();
+    }
+
+    sealed class RadahnLandingRecord
+    {
+        public string MapId { get; set; } = "";
+        public string EntityName { get; set; } = "";
+        public uint BossEntityId { get; set; }
+        public uint HelperEntityId { get; set; }
+        public float PosX { get; set; }
+        public float PosY { get; set; }
+        public float PosZ { get; set; }
+    }
+
+    const string RadahnHelperDonorMap = "m60_52_38_00.msb.dcx";
+    const uint RadahnHelperDonorEntityId = 1052380899u;
+
+    static MSBE.Part.Enemy? RadahnHelperTemplate;
+
+    static bool IsRadahnDonorModel(string? model) =>
+        !string.IsNullOrWhiteSpace(model)
+        && model.StartsWith("c4730", StringComparison.OrdinalIgnoreCase);
+
+    static MSBE.Part.Enemy? ResolveRadahnHelperTemplate(string gameDir, StringBuilder detailLog)
+    {
+        if (RadahnHelperTemplate != null)
+        {
+            return RadahnHelperTemplate;
+        }
+
+        var donorMsb = TryReadMsbSafe(gameDir, RadahnHelperDonorMap, detailLog);
+        if (donorMsb == null)
+        {
+            Log(detailLog, "radahn_helper_template=missing_msb");
+            return null;
+        }
+
+        var helper = donorMsb.Parts.Enemies.FirstOrDefault(e => e.EntityID == RadahnHelperDonorEntityId)
+            ?? donorMsb.Parts.Enemies.FirstOrDefault(
+                e => e.Name.Contains("9009", StringComparison.OrdinalIgnoreCase)
+                    && string.Equals(e.ModelName, "c0000", StringComparison.OrdinalIgnoreCase))
+            ?? donorMsb.Parts.Enemies.FirstOrDefault(
+                e => string.Equals(e.ModelName, "c0000", StringComparison.OrdinalIgnoreCase)
+                    && e.NPCParamID == 0
+                    && e.ThinkParamID == 0);
+        if (helper == null)
+        {
+            Log(detailLog, "radahn_helper_template=stub_c0000");
+            RadahnHelperTemplate = new MSBE.Part.Enemy
+            {
+                Name = "cnv_radahn_helper_stub",
+                ModelName = "c0000",
+                NPCParamID = 0,
+                ThinkParamID = 0,
+                CharaInitID = -1,
+            };
+            return RadahnHelperTemplate;
+        }
+
+        RadahnHelperTemplate = helper;
+        Log(detailLog, $"radahn_helper_template=ok entity={helper.EntityID} name={helper.Name}");
+        return helper;
+    }
+
+    static uint PickRadahnHelperEntityId(MSBE msb, uint bossEntityId)
+    {
+        var used = new HashSet<uint>(msb.Parts.Enemies.Select(e => e.EntityID));
+        for (uint off = 99; off < 600; off++)
+        {
+            var candidate = bossEntityId + off;
+            if (!used.Contains(candidate))
+            {
+                return candidate;
+            }
+        }
+
+        return bossEntityId + 9000u;
+    }
+
+    static MSBE.Part.Enemy BuildRadahnLandingHelper(
+        MSBE.Part.Enemy template,
+        MSBE.Part.Enemy boss,
+        string slotName,
+        uint helperEntityId)
+    {
+        return new MSBE.Part.Enemy
+        {
+            Name = $"cnv_radahn_helper_{slotName}",
+            ModelName = template.ModelName,
+            NPCParamID = template.NPCParamID,
+            ThinkParamID = template.ThinkParamID,
+            CharaInitID = template.CharaInitID,
+            EntityID = helperEntityId,
+            Position = boss.Position,
+            Rotation = boss.Rotation,
+            BackupEventAnimID = -1,
+            WalkRouteName = "",
+        };
+    }
+
+    static bool TryInjectRadahnLandingHelper(
+        MSBE msb,
+        MSBE.Part.Enemy boss,
+        string mapId,
+        string slotName,
+        string gameDir,
+        StringBuilder detailLog,
+        out RadahnLandingRecord record)
+    {
+        record = new RadahnLandingRecord();
+        var bossEntityId = boss.EntityID;
+        if (bossEntityId == 0)
+        {
+            bossEntityId = ResolveBossEntityIdFromIndex(mapId, slotName, detailLog);
+            if (bossEntityId == 0)
+            {
+                Log(detailLog, $"radahn_landing_skip map={mapId} slot={slotName} reason=missing_entity_id");
+                return false;
+            }
+        }
+
+        var existing = msb.Parts.Enemies.FirstOrDefault(
+            e => e.Name.StartsWith("cnv_radahn_helper_", StringComparison.OrdinalIgnoreCase)
+                && bossEntityId > 0
+                && e.EntityID > bossEntityId
+                && e.EntityID < bossEntityId + 600);
+        if (existing != null)
+        {
+            record = new RadahnLandingRecord
+            {
+                MapId = mapId,
+                EntityName = slotName,
+                BossEntityId = bossEntityId,
+                HelperEntityId = existing.EntityID,
+                PosX = boss.Position.X,
+                PosY = boss.Position.Y,
+                PosZ = boss.Position.Z,
+            };
+            Log(
+                detailLog,
+                $"radahn_landing_reuse map={mapId} slot={slotName} boss={bossEntityId} helper={existing.EntityID}");
+            return true;
+        }
+
+        var template = ResolveRadahnHelperTemplate(gameDir, detailLog);
+        if (template == null)
+        {
+            return false;
+        }
+
+        var helperEntityId = PickRadahnHelperEntityId(msb, bossEntityId);
+        EnsureEnemyModel(
+            msb,
+            template.ModelName,
+            gameDir,
+            detailLog,
+            quiet: true,
+            modelRegistry: null,
+            mapModelNames: null);
+        var helper = BuildRadahnLandingHelper(template, boss, slotName, helperEntityId);
+        msb.Parts.Enemies.Add(helper);
+        record = new RadahnLandingRecord
+        {
+            MapId = mapId,
+            EntityName = slotName,
+            BossEntityId = bossEntityId,
+            HelperEntityId = helperEntityId,
+            PosX = boss.Position.X,
+            PosY = boss.Position.Y,
+            PosZ = boss.Position.Z,
+        };
+        Log(
+            detailLog,
+            $"radahn_landing_helper map={mapId} slot={slotName} boss={bossEntityId} helper={helperEntityId}");
+        return true;
+    }
+
+    static Dictionary<(string MapId, string Name), uint>? RadahnEntityIndex;
+
+    static uint ResolveBossEntityIdFromIndex(string mapId, string slotName, StringBuilder detailLog)
+    {
+        try
+        {
+            RadahnEntityIndex ??= LoadEnemySlotEntityIndex();
+            if (RadahnEntityIndex.TryGetValue((mapId, slotName), out var entityId) && entityId > 0)
+            {
+                Log(detailLog, $"radahn_entity_index map={mapId} slot={slotName} entity={entityId}");
+                return entityId;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log(detailLog, $"radahn_entity_index_error map={mapId} slot={slotName} {ex.Message}");
+        }
+
+        return 0;
+    }
+
+    static Dictionary<(string MapId, string Name), uint> LoadEnemySlotEntityIndex()
+    {
+        var lookup = new Dictionary<(string, string), uint>();
+        var path = Path.Combine(ResolveRingrandomRoot(), "cnv_randomizer", "cache", "enemy_index.json");
+        if (!File.Exists(path))
+        {
+            return lookup;
+        }
+
+        using var doc = JsonDocument.Parse(File.ReadAllText(path, Encoding.UTF8));
+        if (!doc.RootElement.TryGetProperty("slots", out var slots)
+            || slots.ValueKind != JsonValueKind.Array)
+        {
+            return lookup;
+        }
+
+        foreach (var slot in slots.EnumerateArray())
+        {
+            var mapId = slot.TryGetProperty("map_id", out var mapEl) ? mapEl.GetString() ?? "" : "";
+            var name = slot.TryGetProperty("name", out var nameEl) ? nameEl.GetString() ?? "" : "";
+            if (string.IsNullOrWhiteSpace(mapId) || string.IsNullOrWhiteSpace(name))
+            {
+                continue;
+            }
+
+            if (!slot.TryGetProperty("entity_id", out var entityEl))
+            {
+                continue;
+            }
+
+            uint entityId = entityEl.ValueKind switch
+            {
+                JsonValueKind.Number when entityEl.TryGetUInt32(out var u) => u,
+                JsonValueKind.Number => (uint)entityEl.GetInt64(),
+                _ => 0u,
+            };
+            if (entityId > 0)
+            {
+                lookup[(mapId, name)] = entityId;
+            }
+        }
+
+        return lookup;
+    }
+
+    static void WriteRadahnLandingManifest(string outDir, IReadOnlyList<RadahnLandingRecord> records)
+    {
+        var path = Path.Combine(outDir, "cnv_radahn_landing.json");
+        if (records.Count == 0)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            return;
+        }
+
+        var json = JsonSerializer.Serialize(
+            records,
+            new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(path, json, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+    }
+
+    static MapApplyResult ApplySpawnMapGroup(
+        IGrouping<string, SpawnMapEntry> group,
+        string gameDir,
+        string outDir,
+        IReadOnlyDictionary<string, (string MapFile, MSBE.Model.Enemy Model)> modelRegistry,
+        bool quiet)
+    {
+        var result = new MapApplyResult { MapId = group.Key };
+        var mapId = group.Key;
+        var mapFile = $"{mapId}.msb.dcx";
+        var localLog = new StringBuilder();
+        long readMs = 0, patchMs = 0, ensureModelMs = 0, transplantMs = 0, slotLogMs = 0, writeKrakMs = 0, copyMs = 0;
+        var readSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+        var msb = TryReadMsbSafe(gameDir, mapFile, localLog);
+        if (readSw != null)
+        {
+            readSw.Stop();
+            readMs = readSw.ElapsedMilliseconds;
+        }
+        if (msb == null)
+        {
+            result.MapsMissing = 1;
+            result.ConsoleLine = $"  SKIP {mapId}: cannot read CNV MSB {mapFile}";
+            result.LogLines.Add($"apply_skip_map={mapId} reason=missing_msb");
+            return result;
+        }
+
+        var enemies = msb.Parts.Enemies;
+        var enemyByName = BuildEnemyLookupByName(enemies, mapId, localLog, result);
+        var mapModelNames = GetMapModelNameSetForApply(mapId, msb);
+        var mapPatched = 0;
+        var modelsEnsuredOnMap = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var validCollisionParts = CollectCollisionPartNames(msb);
+        StringBuilder? mapSlotLog = quiet ? null : new StringBuilder();
+
+        if (mapSlotLog != null)
+        {
+            mapSlotLog.AppendLine($"# apply-map slots map={mapId}");
+        }
+
+        var patchSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+        foreach (var entry in group)
+        {
+            if (!enemyByName.TryGetValue(entry.EntityName, out var target))
+            {
+                result.SlotsMissing++;
+                result.LogLines.Add($"apply_missing_slot={mapId}:{entry.EntityName}");
+                mapSlotLog?.AppendLine($"missing {entry.EntityName}");
+                continue;
+            }
+
+            if (string.Equals(entry.TemplateId, "cnv:suppress_mount", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(entry.TemplateId, "cnv:suppress_decorative", StringComparison.OrdinalIgnoreCase))
+            {
+                var suppressRecord = new PatchRecord
+                {
+                    Name = target.Name,
+                    EntityId = target.EntityID,
+                };
+                ApplyMountSuppress(target, suppressRecord);
+                mapPatched++;
+                var suppressKind = string.Equals(entry.TemplateId, "cnv:suppress_decorative", StringComparison.OrdinalIgnoreCase)
+                    ? "suppress_decorative"
+                    : "suppress_mount";
+                mapSlotLog?.AppendLine(
+                    $"{suppressKind} {entry.EntityName} before={suppressRecord.BeforeModel} after={suppressRecord.AfterModel}");
+                if (!quiet)
+                {
+                    result.LogLines.Add(
+                        $"apply_{suppressKind}={mapId}:{entry.EntityName} model={suppressRecord.BeforeModel}");
+                }
+                continue;
+            }
+
+            var demount = entry.TemplateId.EndsWith("|demount", StringComparison.OrdinalIgnoreCase);
+            var donorMapId = ResolveDonorMapId(entry.TemplateId, entry.MapId);
+            if (modelsEnsuredOnMap.Add(entry.Model))
+            {
+                var ensureSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+                EnsureEnemyModel(
+                    msb,
+                    entry.Model,
+                    gameDir,
+                    localLog,
+                    quiet: true,
+                    preferDonorMapId: donorMapId,
+                    modelRegistry: modelRegistry,
+                    mapModelNames: mapModelNames);
+                if (ensureSw != null)
+                {
+                    ensureSw.Stop();
+                    ensureModelMs += ensureSw.ElapsedMilliseconds;
+                }
+            }
+
+            var donorPart = ResolveDonorMsbPart(
+                gameDir,
+                entry.TemplateId,
+                entry.MapId,
+                entry.Model,
+                localLog);
+
+            MSBE.Part.Enemy donor;
+            if (donorPart != null)
+            {
+                donor = donorPart;
+            }
+            else
+            {
+                donor = new MSBE.Part.Enemy
+                {
+                    Name = entry.EntityName,
+                    ModelName = entry.Model,
+                    NPCParamID = entry.Npc,
+                    ThinkParamID = entry.Think,
+                    CharaInitID = entry.Chara,
+                };
+            }
+
+            var record = new PatchRecord
+            {
+                Name = target.Name,
+                EntityId = target.EntityID,
+            };
+
+            if (TryGetSlotCompatRejectReason(target, entry.TemplateId, out var slotCompatReject))
+            {
+                result.SlotCompatRejects++;
+                var rejectLine =
+                    $"slot_compat_reject map={mapId} entity={entry.EntityName} "
+                    + $"slot_class={ResolveSlotApplyClass(target)} template={entry.TemplateId} reason={slotCompatReject}";
+                result.LogLines.Add(rejectLine);
+                mapSlotLog?.AppendLine(rejectLine);
+                if (!quiet)
+                {
+                    result.LogLines.Add($"apply_slot_compat_reject {mapId}:{entry.EntityName} reason={slotCompatReject}");
+                }
+                continue;
+            }
+
+            var transplantSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+            var forceDonorMsb = ResolveForceDonorMsb(entry.TemplateId);
+            ApplyDonorTransplant(
+                target,
+                donor,
+                record,
+                demount,
+                donorBehaviorRef: donorPart,
+                forceDonorMsb: forceDonorMsb,
+                slotMapId: mapId,
+                slotEntityName: entry.EntityName,
+                donorTemplateId: entry.TemplateId,
+                validCollisionParts: validCollisionParts);
+            ApplySpawnMapParamIds(target, entry, record);
+            if (entry.HasPosition)
+            {
+                target.Position = new System.Numerics.Vector3(entry.PosX, entry.PosY, entry.PosZ);
+                target.WalkRouteName = "";
+                target.BackupEventAnimID = -1;
+                record.RouteCleared = true;
+                record.WalkRouteKept = false;
+            }
+            if (transplantSw != null)
+            {
+                transplantSw.Stop();
+                transplantMs += transplantSw.ElapsedMilliseconds;
+            }
+            if (IsRadahnDonorModel(entry.Model)
+                && TryInjectRadahnLandingHelper(
+                    msb,
+                    target,
+                    mapId,
+                    entry.EntityName,
+                    gameDir,
+                    localLog,
+                    out var landingRecord))
+            {
+                result.RadahnLandings.Add(landingRecord);
+            }
+            mapPatched++;
+
+            if (!quiet)
+            {
+                var patchLine =
+                    $"patch {entry.EntityName} before={record.BeforeModel} npc={record.BeforeNpc} think={record.BeforeThink} "
+                    + $"after={record.AfterModel} npc={record.AfterNpc} think={record.AfterThink} "
+                    + $"template={entry.TemplateId} chara={entry.Chara} rune={entry.RuneAmount} "
+                    + $"force_donor={record.ForceDonorMsb} speffect_cleared={record.SpeffectCleared} "
+                    + $"walk_route_kept={record.WalkRouteKept} route_cleared={record.RouteCleared} "
+                    + $"slot_state_cleared={record.SlotStateCleared}";
+                result.LogLines.Add($"apply_patch {mapId} {patchLine}");
+                mapSlotLog?.AppendLine(patchLine);
+            }
+        }
+        if (patchSw != null)
+        {
+            patchSw.Stop();
+            patchMs = patchSw.ElapsedMilliseconds;
+        }
+
+        if (mapPatched == 0)
+        {
+            if (localLog.Length > 0)
+            {
+                result.LogLines.Add(localLog.ToString());
+            }
+            return result;
+        }
+
+        if (mapSlotLog != null)
+        {
+            var mapSlotLogPath = Path.Combine(outDir, $"cnv_enemy_apply_slots_{mapId}.txt");
+            var slotLogSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+            File.WriteAllText(mapSlotLogPath, mapSlotLog.ToString(), Encoding.UTF8);
+            if (slotLogSw != null)
+            {
+                slotLogSw.Stop();
+                slotLogMs = slotLogSw.ElapsedMilliseconds;
+            }
+            result.LogLines.Add($"apply_slot_log={mapSlotLogPath} lines={mapPatched}");
+        }
+
+        EnsureModelsReferencedByEnemyParts(
+            msb,
+            gameDir,
+            localLog,
+            modelRegistry,
+            mapModelNames);
+
+        var outMsb = Path.Combine(outDir, mapFile);
+        var outMsbe = Path.Combine(outDir, mapFile.Replace(".msb.dcx", ".msbe.dcx", StringComparison.OrdinalIgnoreCase));
+        try
+        {
+            var writeSw = ApplyProfileEnabled ? Stopwatch.StartNew() : null;
+            WriteOverlayMsbPair(msb, outMsb, outMsbe, localLog);
+            if (writeSw != null)
+            {
+                writeSw.Stop();
+                writeKrakMs = writeSw.ElapsedMilliseconds;
+                copyMs = writeKrakMs;
+            }
+
+            result.MapsWritten = 1;
+            result.SlotsPatched = mapPatched;
+            result.ConsoleLine = $"  {mapId}: patched {mapPatched} -> {outMsb}";
+            result.LogLines.Add($"apply_wrote={outMsb} patched={mapPatched}");
+        }
+        catch (Exception ex)
+        {
+            TryDeleteFileIfExists(outMsb);
+            TryDeleteFileIfExists(outMsbe);
+            var slotLogPath = Path.Combine(outDir, $"cnv_enemy_apply_slots_{mapId}.txt");
+            TryDeleteFileIfExists(slotLogPath);
+            result.MapsWriteFailed = 1;
+            result.ConsoleLine = $"  FAIL {mapId}: write MSB — {ex.Message}";
+            result.LogLines.Add($"apply_write_fail={mapId} error={ex.Message}");
+        }
+
+        if (localLog.Length > 0)
+        {
+            result.LogLines.Add(localLog.ToString());
+        }
+
+        if (ApplyProfileEnabled && mapPatched > 0)
+        {
+            ApplyProfile.AddMap(
+                mapId,
+                mapPatched,
+                readMs,
+                patchMs,
+                ensureModelMs,
+                transplantMs,
+                slotLogMs,
+                writeKrakMs,
+                copyMs);
+        }
+
+        return result;
+    }
+
+    static string ResolveIndexOutPath(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--out=", StringComparison.OrdinalIgnoreCase))
+            {
+                return Path.GetFullPath(arg["--out=".Length..]);
+            }
+        }
+
+        return Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "enemy_index.raw.json");
+    }
+
+    static string ResolvePickupIndexOutPath(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--out=", StringComparison.OrdinalIgnoreCase))
+            {
+                return Path.GetFullPath(arg["--out=".Length..]);
+            }
+        }
+
+        return Path.Combine(
+            ResolveRingrandomRoot(),
+            "cnv_randomizer",
+            "cache",
+            "pickup_slot_index.json");
+    }
+
+    static int ResolveMaxMaps(string[] args)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--max-maps=", StringComparison.OrdinalIgnoreCase)
+                && int.TryParse(arg["--max-maps=".Length..], out var maxMaps))
+            {
+                return maxMaps;
+            }
+        }
+
+        return 0;
+    }
+
+    static List<DonorEntry> CollectDonors(string gameDir, Func<string, bool> modelMatch, string label)
+    {
+        var mapStudio = CnvMapStudioDir(gameDir);
+        var results = new List<DonorEntry>();
+        if (!Directory.Exists(mapStudio))
+        {
+            return results;
+        }
+
+        foreach (var path in Directory.EnumerateFiles(mapStudio, "m60_*.msb.dcx"))
+        {
+            MSBE msb;
+            try
+            {
+                msb = ReadMsbe(File.ReadAllBytes(path));
+            }
+            catch
+            {
+                continue;
+            }
+
+            var mapFile = Path.GetFileName(path);
+            foreach (var enemy in msb.Parts.Enemies)
+            {
+                var model = enemy.ModelName ?? "";
+                if (!modelMatch(model))
+                {
+                    continue;
+                }
+
+                results.Add(new DonorEntry(label, mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID));
+            }
+        }
+
+        return results;
+    }
+
+    static bool IsRealDragonModel(string model) =>
+        RealFlyingDragonPrefixes.Any(p => model.StartsWith(p, StringComparison.OrdinalIgnoreCase))
+        || RealFieldDragonPrefixes.Any(p => model.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+
+    static DonorEntry? ResolveDonor(string key, string gameDir, int seed, StringBuilder detailLog)
+    {
+        if (key == "random_dragon")
+        {
+            var pool = CollectDonors(gameDir, m => DragonModelPrefixes.Any(p => m.StartsWith(p, StringComparison.OrdinalIgnoreCase)), "dragon");
+            if (pool.Count == 0)
+            {
+                return null;
+            }
+
+            pool.Sort((a, b) => string.Compare($"{a.MapFile}:{a.EnemyName}", $"{b.MapFile}:{b.EnemyName}", StringComparison.Ordinal));
+            var idx = (int)((uint)seed % (uint)pool.Count);
+            var pick = pool[idx];
+            Log(detailLog, $"dragon_pick seed={seed} index={idx}/{pool.Count} {pick.MapFile}:{pick.EnemyName} model={pick.Model}");
+            return pick;
+        }
+
+        if (key == "real_dragon")
+        {
+            var pool = CollectDonors(gameDir, IsRealDragonModel, "real_dragon");
+            foreach (var mapFile in DragonProbeMaps)
+            {
+                var enemies = TryReadMapEnemies(gameDir, mapFile, detailLog);
+                if (enemies == null)
+                {
+                    continue;
+                }
+
+                foreach (var enemy in enemies)
+                {
+                    var model = enemy.ModelName ?? "";
+                    if (!IsRealDragonModel(model))
+                    {
+                        continue;
+                    }
+
+                    var entry = new DonorEntry("real_dragon", mapFile, enemy.Name, model, enemy.NPCParamID, enemy.ThinkParamID, enemy.CharaInitID);
+                    if (!pool.Any(p => p.MapFile == entry.MapFile && p.EnemyName == entry.EnemyName))
+                    {
+                        pool.Add(entry);
+                    }
+                }
+            }
+
+            if (pool.Count == 0)
+            {
+                return null;
+            }
+
+            pool.Sort((a, b) => string.Compare($"{a.MapFile}:{a.EnemyName}", $"{b.MapFile}:{b.EnemyName}", StringComparison.Ordinal));
+            var realIdx = (int)((uint)seed % (uint)pool.Count);
+            var realPick = pool[realIdx];
+            Log(detailLog, $"real_dragon_pick seed={seed} index={realIdx}/{pool.Count} {realPick.MapFile}:{realPick.EnemyName} model={realPick.Model}");
+            return realPick;
+        }
+
+        if (key == "godrick")
+        {
+            var pick = FindDonorInProbeMaps(gameDir, GodrickProbeMaps, m => m.StartsWith("c4750", StringComparison.OrdinalIgnoreCase), "godrick", detailLog);
+            if (pick != null)
+            {
+                return pick;
+            }
+            Log(detailLog, "godrick_pick=fallback_csv npc=47500014 think=47500000");
+            return new DonorEntry("godrick", "csv_fallback", "synthetic_c4750", "c4750", 47500014, 47500000, -1);
+        }
+
+        if (key == "elden_beast")
+        {
+            var pick = FindDonorInProbeMaps(gameDir, EldenBeastProbeMaps, m => m.StartsWith("c2200", StringComparison.OrdinalIgnoreCase), "elden_beast", detailLog);
+            if (pick != null)
+            {
+                return pick;
+            }
+            Log(detailLog, "elden_beast_pick=fallback_csv npc=22000078 think=22000000");
+            return new DonorEntry("elden_beast", "csv_fallback", "synthetic_c2200", "c2200", 22000078, 22000000, -1);
+        }
+
+        if (key == "rune_trash")
+        {
+            var pick = FindDonorInProbeMaps(gameDir, new[] { $"{MapId}.msb.dcx" }, m => m.StartsWith("c4311", StringComparison.OrdinalIgnoreCase), "rune_trash", detailLog);
+            if (pick != null && pick.Npc != 43110010)
+            {
+                return pick;
+            }
+            Log(detailLog, "rune_trash_pick=fallback_csv npc=43111210 think=43110000");
+            return new DonorEntry("rune_trash", "csv_fallback", "synthetic_c4311_spear", "c4311", 43111210, 43110000, -1);
+        }
+
+        if (key == "rune_medium")
+        {
+            var pick = FindDonorInProbeMaps(gameDir, RuneMediumProbeMaps, m => m.StartsWith("c4200", StringComparison.OrdinalIgnoreCase), "rune_medium", detailLog);
+            if (pick != null)
+            {
+                return pick;
+            }
+            Log(detailLog, "rune_medium_pick=fallback_csv npc=42000000 think=42000000");
+            return new DonorEntry("rune_medium", "csv_fallback", "synthetic_c4200", "c4200", 42000000, 42000000, -1);
+        }
+
+        if (key == "rune_heavy")
+        {
+            var pick = FindDonorInProbeMaps(gameDir, RuneMediumProbeMaps, m => m.StartsWith("c3251", StringComparison.OrdinalIgnoreCase), "rune_heavy", detailLog);
+            if (pick != null)
+            {
+                return pick;
+            }
+            Log(detailLog, "rune_heavy_pick=fallback_csv npc=32510010 think=32510900");
+            return new DonorEntry("rune_heavy", "csv_fallback", "synthetic_c3251", "c3251", 32510010, 32510900, -1);
+        }
+
+        return null;
+    }
+
+    static DonorEntry? FindDonorInProbeMaps(
+        string gameDir,
+        IEnumerable<string> mapFiles,
+        Func<string, bool> modelMatch,
+        string label,
+        StringBuilder detailLog)
+    {
+        foreach (var mapFile in mapFiles)
+        {
+            var enemies = TryReadMapEnemies(gameDir, mapFile, detailLog);
+            if (enemies == null)
+            {
+                continue;
+            }
+
+            var hit = enemies.FirstOrDefault(e => modelMatch(e.ModelName ?? ""));
+            if (hit == null)
+            {
+                continue;
+            }
+
+            var pick = new DonorEntry(label, mapFile, hit.Name, hit.ModelName, hit.NPCParamID, hit.ThinkParamID, hit.CharaInitID);
+            Log(detailLog, $"{label}_pick {pick.MapFile}:{pick.EnemyName} model={pick.Model} npc={pick.Npc} think={pick.Think}");
+            return pick;
+        }
+
+        return null;
+    }
+
+    static List<MSBE.Part.Enemy>? TryReadMapEnemies(string gameDir, string mapFileName, StringBuilder detailLog)
+    {
+        var bytes = TryReadMapBytes(gameDir, mapFileName, detailLog);
+        if (bytes == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            return ReadMsbe(bytes).Parts.Enemies.ToList();
+        }
+        catch (Exception ex)
+        {
+            Log(detailLog, $"map_parse_fail {mapFileName}: {ex.Message}");
+            return null;
+        }
+    }
+
+    static byte[]? TryReadMapBytes(string gameDir, string mapFileName, StringBuilder detailLog)
+    {
+        var modPath = Path.Combine(CnvMapStudioDir(gameDir), mapFileName);
+        if (File.Exists(modPath))
+        {
+            Log(detailLog, $"map_bytes={modPath}");
+            return File.ReadAllBytes(modPath);
+        }
+
+        var msbeName = mapFileName.Replace(".msb.dcx", ".msbe.dcx", StringComparison.OrdinalIgnoreCase);
+        foreach (var rel in new[] { $"map/mapstudio/{mapFileName}", $"map/mapstudio/{msbeName}" })
+        {
+            var bytes = TryReadBytesFromBhd(gameDir, rel, detailLog);
+            if (bytes != null)
+            {
+                return bytes;
+            }
+        }
+
+        Log(detailLog, $"map_bytes_missing={mapFileName}");
+        return null;
+    }
+
+    static byte[]? TryReadBytesFromBhd(string gameDir, string relPath, StringBuilder detailLog)
+    {
+        try
+        {
+            var hash = HashHelper.FromPathHash(relPath);
+            EnsureBhdFileIndex(gameDir);
+            if (BhdFileIndex != null && BhdFileIndex.TryGetValue(hash, out var entry))
+            {
+                using var bdt = File.OpenRead(entry.Item1);
+                Log(detailLog, $"bhd_pick={relPath} indexed");
+                return entry.Item2.ReadFile(bdt);
+            }
+
+            foreach (var bhdName in new[] { "Data0.bhd", "Data1.bhd", "Data2.bhd", "Data3.bhd", "DLC.bhd" })
+            {
+                var bhdPath = Path.Combine(gameDir, bhdName);
+                if (!File.Exists(bhdPath))
+                {
+                    continue;
+                }
+
+                using var bhdStream = File.OpenRead(bhdPath);
+                var bhd = BHD5.Read(bhdStream, BHD5.Game.EldenRing);
+                var bdtPath = Path.ChangeExtension(bhdPath, ".bdt");
+                using var bdt = File.OpenRead(bdtPath);
+                foreach (var bucket in bhd.Buckets)
+                {
+                    for (var i = 0; i < bucket.Count; i++)
+                    {
+                        var header = bucket[i];
+                        if (header.FileNameHash != hash)
+                        {
+                            continue;
+                        }
+
+                        Log(detailLog, $"bhd_pick={relPath} from {bhdName}");
+                        return header.ReadFile(bdt);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Log(detailLog, $"bhd_error {relPath}: {ex.Message}");
+        }
+
+        return null;
+    }
+
+    static MSBE.Part.Enemy BuildDonorPart(DonorEntry meta, MSBE.Part.Enemy? donorPart)
+    {
+        if (donorPart != null)
+        {
+            return donorPart;
+        }
+
+        return new MSBE.Part.Enemy
+        {
+            Name = meta.EnemyName,
+            ModelName = meta.Model,
+            NPCParamID = meta.Npc,
+            ThinkParamID = meta.Think,
+            CharaInitID = meta.Chara,
+        };
+    }
+
+    static Dictionary<string, MSBE.Part.Enemy> GetDonorEnemyIndex(
+        string gameDir,
+        string mapFile,
+        StringBuilder detailLog)
+    {
+        return DonorEnemyByMapCache.GetOrAdd(
+            mapFile,
+            _ =>
+            {
+                var index = new Dictionary<string, MSBE.Part.Enemy>(StringComparer.OrdinalIgnoreCase);
+                var enemies = TryReadMapEnemies(gameDir, mapFile, detailLog);
+                if (enemies == null)
+                {
+                    return index;
+                }
+
+                foreach (var enemy in enemies)
+                {
+                    var name = enemy.Name ?? "";
+                    if (!string.IsNullOrWhiteSpace(name) && !index.ContainsKey(name))
+                    {
+                        index[name] = enemy;
+                    }
+                }
+
+                return index;
+            });
+    }
+
+    static MSBE.Part.Enemy? FindEnemyPartEntryByName(string gameDir, string mapFile, string enemyName, StringBuilder detailLog)
+    {
+        if (string.Equals(mapFile, "csv_fallback", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        var index = GetDonorEnemyIndex(gameDir, mapFile, detailLog);
+        if (index.TryGetValue(enemyName, out var hit))
+        {
+            return hit;
+        }
+
+        foreach (var enemy in index.Values)
+        {
+            if (string.Equals(enemy.ModelName, enemyName, StringComparison.OrdinalIgnoreCase))
+            {
+                return enemy;
+            }
+        }
+
+        return null;
+    }
+
+    static void ApplyMountSuppress(MSBE.Part.Enemy target, PatchRecord record)
+    {
+        record.BeforeModel = target.ModelName;
+        record.BeforeNpc = target.NPCParamID;
+        record.BeforeThink = target.ThinkParamID;
+        record.BeforeChara = target.CharaInitID;
+        record.BeforeBackupAnim = target.BackupEventAnimID;
+        record.BeforeWalkRoute = target.WalkRouteName ?? "";
+        record.PosX = target.Position.X;
+        record.PosY = target.Position.Y;
+        record.PosZ = target.Position.Z;
+
+        // 勿改 model/npc 为 c0000/0（全图会崩）。沉到地下 + 清巡逻，马体不进场。
+        target.WalkRouteName = "";
+        target.BackupEventAnimID = -1;
+        var pos = target.Position;
+        target.Position = new System.Numerics.Vector3(pos.X, -100000f, pos.Z);
+
+        record.AfterModel = target.ModelName;
+        record.AfterNpc = target.NPCParamID;
+        record.AfterThink = target.ThinkParamID;
+        record.AfterChara = target.CharaInitID;
+        record.AfterBackupAnim = target.BackupEventAnimID;
+        record.AfterWalkRoute = target.WalkRouteName ?? "";
+        record.RouteCleared = true;
+    }
+
+
+    static int RunBossBatch(
+        string gameDir,
+        MSBE msb,
+        IList<MSBE.Part.Enemy> enemies,
+        StringBuilder detailLog,
+        string[] args,
+        (string SlotName, string DonorKey, string Note)[] plan,
+        int defaultSeed,
+        string batchTag,
+        string spoilerFileName,
+        string titleFormat,
+        string subtitle,
+        string checkLine)
+    {
+        var seed = ResolveSeed(args, defaultSeed);
+        Log(detailLog, $"{batchTag}_seed={seed}");
+        Console.WriteLine(string.Format(titleFormat, seed));
+        Console.WriteLine(subtitle);
+        Console.WriteLine();
+
+        var donorNotes = new List<string>();
+
+        foreach (var (slotName, donorKey, note) in plan)
+        {
+            var target = enemies.FirstOrDefault(e => string.Equals(e.Name, slotName, StringComparison.OrdinalIgnoreCase));
+            if (target == null)
+            {
+                Console.Error.WriteLine($"Missing slot {slotName} on {MapId}");
+                WriteDetailLog(detailLog, $"{batchTag}_failed=missing_slot:{slotName}");
+                return 1;
+            }
+
+            var donorMeta = ResolveDonor(donorKey, gameDir, seed, detailLog);
+            if (donorMeta == null)
+            {
+                Console.Error.WriteLine($"No donor for {donorKey}. Run: ENEMY_POC.bat scan-donors");
+                WriteDetailLog(detailLog, $"{batchTag}_failed=no_donor:{donorKey}");
+                return 1;
+            }
+
+            var donorPart = FindEnemyPartEntryByName(gameDir, donorMeta.MapFile, donorMeta.EnemyName, detailLog);
+            var donorEnemy = BuildDonorPart(donorMeta, donorPart);
+
+            EnsureEnemyModel(msb, donorEnemy.ModelName, gameDir, detailLog);
+
+            var record = new PatchRecord
+            {
+                Name = target.Name,
+                EntityId = target.EntityID,
+                PosX = target.Position.X,
+                PosY = target.Position.Y,
+                PosZ = target.Position.Z,
+                Groups = string.Join(",", target.EntityGroupIDs),
+            };
+
+            ApplyDonorTransplant(target, donorEnemy, record, donorBehaviorRef: donorPart);
+
+            var donorSrc = donorPart != null
+                ? $"{donorMeta.MapFile}:{donorMeta.EnemyName}"
+                : $"csv_fallback {donorMeta.Model}";
+            var summary =
+                $"  SLOT {slotName} ({note})  <=  {donorKey} from {donorSrc}  model={donorEnemy.ModelName}  npc={donorEnemy.NPCParamID}  think={donorEnemy.ThinkParamID}  chara={donorEnemy.CharaInitID}  sit_clear={record.SitCleared}";
+            Console.WriteLine(summary);
+            Log(detailLog, summary.Trim());
+            donorNotes.Add($"{slotName}\t{donorKey}\t{donorSrc}\t{donorEnemy.ModelName}");
+        }
+
+        var outDir = OverlayMapStudioDir(gameDir);
+        Directory.CreateDirectory(outDir);
+        var outMsb = Path.Combine(outDir, $"{MapId}.msb.dcx");
+        var outMsbe = Path.Combine(outDir, $"{MapId}.msbe.dcx");
+        var written = WriteMsbe(msb);
+        File.WriteAllBytes(outMsb, written);
+        File.WriteAllBytes(outMsbe, written);
+
+        var spoilerPath = Path.Combine(ResolveToolRoot(), spoilerFileName);
+        var spoiler = new StringBuilder();
+        spoiler.AppendLine($"# {batchTag} — Gatefront test placements");
+        spoiler.AppendLine($"seed={seed}");
+        spoiler.AppendLine($"map={MapId}");
+        spoiler.AppendLine("# slot\tdonor_key\tdonor_map\tdonor_entity\tmodel");
+        foreach (var line in donorNotes)
+        {
+            spoiler.AppendLine(line);
+        }
+        spoiler.AppendLine();
+        spoiler.AppendLine("In-game: quit fully -> Start_Convergence -> new char or NG -> Gatefront");
+        spoiler.AppendLine(checkLine);
+        File.WriteAllText(spoilerPath, spoiler.ToString(), Encoding.UTF8);
+
+        Log(detailLog, $"wrote_msb={outMsb} bytes={written.Length}");
+        Log(detailLog, $"spoiler={spoilerPath}");
+        Console.WriteLine();
+        Console.WriteLine($"Wrote overlay {outMsb}");
+        Console.WriteLine($"Spoiler {spoilerPath}");
+        WriteMe3OverlayInstructions(gameDir, detailLog);
+        Console.WriteLine("In-game: fully quit game -> Start_Convergence.bat -> Gatefront (关卡前哨)");
+
+        var manifestPath = Path.Combine(outDir, $"cnv_enemy_{batchTag}_manifest.txt");
+        File.WriteAllText(manifestPath, detailLog.ToString(), Encoding.UTF8);
+        WriteDetailLog(detailLog, $"{batchTag}_ok");
+        return 0;
+    }
+
+    static int ResolveSeed(string[] args, int defaultSeed)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--seed=", StringComparison.OrdinalIgnoreCase))
+            {
+                if (int.TryParse(arg["--seed=".Length..], out var seed))
+                {
+                    return seed;
+                }
+            }
+        }
+        return defaultSeed;
+    }
+
+
+
+    static string Sha256Hex(byte[] data)
+
+    {
+
+        var hash = SHA256.HashData(data);
+
+        return Convert.ToHexString(hash).ToLowerInvariant();
+
+    }
+
+
+
+    static string ResolveCsvDir(string gameDir) => Path.Combine(gameDir, "csv");
+
+
+
+    static int VerifyParams(string csvDir, StringBuilder detailLog)
+
+    {
+
+        Console.WriteLine($"CSV dir: {csvDir}");
+
+        Log(detailLog, $"csv_dir={csvDir}");
+
+        if (!Directory.Exists(csvDir))
+
+        {
+
+            Console.Error.WriteLine("Missing csv dir — export regulation.bin to Game\\csv first.");
+
+            return 1;
+
+        }
+
+
+
+        var npc = Path.Combine(csvDir, "NpcParam.csv");
+
+        var think = Path.Combine(csvDir, "NpcThinkParam.csv");
+
+        foreach (var path in new[] { npc, think })
+
+        {
+
+            if (!File.Exists(path))
+
+            {
+
+                Console.Error.WriteLine($"Missing {path}");
+
+                return 1;
+
+            }
+
+        }
+
+
+
+        PrintParamRow(npc, SourceNpcParam, "source soldier");
+
+        PrintParamRow(npc, TargetNpcParam, "target Tree Sentinel");
+
+        PrintParamRow(think, TargetThinkParam, "target think");
+
+        PrintParamRow(think, SourceNpcParam, "source think (if present)");
+
+
+
+        Console.WriteLine();
+
+        Console.WriteLine("Param IDs look good for transplant (model/npc/think on MSB entity).");
+
+        Console.WriteLine("CSV/regulation does NOT list map entity slots — still need MSB for list/patch:");
+
+        Console.WriteLine("  tools\\cnv_enemy_poc\\cache\\m60_42_37_00.msbe.dcx  (Smithbox export once)");
+
+        WriteDetailLog(detailLog, "verify");
+
+        return 0;
+
+    }
+
+
+
+    static void PrintParamRow(string csvPath, int id, string label)
+
+    {
+
+        foreach (var line in File.ReadLines(csvPath))
+
+        {
+
+            if (!line.StartsWith($"{id},", StringComparison.Ordinal))
+
+            {
+
+                continue;
+
+            }
+
+
+
+            var parts = line.Split(',');
+
+            var name = parts.Length > 1 ? parts[1] : line;
+
+            Console.WriteLine($"  [{label}] {id} = {name}");
+
+            return;
+
+        }
+
+
+
+        Console.WriteLine($"  [{label}] {id} = (not found in {Path.GetFileName(csvPath)})");
+
+    }
+
+
+
+    static string? ResolveMsbOverride(string[] args)
+
+    {
+
+        foreach (var arg in args)
+
+        {
+
+            if (arg.StartsWith("--msb=", StringComparison.OrdinalIgnoreCase))
+
+            {
+
+                return arg["--msb=".Length..].Trim('"');
+
+            }
+
+        }
+
+
+
+        return FindCachedMsb();
+
+    }
+
+
+
+    static string ResolveToolRoot()
+
+    {
+
+        var dir = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        for (var i = 0; i < 8; i++)
+
+        {
+
+            if (File.Exists(Path.Combine(dir, "ENEMY_POC.bat")))
+
+            {
+
+                return dir;
+
+            }
+
+
+
+            var parent = Directory.GetParent(dir);
+
+            if (parent is null)
+
+            {
+
+                break;
+
+            }
+
+
+
+            dir = parent.FullName;
+
+        }
+
+
+
+        return Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+
+    }
+
+
+
+    static string ResolveRingrandomRoot() =>
+
+        Path.GetFullPath(Path.Combine(ResolveToolRoot(), ".."));
+
+
+
+    static string ResolveModMapStudioDir(string gameDir, StringBuilder detailLog)
+
+    {
+
+        var candidates = new[]
+
+        {
+
+            Path.Combine(gameDir, "mod", "map", "MapStudio"),
+
+            Path.Combine(gameDir, "mod", "map", "mapstudio"),
+
+        };
+
+
+
+        foreach (var path in candidates)
+
+        {
+
+            if (Directory.Exists(path))
+
+            {
+
+                Log(detailLog, $"mod_mapstudio_pick={path}");
+
+                return path;
+
+            }
+
+        }
+
+
+
+        var created = candidates[0];
+
+        Log(detailLog, $"mod_mapstudio_pick={created} (created)");
+
+        return created;
+
+    }
+
+
+
+    static string? FindCachedMsb()
+
+    {
+
+        var cacheRoot = Path.Combine(ResolveToolRoot(), "cache");
+
+        if (!Directory.Exists(cacheRoot))
+
+        {
+
+            return null;
+
+        }
+
+
+
+        var preferred = new[]
+
+        {
+
+            Path.Combine(cacheRoot, $"{MapId}.msbe.dcx"),
+
+            Path.Combine(cacheRoot, $"{MapId}.msb.dcx"),
+
+            Path.Combine(cacheRoot, "map", "mapstudio", $"{MapId}.msbe.dcx"),
+
+            Path.Combine(cacheRoot, "map", "mapstudio", $"{MapId}.msb.dcx"),
+
+        };
+
+        foreach (var path in preferred)
+
+        {
+
+            if (File.Exists(path))
+
+            {
+
+                return path;
+
+            }
+
+        }
+
+
+
+        var any = Directory.EnumerateFiles(cacheRoot, "*.*", SearchOption.AllDirectories)
+
+            .Where(p => p.Contains(MapId, StringComparison.OrdinalIgnoreCase))
+
+            .Where(p => p.EndsWith(".msbe.dcx", StringComparison.OrdinalIgnoreCase)
+
+                        || p.EndsWith(".msb.dcx", StringComparison.OrdinalIgnoreCase))
+
+            .OrderBy(p => p, StringComparer.OrdinalIgnoreCase)
+
+            .FirstOrDefault();
+
+        return any;
+
+    }
+
+
+
+    static string ResolveGameDir(string[] args)
+
+    {
+
+        foreach (var arg in args)
+
+        {
+
+            if (arg.StartsWith("--game=", StringComparison.OrdinalIgnoreCase))
+
+            {
+
+                return arg["--game=".Length..].Trim('"');
+
+            }
+
+        }
+
+
+
+        var ringrandom = ResolveRingrandomRoot();
+
+        var gamePathJson = Path.Combine(ringrandom, "game_path.json");
+
+        if (File.Exists(gamePathJson))
+
+        {
+
+            var text = File.ReadAllText(gamePathJson);
+
+            var key = "\"game_dir\"";
+
+            var idx = text.IndexOf(key, StringComparison.Ordinal);
+
+            if (idx >= 0)
+
+            {
+
+                var start = text.IndexOf('"', idx + key.Length) + 1;
+
+                var end = text.IndexOf('"', start);
+
+                if (start > 0 && end > start)
+
+                {
+
+                    return text[start..end].Replace("\\\\", "\\");
+
+                }
+
+            }
+
+        }
+
+
+
+        var env = Environment.GetEnvironmentVariable("CNV_GAME_DIR");
+
+        if (!string.IsNullOrWhiteSpace(env))
+
+        {
+
+            return env;
+
+        }
+
+
+
+        return @"V:\games\Elden Ring\Game";
+
+    }
+
+
+
+    static MsbLoadResult LoadMap(string gameDir, string relPath, string? msbOverride, StringBuilder detailLog)
+
+    {
+
+        if (!string.IsNullOrWhiteSpace(msbOverride) && File.Exists(msbOverride))
+
+        {
+
+            var bytes = File.ReadAllBytes(msbOverride);
+
+            Console.WriteLine($"Loading cached MSB {msbOverride}");
+
+            Log(detailLog, $"load_pick=--msb override");
+
+            return new MsbLoadResult(bytes, msbOverride, Sha256Hex(bytes));
+
+        }
+
+
+
+        var cached = FindCachedMsb();
+        if (cached != null && File.Exists(cached))
+        {
+            if (!cached.Contains(MapId, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Error.WriteLine($"WARNING: cached MSB map id mismatch (need {MapId}): {cached}");
+                Log(detailLog, $"WARNING=cache_map_id_mismatch path={cached}");
+            }
+
+            var bytes = File.ReadAllBytes(cached);
+            Console.WriteLine($"Loading cached MSB {cached}");
+            Log(detailLog, $"load_pick=tool cache (list/verify only — patch uses CNV mod MSB)");
+            return new MsbLoadResult(bytes, cached, Sha256Hex(bytes));
+        }
+
+
+
+        try
+
+        {
+
+            var hash = HashHelper.FromPathHash(relPath);
+
+            foreach (var bhdName in new[] { "Data0.bhd", "Data1.bhd", "Data2.bhd", "Data3.bhd", "DLC.bhd" })
+
+            {
+
+                var bhdPath = Path.Combine(gameDir, bhdName);
+
+                if (!File.Exists(bhdPath))
+
+                {
+
+                    continue;
+
+                }
+
+
+
+                using var bhdStream = File.OpenRead(bhdPath);
+
+                var bhd = BHD5.Read(bhdStream, BHD5.Game.EldenRing);
+
+                var bdtPath = Path.ChangeExtension(bhdPath, ".bdt");
+
+                using var bdt = File.OpenRead(bdtPath);
+
+                foreach (var bucket in bhd.Buckets)
+
+                {
+
+                    for (var i = 0; i < bucket.Count; i++)
+
+                    {
+
+                        var header = bucket[i];
+
+                        if (header.FileNameHash != hash)
+
+                        {
+
+                            continue;
+
+                        }
+
+
+
+                        var bytes = header.ReadFile(bdt);
+
+                        var source = $"{relPath} from {bhdName}";
+
+                        Console.WriteLine($"Loading {source}");
+
+                        Log(detailLog, $"load_pick=bhd {bhdName}");
+
+                        return new MsbLoadResult(bytes, source, Sha256Hex(bytes));
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        catch (Exception ex)
+
+        {
+
+            Console.Error.WriteLine($"BHD read failed ({ex.Message}).");
+
+            Log(detailLog, $"bhd_error={ex.Message}");
+
+        }
+
+
+
+        throw new FileNotFoundException(
+
+            $"""
+
+            Could not load {relPath}.
+
+            Smithbox File Browser:
+
+              mapstudio -> select m60_42_37_00.msbe.dcx  (42 not 43!)
+
+              Extract Main File -> cnv_enemy_poc/cache/
+
+            Common mistakes:
+
+              - wrong map: m60_43_37_00 is NOT Gatefront (need m60_42_37_00)
+
+              - nested path cache/map/mapstudio/... is OK after tool fix
+
+            Or pass: --msb="full\\path\\to\\m60_42_37_00.msbe.dcx"
+
+            """);
+
+    }
+
+
+
+    sealed class SpawnMapEntry
+    {
+        public string MapId { get; init; } = "";
+        public string EntityName { get; init; } = "";
+        public string SrcCat { get; init; } = "";
+        public string TgtCat { get; init; } = "";
+        public string TemplateId { get; init; } = "";
+        public string Model { get; init; } = "";
+        public int Npc { get; init; }
+        public int Think { get; init; }
+        public int Chara { get; init; }
+        public int RuneAmount { get; init; }
+        public bool HasPosition { get; set; }
+        public float PosX { get; set; }
+        public float PosY { get; set; }
+        public float PosZ { get; set; }
+    }
+
+    sealed class PatchRecord
+
+    {
+
+        public string Name { get; set; } = "";
+
+        public uint EntityId { get; set; }
+
+        public float PosX { get; set; }
+
+        public float PosY { get; set; }
+
+        public float PosZ { get; set; }
+
+        public string Groups { get; set; } = "";
+
+        public string BeforeModel { get; set; } = "";
+
+        public int BeforeNpc { get; set; }
+
+        public int BeforeThink { get; set; }
+
+        public int BeforeChara { get; set; }
+
+        public int BeforeBackupAnim { get; set; }
+
+        public string BeforeWalkRoute { get; set; } = "";
+
+        public string BeforeCollision { get; set; } = "";
+
+        public string AfterModel { get; set; } = "";
+
+        public int AfterNpc { get; set; }
+
+        public int AfterThink { get; set; }
+
+        public int AfterChara { get; set; }
+
+        public int AfterBackupAnim { get; set; }
+
+        public string AfterWalkRoute { get; set; } = "";
+
+        public string AfterCollision { get; set; } = "";
+
+        public bool SitCleared { get; set; }
+
+        public bool RouteCleared { get; set; }
+
+        public bool SpeffectCleared { get; set; }
+
+        public bool SlotStateCleared { get; set; }
+
+        public bool ForceDonorMsb { get; set; }
+
+        public bool WalkRouteKept { get; set; }
+
+    }
+
+
+
+    sealed class MsbLoadResult
+
+    {
+
+        public MsbLoadResult(byte[] bytes, string sourcePath, string sha256)
+
+        {
+
+            Bytes = bytes;
+
+            SourcePath = sourcePath;
+
+            Sha256 = sha256;
+
+        }
+
+
+
+        public byte[] Bytes { get; }
+
+        public string SourcePath { get; }
+
+        public string Sha256 { get; }
+
+    }
+
+}
+
+

@@ -1,0 +1,266 @@
+{
+  "schema": "enemy_difficulty_v2",
+  "tier_to_region_sp_effect": {
+    "1": "7010",
+    "2": "7020",
+    "3": "7060",
+    "4": "7090",
+    "5": "7080",
+    "6": "7070",
+    "7": "7110",
+    "8": "7120",
+    "9": "7120"
+  },
+  "tier_to_region_sp_effect_definition": "落点图档→一周目区域 sp。CNV SpEffectParam 无 7130+(有效区) / 7170：7130 maxHpRate=0.1 禁用；7140 Farum 血倍率低于 7120；故 T8/T9 均绑最高可用区 7120（Mountaintops）",
+  "tier_to_ng_region_sp_effect": {
+    "1": "7410",
+    "2": "7420",
+    "3": "7460",
+    "4": "7490",
+    "5": "7480",
+    "6": "7470",
+    "7": "7510",
+    "8": "7520",
+    "9": "7520"
+  },
+  "tier_to_ng_region_sp_effect_definition": "落点图档→NG+ 区域 sp。CNV 仅有 7400~7520；废止不存在的 7570/7580（曾致 T8/T9 NG 空绑）",
+  "tier_stat_multiplier": {
+    "1": 1.141,
+    "2": 1.141,
+    "3": 2.266,
+    "4": 2.688,
+    "5": 2.688,
+    "6": 2.266,
+    "7": 4.125,
+    "8": 4.844,
+    "9": 4.844
+  },
+  "region_sp_effect_ids": [
+    "7010", "7020", "7030", "7040", "7050", "7060", "7070", "7080", "7090",
+    "7100", "7110", "7120", "7140"
+  ],
+  "ng_region_sp_effect_ids": [
+    "7400", "7410", "7420", "7430", "7440", "7450", "7460", "7470", "7480", "7490",
+    "7500", "7510", "7520"
+  ],
+  "defaults": {
+    "enabled": true,
+    "user_mult": 1.0,
+    "baseline_over_vanilla": 1.0,
+    "user_mult_min": 0.85,
+    "user_mult_max": 999.0
+  },
+  "t093_progression": {
+    "enabled": true,
+    "night_mult": 1.5,
+    "lift_alpha": 0.5,
+    "lift_h_ref": 2500.0,
+    "clear_j1_region_sp": true,
+    "user_mult_min": 0.85,
+    "user_mult_max": 999.0
+  },
+  "t093_progression_definition": "T-093 底座：白名单×地图×夜×周目×滑条lift；T-094 叠加上限与层 lift",
+  "t094_caps": {
+    "enabled": true,
+    "hp_cap_mult": 3.0,
+    "stat_cap_mult": 2.0,
+    "map_hp_max": 1.5,
+    "journey_hp_max": 2.0,
+    "map_stat_max": 1.25,
+    "map_atk_max": 1.5,
+    "attack_cap_mult": 1.1,
+    "journey_stat_max": 1.6,
+    "journey_atk_max": 1.45,
+    "journey_tiers": 9,
+    "map_tiers": 25,
+    "assumed_ng_region_sp_mult": 1.1,
+    "layer_lift_alpha": 0.5,
+    "layer_lift_h_ref": 2500.0,
+    "map_layer_lift_alpha": 0.82,
+    "map_layer_lift_h_ref": 4000.0,
+    "weak_hp_cap_threshold": 5000,
+    "weak_low_hp_attack_sp": true,
+    "weak_attack_sp_min_boost": 0.05,
+    "low_hp_brackets": [
+      {"max_whitelist": 800, "hp_cap_mult": 7.0, "stat_cap_mult": 4.0, "attack_cap_mult": 6.0},
+      {"max_whitelist": 2000, "hp_cap_mult": 5.0, "stat_cap_mult": 3.0, "attack_cap_mult": 3.0},
+      {"max_whitelist": 5000, "hp_cap_mult": 4.0, "stat_cap_mult": 2.5, "attack_cap_mult": 1.0}
+    ],
+    "disable_map_attack_sp": false,
+    "journey_hp_by_tier": {
+      "1": 1.0,
+      "2": 1.125,
+      "3": 1.25,
+      "4": 1.375,
+      "5": 1.5,
+      "6": 1.625,
+      "7": 1.75,
+      "8": 1.875,
+      "9": 2.0
+    },
+    "journey_stat_by_tier": {
+      "1": 1.0,
+      "2": 1.075,
+      "3": 1.15,
+      "4": 1.225,
+      "5": 1.3,
+      "6": 1.375,
+      "7": 1.45,
+      "8": 1.525,
+      "9": 1.6
+    },
+    "journey_atk_by_tier": {
+      "1": 1.0,
+      "2": 1.05625,
+      "3": 1.1125,
+      "4": 1.16875,
+      "5": 1.225,
+      "6": 1.28125,
+      "7": 1.3375,
+      "8": 1.39375,
+      "9": 1.45
+    }
+  },
+  "t094_caps_definition": "T-094/T-096：攻仅地图层lift（周目仍引擎1.45）；弱怪地图攻帽×6/强怪×1.1/参照trash(≤5000白名单)×1.0",
+  "rune_over_difficulty_power": 1.4,
+  "rune_over_difficulty_power_definition": "击杀卢恩地图缩放 = (slot_tier_stat / baseline_tier_stat) ** power；power>1 时高难度区卢恩涨得比血量快（血量用线性比）",
+  "rune_hp_reference_base": {
+    "trash": 700,
+    "elite": 2500,
+    "night": 1100,
+    "evergaol": 15000,
+    "minor_boss": 13000,
+    "major_boss": 25000,
+    "cnv_special": 20000
+  },
+  "rune_hp_reference_tier": 5,
+  "rune_hp_scale_power": 0.9,
+  "rune_hp_scale_min": 0.25,
+  "rune_hp_scale_max": 2.5,
+  "rune_hp_scale_exclude_categories": ["night"],
+  "rune_hp_scale_boost_only_categories": [],
+  "rune_hp_scale_exclude_definition": "跳过第②层：night（仍可走地图 tier）。major_boss 2026-09-23 改走原血同比（见 scale_rune_by_assignment_hp），不在本排除表。",
+  "rune_hp_scale_definition": "T-058：非 major 池 × clamp((最终eff_hp/参考hp)**power, min, max)；major_boss：原卢恩×(弱化后血/原血)；含 T-062 lift",
+  "rune_map_scale_with_hp_balance": false,
+  "rune_map_scale_with_hp_balance_definition": "false=走 HP 平衡的池 lookup 不再 × rune_over_difficulty_power（防与血量层叠乘）",
+  "rune_rph_cap_vs_major": true,
+  "rune_rph_cap_headroom_by_category": {
+    "trash": 0.75,
+    "elite": 0.85,
+    "minor_boss": 1.05,
+    "evergaol": 1.05,
+    "cnv_special": 1.05
+  },
+  "rune_major_baseline": 12000,
+  "rune_arena_boss_floor": 2000,
+  "rune_arena_boss_floor_definition": "洞窟/墓地 c####_9000 且 tgt=minor_boss：对称缩放后卢恩保底",
+  "minor_boss_donor_min_base_hp_by_prefix": {
+    "c3550": 4700
+  },
+  "minor_boss_donor_min_base_hp_definition": "2 池捐皮专用：NpcParam 基 hp 过低（如鲜血贵族 582）时，Boss 槽赋值强制抬高 base hp；再乘 baseline/user_mult 与区域 sp",
+  "dungeon_boss_arena_min_base_hp": 3500,
+  "dungeon_boss_arena_min_base_hp_definition": "洞窟/墓地 c####_9000 Boss 战点且 tgt=minor_boss：复制行 base hp 下限（防 evergaol 墓影 c3400 等 <1000）",
+  "think_aggression": {
+    "enabled": true,
+    "reference_tier": 9,
+    "ai_scale_min": 0.15,
+    "tier7_min_tier": 7,
+    "early_tier_sanitize": {
+      "max_eye_dist": 20,
+      "max_search_eye_dist": 12,
+      "max_sight_forget_time": 12,
+      "max_backhome_dist": 45,
+      "max_backhome_battle_dist": 40,
+      "max_nose_dist": 8,
+      "max_ear_dist": 2
+    },
+    "tier7_sanitize": {
+      "max_eye_dist": 80,
+      "max_search_eye_dist": 50,
+      "max_sight_forget_time": 60,
+      "max_backhome_dist": 120,
+      "max_backhome_battle_dist": 150
+    },
+    "max_targets": {
+      "nonBattleActLife": 0,
+      "eye_dist": 50,
+      "searchEye_dist": 40,
+      "SightTargetForgetTime": 30,
+      "MemoryTargetForgetTime": 20,
+      "maxBackhomeDist": 100,
+      "backhomeBattleDist": 40,
+      "goalAction_ToCaution": 4,
+      "goalAction_ToSearchLv1": 4
+    }
+  },
+  "think_aggression_definition": "T-059 基线表；T-062 起 Think 插值权重改由 adaptive_stat_anchor.lift 接管；tier<7 用 early_tier_sanitize 压极端视距/嗅觉（拷問官等）；tier≥7 用 tier7_sanitize 放宽",
+  "adaptive_stat_anchor": {
+    "enabled": true,
+    "adaptive_lift_power": 0.7,
+    "overshoot_cap": 1.15,
+    "trash_overshoot_clamp": false,
+    "poise_anchor_base": {
+      "trash": 28,
+      "elite": 55,
+      "night": 35,
+      "minor_boss": 100,
+      "evergaol": 120,
+      "major_boss": 180,
+      "cnv_special": 160
+    },
+    "poise_anchor_reference_tier": 5,
+    "attack_sp_by_tier": {
+      "1": 0,
+      "2": 0,
+      "3": 8501,
+      "4": 8501,
+      "5": 13073,
+      "6": 13073,
+      "7": 8510,
+      "8": 8510,
+      "9": 8510
+    },
+    "attack_sp_rates": {
+      "8501": 1.05,
+      "13073": 1.05,
+      "8510": 1.2
+    },
+    "attack_sp_min_lift": 0.2,
+    "attack_sp_skip_categories": ["major_boss"],
+    "attack_sp_definition": "T-096：physicsAttackPowerRate 纯加攻池（maxHpRate必须=1；禁区缩放/DLC套餐）；mod_rate=layer/engine 选型；legacy tier 映射仍保留"
+  },
+  "adaptive_stat_anchor_definition": "T-062：r=donor_eff_hp/anchor_eff_hp；lift=1-r^α（r<1）；血/韧/攻/Think 共用 lift；hp 锚点=reference_effective_hp_for_tgt",
+  "target_progression_curve": {
+    "enabled": false,
+    "tier_weight": 0.35,
+    "ng_weight": 0.65,
+    "reference_ng": 7,
+    "cap_hp_ratio": 7.5,
+    "cap_poise": 2.0,
+    "cap_attack": 1.5,
+    "cap_rune": 10.0,
+    "j1_base_sp": "7010",
+    "disable_adaptive_lift": true,
+    "clearcount_hp": {
+      "0": 0.909091,
+      "1": 1.022727,
+      "2": 1.136364,
+      "3": 1.25,
+      "4": 1.363636,
+      "5": 1.477273,
+      "6": 1.590909,
+      "7": 1.704545
+    },
+    "clearcount_attack": {
+      "0": 1.0,
+      "1": 1.05625,
+      "2": 1.1125,
+      "3": 1.16875,
+      "4": 1.225,
+      "5": 1.28125,
+      "6": 1.3375,
+      "7": 1.39375
+    }
+  },
+  "target_progression_curve_definition": "T-065：全局地图档/周目区域 sp 曲线（0.35档+0.65周目）；关 T-062 lift；表血走标准 baseline×user_mult；葛瑞克仅矩阵验收样例"
+}

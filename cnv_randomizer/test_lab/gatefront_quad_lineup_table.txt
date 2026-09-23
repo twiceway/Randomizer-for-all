@@ -1,0 +1,20 @@
+# 关卡前方 · 四足认外观分批表（每组 14 = F6 note 2～15；note1 赐福不写）
+# 捐皮 10 条 · 共 1 组 · 每组 14 行 = F6 note2～15 → mark_slot
+# 测试槽 note→slot 见 test_lab/gatefront_marked_slots.json
+
+ B  # note  write_slot     model         npc  ENGLISH               template
+------------------------------------------------------------------------------------------------------------------------
+ 1  1    2  c4311_9008     c4160    41600014  Large Stray (Stormveil Castle)  m10_00_00_00:c4160_9000
+ 1  2    3  c4311_9002     c4162    41620072  Large Azula Stray     m13_00_00_00:c4162_9000
+ 1  3    4  c4311_9005     c4164    41640830  Large Bloodbane Stray  m60_40_53_00:c4164_9001
+ 1  4    5  c4351_9000     c4164    41650060  Rotten Dog            m30_03_00_00:c3080_9001
+ 1  5    6  c4311_9014     c4165    41650935  Bloodbane Stray (Boss)  m35_00_00_00:c4165_9000
+ 1  6    7  c4311_9014     c4166    41660050  Large Mushroom Dog - Lake of Rot  m12_01_00_00:c3750_9251
+ 1  7    8  c4351_9000     c4166    41660040  Large Rotten Stray    m60_47_37_00:c4166_9000
+ 1  8    9  c4311_9014     c5520    55200095  Stray                 m61_47_47_00:c5520_9000
+ 1  9   10  c4311_9014     c5526    55260094  Bloodbane Stray       m61_44_46_00:c5526_9000
+ 1 10   11  c4311_9014     c5700    57001083  Demi-Human            m61_46_39_00:c5700_9000
+ 1 11   12  c4351_9000     c4160    41600014  Large Stray (Stormveil Castle)  m10_00_00_00:c4160_9000
+ 1 12   13  c4351_9000     c4162    41620072  Large Azula Stray     m13_00_00_00:c4162_9000
+ 1 13   14  c4311_9014     c4164    41640830  Large Bloodbane Stray  m60_40_53_00:c4164_9001
+ 1 14   15  c4311_9014     c4164    41650060  Rotten Dog            m30_03_00_00:c3080_9001

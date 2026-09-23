@@ -1,0 +1,206 @@
+{
+  "schema": "gatefront_dog_catalog_v1",
+  "filter": "english_stray_whitelist",
+  "entries": {
+    "stray_55220081_m61444100": {
+      "key": "stray_55220081_m61444100",
+      "english": "Stray",
+      "npc": 55220081,
+      "think": 55220000,
+      "model": "c5522",
+      "template": "m61_44_41_00:c5522_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_44_41_00"
+    },
+    "stray_55230094_m61444500": {
+      "key": "stray_55230094_m61444500",
+      "english": "Stray",
+      "npc": 55230094,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_44_45_00:c5523_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_44_45_00"
+    },
+    "bloodbane_stray_55260094_m61444600": {
+      "key": "bloodbane_stray_55260094_m61444600",
+      "english": "Bloodbane Stray",
+      "npc": 55260094,
+      "think": 55260000,
+      "model": "c5526",
+      "template": "m61_44_46_00:c5526_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_44_46_00"
+    },
+    "bloodbane_stray_55270094_m61444600": {
+      "key": "bloodbane_stray_55270094_m61444600",
+      "english": "Bloodbane Stray",
+      "npc": 55270094,
+      "think": 55270000,
+      "model": "c5527",
+      "template": "m61_44_46_00:c5527_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_44_46_00"
+    },
+    "bloodbane_stray_55270080_m61454100": {
+      "key": "bloodbane_stray_55270080_m61454100",
+      "english": "Bloodbane Stray",
+      "npc": 55270080,
+      "think": 55270000,
+      "model": "c5527",
+      "template": "m61_45_41_00:c5527_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_45_41_00"
+    },
+    "stray_55230080_m61454200": {
+      "key": "stray_55230080_m61454200",
+      "english": "Stray",
+      "npc": 55230080,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_45_42_00:c5523_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_45_42_00"
+    },
+    "stray_55220080_m61454400": {
+      "key": "stray_55220080_m61454400",
+      "english": "Stray",
+      "npc": 55220080,
+      "think": 55220000,
+      "model": "c5522",
+      "template": "m61_45_44_00:c5522_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_45_44_00"
+    },
+    "stray_55220095_m61454500": {
+      "key": "stray_55220095_m61454500",
+      "english": "Stray",
+      "npc": 55220095,
+      "think": 55220000,
+      "model": "c5522",
+      "template": "m61_45_45_00:c5522_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_45_45_00"
+    },
+    "stray_55230083_m61463800": {
+      "key": "stray_55230083_m61463800",
+      "english": "Stray",
+      "npc": 55230083,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_46_38_00:c5523_9001",
+      "long_hair_candidate": false,
+      "source_msb": "m61_46_38_00"
+    },
+    "stray_55230095_m61464500": {
+      "key": "stray_55230095_m61464500",
+      "english": "Stray",
+      "npc": 55230095,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_46_45_00:c5523_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_46_45_00"
+    },
+    "stray_55210081_m61474300": {
+      "key": "stray_55210081_m61474300",
+      "english": "Stray",
+      "npc": 55210081,
+      "think": 55210000,
+      "model": "c5521",
+      "template": "m61_47_43_00:c5521_9003",
+      "long_hair_candidate": false,
+      "source_msb": "m61_47_43_00"
+    },
+    "stray_55230081_m61474300": {
+      "key": "stray_55230081_m61474300",
+      "english": "Stray",
+      "npc": 55230081,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_47_43_00:c5523_9001",
+      "long_hair_candidate": false,
+      "source_msb": "m61_47_43_00"
+    },
+    "braided_stray_55240082_m61474400": {
+      "key": "braided_stray_55240082_m61474400",
+      "english": "Braided Stray",
+      "npc": 55240082,
+      "think": 55240000,
+      "model": "c5524",
+      "template": "m61_47_44_00:c5524_9001",
+      "long_hair_candidate": true,
+      "source_msb": "m61_47_44_00"
+    },
+    "braided_stray_55250082_m61474400": {
+      "key": "braided_stray_55250082_m61474400",
+      "english": "Braided Stray",
+      "npc": 55250082,
+      "think": 55250000,
+      "model": "c5525",
+      "template": "m61_47_44_00:c5525_9000",
+      "long_hair_candidate": true,
+      "source_msb": "m61_47_44_00"
+    },
+    "stray_55210090_m61474500": {
+      "key": "stray_55210090_m61474500",
+      "english": "Stray",
+      "npc": 55210090,
+      "think": 55210200,
+      "model": "c5521",
+      "template": "m61_47_45_00:c5521_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_47_45_00"
+    },
+    "stray_55200095_m61474700": {
+      "key": "stray_55200095_m61474700",
+      "english": "Stray",
+      "npc": 55200095,
+      "think": 55200000,
+      "model": "c5520",
+      "template": "m61_47_47_00:c5520_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_47_47_00"
+    },
+    "braided_stray_55250095_m61474700": {
+      "key": "braided_stray_55250095_m61474700",
+      "english": "Braided Stray",
+      "npc": 55250095,
+      "think": 55250000,
+      "model": "c5525",
+      "template": "m61_47_47_00:c5525_9000",
+      "long_hair_candidate": true,
+      "source_msb": "m61_47_47_00"
+    },
+    "stray_55210080_m61484000": {
+      "key": "stray_55210080_m61484000",
+      "english": "Stray",
+      "npc": 55210080,
+      "think": 55210000,
+      "model": "c5521",
+      "template": "m61_48_40_00:c5521_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_48_40_00"
+    },
+    "stray_55230090_m61494400": {
+      "key": "stray_55230090_m61494400",
+      "english": "Stray",
+      "npc": 55230090,
+      "think": 55230000,
+      "model": "c5523",
+      "template": "m61_49_44_00:c5523_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_49_44_00"
+    },
+    "stray_55220090_m61504400": {
+      "key": "stray_55220090_m61504400",
+      "english": "Stray",
+      "npc": 55220090,
+      "think": 55220000,
+      "model": "c5522",
+      "template": "m61_50_44_00:c5522_9000",
+      "long_hair_candidate": false,
+      "source_msb": "m61_50_44_00"
+    }
+  }
+}

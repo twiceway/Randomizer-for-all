@@ -1,0 +1,19 @@
+# cnv_enemy_spawn_map_risk seed=976847321
+risky_assignments=7
+# map_id entity_name risk_tag template_id model npc think
+m60_42_37_00 c0100_9000 npc_donor_model cnv:suppress_decorative c0100 0 0
+m60_42_37_00 c0100_9001 npc_donor_model cnv:suppress_decorative c0100 0 0
+m60_42_37_00 c0100_9002 npc_donor_model cnv:suppress_decorative c0100 0 0
+m60_42_37_00 c0100_9003 npc_donor_model cnv:suppress_decorative c0100 0 0
+m60_42_37_00 c4311_9001 npc_donor_model m60_49_40_00:c0000_9000 c0000 880000031 890000002
+m60_42_37_00 c4311_9022 high_think m12_01_00_00:c2010_9000 c2010 880000000 890000000
+m60_42_37_00 c4430_9001 npc_donor_model m60_43_31_00:Fundi NPC c0000 880000032 890000001
+
+# gatefront m60_42_37_00 risky=7
+  c4311_9001 npc_donor_model -> c0000 npc=880000031 think=890000002
+  c4311_9022 high_think -> c2010 npc=880000000 think=890000000
+  c4430_9001 npc_donor_model -> c0000 npc=880000032 think=890000001
+  c0100_9000 npc_donor_model -> c0100 npc=0 think=0
+  c0100_9001 npc_donor_model -> c0100 npc=0 think=0
+  c0100_9002 npc_donor_model -> c0100 npc=0 think=0
+  c0100_9003 npc_donor_model -> c0100 npc=0 think=0

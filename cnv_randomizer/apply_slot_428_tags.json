@@ -1,0 +1,75 @@
+{
+  "_contract": "T-073 §6 · 对齐 428 enemy.txt；键=map_id:entity_name",
+  "slot_tags": {
+    "m60_36_48_00:c4372_9000": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9001": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9002": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9003": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9004": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9005": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9006": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9007": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    },
+    "m60_36_48_00:c4372_9008": {
+      "note": "雪山黑夜骑兵块 · ignoresp",
+      "clear_speffect_set": true
+    }
+  },
+  "donor_tags": {
+    "m60_49_52_00:c4980_9000": {
+      "hidden": true,
+      "note": "利耶尼亚死之鸟：换皮后清 WalkRoute（对齐 428 hidden）"
+    },
+    "m60_49_38_00:c4980_9000": {
+      "hidden": true,
+      "note": "死之鸟出处样板"
+    },
+    "m60_51_53_00:c4560_9002": {
+      "hidden": true,
+      "note": "雪原大乌鸦：飞行捐皮到巡逻槽须清 WalkRoute（关卡前方真机冻住）"
+    },
+    "m60_51_53_00:c4560_9001": {
+      "hidden": true,
+      "note": "雪原大乌鸦变体 45601850：巡逻槽清 WalkRoute"
+    },
+    "m60_47_39_00:c4560_9000": {
+      "hidden": true,
+      "note": "巨型鸦 45600040：巡逻槽清 WalkRoute"
+    },
+    "m11_10_00_00:c4560_9041": {
+      "hidden": true,
+      "note": "巨型鸦 45600000：巡逻槽清 WalkRoute"
+    },
+    "m30_03_00_00:c3080_9002": {
+      "hidden": true,
+      "note": "大头鸦 c4561 45610050：巡逻槽清 WalkRoute"
+    },
+    "synthetic:dlc_boss_c6260": {
+      "hidden": true,
+      "note": "DLC死亡仪式鸟合成皮：巡逻槽须清 WalkRoute（对齐 c4980 hidden）"
+    }
+  }
+}

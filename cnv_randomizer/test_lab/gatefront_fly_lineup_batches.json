@@ -1,0 +1,382 @@
+{
+  "schema": "gatefront_fly_lineup_v2",
+  "map_id": "m60_42_37_00",
+  "batch_size": 17,
+  "marked_notes": 14,
+  "bat_patrol_slots": [
+    "c4200_9000",
+    "c4200_9001",
+    "c4200_9002"
+  ],
+  "grace_note_excluded": 1,
+  "unique_mark_slots": [
+    "c4311_9008",
+    "c4311_9002",
+    "c4311_9005",
+    "c4351_9000",
+    "c4311_9014",
+    "c4200_9000",
+    "c4200_9001",
+    "c4200_9002"
+  ],
+  "unique_write_slots": [
+    "c4311_9008",
+    "c4311_9002",
+    "c4311_9005",
+    "c4351_9000",
+    "c4311_9014",
+    "c4200_9000",
+    "c4200_9001",
+    "c4200_9002"
+  ],
+  "total_flying": 7,
+  "total_batches": 1,
+  "batches": [
+    {
+      "batch": 1,
+      "count": 17,
+      "rows": [
+        {
+          "idx": 1,
+          "note": 2,
+          "mark_slot": "c4311_9008",
+          "test_slot": "c4311_9008",
+          "appearance_slot": "c4311_9008",
+          "world_est": [
+            31.1,
+            108.8,
+            80.7
+          ],
+          "fly_key": "fly_c4200_42000043_m60513900",
+          "english": "Giant Bat Tier 4",
+          "npc": 42000043,
+          "model": "c4200",
+          "template": "m60_51_39_00:c4200_9007",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 2,
+          "note": 3,
+          "mark_slot": "c4311_9002",
+          "test_slot": "c4311_9002",
+          "appearance_slot": "c4311_9002",
+          "world_est": [
+            47.6,
+            106.3,
+            85.9
+          ],
+          "fly_key": "fly_c4200_42000133_m60435200",
+          "english": "Man-Bat",
+          "npc": 42000133,
+          "model": "c4200",
+          "template": "m60_43_52_00:c4200_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "ground_stand",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 3,
+          "note": 4,
+          "mark_slot": "c4311_9005",
+          "test_slot": "c4311_9005",
+          "appearance_slot": "c4311_9005",
+          "world_est": [
+            78.2,
+            100.7,
+            82.1
+          ],
+          "fly_key": "fly_c4200_42001150_m60515600",
+          "english": "Man-Bat",
+          "npc": 42001150,
+          "model": "c4200",
+          "template": "m60_51_56_00:c4200_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 4,
+          "note": 5,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            106.4,
+            94.9,
+            72.3
+          ],
+          "fly_key": "fly_c4560_45601050_m60515300",
+          "english": "Giant Crow (Snowfield)",
+          "npc": 45601050,
+          "model": "c4560",
+          "template": "m60_51_53_00:c4560_9002",
+          "physique_bucket": "flying",
+          "donor_pose_label": "aerial_model",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 5,
+          "note": 6,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            94.8,
+            96.1,
+            76.1
+          ],
+          "fly_key": "fly_c4980_49800001_m60493800",
+          "english": "",
+          "npc": 49800001,
+          "model": "c4980",
+          "template": "m60_49_38_00:c4980_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 6,
+          "note": 7,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            89.8,
+            96.6,
+            77.3
+          ],
+          "fly_key": "fly_c4980_49801010_m60495200",
+          "english": "Death Rite Bird [Boss] - Forbidden Lands",
+          "npc": 49801010,
+          "model": "c4980",
+          "template": "m60_49_52_00:c4980_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 7,
+          "note": 8,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            102.6,
+            95.3,
+            73.8
+          ],
+          "fly_key": "fly_c6260_62601000_synthetic",
+          "english": "Death Rite Bird",
+          "npc": 62601000,
+          "model": "c6260",
+          "template": "synthetic:dlc_boss_c6260",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 0
+        },
+        {
+          "idx": 8,
+          "note": 9,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            96.6,
+            96.0,
+            75.8
+          ],
+          "fly_key": "fly_c4200_42000043_m60513900",
+          "english": "Giant Bat Tier 4",
+          "npc": 42000043,
+          "model": "c4200",
+          "template": "m60_51_39_00:c4200_9007",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 9,
+          "note": 10,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            89.4,
+            96.6,
+            77.4
+          ],
+          "fly_key": "fly_c4200_42000133_m60435200",
+          "english": "Man-Bat",
+          "npc": 42000133,
+          "model": "c4200",
+          "template": "m60_43_52_00:c4200_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "ground_stand",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 10,
+          "note": 11,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            94.8,
+            96.2,
+            76.2
+          ],
+          "fly_key": "fly_c4200_42001150_m60515600",
+          "english": "Man-Bat",
+          "npc": 42001150,
+          "model": "c4200",
+          "template": "m60_51_56_00:c4200_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 11,
+          "note": 12,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            101.1,
+            95.5,
+            74.7
+          ],
+          "fly_key": "fly_c4560_45601050_m60515300",
+          "english": "Giant Crow (Snowfield)",
+          "npc": 45601050,
+          "model": "c4560",
+          "template": "m60_51_53_00:c4560_9002",
+          "physique_bucket": "flying",
+          "donor_pose_label": "aerial_model",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 12,
+          "note": 13,
+          "mark_slot": "c4351_9000",
+          "test_slot": "c4351_9000",
+          "appearance_slot": "c4351_9000",
+          "world_est": [
+            106.7,
+            94.9,
+            72.2
+          ],
+          "fly_key": "fly_c4980_49800001_m60493800",
+          "english": "",
+          "npc": 49800001,
+          "model": "c4980",
+          "template": "m60_49_38_00:c4980_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 13,
+          "note": 14,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            96.3,
+            96.0,
+            75.9
+          ],
+          "fly_key": "fly_c4980_49801010_m60495200",
+          "english": "Death Rite Bird [Boss] - Forbidden Lands",
+          "npc": 49801010,
+          "model": "c4980",
+          "template": "m60_49_52_00:c4980_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 14,
+          "note": 15,
+          "mark_slot": "c4311_9014",
+          "test_slot": "c4311_9014",
+          "appearance_slot": "c4311_9014",
+          "world_est": [
+            90.9,
+            96.5,
+            77.0
+          ],
+          "fly_key": "fly_c6260_62601000_synthetic",
+          "english": "Death Rite Bird",
+          "npc": 62601000,
+          "model": "c6260",
+          "template": "synthetic:dlc_boss_c6260",
+          "physique_bucket": "flying",
+          "donor_pose_label": "scripted_flyer",
+          "donor_cycle": 1
+        },
+        {
+          "idx": 15,
+          "note": 16,
+          "mark_slot": "c4200_9000",
+          "test_slot": "c4200_9000",
+          "appearance_slot": "c4200_9000",
+          "world_est": [
+            45.0,
+            104.7,
+            19.6
+          ],
+          "fly_key": "fly_c4200_42000043_m60513900",
+          "english": "Giant Bat Tier 4",
+          "npc": 42000043,
+          "model": "c4200",
+          "template": "m60_51_39_00:c4200_9007",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 2
+        },
+        {
+          "idx": 16,
+          "note": 17,
+          "mark_slot": "c4200_9001",
+          "test_slot": "c4200_9001",
+          "appearance_slot": "c4200_9001",
+          "world_est": [
+            47.4,
+            104.0,
+            19.4
+          ],
+          "fly_key": "fly_c4200_42000133_m60435200",
+          "english": "Man-Bat",
+          "npc": 42000133,
+          "model": "c4200",
+          "template": "m60_43_52_00:c4200_9000",
+          "physique_bucket": "flying",
+          "donor_pose_label": "ground_stand",
+          "donor_cycle": 2
+        },
+        {
+          "idx": 17,
+          "note": 18,
+          "mark_slot": "c4200_9002",
+          "test_slot": "c4200_9002",
+          "appearance_slot": "c4200_9002",
+          "world_est": [
+            47.7,
+            103.4,
+            23.1
+          ],
+          "fly_key": "fly_c4200_42001150_m60515600",
+          "english": "Man-Bat",
+          "npc": 42001150,
+          "model": "c4200",
+          "template": "m60_51_56_00:c4200_9000",
+          "physique_bucket": "perch",
+          "donor_pose_label": "sit_squat_backup_700",
+          "donor_cycle": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "gatefront_fly_catalog_v1",
+  "filter": "contract_whitelist_flying_model_prefix",
+  "purpose": "freeze_probe_whitelist_flying",
+  "whitelist_source": "V:\\1_mel\\Ringrandom\\捐皮契约\\捐皮白名单_当前.json",
+  "batch_size": 17,
+  "entries": {
+    "fly_c4200_42000133_m60435200": {
+      "key": "fly_c4200_42000133_m60435200",
+      "english": "Man-Bat",
+      "npc": 42000133,
+      "think": 42000000,
+      "model": "c4200",
+      "template": "m60_43_52_00:c4200_9000",
+      "source_msb": "m60_43_52_00",
+      "whitelist_pool": 1,
+      "whitelist_category": "trash",
+      "physique_bucket": "flying",
+      "donor_pose_label": "ground_stand"
+    },
+    "fly_c4200_42000043_m60513900": {
+      "key": "fly_c4200_42000043_m60513900",
+      "english": "Giant Bat Tier 4",
+      "npc": 42000043,
+      "think": 42000001,
+      "model": "c4200",
+      "template": "m60_51_39_00:c4200_9007",
+      "source_msb": "m60_51_39_00",
+      "whitelist_pool": 1,
+      "whitelist_category": "trash",
+      "physique_bucket": "perch",
+      "donor_pose_label": "sit_squat_backup_700"
+    },
+    "fly_c4200_42001150_m60515600": {
+      "key": "fly_c4200_42001150_m60515600",
+      "english": "Man-Bat",
+      "npc": 42001150,
+      "think": 42000000,
+      "model": "c4200",
+      "template": "m60_51_56_00:c4200_9000",
+      "source_msb": "m60_51_56_00",
+      "whitelist_pool": 2,
+      "whitelist_category": "elite",
+      "physique_bucket": "perch",
+      "donor_pose_label": "sit_squat_backup_700"
+    },
+    "fly_c4560_45601050_m60515300": {
+      "key": "fly_c4560_45601050_m60515300",
+      "english": "Giant Crow (Snowfield)",
+      "npc": 45601050,
+      "think": 45609990,
+      "model": "c4560",
+      "template": "m60_51_53_00:c4560_9002",
+      "source_msb": "m60_51_53_00",
+      "whitelist_pool": 2,
+      "whitelist_category": "elite",
+      "physique_bucket": "flying",
+      "donor_pose_label": "aerial_model"
+    },
+    "fly_c4980_49800001_m60493800": {
+      "key": "fly_c4980_49800001_m60493800",
+      "english": "",
+      "npc": 49800001,
+      "think": 49800000,
+      "model": "c4980",
+      "template": "m60_49_38_00:c4980_9000",
+      "source_msb": "m60_49_38_00",
+      "whitelist_pool": 3,
+      "whitelist_category": "minor_boss",
+      "physique_bucket": "flying",
+      "donor_pose_label": "scripted_flyer"
+    },
+    "fly_c6260_62601000_synthetic": {
+      "key": "fly_c6260_62601000_synthetic",
+      "english": "Death Rite Bird",
+      "npc": 62601000,
+      "think": 62601000,
+      "model": "c6260",
+      "template": "synthetic:dlc_boss_c6260",
+      "source_msb": "synthetic",
+      "whitelist_pool": 3,
+      "whitelist_category": "minor_boss",
+      "physique_bucket": "flying",
+      "donor_pose_label": "scripted_flyer"
+    },
+    "fly_c4980_49801010_m60495200": {
+      "key": "fly_c4980_49801010_m60495200",
+      "english": "Death Rite Bird [Boss] - Forbidden Lands",
+      "npc": 49801010,
+      "think": 49800100,
+      "model": "c4980",
+      "template": "m60_49_52_00:c4980_9000",
+      "source_msb": "m60_49_52_00",
+      "whitelist_pool": 3,
+      "whitelist_category": "minor_boss",
+      "physique_bucket": "flying",
+      "donor_pose_label": "scripted_flyer"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "tier_count": 10,
+  "default_tier": 5,
+  "rune_placeholder_tier": 2,
+  "boss_lot_id_ranges": [
+    [10000, 10399],
+    [102860, 102899],
+    [34100000, 34199999]
+  ],
+  "lot_id_ranges": [
+    { "min": 10000, "max": 10399, "tier": 10 },
+    { "min": 102860, "max": 102899, "tier": 10 }
+  ],
+  "region_keywords": [
+    { "patterns": ["Fringefolk", "Limgrave", "Weeping Peninsula", "Chapel of Anticipation"], "tier": 1 },
+    { "patterns": ["Stormhill", "Mistwood", "Gatefront", "Church of Elleh"], "tier": 2 },
+    { "patterns": ["Liurnia", "Bellum Highway", "Ruin-Strewn", "Academy of Raya Lucaria"], "tier": 3 },
+    { "patterns": ["Caelid", "Greyoll", "Dragonbarrow", "Redmane", "Gael Tunnel"], "tier": 4 },
+    { "patterns": ["Altus Plateau", "Mt. Gelmir", "Capital Outskirts", "Volcano Manor", "Shaded Castle"], "tier": 5 },
+    { "patterns": ["Leyndell", "Nokron", "Siofra", "Ainsel", "Lake of Rot", "Deeproot"], "tier": 6 },
+    { "patterns": ["Forbidden Lands", "Mountaintops", "Snowfield", "Consecrated Snowfield", "Flame Peak"], "tier": 8 },
+    { "patterns": ["Farum Azula", "Haligtree", "Mohgwyn", "Ashen Capital", "Ashen Leyndell"], "tier": 9 },
+    { "patterns": ["Subterranean Shunning-Grounds"], "tier": 7 },
+    { "patterns": ["Hero's Grave", "Gaol", "Catacombs", "Tunnel", "Cave", "Cathedral"], "tier": 4 },
+    { "patterns": ["Golden Rune", "Material Node", "Material"], "tier": 2 },
+    { "patterns": ["Teardrop Scarab"], "tier": 4 },
+    { "patterns": ["Corpse", "Unknown"], "tier": 3 },
+    { "patterns": ["Carriage", "Troll Carriage"], "tier": 2 }
+  ],
+  "dungeon_keywords": [
+    { "patterns": ["Stormveil", "Raya Lucaria", "Academy"], "tier": 4 },
+    { "patterns": ["Volcano Manor", "Shaded Castle", "Redmane", "Gaol"], "tier": 5 },
+    { "patterns": ["Nokron", "Siofra", "Ainsel", "Lake of Rot"], "tier": 6 },
+    { "patterns": ["Deeproot", "Subterranean", "Shunning-Grounds"], "tier": 7 },
+    { "patterns": ["Mountaintops", "Snowfield", "Flame Peak", "Consecrated"], "tier": 8 },
+    { "patterns": ["Farum Azula", "Haligtree", "Mohgwyn", "Elphael", "Miquella"], "tier": 9 },
+    { "patterns": ["Leyndell", "Capital"], "tier": 6 },
+    { "patterns": ["Fringefolk", "Hero's Grave"], "tier": 2 }
+  ],
+  "tier_to_region": {
+    "1": "Limgrave",
+    "2": "Stormhill",
+    "3": "Liurnia",
+    "4": "Caelid",
+    "5": "Altus Plateau",
+    "6": "Leyndell",
+    "7": "Subterranean Shunning-Grounds",
+    "8": "Mountaintops",
+    "9": "Late Game",
+    "10": "Boss",
+    "dungeon": "Dungeons"
+  },
+  "region_labels": {
+    "Limgrave": "宁姆格福",
+    "Stormhill": "风暴山丘",
+    "Liurnia": "利尼亚",
+    "Caelid": "盖利德",
+    "Altus Plateau": "亚坛高原",
+    "Leyndell": "王城",
+    "Subterranean Shunning-Grounds": "下水道",
+    "Mountaintops": "雪山",
+    "Late Game": "后期",
+    "Boss": "首领",
+    "Dungeons": "地下城",
+    "Wilderness": "野外通用",
+    "Convergence": "法魂扩展",
+    "DLC": "幽影之地"
+  },
+  "dlc_region": "DLC",
+  "dlc_tier": 9
+}

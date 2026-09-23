@@ -1,0 +1,31 @@
+{
+  "schema": "enemy_world_regions_v1",
+  "definition": "T-093：25 大区一一对应难度档 1~25；洞窟/墓穴/室内跟就近大区",
+  "regions": {
+    "limgrave": {"tier": 1, "zh": "宁姆格福", "underground": false, "dlc": false},
+    "weeping": {"tier": 2, "zh": "啜泣半岛", "underground": false, "dlc": false},
+    "liurnia": {"tier": 3, "zh": "湖之利耶尼亚", "underground": false, "dlc": false},
+    "siofra": {"tier": 4, "zh": "希夫拉河", "underground": true, "dlc": false},
+    "caelid": {"tier": 5, "zh": "盖利德", "underground": false, "dlc": false},
+    "ainsel": {"tier": 6, "zh": "安瑟尔河", "underground": true, "dlc": false},
+    "dragonbarrow": {"tier": 7, "zh": "龙墓", "underground": false, "dlc": false},
+    "altus": {"tier": 8, "zh": "亚坛高原", "underground": false, "dlc": false},
+    "gelmir": {"tier": 9, "zh": "格密尔火山", "underground": false, "dlc": false},
+    "lakeofrot": {"tier": 10, "zh": "腐败湖", "underground": false, "dlc": false},
+    "deeperroot": {"tier": 11, "zh": "深根底层", "underground": true, "dlc": false},
+    "leyndell": {"tier": 12, "zh": "王城罗德尔", "underground": false, "dlc": false},
+    "catacombs_omen": {"tier": 13, "zh": "弃置噩兆地下墓地", "underground": true, "dlc": false},
+    "forbidden": {"tier": 14, "zh": "禁域", "underground": false, "dlc": false},
+    "mountaintops": {"tier": 15, "zh": "巨人山顶", "underground": false, "dlc": false},
+    "consecrated": {"tier": 16, "zh": "化圣雪原", "underground": false, "dlc": false},
+    "mohgwyn": {"tier": 17, "zh": "蒙格温王朝", "underground": true, "dlc": false},
+    "haligtree": {"tier": 18, "zh": "米凯拉的圣树", "underground": false, "dlc": false},
+    "farum": {"tier": 19, "zh": "法姆·亚兹拉", "underground": false, "dlc": false},
+    "ashen": {"tier": 20, "zh": "灰城罗德尔", "underground": false, "dlc": false},
+    "dlc_gravesite": {"tier": 21, "zh": "DLC墓地平原", "underground": false, "dlc": true},
+    "dlc_altus": {"tier": 22, "zh": "DLC幽影亚坛", "underground": false, "dlc": true},
+    "dlc_south": {"tier": 23, "zh": "DLC南海岸", "underground": false, "dlc": true},
+    "dlc_rauh": {"tier": 24, "zh": "DLC劳赫古遗迹", "underground": false, "dlc": true},
+    "dlc_abyss": {"tier": 25, "zh": "DLC深渊", "underground": true, "dlc": true}
+  }
+}

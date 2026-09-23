@@ -1,0 +1,9 @@
+﻿=== enemy_poc_detail apply-map_ok 2026-07-22 14:09:50Z ===
+mode=apply-map
+game_dir=V:\games\Elden Ring\Game
+tool_root=V:\1_mel\Ringrandom\tools\cnv_enemy_poc
+ringrandom_root=V:\1_mel\Ringrandom
+--msb override=V:\1_mel\Ringrandom\tools\cnv_enemy_poc\cache\map\mapstudio\m60_42_37_00.msb.dcx
+spawn_map=V:\1_mel\Ringrandom\tools\cnv_randomizer\output\cnv_enemy_spawn_map.txt slots=9714
+apply_summary maps=318 slots=9714 missing_slots=0 missing_maps=0 write_failed=0
+me3_snippet=V:\1_mel\Ringrandom\tools\cnv_enemy_poc\cnv_enemy_me3_snippet.toml

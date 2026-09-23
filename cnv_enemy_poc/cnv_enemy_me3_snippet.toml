@@ -1,0 +1,5 @@
+﻿# Add ONCE to Game/me3/convergence.me3 (after convergence-er package):
+[[package]]
+id = "cnv-enemy-poc"
+path = "./../mod/cnv_enemy"
+load_after = [{ id = "convergence-er", optional = false }]

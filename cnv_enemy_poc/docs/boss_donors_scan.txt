@@ -1,0 +1,28 @@
+﻿mode=scan-donors
+game_dir=V:\games\Elden Ring\Game
+tool_root=V:\1_mel\Ringrandom\tools\cnv_enemy_poc
+ringrandom_root=V:\1_mel\Ringrandom
+--msb override=V:\1_mel\Ringrandom\tools\cnv_enemy_poc\cache\map\mapstudio\m60_42_37_00.msb.dcx
+m60_38_52_00.msb.dcx  c4950_9000  model=c4950  npc=49500032  think=49500932  chara=-1
+m60_38_52_00.msb.dcx  c4960_9003  model=c4960  npc=49600032  think=49600932  chara=-1
+m60_39_44_00.msb.dcx  c4950_9000  model=c4950  npc=49500020  think=49500900  chara=-1
+m60_43_33_00.msb.dcx  c4810_9000  model=c4810  npc=48100012  think=48100900  chara=-1
+m60_45_39_00.msb.dcx  c4950_9000  model=c4950  npc=49500010  think=49500900  chara=-1
+m60_45_39_10.msb.dcx  c4950_9000  model=c4950  npc=49500010  think=49500900  chara=-1
+m60_50_57_00.msb.dcx  c4960_9000  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4950_9001  model=c4950  npc=49500050  think=49500050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9000  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9001  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9002  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9003  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9006  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_51_57_00.msb.dcx  c4960_9007  model=c4960  npc=49600050  think=49600050  chara=-1
+m60_33_41_00.msb.dcx  c4502_9000  model=c4502  npc=45020022  think=45020000  chara=-1
+m60_33_41_00.msb.dcx  c4502_9001  model=c4502  npc=45020022  think=45020000  chara=-1
+m60_34_42_00.msb.dcx  c4502_9000  model=c4502  npc=45021922  think=45020922  chara=-1
+m60_34_42_00.msb.dcx  c4502_9001  model=c4502  npc=45020022  think=45020000  chara=-1
+m60_34_45_00.msb.dcx  c4502_9000  model=c4502  npc=45020920  think=45020900  chara=-1
+m60_34_50_00.msb.dcx  c4502_9000  model=c4502  npc=45021920  think=45020920  chara=-1
+m60_43_33_00.msb.dcx  c4810_9000  model=c4810  npc=48100012  think=48100900  chara=-1
+m60_43_36_00.msb.dcx  c4500_9000  model=c4500  npc=45000010  think=45000900  chara=-1
+m60_52_41_00.msb.dcx  c4500_9000  model=c4500  npc=45000042  think=45000942  chara=-1

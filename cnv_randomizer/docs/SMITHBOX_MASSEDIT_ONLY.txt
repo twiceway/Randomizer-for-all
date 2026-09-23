@@ -1,0 +1,69 @@
+# 法魂 1.16.2 — 只能用 Smithbox Mass Edit（DSMSPortable 读不了）
+
+## 为什么 DSMSPortable 一直错误码 7
+
+不是 V 盘慢。.NET 6 装好后仍失败，是因为：
+
+**DSMSPortable v1.9（2024-07）只支持 ER 1.12 以前的 regulation 格式。**
+
+法魂 3.0 / 游戏 1.16.2 的 bin 太新，DSMS 解不开，10 秒后报 timeout（错误码 7）。
+
+这不是你操作问题，是这个工具 **对法魂 3.0 已经过时**。
+
+---
+
+## 推荐：Smithbox 只打 Mass Edit（比 Import 整张 CSV 安全）
+
+下载：https://github.com/vawser/Smithbox/releases/latest
+
+### 步骤（尽量简单）
+
+1. 恢复能玩的 `mod\regulation.bin`（有 27 职业，约 2.36MB，**不是 3.1MB**）
+
+2. 解压 Smithbox，运行 `Smithbox.exe`
+
+3. **不要用** `V:\games\box\` 旧工程
+
+4. **Create Project**（2.2 没有直接 Open bin，见 `SMITHBOX_223_STEP_BY_STEP.txt`）
+   - Project Type: **Elden Ring**
+   - Project Directory: `V:\games\Elden Ring\Game\mod`
+   - Data Directory: `V:\games\Elden Ring\Game`
+   若提示 **Upgrade regulation** → **取消**
+
+5. 左侧 **Param Editor** → 选中 `ItemLotParam_map`
+
+6. 右侧或菜单找 **Mass Edit**（参数批量编辑）
+
+7. 用记事本打开：
+   ```
+   tools\cnv_randomizer\output\ItemLotParam_map.massedit
+   ```
+   全选复制，粘贴到 Mass Edit 的 Input 框
+
+8. 点 **Apply**
+
+9. **Ctrl+S** 保存（确认保存到 `mod\regulation.bin`）
+
+10. 看文件大小：应仍约 **2,364,448**（和合并前差不多），**不是 3,136,624**
+
+11. 新开 CNV 档测试
+
+---
+
+## 和之前 Import CSV 的区别
+
+| 方式 | 风险 |
+|------|------|
+| Import 整张 CSV | 容易连带改坏 / 触发升级 |
+| **Mass Edit 补丁** | 只改 1244 个 lot 的两列，更安全 |
+
+随机脚本已生成 massedit，不需要再 Import CSV。
+
+---
+
+## 备选（会折腾）
+
+Python 工具 RegulationBinUtilities：  
+https://github.com/Tbonex28b/RegulationBinUtilities
+
+需要配路径、装 Python，不如 Smithbox Mass Edit 直接。

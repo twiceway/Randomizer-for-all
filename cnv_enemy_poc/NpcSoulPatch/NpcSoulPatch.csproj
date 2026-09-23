@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefaultItemExcludes>$(DefaultItemExcludes);_PeekNpc\**;_PeekBnd\**;_Dump.cs</DefaultItemExcludes>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\_sfnext\SoulsFormats\SoulsFormats.csproj" />
+  </ItemGroup>
+  <!-- One-off dump scripts / nested projects → conflict with Program.cs -->
+  <ItemGroup>
+    <Compile Remove="_Dump.cs" />
+    <None Include="_Dump.cs" />
+    <Compile Remove="_PeekBnd.cs" />
+    <None Include="_PeekBnd.cs" />
+    <Compile Remove="_PeekBnd\**" />
+    <None Include="_PeekBnd\**" />
+    <Compile Remove="_PeekNpc\**" />
+    <None Include="_PeekNpc\**" />
+    <Compile Remove="_peek_think.csx" />
+    <Compile Remove="_extract_radahn.csx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_6_win64.dll"
+          Link="oo2core_6_win64.dll"
+          CopyToOutputDirectory="PreserveNewest"
+          Condition="Exists('V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_6_win64.dll')" />
+    <None Include="V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_8_win64.dll"
+          Link="oo2core_8_win64.dll"
+          CopyToOutputDirectory="PreserveNewest"
+          Condition="Exists('V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_8_win64.dll')" />
+    <None Include="V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_9_win64.dll"
+          Link="oo2core_9_win64.dll"
+          CopyToOutputDirectory="PreserveNewest"
+          Condition="Exists('V:\games\Elden Ring\Game\tools\DSMSPortable\app\oo2core_9_win64.dll')" />
+  </ItemGroup>
+</Project>

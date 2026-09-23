@@ -1,0 +1,40 @@
+法魂随机：什么在 regulation.bin 里，什么不在
+============================================
+
+## 不能只改 ItemLotParam_map 就动的东西
+
+| 系统 | 主要位置 | 只改掉落表够吗 |
+|------|----------|----------------|
+| 法魂 27 职业 / 圣所选职 | CharaInitParam, 职业相关 Menu 表 + mod\event\m10_01_00_00 | 不够 |
+| 圣所金色遗物互动 | mod\event\ + ActionButtonParam + 圣所 lot 280xxxxx/400xxxxx | 不够（event 不在 bin 里） |
+| 出门传送 / 职业旗标 | mod\event\ 事件 10012503 等 | 不够 |
+| 配方默认解锁 | event + Goods/Recipe 表 | 不够 |
+| 商店 | ShopLineupParam + Shop 相关 | 已排除 |
+| 敌人掉落 | ItemLotParam_enemy | 未改（刻意不动） |
+
+结论：随机 **只能** 安全动「野外地上光 / 宝箱 / Boss 奖励」的装备类 lot。
+职业、圣所、任务钥匙、event 放置物 **不能** 靠乱改 bin 或换错底包。
+
+## 你当前问题的直接原因
+
+mod\regulation.bin 大小必须是 **2,968,720**（法魂 3.0 纯净）。
+
+若是 **3,136,624**（Smithbox ER1161 升级后的原版底包）：
+- 法魂职业表被冲掉 → 职业不对
+- 圣所 ActionButton / 道具链断掉 → 圣所没东西
+- 即使用「修好」的随机 CSV 也没用，底包已经错了
+
+不要用 V:\games\box\regulation.bin 覆盖 mod（除非确认 2968720 且来自法魂）。
+
+## 正确合并随机（底包对了之后）
+
+1. RESTORE_CNV_REGULATION.bat 恢复 2968720
+2. RUN_RANDOMIZE.bat
+3. Smithbox **直接打开 mod\regulation.bin**（不要 Upgrade）
+4. 只 Import ItemLotParam_map，保存回 mod\regulation.bin
+5. 保存后大小仍应约 2968720
+6. 新开 CNV 档测试
+
+## 备份位置
+
+mod\regulation.bin.pre_cnv_rand_42001.bak  = 法魂 3.0 纯净（随机前）

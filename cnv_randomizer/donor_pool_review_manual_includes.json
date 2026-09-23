@@ -1,0 +1,13 @@
+{
+  "note": "T-097 闪电球 c2150 可捐（强制覆写）",
+  "entries": [
+    {
+      "npc": 21500652,
+      "category": "elite"
+    },
+    {
+      "npc": 21500064,
+      "category": "trash"
+    }
+  ]
+}

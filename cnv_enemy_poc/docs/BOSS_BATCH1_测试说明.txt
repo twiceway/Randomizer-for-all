@@ -1,0 +1,34 @@
+Boss 第一批真机测试 — 关卡前哨 m60_42_37_00
+============================================
+
+【怎么装】
+1. 确认 me3 已注册 cnv-enemy-poc 包（见 cnv_enemy_me3_snippet.toml）
+2. 双击运行：tools\cnv_enemy_poc\BOSS_BATCH1.bat
+   （会先 restore 清旧叠加，再 scan-donors，再 boss-batch1）
+3. 完全退出游戏 → Start_Convergence.bat → 新档或 NG → 去关卡前哨
+
+【本批只改 3 个士兵槽，其余怪物保持原版】
+种子默认 42001（换种子：boss-batch1 --seed=12345）
+
+| 位置 | 原槽 | 换成 | 测什么 |
+|------|------|------|--------|
+| 林边巡逻兵 | c4311_9018 | 随机龙 c4960 | 大体型 / 地形 |
+| 营地巡逻兵 | c4311_9010 | 葛瑞克 c4750 | 转阶段 / AI |
+| 林边巡逻兵 | c4311_9022 | 艾尔登之兽 c5200 | 终局 Boss 体型 |
+
+详细捐皮来源见：boss_batch1_spoiler.txt
+
+【改动原则（尽量少动）】
+- 只换：模型 + NpcParam + ThinkParam + CharaInit（从捐皮或 CSV 默认）
+- 坐姿兵清 BackupEventAnimID（否则不攻击）
+- 不改：坐标、巡逻路线、EntityGroup、事件脚本
+
+【真机请记录】
+□ 能否正常进战 / 仇恨
+□ 是否 T-pose / 崩溃
+□ 龙：卡地形吗
+□ 葛瑞克：有无二阶段（门前无原版场地，预期可能不完整）
+□ 皮蛋：体型 / 招式 / 是否加载失败
+
+【恢复原版】
+ENEMY_POC.bat restore

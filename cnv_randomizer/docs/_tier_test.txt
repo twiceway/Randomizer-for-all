@@ -1,0 +1,3 @@
+s=0.0: gaps=480 slots=3335 same_tier=3278 early_lot_high_item=0
+s=0.5: gaps=0 slots=3405 same_tier=2092 early_lot_high_item=0
+s=1.0: gaps=0 slots=3406 same_tier=1826 early_lot_high_item=6

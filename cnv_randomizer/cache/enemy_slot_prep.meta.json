@@ -1,0 +1,22 @@
+{
+  "version": 66,
+  "meta": {
+    "index": "ba1956959479d80a",
+    "archetypes": "db01c0091ea1a580",
+    "dlc_pool_mode": "mixed",
+    "categories_compat": "74ea1493d4eeb9ff",
+    "donor_review_excludes": "2e0b20b7886b6d78",
+    "donor_review_allowlist": "d11a790881f1ed86",
+    "bundle_catalog": "cd163e686ca0778c",
+    "slot_tags": "f0bdff2c6e91d57b",
+    "bundle_slot_compat": "6d8862235a8a97ac",
+    "donor_msb_compat": "rule=2|cache=fa701920e5c7b6f3:132540088|ov=fe8d566f406be742:1186"
+  },
+  "stats": {
+    "slot_rows": 27715,
+    "donor_templates": 356,
+    "workers": 32
+  },
+  "artifact": "enemy_slot_prep.json.gz",
+  "release_cache": true
+}
